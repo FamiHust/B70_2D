@@ -368,6 +368,7 @@ public class ItemEditorWindow : EditorWindow
     private int gridSize = 4;
     private int _oldGridSize = 4;
 	private Texture2D thumb;
+	private Texture2D textureToAdd = null;
 
     void RenderRightPanel()
     {
@@ -420,13 +421,34 @@ public class ItemEditorWindow : EditorWindow
                     _oldDirection = direction;
                     this.LoadDataValues();
                 }
-                GUILayout.Space(5);
-                this.RenderSpritesList();
-                GUILayout.BeginHorizontal();
-                GUILayout.Space(20);
-                if (GUILayout.Button("Add Sprite"))
-                    AddSpriteButtonMenu();
-                GUILayout.EndHorizontal();
+				GUILayout.Space(5);
+				this.RenderSpritesList();
+
+				// Allow dragging a Texture2D to add directly to the current state's texture list
+				textureToAdd = (Texture2D)EditorGUILayout.ObjectField("Add Texture", textureToAdd, typeof(Texture2D));
+				GUILayout.BeginHorizontal();
+				GUILayout.Space(20);
+				if (GUILayout.Button("Add Texture")) {
+					if (textureToAdd != null) {
+						ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
+						switch ((Common.State)state) {
+							case Common.State.IDLE: itemData.idleSpriteTextures.Add(textureToAdd); break;
+							case Common.State.WALK: itemData.walkSpriteTextures.Add(textureToAdd); break;
+							case Common.State.ATTACK: itemData.attackSpriteTextures.Add(textureToAdd); break;
+							case Common.State.DESTROYED: itemData.destroyedSpriteTextures.Add(textureToAdd); break;
+						}
+						textureToAdd = null;
+						EditorUtility.SetDirty(itemsCollection);
+						this.InitSpriteAnimations();
+					}
+				}
+				GUILayout.EndHorizontal();
+
+				GUILayout.BeginHorizontal();
+				GUILayout.Space(20);
+				if (GUILayout.Button("Add Sprite"))
+					AddSpriteButtonMenu();
+				GUILayout.EndHorizontal();
 				thumb = (Texture2D)EditorGUILayout.ObjectField("Thumb", thumb, typeof(Texture2D));
             }
 
@@ -597,6 +619,7 @@ public class ItemEditorWindow : EditorWindow
     {
         ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
 
+        // show mapped sprite ids
         foreach (int spriteId in itemData.GetSprites((Common.State)state))
         {
             SpriteCollection.SpriteData sprite = spriteCollection.GetSprite(spriteId);
@@ -611,7 +634,7 @@ public class ItemEditorWindow : EditorWindow
             pos.width = WidthOfRightPanel - 25;
             GUI.Box(pos, "", "box");
 
-            GUILayout.Label(sprite.name);
+            GUILayout.Label(sprite != null ? sprite.name : "<missing sprite>");
             GUILayout.FlexibleSpace();
             if (GUILayout.Button("-"))
                 removedSprites.Add(sprite);
@@ -620,17 +643,77 @@ public class ItemEditorWindow : EditorWindow
             GUILayout.Space(5);
         }
 
+        // also show textures that can be dragged directly in inspector
+        List<Texture2D> textureList = null;
+        switch ((Common.State)state)
+        {
+            case Common.State.IDLE:
+                textureList = itemData.idleSpriteTextures;
+                break;
+            case Common.State.WALK:
+                textureList = itemData.walkSpriteTextures;
+                break;
+            case Common.State.ATTACK:
+                textureList = itemData.attackSpriteTextures;
+                break;
+            case Common.State.DESTROYED:
+                textureList = itemData.destroyedSpriteTextures;
+                break;
+        }
+
+        if (textureList != null)
+        {
+            // iterate copy to allow removal
+            var copy = new List<Texture2D>(textureList);
+            foreach (Texture2D tex in copy)
+            {
+                SpriteCollection.SpriteData mapped = Sprites.GetSpriteByTexture(tex);
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+
+                Rect pos = GUILayoutUtility.GetLastRect();
+                pos.height = 25;
+                pos.x += 20;
+                pos.width = WidthOfRightPanel - 25;
+                GUI.Box(pos, "", "box");
+
+                GUILayout.Label(mapped != null ? mapped.name : "Texture: " + (tex != null ? tex.name : "null"));
+                GUILayout.FlexibleSpace();
+                if (GUILayout.Button("-"))
+                {
+                    if (mapped != null)
+                    {
+                        removedSprites.Add(mapped);
+                    }
+                    else
+                    {
+                        textureList.Remove(tex);
+                        EditorUtility.SetDirty(itemsCollection);
+                        break; // collection modified
+                    }
+                }
+
+                GUILayout.EndHorizontal();
+                GUILayout.Space(5);
+            }
+        }
+
+        // apply removals
         foreach (SpriteCollection.SpriteData sprite in removedSprites)
         {
-            itemData.RemoveSprite(sprite, (Common.State)state);
-            this.InitSpriteAnimations();
+            if (sprite != null)
+            {
+                itemData.RemoveSprite(sprite, (Common.State)state);
+            }
         }
 
-        if (removedSprites.Count != null)
+        if (removedSprites.Count > 0)
         {
+            this.InitSpriteAnimations();
             removedSprites = new List<SpriteCollection.SpriteData>();
+            EditorUtility.SetDirty(itemsCollection);
         }
-
     }
 
     void AddSpriteButtonMenu()

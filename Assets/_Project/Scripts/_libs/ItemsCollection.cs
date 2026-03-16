@@ -31,86 +31,121 @@ public class ItemsCollection : ScriptableObject
         public int gridSize = 4;
         public Configuration configuration = new Configuration();
 
-        public List<int> idleSprites;
-        public List<int> walkSprites;
-        public List<int> attackSprites;
-        public List<int> destroyedSprites;
+        // store textures directly for each state
+        public List<Texture2D> idleSpriteTextures;
+        public List<Texture2D> walkSpriteTextures;
+        public List<Texture2D> attackSpriteTextures;
+        public List<Texture2D> destroyedSpriteTextures;
 
 
 
         public ItemData()
         {
-            this.idleSprites = new List<int>();
-            this.walkSprites = new List<int>();
-            this.attackSprites = new List<int>();
-            this.destroyedSprites = new List<int>();
+            this.idleSpriteTextures = new List<Texture2D>();
+            this.walkSpriteTextures = new List<Texture2D>();
+            this.attackSpriteTextures = new List<Texture2D>();
+            this.destroyedSpriteTextures = new List<Texture2D>();
         }
 
         public void AddSprite(SpriteCollection.SpriteData sprite, Common.State state)
         {
-            List<int> sprites = idleSprites;
+            if (sprite == null) return;
+            Texture2D tex = sprite.bottomTexture != null ? sprite.bottomTexture.texture : null;
+            if (tex == null)
+            {
+                if (sprite.bottomRightTexture != null) tex = sprite.bottomRightTexture.texture;
+                if (tex == null && sprite.rightTexture != null) tex = sprite.rightTexture.texture;
+                if (tex == null && sprite.topRightTexture != null) tex = sprite.topRightTexture.texture;
+                if (tex == null && sprite.topTexture != null) tex = sprite.topTexture.texture;
+            }
+            if (tex == null) return;
+
+            List<Texture2D> sprites = idleSpriteTextures;
             switch (state)
             {
                 case Common.State.IDLE:
-                    sprites = idleSprites;
+                    sprites = idleSpriteTextures;
                     break;
                 case Common.State.WALK:
-                    sprites = walkSprites;
+                    sprites = walkSpriteTextures;
                     break;
                 case Common.State.ATTACK:
-                    sprites = attackSprites;
+                    sprites = attackSpriteTextures;
                     break;
                 case Common.State.DESTROYED:
-                    sprites = destroyedSprites;
+                    sprites = destroyedSpriteTextures;
                     break;
             }
 
-            if (!sprites.Contains(sprite.id))
-            {
-                sprites.Add(sprite.id);
-            }
+            if (!sprites.Contains(tex)) sprites.Add(tex);
         }
 
         public void RemoveSprite(SpriteCollection.SpriteData sprite, Common.State state)
         {
-            List<int> sprites = idleSprites;
+            if (sprite == null) return;
+            Texture2D tex = sprite.bottomTexture != null ? sprite.bottomTexture.texture : null;
+            if (tex == null)
+            {
+                if (sprite.bottomRightTexture != null) tex = sprite.bottomRightTexture.texture;
+                if (tex == null && sprite.rightTexture != null) tex = sprite.rightTexture.texture;
+                if (tex == null && sprite.topRightTexture != null) tex = sprite.topRightTexture.texture;
+                if (tex == null && sprite.topTexture != null) tex = sprite.topTexture.texture;
+            }
+            if (tex == null) return;
+
+            List<Texture2D> sprites = idleSpriteTextures;
             switch (state)
             {
                 case Common.State.IDLE:
-                    sprites = idleSprites;
+                    sprites = idleSpriteTextures;
                     break;
                 case Common.State.WALK:
-                    sprites = walkSprites;
+                    sprites = walkSpriteTextures;
                     break;
                 case Common.State.ATTACK:
-                    sprites = attackSprites;
+                    sprites = attackSpriteTextures;
                     break;
                 case Common.State.DESTROYED:
-                    sprites = destroyedSprites;
+                    sprites = destroyedSpriteTextures;
                     break;
             }
 
-            if (sprites.Contains(sprite.id))
-            {
-                sprites.Remove(sprite.id);
-            }
+            if (sprites.Contains(tex)) sprites.Remove(tex);
         }
 
+        // Return sprite ids by mapping stored textures to sprite entries in SpriteCollection
         public List<int> GetSprites(Common.State state)
+        {
+            List<Texture2D> textures = GetSpriteTextures(state);
+            List<int> ids = new List<int>();
+            if (textures == null) return ids;
+            foreach (Texture2D tex in textures)
+            {
+                SpriteCollection.SpriteData sprite = Sprites.GetSpriteByTexture(tex);
+                if (sprite != null && !ids.Contains(sprite.id))
+                {
+                    ids.Add(sprite.id);
+                }
+            }
+            return ids;
+        }
+
+        // Return stored Texture2D list for a given state
+        public List<Texture2D> GetSpriteTextures(Common.State state)
         {
             switch (state)
             {
                 case Common.State.IDLE:
-                    return idleSprites;
+                    return idleSpriteTextures;
                 case Common.State.WALK:
-                    return walkSprites;
+                    return walkSpriteTextures;
                 case Common.State.ATTACK:
-                    return attackSprites;
+                    return attackSpriteTextures;
                 case Common.State.DESTROYED:
-                    return destroyedSprites;
+                    return destroyedSpriteTextures;
             }
 
-            return idleSprites;
+            return idleSpriteTextures;
         }
 
 

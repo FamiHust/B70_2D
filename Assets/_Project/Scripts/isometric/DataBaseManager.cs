@@ -11,7 +11,6 @@ public class ItemData
 	public int posX;
 	public int posZ;
 }
-
 [System.Serializable]
 public class SceneData
 {
@@ -82,6 +81,18 @@ public class DataBaseManager : MonoBehaviour
 
 	private string gameDataFilePath = "/StreamingAssets/db.json";
 	private GameData _gameData;
+
+	private void EnsureInMemoryData()
+	{
+		if (this._gameData == null)
+		{
+			this._gameData = new GameData();
+		}
+		if (this._gameData.sceneData == null)
+		{
+			this._gameData.sceneData = new SceneData();
+		}
+	}
 
 	private string _defaultSceneData;
 	    // "{\"items\":[" + 
@@ -285,6 +296,20 @@ public class DataBaseManager : MonoBehaviour
 		{
 			string jsonData = File.ReadAllText(filePath);
 			this._gameData = JsonUtility.FromJson<GameData>(jsonData);
+
+			// If the file was empty or corrupted JsonUtility may return null.
+			// Ensure we always have valid GameData and SceneData objects.
+			if (this._gameData == null)
+			{
+				this._gameData = new GameData();
+				this._gameData.sceneData = new SceneData();
+				this.SaveDataBase();
+			}
+			else if (this._gameData.sceneData == null)
+			{
+				this._gameData.sceneData = new SceneData();
+				this.SaveDataBase();
+			}
 		}
 		else
 		{
@@ -294,9 +319,16 @@ public class DataBaseManager : MonoBehaviour
 
 	public SceneData GetScene()
 	{
-		if (this._gameData.sceneData.items.Count == 0)
+		this.EnsureInMemoryData();
+
+		if (this._gameData.sceneData.items == null || this._gameData.sceneData.items.Count == 0)
 		{
-			this._gameData.sceneData = JsonUtility.FromJson<SceneData>(this._defaultSceneData);
+			if (!string.IsNullOrEmpty(this._defaultSceneData))
+			{
+				SceneData parsed = JsonUtility.FromJson<SceneData>(this._defaultSceneData);
+				if (parsed != null)
+					this._gameData.sceneData = parsed;
+			}
 			this.SaveDataBase();
 		}
 		return this._gameData.sceneData;
@@ -310,6 +342,7 @@ public class DataBaseManager : MonoBehaviour
 
 	public void SaveScene()
 	{
+		this.EnsureInMemoryData();
 		foreach (BaseItemScript item in SceneManager.instance.GetAllItems())
 		{
 			this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ());
@@ -319,14 +352,16 @@ public class DataBaseManager : MonoBehaviour
 
 	public void UpdateItemData(BaseItemScript item)
 	{
+		this.EnsureInMemoryData();
 		this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ());
 		this.SaveDataBase();
 	}
 
 	public void RemoveItem(BaseItemScript item)
     {
+		this.EnsureInMemoryData();
 		this._gameData.sceneData.RemoveItem(item.instanceId);
-        this.SaveDataBase();
+		this.SaveDataBase();
     }
 
 	public void SaveDataBase()
@@ -343,6 +378,8 @@ public class DataBaseManager : MonoBehaviour
 			filePath = Application.dataPath + gameDataFilePath;
 		}
 
+		// Ensure we have valid in-memory data before saving
+		this.EnsureInMemoryData();
 		string jsonData = JsonUtility.ToJson(this._gameData);
 		File.WriteAllText(filePath, jsonData);
 	}

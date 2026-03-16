@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,6 +33,13 @@ public class UIManager : MonoBehaviour
 		instance = this;
 		this.Design.SetActive(false);
 		this._windowInstances = new List<WindowScript>();
+
+		// show menu window at start if assigned
+		if (this.SceneEnteringWindow == null)
+		{
+			// no scene entering window assigned - still allow showing menu
+		}
+		// MenuWindow prefab is in SceneManager; UIManager will not create it here directly
 	}
 
 	/// <summary>

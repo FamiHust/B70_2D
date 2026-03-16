@@ -33,6 +33,21 @@ public class Sprites {
 		sprites.TryGetValue (spriteId, out sprite);
 		return sprite;
 	}
+
+	public static SpriteCollection.SpriteData GetSpriteByTexture(Texture2D texture){
+		if (texture == null) return null;
+		if (sprites == null) return null;
+		foreach(var kv in sprites){
+			SpriteCollection.SpriteData sprite = kv.Value;
+			if (sprite == null) continue;
+			if (sprite.bottomTexture != null && sprite.bottomTexture.texture == texture) return sprite;
+			if (sprite.bottomRightTexture != null && sprite.bottomRightTexture.texture == texture) return sprite;
+			if (sprite.rightTexture != null && sprite.rightTexture.texture == texture) return sprite;
+			if (sprite.topRightTexture != null && sprite.topRightTexture.texture == texture) return sprite;
+			if (sprite.topTexture != null && sprite.topTexture.texture == texture) return sprite;
+		}
+		return null;
+	}
 		
 	public static Material GetTextureMaterial(Texture2D texture, Common.RenderingLayer layer, int order){
 		if (textureMaterialMap == null) {

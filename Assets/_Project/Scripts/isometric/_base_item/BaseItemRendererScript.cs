@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -147,17 +147,56 @@ public class BaseItemRendererScript : MonoBehaviour
 		Common.State state = BaseItem.state;
 		Common.Direction direction = BaseItem.direction;
 
-		List<int> spriteIds = BaseItem.itemData.GetSprites(state);
-
-		if (spriteIds == null || spriteIds.Count == 0)
+		// Prefer textures stored on item data (new workflow). If none, fall back to id-based sprites.
+		List<Texture2D> textures = BaseItem.itemData.GetSpriteTextures(state);
+		if (textures != null && textures.Count > 0)
 		{
-			return null;
+			for (int i = 0; i < textures.Count; i++)
+			{
+				Texture2D tex = textures[i];
+				if (tex == null) continue;
+				SpriteCollection.SpriteData sprite = Sprites.GetSpriteByTexture(tex);
+				if (sprite != null)
+				{
+					layers.Add(sprite.GetTextureData(direction));
+				}
+				else
+				{
+					// create temporary SpriteData/TextureData so we can render the raw texture
+					SpriteCollection.SpriteData tmp = new SpriteCollection.SpriteData();
+					tmp.gridSize = BaseItem.itemData.gridSize > 0 ? BaseItem.itemData.gridSize : 4;
+					tmp.renderingLayer = Common.RenderingLayer.SPRITE;
+					tmp.renderingOrder = 0;
+					// use bottomTexture as representative
+					tmp.bottomTexture.texture = tex;
+					// default values
+					tmp.bottomTexture.offsetX = 0;
+					tmp.bottomTexture.offsetY = 0;
+					tmp.bottomTexture.scale = 100.0f;
+					tmp.bottomTexture.numberOfColumns = 1;
+					tmp.bottomTexture.numberOfRows = 1;
+					tmp.bottomTexture.framesCount = 1;
+					tmp.bottomTexture.fps = 1;
+					layers.Add(tmp.GetTextureData(direction));
+				}
+			}
+			return layers.ToArray();
 		}
-
-		for (int index = 0; index < spriteIds.Count; index++)
+		else
 		{
-			SpriteCollection.SpriteData sprite = Sprites.GetSprite(spriteIds[index]);
-			layers.Add(sprite.GetTextureData(direction));
+			// fallback to id-based behaviour for backwards compatibility
+			List<int> spriteIds = BaseItem.itemData.GetSprites(state);
+			if (spriteIds == null || spriteIds.Count == 0)
+			{
+				return null;
+			}
+
+			for (int index = 0; index < spriteIds.Count; index++)
+			{
+				SpriteCollection.SpriteData sprite = Sprites.GetSprite(spriteIds[index]);
+				if (sprite == null) continue;
+				layers.Add(sprite.GetTextureData(direction));
+			}
 		}
 
 		return layers.ToArray();

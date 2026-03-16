@@ -10,6 +10,7 @@ public class SceneManager : MonoBehaviour
 
 	/* prefabs */
 	public GameObject BaseItem;
+    public GameObject MenuWindow;
    
 	public GameObject RenderQuad;
 	public Material RenderQuadMaterial;
@@ -33,7 +34,7 @@ public class SceneManager : MonoBehaviour
 	public int numberOfDiamondsInStorage;
 
 	public int goldStorageCapacity;
-	// public int elixirStorageCapacity;
+	public int diamondStorageCapacity;
 
 
 
@@ -55,20 +56,36 @@ public class SceneManager : MonoBehaviour
 		this.Init();
 	}
 
+	// Start is a coroutine to ensure UIManager is initialized before showing MenuWindow
+	private System.Collections.IEnumerator Start()
+	{
+		// wait until UIManager.instance is available
+		while (UIManager.instance == null || UIManager.instance.WindowsContainer == null)
+		{
+			yield return null;
+		}
+
+		// instantiate MenuWindow into WindowsContainer if assigned
+		if (this.MenuWindow != null)
+		{
+			Utilities.CreateInstance(this.MenuWindow, UIManager.instance.WindowsContainer, true);
+		}
+	}
+
 	/// <summary>
 	/// Init this instance.
 	/// </summary>
 	public void Init()
 	{
-		this.EnterNormalMode();
-        
-		this.numberOfGoldInStorage = 500;
-		// this.numberOfElixirInStorage = 150;
-		this.numberOfDiamondsInStorage = 300;
+		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
+		this.numberOfGoldInStorage = 1000;
+		this.numberOfDiamondsInStorage = 100;
+        // this.numberOfElixirInStorage = 150;
 
-		this.goldStorageCapacity = 500;
-		// this.elixirStorageCapacity = 500;
-	}
+		this.goldStorageCapacity = 1000;
+		this.diamondStorageCapacity = 100;
+        // this.elixirStorageCapacity = 500;
+    }
     
    
 	/// <summary>
@@ -412,38 +429,41 @@ public class SceneManager : MonoBehaviour
 		this.ClearScene();
 		SceneData sceneData = DataBaseManager.instance.GetScene();
 
-		foreach (ItemData itemData in sceneData.items)
-		{
-			this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true);
-		}
+        if (sceneData?.items != null)
+        {
+            foreach (ItemData itemData in sceneData.items)
+            {
+                this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true);
+            }
+        }
 
-		//LOAD UNITS ON CAMP 
-		// BaseItemScript[] armyCamps = GetArmyCamps();
-		// if (armyCamps.Length > 0)
-		// {
-		// 	for (int index = 0; index < _swordManCount; index++)
-		// 	{
-		// 		var camp = armyCamps[Random.Range(0, armyCamps.Length)];
-		// 		BaseItemScript unit = this.AddItem(_swordMan_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
-		// 		unit.WalkRandom(camp);
-		// 	}
+        //LOAD UNITS ON CAMP 
+        // BaseItemScript[] armyCamps = GetArmyCamps();
+        // if (armyCamps.Length > 0)
+        // {
+        // 	for (int index = 0; index < _swordManCount; index++)
+        // 	{
+        // 		var camp = armyCamps[Random.Range(0, armyCamps.Length)];
+        // 		BaseItemScript unit = this.AddItem(_swordMan_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
+        // 		unit.WalkRandom(camp);
+        // 	}
 
-		// 	for (int index = 0; index < _archerCount; index++)
+        // 	for (int index = 0; index < _archerCount; index++)
         //     {
         //         var camp = armyCamps[Random.Range(0, armyCamps.Length)];
-		// 		BaseItemScript unit = this.AddItem(_archer_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
-		// 		unit.WalkRandom(camp);
+        // 		BaseItemScript unit = this.AddItem(_archer_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
+        // 		unit.WalkRandom(camp);
         //     }
-		// }
+        // }
 
-		//for (int index = 0; index < 25; index++)
-		//{
-		//	//tree
-		//	BaseItemScript tree = this.AddItem(5341, true, true);
-		//	tree.SetPosition(GroundManager.instance.GetRandomFreePosition());
-		//}
+        //for (int index = 0; index < 25; index++)
+        //{
+        //	//tree
+        //	BaseItemScript tree = this.AddItem(5341, true, true);
+        //	tree.SetPosition(GroundManager.instance.GetRandomFreePosition());
+        //}
 
-		GroundManager.instance.UpdateAllNodes();
+        GroundManager.instance.UpdateAllNodes();
 		this.UpdateWalls();
         
 		UIManager.instance.ShowGameOverlayWindow();
@@ -612,7 +632,7 @@ public class SceneManager : MonoBehaviour
 		// }
 		else if (resourceType == "diamond")
         {
-			this.numberOfDiamondsInStorage = this.numberOfDiamondsInStorage + amount;
+            this.numberOfDiamondsInStorage = Mathf.Clamp(this.numberOfDiamondsInStorage + amount, 0, diamondStorageCapacity);
         }
 
 		this.RefreshResourceUIs(resourceType);

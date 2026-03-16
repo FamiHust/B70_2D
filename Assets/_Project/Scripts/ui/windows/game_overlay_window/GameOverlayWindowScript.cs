@@ -33,11 +33,13 @@ public class GameOverlayWindowScript : WindowScript {
         // this.ElixirInfo.maxValue = SceneManager.instance.elixirStorageCapacity;
         // this.ElixirInfo.value = SceneManager.instance.numberOfElixirInStorage;
 
-		this.DiamondInfo.hasMaxValue = false;
-		this.DiamondInfo.value = SceneManager.instance.numberOfDiamondsInStorage;
-	}
+		this.DiamondInfo.hasMaxValue = true;
+		this.DiamondInfo.maxValue = SceneManager.instance.diamondStorageCapacity;
+        this.DiamondInfo.value = SceneManager.instance.numberOfDiamondsInStorage;
 
-	public void OnClickShopButton(){
+    }
+
+    public void OnClickShopButton(){
 		UIManager.instance.ShowShopWidow ();
 	}
 
@@ -53,9 +55,9 @@ public class GameOverlayWindowScript : WindowScript {
         {
 			GoldInfo.TweenValueChange(value);
         }
-        // else if (resourceType == "elixir")
-        // {
-		// 	ElixirInfo.TweenValueChange(value);
-        // }
-    }
+		else if (resourceType == "diamond")
+		{
+			DiamondInfo.TweenValueChange(value);
+		}
+	}
 }

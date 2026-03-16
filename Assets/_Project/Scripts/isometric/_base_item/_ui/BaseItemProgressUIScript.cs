@@ -58,8 +58,8 @@ public class BaseItemProgressUIScript : MonoBehaviour
 		this.ProgressFiller.size = _tempSize;
 
 		int timeToFinish = (int)(_buildTime - elapsedTime);
-		TimerLabel.text = timeToFinish.ToString();
-		TimerLabelShadow.text = timeToFinish.ToString();
+		TimerLabel.text = timeToFinish.ToString() + "s";
+		TimerLabelShadow.text = timeToFinish.ToString() + "s";
 
 		if (progress >= 1)
 		{

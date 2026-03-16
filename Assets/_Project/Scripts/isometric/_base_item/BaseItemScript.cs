@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -35,7 +35,7 @@ public class BaseItemScript : MonoBehaviour
 
 	public List<BaseItemScript> connectedItems;
 
-    /* events */
+	/* events */
 	public UnityAction<BaseItemScript> OnItemDestroy;
 
 	/* private vars */
@@ -82,8 +82,8 @@ public class BaseItemScript : MonoBehaviour
 		this.UI.SetData(this);
 		this.Particles.SetData(this);
 
-		if(this.itemData.configuration.productionRate > 0)
-		    this.Production.SetData(this);
+		if (this.itemData.configuration.productionRate > 0)
+			this.Production.SetData(this);
 
 		this.connectedItems = new List<BaseItemScript>();
 
@@ -277,11 +277,12 @@ public class BaseItemScript : MonoBehaviour
 		}
 		this.UpdateConnectedItems();
 
-		if (isTrue) {
-    		//play sound for tap item , here loop is false
-    		SoundManager.instance.PlaySound(SoundManager.instance.TapOnItem, false);
+		if (isTrue)
+		{
+			//play sound for tap item , here loop is false
+			SoundManager.instance.PlaySound(SoundManager.instance.TapOnItem, false);
 			UIManager.instance.ShowItemOptions();
-    	}
+		}
 	}
 
 	public void LookAt(BaseItemScript item)
@@ -362,7 +363,7 @@ public class BaseItemScript : MonoBehaviour
 			DataBaseManager.instance.UpdateItemData(this);
 
 			//play sound for end drag item , here loop is false
-            SoundManager.instance.PlaySound(SoundManager.instance.TapOnItem, false);
+			SoundManager.instance.PlaySound(SoundManager.instance.TapOnItem, false);
 		}
 	}
 
@@ -373,7 +374,7 @@ public class BaseItemScript : MonoBehaviour
 		bool isPlacable = GroundManager.instance.IsPositionPlacable(this.GetPosition(), this.itemData.gridSize, this.itemData.gridSize, this.instanceId);
 		return isPlacable;
 	}
-   
+
 
 	public Vector3[] GetFrontCells()
 	{
@@ -570,7 +571,7 @@ public class BaseItemScript : MonoBehaviour
 			this.isDestroyed = true;
 			this.UI.ShowEnergyBarUI(false);
 			GroundManager.instance.UpdateBaseItemNodes(this, GroundManager.Action.REMOVE);
-         
+
 			if (!this.itemData.configuration.isCharacter && this.itemData.name != "Wall")
 			{
 				/* shake camera */

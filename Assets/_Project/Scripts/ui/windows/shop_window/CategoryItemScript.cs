@@ -7,9 +7,9 @@ public class CategoryItemScript : MonoBehaviour {
 	/* prefabs */
 	public Sprite ArmySprite;
 	public Sprite DefenceSprite;
-	public Sprite OtherSprite;
+	public Sprite ServiceSprite;
 	public Sprite ResourcesSprite;
-	public Sprite TreasureSprite;
+	public Sprite StudentSprite;
 	public Sprite DecorationsSprite;
 
 	/* references */
@@ -32,17 +32,17 @@ public class CategoryItemScript : MonoBehaviour {
 		// 	this.Name.text = "DEFENCE";
 		// 	this.Image.sprite = this.DefenceSprite;
 		// 	break;
-		case ShopWindowScript.Category.OTHER:
-			this.Name.text = "OTHER";
-			this.Image.sprite = this.OtherSprite;
+		case ShopWindowScript.Category.SERVICE:
+			this.Name.text = "SERVICE";
+			this.Image.sprite = this.ServiceSprite;
 			break;
 		case ShopWindowScript.Category.RESOURCES:
 			this.Name.text = "RESOURCES";
 			this.Image.sprite = this.ResourcesSprite;
 			break;
-		case ShopWindowScript.Category.TREASURE:
-			this.Name.text = "TREASURE";
-			this.Image.sprite = this.TreasureSprite;
+		case ShopWindowScript.Category.STUDENT:
+			this.Name.text = "STUDENT";
+			this.Image.sprite = this.StudentSprite;
 			break;
 		case ShopWindowScript.Category.DECORATIONS:
 			this.Name.text = "DECORATIONS";
