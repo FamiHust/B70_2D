@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -78,14 +78,26 @@ public class SceneManager : MonoBehaviour
 	public void Init()
 	{
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
-		this.numberOfGoldInStorage = 1000;
-		this.numberOfDiamondsInStorage = 100;
-        // this.numberOfElixirInStorage = 150;
-
 		this.goldStorageCapacity = 1000;
 		this.diamondStorageCapacity = 100;
         // this.elixirStorageCapacity = 500;
+
+		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
+		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
+		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
+        // this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
     }
+
+	/// <summary>
+	/// Saves current resource values to PlayerPrefs.
+	/// </summary>
+	public void SaveResources()
+	{
+		PlayerPrefs.SetInt("numberOfGoldInStorage", this.numberOfGoldInStorage);
+		PlayerPrefs.SetInt("numberOfDiamondsInStorage", this.numberOfDiamondsInStorage);
+		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
+		PlayerPrefs.Save();
+	}
     
    
 	/// <summary>
@@ -635,6 +647,7 @@ public class SceneManager : MonoBehaviour
             this.numberOfDiamondsInStorage = Mathf.Clamp(this.numberOfDiamondsInStorage + amount, 0, diamondStorageCapacity);
         }
 
+		this.SaveResources();
 		this.RefreshResourceUIs(resourceType);
 	}
 
@@ -646,6 +659,7 @@ public class SceneManager : MonoBehaviour
             if (this.numberOfGoldInStorage >= count)
             {
                 this.numberOfGoldInStorage -= count;
+				this.SaveResources();
 				this.RefreshResourceUIs(resourceType);
                 return true;
             }
@@ -655,6 +669,7 @@ public class SceneManager : MonoBehaviour
         //     if (this.numberOfElixirInStorage >= count)
         //     {
         //         this.numberOfElixirInStorage -= count;
+		// 		this.SaveResources();
 		// 		this.RefreshResourceUIs(resourceType);
         //         return true;
         //     }
@@ -664,6 +679,7 @@ public class SceneManager : MonoBehaviour
             if (this.numberOfDiamondsInStorage >= count)
             {
                 this.numberOfDiamondsInStorage -= count;
+				this.SaveResources();
 				this.RefreshResourceUIs(resourceType);
                 return true;
             }

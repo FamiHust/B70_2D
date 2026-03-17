@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -8,12 +8,14 @@ public class ProductionScript : MonoBehaviour
 	/* public vars */
 	public bool readyForCollection = false;
 	public int collectedAmount = 0;
+	public bool isUnderConstruction = false;
 
     /* private vars */
 	private BaseItemScript _baseItem;
 	private float _productionRate = 0.0f;
 	private string _productType;
-	private float _lastCollectedTime = 0.0f;
+	private int _productPrice;
+    private float _lastCollectedTime = 0.0f;
 
        
 	public void SetData(BaseItemScript baseItem)
@@ -21,14 +23,28 @@ public class ProductionScript : MonoBehaviour
 		this._baseItem = baseItem;
 		this._productionRate = baseItem.itemData.configuration.productionRate;
 		this._productType = baseItem.itemData.configuration.product;
+		this._productPrice = baseItem.itemData.configuration.productPrice;
+        this._lastCollectedTime = Time.realtimeSinceStartup;
+	}
+
+	/// <summary>
+	/// Called when construction finishes so production timer starts from now.
+	/// </summary>
+	public void OnConstructionFinished()
+	{
+		this.isUnderConstruction = false;
 		this._lastCollectedTime = Time.realtimeSinceStartup;
 	}
-       
+
 	/// <summary>
 	/// Update on walker. which call every frame if _isWalking is true
 	/// </summary>
 	public void UpdateProduction()
 	{
+		// Do not produce while the building is still under construction
+		if (this.isUnderConstruction)
+			return;
+
 		float time = Time.realtimeSinceStartup - this._lastCollectedTime;
 		int productAmount = (int)((time / 60 / 60) * this._productionRate);
 		if (productAmount >= 1 && !readyForCollection)
@@ -49,7 +65,7 @@ public class ProductionScript : MonoBehaviour
 			this._lastCollectedTime = Time.realtimeSinceStartup;
 			this.readyForCollection = false;
 
-			SceneManager.instance.CollectResource(this._productType, 100);
+			SceneManager.instance.CollectResource(this._productType, this._productPrice);
 
 			SoundManager.instance.PlaySound(SoundManager.instance.Collect, false);
 		}

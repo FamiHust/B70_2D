@@ -17,6 +17,7 @@ public class ItemsCollection : ScriptableObject
         public float hitPoints;
 		public float productionRate;
 		public string product;
+        public int productPrice = 100;          // GIÁ BUILD
         public int price = 100;          // GIÁ BUILD
         public string resourceType = "gold";
     }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,6 +56,9 @@ public class UIScript : MonoBehaviour {
             {
 				this.progressUIInstance = this.ShowUI(this.BaseItemProgressUI).GetComponent<BaseItemProgressUIScript>();
             }
+            // Mark production as blocked while building is under construction
+            if (this._baseItem.Production != null)
+                this._baseItem.Production.isUnderConstruction = true;
         }
         else
         {
@@ -64,6 +67,9 @@ public class UIScript : MonoBehaviour {
                 Destroy(this.progressUIInstance.gameObject);
                 this.progressUIInstance = null;
             }
+            // Construction done — start production timer from now
+            if (this._baseItem.Production != null)
+                this._baseItem.Production.OnConstructionFinished();
         }
     }
 
