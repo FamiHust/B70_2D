@@ -179,6 +179,7 @@ MonoBehaviour:
   WallSprite: {fileID: 21300000, guid: 71964cee2744c4897959828431d40578, type: 3}
   Tree3Sprite: {fileID: 21300000, guid: 4c29b59126111df458ea771f07adb0fb, type: 3}
   Name: {fileID: 114733654531682908}
+  PriceText: {fileID: 114073632159367454}
   Image: {fileID: 114645770851548556}
 --- !u!114 &114807311948488204
 MonoBehaviour:

@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 public class BaseItemScript : MonoBehaviour
 {
-
-
 	/* object refs */
 	public GameObject Container;
 	public Collider BoxCollider;
@@ -29,6 +27,7 @@ public class BaseItemScript : MonoBehaviour
 
 	public ItemsCollection.ItemData itemData;
 	public float healthPoints = 0;
+	public int level = 1;
 
 	public bool isDestroyed = false;
 	public bool ownedItem;
@@ -37,6 +36,7 @@ public class BaseItemScript : MonoBehaviour
 
 	/* events */
 	public UnityAction<BaseItemScript> OnItemDestroy;
+	public UnityAction OnConstructionComplete;
 
 	/* private vars */
 	private Dictionary<float, Common.Direction> _angleToDirectionMap;
@@ -67,11 +67,18 @@ public class BaseItemScript : MonoBehaviour
 		}
 	}
 
-	public void SetItemData(int itemId, int posX, int posZ)
+	public void SetItemData(int itemId, int posX, int posZ, int level = 1)
 	{
 		this.itemData = Items.GetItem(itemId);
+		this.level = level;
 		this.gameObject.name = itemData.name + " [INSTANCE]";
-		this.SetSize(Vector3.one * itemData.gridSize);
+		this.SetSize(Vector3.one);
+
+		if (this.BoxCollider is BoxCollider boxCollider)
+		{
+			boxCollider.size = new Vector3(this.itemData.gridWidth, boxCollider.size.y, this.itemData.gridHeight);
+			boxCollider.center = new Vector3((this.itemData.gridWidth - 1f) / 2f, boxCollider.center.y, (this.itemData.gridHeight - 1f) / 2f);
+		}
 
 		this.healthPoints = this.itemData.configuration.healthPoints;
 
@@ -249,7 +256,7 @@ public class BaseItemScript : MonoBehaviour
 	/// <returns>The position.</returns>
 	public Vector3 GetSize()
 	{
-		return new Vector3(this.transform.localScale.x, 0, this.transform.localScale.z);
+		return new Vector3(this.itemData.gridWidth, 0, this.itemData.gridHeight);
 	}
 
 	/// <summary>
@@ -371,7 +378,7 @@ public class BaseItemScript : MonoBehaviour
 
 	private bool _IsInPlacablePosition()
 	{
-		bool isPlacable = GroundManager.instance.IsPositionPlacable(this.GetPosition(), this.itemData.gridSize, this.itemData.gridSize, this.instanceId);
+		bool isPlacable = GroundManager.instance.IsPositionPlacable(this.GetPosition(), this.itemData.gridWidth, this.itemData.gridHeight, this.instanceId);
 		return isPlacable;
 	}
 
@@ -379,29 +386,26 @@ public class BaseItemScript : MonoBehaviour
 	public Vector3[] GetFrontCells()
 	{
 		int sizeX = (int)this.GetSize().x;
-		int size = 2 * sizeX + 1;
-		Vector3[] cells = new Vector3[size];
-		int index = 0;
+		int sizeZ = (int)this.GetSize().z;
+		List<Vector3> cells = new List<Vector3>();
 
 		for (int x = 0; x <= sizeX; x++)
 		{
-			for (int z = 0; z <= sizeX; z++)
+			for (int z = 0; z <= sizeZ; z++)
 			{
-				if (x == sizeX || z == sizeX)
+				if (x == sizeX || z == sizeZ)
 				{
 					Vector3 cellPos = this.GetPosition() + new Vector3(x, 0, z);
 					if (cellPos.x < 0 || cellPos.x >= GroundManager.nodeWidth || cellPos.z < 0 || cellPos.z >= GroundManager.nodeHeight)
 					{
-						//avoid cells out of the grid
 						continue;
 					}
-					cells[index] = cellPos;
-					index++;
+					cells.Add(cellPos);
 				}
 			}
 		}
 
-		return cells;
+		return cells.ToArray();
 	}
 
 	public Vector3 GetRandomFrontCellPosition()
@@ -413,8 +417,9 @@ public class BaseItemScript : MonoBehaviour
 	public Vector3[] GetOuterCells()
 	{
 		int sizeX = (int)this.GetSize().x;
+		int sizeZ = (int)this.GetSize().z;
 
-		if (sizeX <= 1)
+		if (sizeX <= 1 && sizeZ <= 1)
 		{
 			return new Vector3[0];
 		}
@@ -422,9 +427,9 @@ public class BaseItemScript : MonoBehaviour
 		List<Vector3> cells = new List<Vector3>();
 		for (int x = 0; x <= sizeX; x++)
 		{
-			for (int z = 0; z <= sizeX; z++)
+			for (int z = 0; z <= sizeZ; z++)
 			{
-				if (x == sizeX || z == sizeX || x == 0 || z == 0)
+				if (x == sizeX || z == sizeZ || x == 0 || z == 0)
 				{
 					Vector3 cellPos = this.GetPosition() + new Vector3(x, 0, z);
 					if (!cells.Contains(cellPos))
@@ -664,5 +669,39 @@ public class BaseItemScript : MonoBehaviour
 	{
 		this.SetState(Common.State.IDLE);
 		this.Walker.OnFinishWalk -= _OnFinishWalkReturnBuilder;
+	}
+
+	public int GetUpgradeCost()
+	{
+		// Basic formula: base price * current level * multiplier
+		return itemData.configuration.price * level;
+	}
+
+	public void FinishConstruction()
+	{
+		if (this.UI.progressUIInstance != null)
+		{
+			this.UI.ShowProgressUI(false);
+
+			// Find the builder working on this building and stop them
+			foreach (BaseItemScript item in SceneManager.instance.GetAllItems())
+			{
+				if (item.itemData.name == "Builder" && item.buildingItem == this)
+				{
+					item.buildingItem = null;
+					item.ReturnBuilder();
+					break;
+				}
+			}
+		}
+	}
+
+	public void StartConstruction(BaseItemScript builder)
+	{
+		this.UI.ShowProgressUI(true);
+		if (builder != null)
+		{
+			builder.BuilderAction(this);
+		}
 	}
 }

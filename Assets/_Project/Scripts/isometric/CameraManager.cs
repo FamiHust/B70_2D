@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -582,6 +582,25 @@ public class CameraManager : MonoBehaviour
 			float deltaFactor = rightClampScreenPos.y * worldSizePerPixel;
 			Vector3 delta = new Vector3(deltaFactor, 0, deltaFactor);
 			this.MainCamera.transform.localPosition += delta;
+		}
+	}
+
+	public void FocusOn(Vector3 targetGroundPos)
+	{
+		Vector3 currentCenterPos = this._TryGetRaycastHitBaseGround(new Vector2(Screen.width / 2f, Screen.height / 2f));
+		if (currentCenterPos != positiveInfinityVector)
+		{
+			Vector3 delta = targetGroundPos - currentCenterPos;
+			this.MainCamera.transform.localPosition += delta;
+			this.ClampCamera();
+		}
+	}
+
+	public void FocusOnItem(BaseItemScript item)
+	{
+		if (item != null)
+		{
+			FocusOn(item.GetPosition());
 		}
 	}
     

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class BaseItemEnergyBarUIScript : MonoBehaviour
 	private float _buildStartTime;
 	private float _fillerFullLength;
 
-	void Awake()
+	void Start()
 	{
 		this._baseItem = this.GetComponentInParent<BaseItemScript>();
 		if (this._baseItem == null)
@@ -26,8 +26,9 @@ public class BaseItemEnergyBarUIScript : MonoBehaviour
 
 		this._fillerFullLength = this.ProgressFiller.size.x;
 
-		Vector3 baseSize = this._baseItem.GetSize();
-		this.ProgressContainer.localScale = this.ProgressContainer.localScale / baseSize.x;
+		float gw = this._baseItem.itemData.gridWidth;
+		float gh = this._baseItem.itemData.gridHeight;
+		this.transform.localPosition = new Vector3((gw - 1f) / 2f, this.transform.localPosition.y, (gh - 1f) / 2f);
 	}
 
 	private Vector2 _tempSize;

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,6 +11,9 @@ public class SpriteCollection : ScriptableObject {
 		public float offsetX = 0.0f;
 		public float offsetY = 0.0f;
 		public float scale = 100.0f;
+		public float scaleX = 100.0f;
+		public float scaleY = 100.0f;
+		public float rotate = 0.0f;
 
 		public int numberOfColumns = 1;
 		public int numberOfRows = 1;
@@ -27,7 +30,6 @@ public class SpriteCollection : ScriptableObject {
 		public int id;
 		public string name;
 
-		public int gridSize = 4;
 		public Common.RenderingLayer renderingLayer;
 		public int renderingOrder;
 

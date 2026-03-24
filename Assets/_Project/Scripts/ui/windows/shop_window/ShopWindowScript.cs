@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -118,18 +118,48 @@ public class ShopWindowScript : WindowScript
 				break;
 		}
 
+		List<SubCategory> validSubItems = new List<SubCategory>();
 		for (int index = 0; index < subItems.Length; index++)
 		{
-			GameObject inst = Utilities.CreateInstance(this.SubCategoryItem, this.ItemsList, true);
-			inst.GetComponent<SubCategoryItemScript>().SetSubCategory(subItems[index]);
+            SubCategory subCat = subItems[index];
+
+            // Allow walls and trees to be bought multiple times
+            bool canBuyMultiple = (subCat == SubCategory.WALL || subCat == SubCategory.TREE1 || subCat == SubCategory.TREE2 || subCat == SubCategory.TREE3);
+            int itemId = GetItemIdFromSubCategory(subCat);
+
+            if (canBuyMultiple || !SceneManager.instance.IsItemBuiltInScene(itemId))
+            {
+			    GameObject inst = Utilities.CreateInstance(this.SubCategoryItem, this.ItemsList, true);
+			    inst.GetComponent<SubCategoryItemScript>().SetSubCategory(subCat);
+                validSubItems.Add(subCat);
+            }
 		}
 
 		RectTransform rt = this.ItemsList.GetComponent<RectTransform>();
 		Vector2 sizeDelta = this.ItemsList.GetComponent<RectTransform>().sizeDelta;
-		sizeDelta.x = subItems.Length * 250 + subItems.Length * this.ItemsList.GetComponent<GridLayoutGroup>().spacing.x;
+		sizeDelta.x = validSubItems.Count * 250 + validSubItems.Count * this.ItemsList.GetComponent<GridLayoutGroup>().spacing.x;
 		rt.sizeDelta = sizeDelta;
 
 		this.ResetScrollPosition();
+	}
+
+	public int GetItemIdFromSubCategory(SubCategory subCategory)
+	{
+		switch (subCategory)
+		{
+			case SubCategory.D4: return 3635;
+			case SubCategory.C4: return 3265;
+			case SubCategory.GOLD_STORAGE: return 9074;
+			case SubCategory.C1: return 2496;
+			case SubCategory.LIBRARY: return 6677;
+			case SubCategory.WALL: return 7666;
+			case SubCategory.TREE1: return 2949;
+			case SubCategory.TREE2: return 1251;
+			case SubCategory.TREE3: return 5341;
+            case SubCategory.B7: return 3336;
+            case SubCategory.B8: return 5342;
+            default: return 0;
+        }
 	}
 
 	public void OnClickCategory(Category category)

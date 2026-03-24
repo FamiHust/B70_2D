@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -254,22 +254,23 @@ public class ItemEditorWindow : EditorWindow
 
         id = itemData.id.ToString();
         name = itemData.name;
+        description = itemData.description;
 		thumb = itemData.thumb;
 
-        gridSize = itemData.gridSize;
-        if (gridSize == 0)
+        int visualGridSize = Mathf.Max(itemData.gridWidth, itemData.gridHeight);
+        if (visualGridSize == 0)
             gridTexture = null;
-        else if (gridSize == 1)
+        else if (visualGridSize == 1)
             gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
-        else if (gridSize == 2)
+        else if (visualGridSize == 2)
             gridTexture = Resources.Load("grid_2x2", typeof(Texture2D)) as Texture2D;
-        else if (gridSize == 3)
+        else if (visualGridSize == 3)
             gridTexture = Resources.Load("grid_3x3", typeof(Texture2D)) as Texture2D;
-        else if (gridSize == 4)
+        else if (visualGridSize == 4)
             gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
-        else if (gridSize == 5)
+        else if (visualGridSize == 5)
             gridTexture = Resources.Load("grid_5x5", typeof(Texture2D)) as Texture2D;
-        else if (gridSize == 6)
+        else if (visualGridSize >= 6)
             gridTexture = Resources.Load("grid_6x6", typeof(Texture2D)) as Texture2D;
 
 
@@ -334,6 +335,7 @@ public class ItemEditorWindow : EditorWindow
 
     public string name;
     private string _oldName = "";
+    public string description = "";
 
 
     //	private int offsetX = 0;
@@ -362,11 +364,6 @@ public class ItemEditorWindow : EditorWindow
         "Bottom", "Bottom Right", "Right", "Top Right", "Top"
     };
 
-    private string[] gridSizeOptions = new string[] {
-        "None", "1x1", "2x2", "3x3", "4x4", "5x5", "6x6"
-    };
-    private int gridSize = 4;
-    private int _oldGridSize = 4;
 	private Texture2D thumb;
 	private Texture2D textureToAdd = null;
 
@@ -396,8 +393,10 @@ public class ItemEditorWindow : EditorWindow
                 _oldName = name;
                 this._simpleTreeView.Reload();
             }
-
             GUILayout.EndHorizontal();
+
+            GUILayout.Label("Description");
+            description = EditorGUILayout.TextArea(description, GUILayout.MinHeight(50));
 
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
@@ -458,19 +457,82 @@ public class ItemEditorWindow : EditorWindow
             configFoldout = EditorGUILayout.Foldout(configFoldout, "CONFIG", true);
             if (configFoldout)
             {
+                ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
+
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(20);
-                gridSize = EditorGUILayout.Popup("Grid Size", gridSize, gridSizeOptions);
-                if (gridSize != _oldGridSize)
+                itemData.gridWidth = EditorGUILayout.IntField("Grid Width", itemData.gridWidth);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.gridHeight = EditorGUILayout.IntField("Grid Height", itemData.gridHeight);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.arrowOffsetX = EditorGUILayout.FloatField("Arrow Offset X", itemData.arrowOffsetX);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.arrowOffsetZ = EditorGUILayout.FloatField("Arrow Offset Z", itemData.arrowOffsetZ);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.uiOffsetX = EditorGUILayout.FloatField("UI Offset X", itemData.uiOffsetX);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.uiOffsetZ = EditorGUILayout.FloatField("UI Offset Z", itemData.uiOffsetZ);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.gridOffsetX = EditorGUILayout.FloatField("Grid Offset X", itemData.gridOffsetX);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.gridOffsetZ = EditorGUILayout.FloatField("Grid Offset Z", itemData.gridOffsetZ);
+                GUILayout.EndHorizontal();
+
+                EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.defaultPosX = EditorGUILayout.IntField("Default Pos X", itemData.defaultPosX);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.defaultPosZ = EditorGUILayout.IntField("Default Pos Z", itemData.defaultPosZ);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                if (GUILayout.Button("Set Position From Selected Scene Item"))
                 {
-                    _oldGridSize = gridSize;
-                    this.UpdateDataValues();
-                    this.LoadDataValues();
+                    if (Selection.activeGameObject != null)
+                    {
+                        BaseItemScript baseItem = Selection.activeGameObject.GetComponent<BaseItemScript>();
+                        if (baseItem != null)
+                        {
+                            itemData.defaultPosX = (int)baseItem.transform.localPosition.x;
+                            itemData.defaultPosZ = (int)baseItem.transform.localPosition.z;
+                            GUI.changed = true;
+                        }
+                    }
                 }
                 GUILayout.EndHorizontal();
 
-
-                ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
+                if (GUI.changed)
+                {
+                    this.UpdateDataValues();
+                    this.LoadDataValues();
+                }
                 foreach (var property in itemData.configuration.GetType().GetFields())
                 {
                     GUILayout.BeginHorizontal();
@@ -748,7 +810,7 @@ public class ItemEditorWindow : EditorWindow
         ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
 
         itemData.name = this.name;
-        itemData.gridSize = this.gridSize;
+        itemData.description = this.description;
 		itemData.thumb = thumb;
 
         EditorUtility.SetDirty(itemsCollection);
@@ -799,14 +861,9 @@ public class ItemEditorWindow : EditorWindow
                 int numberOfRows = spriteAnimationItem.numberOfRows;
                 float offsetX = textureData.offsetX;
                 float offsetY = textureData.offsetY;
-                int gridSize = spriteAnimationItem.sprite.gridSize;
-
-                defaultImgSize.x = 256 * scale / 100;
                 defaultImgSize.x = 256 * scale / 100;
 
                 float heightFactor = ((float)texture.height / (float)texture.width) * ((float)numberOfColumns / numberOfRows);
-
-                float upFactor = Mathf.Cos(Mathf.Deg2Rad * 45) * gridSize / 2.0f;
 
                 float x = (centerPointOfPreviewArea.x - defaultImgSize.x / 2) + offsetX;
                 float y = (centerPointOfPreviewArea.y - defaultImgSize.x * heightFactor / 2) - offsetY;

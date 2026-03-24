@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -10,6 +10,7 @@ public class ItemData
 	public int itemId;
 	public int posX;
 	public int posZ;
+	public int level = 1;
 }
 [System.Serializable]
 public class SceneData
@@ -21,7 +22,7 @@ public class SceneData
 		items = new List<ItemData>();
 	}
 
-	public void AddOrUpdateItem(int instanceId, int itemId, int posX, int posZ)
+	public void AddOrUpdateItem(int instanceId, int itemId, int posX, int posZ, int level)
 	{
 		ItemData itemData = null;
 		foreach (ItemData item in this.items)
@@ -42,6 +43,7 @@ public class SceneData
 
 		itemData.posX = posX;
 		itemData.posZ = posZ;
+		itemData.level = level;
 	}
 
 	public void RemoveItem(int instanceId)
@@ -345,7 +347,7 @@ public class DataBaseManager : MonoBehaviour
 		this.EnsureInMemoryData();
 		foreach (BaseItemScript item in SceneManager.instance.GetAllItems())
 		{
-			this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ());
+			this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level);
 		}
 		this.SaveDataBase();
 	}
@@ -353,7 +355,7 @@ public class DataBaseManager : MonoBehaviour
 	public void UpdateItemData(BaseItemScript item)
 	{
 		this.EnsureInMemoryData();
-		this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ());
+		this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level);
 		this.SaveDataBase();
 	}
 

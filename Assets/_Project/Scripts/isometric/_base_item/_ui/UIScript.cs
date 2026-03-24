@@ -70,6 +70,12 @@ public class UIScript : MonoBehaviour {
             // Construction done — start production timer from now
             if (this._baseItem.Production != null)
                 this._baseItem.Production.OnConstructionFinished();
+
+            if (this._baseItem.OnConstructionComplete != null)
+            {
+                this._baseItem.OnConstructionComplete.Invoke();
+                this._baseItem.OnConstructionComplete = null;
+            }
         }
     }
 

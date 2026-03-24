@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -218,22 +218,7 @@ public class SpriteEditorWindow : EditorWindow {
 			selectedTextureData = spriteData.topTexture;
 		}
 
-		gridSize = spriteData.gridSize;
-		if (gridSize == 0) {
-			gridTexture = null;
-		} else if (gridSize == 1) {
-			gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
-		} else if (gridSize == 2) {
-			gridTexture = Resources.Load("grid_2x2", typeof(Texture2D)) as Texture2D;
-		} else if (gridSize == 3) {
-			gridTexture = Resources.Load("grid_3x3", typeof(Texture2D)) as Texture2D;
-		} else if (gridSize == 4) {
-			gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
-		} else if (gridSize == 5) {
-			gridTexture = Resources.Load("grid_5x5", typeof(Texture2D)) as Texture2D;
-		} else if (gridSize == 6) {
-			gridTexture = Resources.Load("grid_6x6", typeof(Texture2D)) as Texture2D;
-		}
+		gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
 
 		renderingLayer = (int)spriteData.renderingLayer;
 
@@ -249,6 +234,15 @@ public class SpriteEditorWindow : EditorWindow {
 
 		scale = (int)selectedTextureData.scale;
 		scaleString = scale.ToString ();
+
+		scaleX = (int)selectedTextureData.scaleX;
+		scaleXString = scaleX.ToString ();
+
+		scaleY = (int)selectedTextureData.scaleY;
+		scaleYString = scaleY.ToString ();
+
+		rotate = (int)selectedTextureData.rotate;
+		rotateString = rotate.ToString ();
 
 
 		numberOfColumns = (int)selectedTextureData.numberOfColumns;
@@ -325,6 +319,12 @@ public class SpriteEditorWindow : EditorWindow {
 	private string offsetYString = "0";
 	private int scale = 100;
 	private string scaleString = "100";
+	private int scaleX = 100;
+	private string scaleXString = "100";
+	private int scaleY = 100;
+	private string scaleYString = "100";
+	private int rotate = 0;
+	private string rotateString = "0";
 
 	private bool texturesFoldout;
 	private string[] directionsOptions = new string[] {
@@ -332,12 +332,6 @@ public class SpriteEditorWindow : EditorWindow {
 	};
 	private int direction = 0;
 	private int _oldDirection = 0;
-
-	private string[] gridSizeOptions = new string[] {
-		"None", "1x1", "2x2", "3x3", "4x4", "5x5", "6x6"
-	};
-	private int gridSize = 4;
-	private int _oldGridSize = 4;
 
 	private string[] renderingLayerOptions = new string[] {
 		"Ground", "Shadow", "Sprite"
@@ -388,12 +382,6 @@ public class SpriteEditorWindow : EditorWindow {
 			}
 
 			GUILayout.Space (20);
-			gridSize = EditorGUILayout.Popup ("Grid Size", gridSize, gridSizeOptions);
-			if (gridSize != _oldGridSize) {
-				_oldGridSize = gridSize;
-				this.UpdateDataValues ();
-				this.LoadDataValues ();
-			}
 
 			renderingLayer = EditorGUILayout.Popup ("Rendering layer", renderingLayer, renderingLayerOptions);
 			if (renderingLayer != _oldRenderingLayer) {
@@ -413,6 +401,9 @@ public class SpriteEditorWindow : EditorWindow {
 			ChangableIntField ("Offset X", ref offsetXString, ref offsetX, -1000, 1000);
 			ChangableIntField ("Offset Y", ref offsetYString, ref offsetY, -1000, 1000);
 			ChangableIntField ("Scale", ref scaleString, ref scale, 0, 1000);
+			ChangableIntField ("Scale X", ref scaleXString, ref scaleX, 0, 1000);
+			ChangableIntField ("Scale Y", ref scaleYString, ref scaleY, 0, 1000);
+			ChangableIntField ("Rotate", ref rotateString, ref rotate, -360, 360);
 
 			GUILayout.Space (10);
 			animationFoldout = EditorGUILayout.Foldout (animationFoldout, "Animation", true);
@@ -473,6 +464,18 @@ public class SpriteEditorWindow : EditorWindow {
 			selectedTextureData.scale = scale;
 		}
 
+		if (scaleX != selectedTextureData.scaleX) {
+			selectedTextureData.scaleX = scaleX;
+		}
+
+		if (scaleY != selectedTextureData.scaleY) {
+			selectedTextureData.scaleY = scaleY;
+		}
+
+		if (rotate != selectedTextureData.rotate) {
+			selectedTextureData.rotate = rotate;
+		}
+
 		if (numberOfColumns != selectedTextureData.numberOfColumns) {
 			selectedTextureData.numberOfColumns = numberOfColumns;
 		}
@@ -487,10 +490,6 @@ public class SpriteEditorWindow : EditorWindow {
 
 		if (fps != selectedTextureData.fps) {
 			selectedTextureData.fps = fps;
-		}
-
-		if (gridSize != spriteData.gridSize) {
-			spriteData.gridSize = gridSize;
 		}
 
 		if (renderingLayer != (int)spriteData.renderingLayer) {
@@ -521,7 +520,7 @@ public class SpriteEditorWindow : EditorWindow {
 	void RenderPreviewArea(){
 
 		defaultImgSize.x = 256 * scale / 100;
-		defaultImgSize.x = 256 * scale / 100;
+		defaultImgSize.y = 256 * scale / 100;
 
 		if(gridTexture == null){
 			gridTexture = Resources.Load("grid", typeof(Texture2D)) as Texture2D;
@@ -550,20 +549,29 @@ public class SpriteEditorWindow : EditorWindow {
 				
 				float heightFactor = ((float)texture.height / (float)texture.width) * ((float)numberOfColumns/numberOfRows);
 
-				float upFactor = Mathf.Cos (Mathf.Deg2Rad * 45) * gridSize / 2.0f;
+				float imgW = defaultImgSize.x * scaleX / 100f;
+				float imgH = defaultImgSize.x * heightFactor * scaleY / 100f;
 
-				float x = (centerPointOfPreviewArea.x - defaultImgSize.x / 2) + offsetX;
-				float y = (centerPointOfPreviewArea.y - defaultImgSize.x * heightFactor / 2) - offsetY;
+				float x = (centerPointOfPreviewArea.x - imgW / 2) + offsetX;
+				float y = (centerPointOfPreviewArea.y - imgH / 2) - offsetY;
 
-				float framePaddingX = defaultImgSize.x * (currentFrame % numberOfColumns);
-				float framePaddingY = defaultImgSize.x * heightFactor * (currentFrame / numberOfColumns);
+				float framePaddingX = imgW * (currentFrame % numberOfColumns);
+				float framePaddingY = imgH * (currentFrame / numberOfColumns);
 
-				Rect imgRect = new Rect (x, y, defaultImgSize.x, defaultImgSize.x * heightFactor);
+				Rect imgRect = new Rect (x, y, imgW, imgH);
+
+				// Apply rotation around centre of sprite
+				Matrix4x4 savedMatrix = GUI.matrix;
+				if (rotate != 0) {
+					Vector2 pivotPoint = new Vector2 (x + imgW / 2, y + imgH / 2);
+					GUIUtility.RotateAroundPivot (rotate, pivotPoint);
+				}
 
 				GUI.BeginGroup(imgRect);
-				GUI.DrawTexture (new Rect (-framePaddingX, -framePaddingY, defaultImgSize.x*numberOfColumns, defaultImgSize.x*numberOfRows * heightFactor ), texture);
+				GUI.DrawTexture (new Rect (-framePaddingX, -framePaddingY, imgW * numberOfColumns, imgH * numberOfRows), texture);
 				GUI.EndGroup();
 
+				GUI.matrix = savedMatrix;
 			}
 		}
 	}

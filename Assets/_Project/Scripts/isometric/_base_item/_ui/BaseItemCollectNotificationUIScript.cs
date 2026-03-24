@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public class BaseItemCollectNotificationUIScript : MonoBehaviour
 	private BaseItemScript _baseItem;
 
 
-	void Awake()
+	void Start()
 	{
 		this._baseItem = this.GetComponentInParent<BaseItemScript>();
 		if (this._baseItem == null)
@@ -22,8 +22,9 @@ public class BaseItemCollectNotificationUIScript : MonoBehaviour
 			return;
 		}
 
-		Vector3 baseSize = this._baseItem.GetSize();
-        this.Container.localScale = this.Container.localScale / baseSize.x;
+		float gw = this._baseItem.itemData.gridWidth;
+		float gh = this._baseItem.itemData.gridHeight;
+		this.transform.localPosition = new Vector3((gw - 1f) / 2f, this.transform.localPosition.y, (gh - 1f) / 2f);
 	}
 
     public void SetIcon(string type)

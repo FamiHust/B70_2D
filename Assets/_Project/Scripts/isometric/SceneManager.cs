@@ -10,8 +10,8 @@ public class SceneManager : MonoBehaviour
 
 	/* prefabs */
 	public GameObject BaseItem;
-    public GameObject MenuWindow;
-   
+	public GameObject MenuWindow;
+
 	public GameObject RenderQuad;
 	public Material RenderQuadMaterial;
 
@@ -27,7 +27,7 @@ public class SceneManager : MonoBehaviour
 
 	/* private vars */
 	private Dictionary<int, BaseItemScript> _itemInstances;
-    
+
 	//resource values
 	public int numberOfGoldInStorage;
 	// public int numberOfElixirInStorage;
@@ -80,13 +80,13 @@ public class SceneManager : MonoBehaviour
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
 		this.goldStorageCapacity = 1000;
 		this.diamondStorageCapacity = 100;
-        // this.elixirStorageCapacity = 500;
+		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
 		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
 		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
-        // this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
-    }
+		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
+	}
 
 	/// <summary>
 	/// Saves current resource values to PlayerPrefs.
@@ -98,14 +98,14 @@ public class SceneManager : MonoBehaviour
 		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
 		PlayerPrefs.Save();
 	}
-    
-   
+
+
 	/// <summary>
 	/// Adds the item with itemId. where itemId is the id which we registered with item prefab as unique.
 	/// </summary>
 	/// <returns>The item.</returns>
 	/// <param name="itemId">Item identifier.</param>
-	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem)
+	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1)
 	{
 		BaseItemScript builder = null;
 
@@ -126,11 +126,11 @@ public class SceneManager : MonoBehaviour
 		{
 			instanceId = this._GetUnusedInstanceId();
 		}
-        
+
 		instance.instanceId = instanceId;
 		this._itemInstances.Add(instanceId, instance);
 
-		instance.SetItemData(itemId, posX, posZ);
+		instance.SetItemData(itemId, posX, posZ, level);
 		instance.SetState(Common.State.IDLE);
 
 		//		GroundManager.Cell freeCell = GroundManager.instance.GetRandomFreeCellForItem (instance);
@@ -158,19 +158,27 @@ public class SceneManager : MonoBehaviour
 		instance.ownedItem = ownedItem;
 		return instance;
 	}
-    
-	public BaseItemScript AddItem(int itemId, bool immediate, bool ownedItem)
+
+	public BaseItemScript AddItem(int itemId, bool immediate, bool ownedItem, int level = 1)
 	{
 		int posX = 0;
 		int posZ = 0;
-		if(!immediate)
+		if (!immediate)
 		{
 			ItemsCollection.ItemData itemData = Items.GetItem(itemId);
-			Vector3 freePosition = GroundManager.instance.GetRandomFreePositionForItem(itemData.gridSize, itemData.gridSize);
-			posX = (int)freePosition.x;
-			posZ = (int)freePosition.z;
+			if (itemData.defaultPosX != -1 && itemData.defaultPosZ != -1)
+			{
+				posX = itemData.defaultPosX;
+				posZ = itemData.defaultPosZ;
+			}
+			else
+			{
+				Vector3 freePosition = GroundManager.instance.GetRandomFreePositionForItem(itemData.gridWidth, itemData.gridHeight);
+				posX = (int)freePosition.x;
+				posZ = (int)freePosition.z;
+			}
 		}
-		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem);
+		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem, level);
 	}
 
 	/// <summary>
@@ -334,7 +342,7 @@ public class SceneManager : MonoBehaviour
 					return;
 				}
 				this._swordManExpended++;
-         
+
 				AttackOverlayWindowScript.instance.SwordManCounter.text = (this._swordManCount - _swordManExpended).ToString() + "x";
 
 			}
@@ -441,50 +449,50 @@ public class SceneManager : MonoBehaviour
 		this.ClearScene();
 		SceneData sceneData = DataBaseManager.instance.GetScene();
 
-        if (sceneData?.items != null)
-        {
-            foreach (ItemData itemData in sceneData.items)
-            {
-                this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true);
-            }
-        }
+		if (sceneData?.items != null)
+		{
+			foreach (ItemData itemData in sceneData.items)
+			{
+				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true, itemData.level);
+			}
+		}
 
-        //LOAD UNITS ON CAMP 
-        // BaseItemScript[] armyCamps = GetArmyCamps();
-        // if (armyCamps.Length > 0)
-        // {
-        // 	for (int index = 0; index < _swordManCount; index++)
-        // 	{
-        // 		var camp = armyCamps[Random.Range(0, armyCamps.Length)];
-        // 		BaseItemScript unit = this.AddItem(_swordMan_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
-        // 		unit.WalkRandom(camp);
-        // 	}
+		//LOAD UNITS ON CAMP 
+		// BaseItemScript[] armyCamps = GetArmyCamps();
+		// if (armyCamps.Length > 0)
+		// {
+		// 	for (int index = 0; index < _swordManCount; index++)
+		// 	{
+		// 		var camp = armyCamps[Random.Range(0, armyCamps.Length)];
+		// 		BaseItemScript unit = this.AddItem(_swordMan_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
+		// 		unit.WalkRandom(camp);
+		// 	}
 
-        // 	for (int index = 0; index < _archerCount; index++)
-        //     {
-        //         var camp = armyCamps[Random.Range(0, armyCamps.Length)];
-        // 		BaseItemScript unit = this.AddItem(_archer_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
-        // 		unit.WalkRandom(camp);
-        //     }
-        // }
+		// 	for (int index = 0; index < _archerCount; index++)
+		//     {
+		//         var camp = armyCamps[Random.Range(0, armyCamps.Length)];
+		// 		BaseItemScript unit = this.AddItem(_archer_ID, -1, camp.GetPositionX(), camp.GetPositionZ(), true, true);
+		// 		unit.WalkRandom(camp);
+		//     }
+		// }
 
-        //for (int index = 0; index < 25; index++)
-        //{
-        //	//tree
-        //	BaseItemScript tree = this.AddItem(5341, true, true);
-        //	tree.SetPosition(GroundManager.instance.GetRandomFreePosition());
-        //}
+		//for (int index = 0; index < 25; index++)
+		//{
+		//	//tree
+		//	BaseItemScript tree = this.AddItem(5341, true, true);
+		//	tree.SetPosition(GroundManager.instance.GetRandomFreePosition());
+		//}
 
-        GroundManager.instance.UpdateAllNodes();
+		GroundManager.instance.UpdateAllNodes();
 		this.UpdateWalls();
-        
+
 		UIManager.instance.ShowGameOverlayWindow();
 	}
 
 	public BaseItemScript[] GetArmyCamps()
 	{
 		List<BaseItemScript> armyCamps = new List<BaseItemScript>();
-		foreach(KeyValuePair<int, BaseItemScript> entry in _itemInstances)
+		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
 		{
 			if (entry.Value.itemData.name == "ArmyCamp")
 				armyCamps.Add(entry.Value);
@@ -560,6 +568,18 @@ public class SceneManager : MonoBehaviour
 		return items;
 	}
 
+	public bool IsItemBuiltInScene(int itemId)
+	{
+		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
+		{
+			if (entry.Value.itemData.id == itemId)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void UpdateWalls()
 	{
 		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
@@ -599,19 +619,19 @@ public class SceneManager : MonoBehaviour
 	public void OnEnemyItemDestroy(BaseItemScript item)
 	{
 		bool isEverythingDestroyed = true;
-		foreach(KeyValuePair<int, BaseItemScript> entry in this._itemInstances)
+		foreach (KeyValuePair<int, BaseItemScript> entry in this._itemInstances)
 		{
 			BaseItemScript baseItem = entry.Value;
-			if(!baseItem.itemData.configuration.isCharacter && baseItem.itemData.name != "Wall")
+			if (!baseItem.itemData.configuration.isCharacter && baseItem.itemData.name != "Wall")
 			{
 				//item is not character and not a wall
-                //check the item is destroyed or not, if not then everything in the city is not destroyed
+				//check the item is destroyed or not, if not then everything in the city is not destroyed
 				if (!baseItem.isDestroyed)
 					isEverythingDestroyed = false;
 			}
 		}
 
-		if(isEverythingDestroyed)
+		if (isEverythingDestroyed)
 		{
 			//war ends
 			AttackOverlayWindowScript.instance.Close();
@@ -619,20 +639,20 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 
-	private int _diedUnitCount = 0; 
+	private int _diedUnitCount = 0;
 	public void OnUnitDied(BaseItemScript unit)
 	{
 		_diedUnitCount++;
-		if(_diedUnitCount == (_swordManCount + _archerCount))
+		if (_diedUnitCount == (_swordManCount + _archerCount))
 		{
 			//war ends
-            AttackOverlayWindowScript.instance.Close();
+			AttackOverlayWindowScript.instance.Close();
 			UIManager.instance.ShowResultWindow(false, _swordManExpended, _archerExpended);
 		}
 	}
 
-    //RESOURCE  COLLECTION
-    public void CollectResource(string resourceType, int amount)
+	//RESOURCE  COLLECTION
+	public void CollectResource(string resourceType, int amount)
 	{
 		if (resourceType == "gold")
 		{
@@ -643,81 +663,81 @@ public class SceneManager : MonoBehaviour
 		// 	this.numberOfElixirInStorage = Mathf.Clamp(this.numberOfElixirInStorage + amount, 0, elixirStorageCapacity);
 		// }
 		else if (resourceType == "diamond")
-        {
-            this.numberOfDiamondsInStorage = Mathf.Clamp(this.numberOfDiamondsInStorage + amount, 0, diamondStorageCapacity);
-        }
+		{
+			this.numberOfDiamondsInStorage = Mathf.Clamp(this.numberOfDiamondsInStorage + amount, 0, diamondStorageCapacity);
+		}
 
 		this.SaveResources();
 		this.RefreshResourceUIs(resourceType);
 	}
 
-    //RESOURCE COLLECTION
+	//RESOURCE COLLECTION
 	public bool ConsumeResource(string resourceType, int count)
-    {
-        if (resourceType == "gold")
-        {
-            if (this.numberOfGoldInStorage >= count)
-            {
-                this.numberOfGoldInStorage -= count;
+	{
+		if (resourceType == "gold")
+		{
+			if (this.numberOfGoldInStorage >= count)
+			{
+				this.numberOfGoldInStorage -= count;
 				this.SaveResources();
 				this.RefreshResourceUIs(resourceType);
-                return true;
-            }
-        }
-        // else if (resourceType == "elixir")
-        // {
-        //     if (this.numberOfElixirInStorage >= count)
-        //     {
-        //         this.numberOfElixirInStorage -= count;
+				return true;
+			}
+		}
+		// else if (resourceType == "elixir")
+		// {
+		//     if (this.numberOfElixirInStorage >= count)
+		//     {
+		//         this.numberOfElixirInStorage -= count;
 		// 		this.SaveResources();
 		// 		this.RefreshResourceUIs(resourceType);
-        //         return true;
-        //     }
-        // }
-        else if (resourceType == "diamond")
-        {
-            if (this.numberOfDiamondsInStorage >= count)
-            {
-                this.numberOfDiamondsInStorage -= count;
+		//         return true;
+		//     }
+		// }
+		else if (resourceType == "diamond")
+		{
+			if (this.numberOfDiamondsInStorage >= count)
+			{
+				this.numberOfDiamondsInStorage -= count;
 				this.SaveResources();
 				this.RefreshResourceUIs(resourceType);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public void RefreshResourceUIs(string resourceType)
-	{
-		if(GameOverlayWindowScript.instance != null)
-		{
-			if (resourceType == "gold")
-			    GameOverlayWindowScript.instance.CollectResource("gold", this.numberOfGoldInStorage);
-			// else if (resourceType == "elixir") 
-			//     GameOverlayWindowScript.instance.CollectResource("elixir", this.numberOfElixirInStorage);
-			else if (resourceType == "diamond") 
-			    GameOverlayWindowScript.instance.CollectResource("diamond", this.numberOfDiamondsInStorage);
+				return true;
+			}
 		}
 
-		if(TrainTroopsWindowScript.instance != null)
+		return false;
+	}
+
+	public void RefreshResourceUIs(string resourceType)
+	{
+		if (GameOverlayWindowScript.instance != null)
+		{
+			if (resourceType == "gold")
+				GameOverlayWindowScript.instance.CollectResource("gold", this.numberOfGoldInStorage);
+			// else if (resourceType == "elixir") 
+			//     GameOverlayWindowScript.instance.CollectResource("elixir", this.numberOfElixirInStorage);
+			else if (resourceType == "diamond")
+				GameOverlayWindowScript.instance.CollectResource("diamond", this.numberOfDiamondsInStorage);
+		}
+
+		if (TrainTroopsWindowScript.instance != null)
 		{
 			TrainTroopsWindowScript.instance.UpdateResourcePanel();
 		}
 	}
 
-    //PARTICLES
+	//PARTICLES
 	public GameObject ShowParticle(GameObject prefab, Vector3 position)
-    {
+	{
 		GameObject inst = Utilities.CreateInstance(prefab, this.ParticlesContainer, true);
 		inst.transform.position = position;
-        return inst;
-    }
+		return inst;
+	}
 
 	public BaseItemScript GetNearestArmyCamp(Vector3 from)
 	{
 		BaseItemScript[] armyCamps = this.GetArmyCamps();
-	      
+
 		if (armyCamps.Length == 0)
 			return null;
 
@@ -726,10 +746,10 @@ public class SceneManager : MonoBehaviour
 
 		float smallDistance = 999999;
 		BaseItemScript nearestArmyCamp = null;
-		foreach(BaseItemScript armyCamp in armyCamps)
+		foreach (BaseItemScript armyCamp in armyCamps)
 		{
 			float dist = Vector3.Distance(armyCamp.GetPosition(), from);
-			if(dist < smallDistance)
+			if (dist < smallDistance)
 			{
 				smallDistance = dist;
 				nearestArmyCamp = armyCamp;
@@ -739,5 +759,5 @@ public class SceneManager : MonoBehaviour
 		return nearestArmyCamp;
 	}
 
-   
+
 }

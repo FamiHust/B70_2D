@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +15,7 @@ public class SubCategoryItemScript : MonoBehaviour
 	public Sprite ElixirStorageSprite;
 	public Sprite B7Sprite;
 	public Sprite B8Sprite;
-    public Sprite C4Sprite;
+	public Sprite C4Sprite;
 	public Sprite GoldStorageSprite;
 	public Sprite TowerSprite;
 	public Sprite C1Sprite;
@@ -27,6 +27,7 @@ public class SubCategoryItemScript : MonoBehaviour
 
 	/* references */
 	public Text Name;
+	public Text PriceText;
 	public Image Image;
 
 
@@ -36,6 +37,13 @@ public class SubCategoryItemScript : MonoBehaviour
 	public void SetSubCategory(ShopWindowScript.SubCategory subCategory)
 	{
 		this._subCategory = subCategory;
+
+		int itemId = GetItemId(subCategory);
+		ItemsCollection.ItemData itemData = Items.GetItem(itemId);
+		if (itemData != null && PriceText != null)
+		{
+			PriceText.text = itemData.configuration.price.ToString();
+		}
 
 		switch (this._subCategory)
 		{
@@ -78,12 +86,12 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "B7";
 				this.Image.sprite = this.B7Sprite;
 				break;
-            case ShopWindowScript.SubCategory.B8:
-                this.Name.text = "B8";
-                this.Image.sprite = this.B8Sprite;
-                break;
+			case ShopWindowScript.SubCategory.B8:
+				this.Name.text = "B8";
+				this.Image.sprite = this.B8Sprite;
+				break;
 
-            case ShopWindowScript.SubCategory.C4:
+			case ShopWindowScript.SubCategory.C4:
 				this.Name.text = "C4";
 				this.Image.sprite = this.C4Sprite;
 				break;
@@ -178,13 +186,13 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.TREE3:
 				itemId = 5341;
 				break;
-            case ShopWindowScript.SubCategory.B7:
-                itemId = 3336;
-                break;
-            case ShopWindowScript.SubCategory.B8:
-                itemId = 5342;
-                break;
-        }
+			case ShopWindowScript.SubCategory.B7:
+				itemId = 3336;
+				break;
+			case ShopWindowScript.SubCategory.B8:
+				itemId = 5342;
+				break;
+		}
 
 		// LẤY DATA ITEM
 		ItemsCollection.ItemData itemData = Items.GetItem(itemId);
@@ -205,10 +213,54 @@ public class SubCategoryItemScript : MonoBehaviour
 		if (item != null)
 		{
 			DataBaseManager.instance.UpdateItemData(item);
+			if (CameraManager.instance != null)
+			{
+				CameraManager.instance.FocusOnItem(item);
+			}
 		}
 
 		this.GetComponentInParent<ShopWindowScript>().Close();
 	}
 
-
+	private int GetItemId(ShopWindowScript.SubCategory subCategory)
+	{
+		int itemId = 0;
+		switch (subCategory)
+		{
+			case ShopWindowScript.SubCategory.D4:
+				itemId = 3635;
+				break;
+			case ShopWindowScript.SubCategory.C4:
+				itemId = 3265;
+				break;
+			case ShopWindowScript.SubCategory.GOLD_STORAGE:
+				itemId = 9074;
+				break;
+			case ShopWindowScript.SubCategory.C1:
+				itemId = 2496;
+				break;
+			case ShopWindowScript.SubCategory.LIBRARY:
+				itemId = 6677;
+				break;
+			case ShopWindowScript.SubCategory.WALL:
+				itemId = 7666;
+				break;
+			case ShopWindowScript.SubCategory.TREE1:
+				itemId = 2949;
+				break;
+			case ShopWindowScript.SubCategory.TREE2:
+				itemId = 1251;
+				break;
+			case ShopWindowScript.SubCategory.TREE3:
+				itemId = 5341;
+				break;
+			case ShopWindowScript.SubCategory.B7:
+				itemId = 3336;
+				break;
+			case ShopWindowScript.SubCategory.B8:
+				itemId = 5342;
+				break;
+		}
+		return itemId;
+	}
 }

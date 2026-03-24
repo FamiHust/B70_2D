@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,9 +27,19 @@ public class ItemsCollection : ScriptableObject
     {
         public int id;
         public string name;
+        public string description = "";
 		public Texture2D thumb;
 
-        public int gridSize = 4;
+        public int gridWidth = 4;
+        public int gridHeight = 4;
+        public float arrowOffsetX = 0f;
+        public float arrowOffsetZ = 0f;
+        public float gridOffsetX = 0f;
+        public float gridOffsetZ = 0f;
+        public float uiOffsetX = 0f;
+        public float uiOffsetZ = 0f;
+        public int defaultPosX = -1;
+        public int defaultPosZ = -1;
         public Configuration configuration = new Configuration();
 
         // store textures directly for each state

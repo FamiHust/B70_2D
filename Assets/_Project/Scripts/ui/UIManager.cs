@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
 	public GameObject TrainTroopsWindow;
 	public GameObject ItemOptionsWindow;
 	public GameObject InfoWindow;
+	public GameObject UpgradeWindow;
+	public GameObject BoostWindow;
 
 	/* object references */
 	public GameObject WindowsContainer;
@@ -108,9 +110,9 @@ public class UIManager : MonoBehaviour
 	}
 
 	public void ShowTrainTroopsWindow()
-    {
+	{
 		this.ShowWindow(this.TrainTroopsWindow);
-    }
+	}
 
 	public void ShowItemOptions()
 	{
@@ -119,14 +121,24 @@ public class UIManager : MonoBehaviour
 
 	public void HideItemOptions()
 	{
-		if(ItemOptionsWindowScript.instance != null)
+		if (ItemOptionsWindowScript.instance != null)
 		{
 			ItemOptionsWindowScript.instance.Close();
 		}
 	}
 
-    public void ShowInfoWindow()
+	public void ShowInfoWindow()
 	{
 		this.ShowWindow(this.InfoWindow);
+	}
+
+	public void ShowUpgradeWindow()
+	{
+		this.ShowWindow(this.UpgradeWindow);
+	}
+
+	public void ShowBoostWindow()
+	{
+		this.ShowWindow(this.BoostWindow);
 	}
 }

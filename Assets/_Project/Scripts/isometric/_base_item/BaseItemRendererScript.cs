@@ -109,11 +109,11 @@ public class BaseItemRendererScript : MonoBehaviour
 		renderQuadInstance.transform.SetParent(this.RenderQuadsContainer.transform);
 
 		//POSITIONING AND SCALING
-		Vector3 defaultImgSize = new Vector3(1.4142f, 1.4142f, 1.4142f) * 4 * textureData.scale / 100.0f / textureData.parent.gridSize;
+		Vector3 defaultImgSize = new Vector3(1.4142f, 1.4142f, 1.4142f) * 4 * textureData.scale / 100.0f;
 		float heightFactor = ((float)textureData.texture.height / (float)textureData.texture.width) * ((float)textureData.numberOfColumns / textureData.numberOfRows);
 
-		float offsetX = (1.414f / 256.0f) * textureData.offsetX * 4 / textureData.parent.gridSize;
-		float offsetY = (1.414f / 256.0f) * textureData.offsetY * 4 / textureData.parent.gridSize;
+		float offsetX = (1.414f / 256.0f) * textureData.offsetX * 4;
+		float offsetY = (1.414f / 256.0f) * textureData.offsetY * 4;
 		renderQuadInstance.transform.localPosition = new Vector3(offsetX, offsetY, 0);
 		renderQuadInstance.transform.localRotation = Quaternion.Euler(Vector3.zero);
 		renderQuadInstance.transform.localScale = new Vector3(defaultImgSize.x, defaultImgSize.x * heightFactor, 1);
@@ -164,7 +164,6 @@ public class BaseItemRendererScript : MonoBehaviour
 				{
 					// create temporary SpriteData/TextureData so we can render the raw texture
 					SpriteCollection.SpriteData tmp = new SpriteCollection.SpriteData();
-					tmp.gridSize = BaseItem.itemData.gridSize > 0 ? BaseItem.itemData.gridSize : 4;
 					tmp.renderingLayer = Common.RenderingLayer.SPRITE;
 					tmp.renderingOrder = 0;
 					// use bottomTexture as representative
