@@ -12,6 +12,7 @@ public class ShopWindowScript : WindowScript
 	/* references */
 	public ScrollRect ScrollView;
 	public GameObject ItemsList;
+	public GameObject CategoryList;
 	public GameObject BackButton;
 
 	public enum Category
@@ -56,32 +57,33 @@ public class ShopWindowScript : WindowScript
 	public void Init()
 	{
 		this.RenderCategories();
+		this.RenderSubCategories(Category.SERVICE);
 	}
 
 	public void RenderCategories()
 	{
-		this.BackButton.SetActive(false);
-
-		this.ClearItemsList();
+		this.ClearCategoryList();
 
 		Category[] categories = new Category[] {
 			// Category.ARMY,
 			Category.SERVICE,
 			Category.RESOURCES,
-            Category.STUDENT,
-            Category.DECORATIONS
+			Category.STUDENT,
+			Category.DECORATIONS
 			// Category.DEFENCE,
 		};
 
 		for (int index = 0; index < categories.Length; index++)
 		{
-			GameObject inst = Utilities.CreateInstance(this.CategoryItem, this.ItemsList, true);
+			GameObject inst = Utilities.CreateInstance(this.CategoryItem, this.CategoryList, true);
 			inst.GetComponent<CategoryItemScript>().SetCategory(categories[index]);
 		}
 
-		RectTransform rt = this.ItemsList.GetComponent<RectTransform>();
-		Vector2 sizeDelta = this.ItemsList.GetComponent<RectTransform>().sizeDelta;
-		sizeDelta.x = categories.Length * 250 + categories.Length * this.ItemsList.GetComponent<GridLayoutGroup>().spacing.x;
+		RectTransform rt = this.CategoryList.GetComponent<RectTransform>();
+		Vector2 sizeDelta = this.CategoryList.GetComponent<RectTransform>().sizeDelta;
+		GridLayoutGroup glg = this.CategoryList.GetComponent<GridLayoutGroup>();
+		float spacing = glg != null ? glg.spacing.x : 0;
+		sizeDelta.x = categories.Length * 250 + categories.Length * spacing;
 		rt.sizeDelta = sizeDelta;
 
 		this.ResetScrollPosition();
@@ -114,30 +116,32 @@ public class ShopWindowScript : WindowScript
 				break;
 
 			case Category.STUDENT:
-				subItems = new SubCategory[] { SubCategory.B7, SubCategory.B8};
+				subItems = new SubCategory[] { SubCategory.B7, SubCategory.B8 };
 				break;
 		}
 
 		List<SubCategory> validSubItems = new List<SubCategory>();
 		for (int index = 0; index < subItems.Length; index++)
 		{
-            SubCategory subCat = subItems[index];
+			SubCategory subCat = subItems[index];
 
-            // Allow walls and trees to be bought multiple times
-            bool canBuyMultiple = (subCat == SubCategory.WALL || subCat == SubCategory.TREE1 || subCat == SubCategory.TREE2 || subCat == SubCategory.TREE3);
-            int itemId = GetItemIdFromSubCategory(subCat);
+			// Allow walls and trees to be bought multiple times
+			bool canBuyMultiple = (subCat == SubCategory.WALL || subCat == SubCategory.TREE1 || subCat == SubCategory.TREE2 || subCat == SubCategory.TREE3);
+			int itemId = GetItemIdFromSubCategory(subCat);
 
-            if (canBuyMultiple || !SceneManager.instance.IsItemBuiltInScene(itemId))
-            {
-			    GameObject inst = Utilities.CreateInstance(this.SubCategoryItem, this.ItemsList, true);
-			    inst.GetComponent<SubCategoryItemScript>().SetSubCategory(subCat);
-                validSubItems.Add(subCat);
-            }
+			if (canBuyMultiple || !SceneManager.instance.IsItemBuiltInScene(itemId))
+			{
+				GameObject inst = Utilities.CreateInstance(this.SubCategoryItem, this.ItemsList, true);
+				inst.GetComponent<SubCategoryItemScript>().SetSubCategory(subCat);
+				validSubItems.Add(subCat);
+			}
 		}
 
 		RectTransform rt = this.ItemsList.GetComponent<RectTransform>();
 		Vector2 sizeDelta = this.ItemsList.GetComponent<RectTransform>().sizeDelta;
-		sizeDelta.x = validSubItems.Count * 250 + validSubItems.Count * this.ItemsList.GetComponent<GridLayoutGroup>().spacing.x;
+		GridLayoutGroup glg = this.ItemsList.GetComponent<GridLayoutGroup>();
+		float spacing = glg != null ? glg.spacing.x : 0;
+		sizeDelta.x = validSubItems.Count * 250 + validSubItems.Count * spacing;
 		rt.sizeDelta = sizeDelta;
 
 		this.ResetScrollPosition();
@@ -156,10 +160,10 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.TREE1: return 2949;
 			case SubCategory.TREE2: return 1251;
 			case SubCategory.TREE3: return 5341;
-            case SubCategory.B7: return 3336;
-            case SubCategory.B8: return 5342;
-            default: return 0;
-        }
+			case SubCategory.B7: return 3336;
+			case SubCategory.B8: return 5342;
+			default: return 0;
+		}
 	}
 
 	public void OnClickCategory(Category category)
@@ -177,7 +181,16 @@ public class ShopWindowScript : WindowScript
 
 	public void OnClickBackButton()
 	{
-		this.RenderCategories();
+		this.ClearItemsList();
+		this.BackButton.SetActive(false);
+	}
+
+	public void ClearCategoryList()
+	{
+		foreach (Transform child in this.CategoryList.transform)
+		{
+			Destroy(child.gameObject);
+		}
 	}
 
 	public void ResetScrollPosition()

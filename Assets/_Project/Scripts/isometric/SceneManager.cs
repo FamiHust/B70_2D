@@ -27,6 +27,7 @@ public class SceneManager : MonoBehaviour
 
 	/* private vars */
 	private Dictionary<int, BaseItemScript> _itemInstances;
+	private ShopLayoutData _shopLayout;
 
 	//resource values
 	public int numberOfGoldInStorage;
@@ -53,6 +54,7 @@ public class SceneManager : MonoBehaviour
 		CameraManager.instance.OnTapGround += this.OnTapGround;
 
 		GroundManager.instance.UpdateAllNodes();
+		this._shopLayout = DataBaseManager.instance.GetShopLayout();
 		this.Init();
 	}
 
@@ -166,7 +168,15 @@ public class SceneManager : MonoBehaviour
 		if (!immediate)
 		{
 			ItemsCollection.ItemData itemData = Items.GetItem(itemId);
-			if (itemData.defaultPosX != -1 && itemData.defaultPosZ != -1)
+
+			// Check Shop Layout first
+			ShopLayoutItem layoutItem = _shopLayout.items.Find(i => i.itemId == itemId);
+			if (layoutItem != null)
+			{
+				posX = layoutItem.posX;
+				posZ = layoutItem.posZ;
+			}
+			else if (itemData.defaultPosX != -1 && itemData.defaultPosZ != -1)
 			{
 				posX = itemData.defaultPosX;
 				posZ = itemData.defaultPosZ;

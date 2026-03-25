@@ -482,9 +482,9 @@ MonoBehaviour:
   - id: 7666
     name: Wall
     description: 
-    thumb: {fileID: 2800000, guid: 71964cee2744c4897959828431d40578, type: 3}
-    gridWidth: 4
-    gridHeight: 4
+    thumb: {fileID: 2800000, guid: 44c123b010d7f4357a072774f7164b83, type: 3}
+    gridWidth: 1
+    gridHeight: 1
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -507,7 +507,7 @@ MonoBehaviour:
       price: 0
       resourceType: gold
     idleSpriteTextures:
-    - {fileID: 2800000, guid: 71964cee2744c4897959828431d40578, type: 3}
+    - {fileID: 2800000, guid: 44c123b010d7f4357a072774f7164b83, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 71964cee2744c4897959828431d40578, type: 3}
     attackSpriteTextures: []

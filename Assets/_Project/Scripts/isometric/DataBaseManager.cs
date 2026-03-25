@@ -12,6 +12,20 @@ public class ItemData
 	public int posZ;
 	public int level = 1;
 }
+
+[System.Serializable]
+public class ShopLayoutItem
+{
+	public int itemId;
+	public int posX;
+	public int posZ;
+}
+
+[System.Serializable]
+public class ShopLayoutData
+{
+	public List<ShopLayoutItem> items = new List<ShopLayoutItem>();
+}
 [System.Serializable]
 public class SceneData
 {
@@ -386,5 +400,22 @@ public class DataBaseManager : MonoBehaviour
 		File.WriteAllText(filePath, jsonData);
 	}
 
+	public void SaveShopLayout(ShopLayoutData layoutData)
+	{
+		string filePath = Application.dataPath + "/StreamingAssets/shop_layout.json";
+		string jsonData = JsonUtility.ToJson(layoutData);
+		File.WriteAllText(filePath, jsonData);
+	}
+
+	public ShopLayoutData GetShopLayout()
+	{
+		string filePath = Application.dataPath + "/StreamingAssets/shop_layout.json";
+		if (File.Exists(filePath))
+		{
+			string jsonData = File.ReadAllText(filePath);
+			return JsonUtility.FromJson<ShopLayoutData>(jsonData);
+		}
+		return new ShopLayoutData();
+	}
 
 }
