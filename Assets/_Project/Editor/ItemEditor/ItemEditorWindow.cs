@@ -160,6 +160,7 @@ public class ItemEditorWindow : EditorWindow
         }
 
         _simpleTreeView = new SimpleTreeView(_treeViewState);
+        Sprites.LoadSprites();
     }
 
     void OnFocus()
@@ -257,24 +258,7 @@ public class ItemEditorWindow : EditorWindow
         description = itemData.description;
 		thumb = itemData.thumb;
 
-        int visualGridSize = Mathf.Max(itemData.gridWidth, itemData.gridHeight);
-        if (visualGridSize == 0)
-            gridTexture = null;
-        else if (visualGridSize == 1)
-            gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
-        else if (visualGridSize == 2)
-            gridTexture = Resources.Load("grid_2x2", typeof(Texture2D)) as Texture2D;
-        else if (visualGridSize == 3)
-            gridTexture = Resources.Load("grid_3x3", typeof(Texture2D)) as Texture2D;
-        else if (visualGridSize == 4)
-            gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
-        else if (visualGridSize == 5)
-            gridTexture = Resources.Load("grid_5x5", typeof(Texture2D)) as Texture2D;
-        else if (visualGridSize >= 6)
-            gridTexture = Resources.Load("grid_6x6", typeof(Texture2D)) as Texture2D;
-
-
-
+        gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
     }
 
     void TreeViewMenu(Rect position, int selectedId)
@@ -835,13 +819,45 @@ public class ItemEditorWindow : EditorWindow
     private List<SpriteAnimationItem> spriteAnimationList = new List<SpriteAnimationItem>();
     void RenderPreviewArea()
     {
+        gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
 
-        if (gridTexture == null)
-            gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
+        Vector2 centerPointOfPreviewArea = new Vector2((WidthOfLetPanel + position.width - WidthOfRightPanel) / 2, position.height / 2);
 
         //DRAW GRID
-        Vector2 centerPointOfPreviewArea = new Vector2((WidthOfLetPanel + position.width - WidthOfRightPanel) / 2, position.height / 2);
-        GUI.Label(new Rect(centerPointOfPreviewArea.x - defaultGridSize.x / 2, centerPointOfPreviewArea.y - defaultGridSize.y / 2, defaultGridSize.x, defaultGridSize.y), gridTexture);
+        if (selectedItemIndex != -1)
+        {
+            ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
+            int gW = Mathf.Max(1, itemData.gridWidth);
+            int gH = Mathf.Max(1, itemData.gridHeight);
+
+            float cw = 140; // grid cell width
+            float ch = 70;  // grid cell height
+
+            // Center based on total grid dimensions
+            float ox = (gW - gH) * cw / 4;
+            float oy = (gW + gH) * ch / 4;
+
+            for (int ix = 0; ix < gW; ix++)
+            {
+                for (int iy = 0; iy < gH; iy++)
+                {
+                    float px = (ix - iy) * cw / 2;
+                    float py = (ix + iy) * ch / 2;
+
+                    float finalX = centerPointOfPreviewArea.x + px - ox;
+                    float finalY = centerPointOfPreviewArea.y + py - oy + ch/2;
+
+                    GUI.DrawTexture(new Rect(finalX - cw/2, finalY - cw/2, cw, cw), gridTexture);
+                }
+            }
+        }
+        else
+        {
+             if (gridTexture == null)
+                gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
+
+            GUI.Label(new Rect(centerPointOfPreviewArea.x - defaultGridSize.x / 2, centerPointOfPreviewArea.y - defaultGridSize.y / 2, defaultGridSize.x, defaultGridSize.y), gridTexture);
+        }
 
         //DRAW ITEM SPRITE
         if (selectedItemIndex != -1)
@@ -857,24 +873,28 @@ public class ItemEditorWindow : EditorWindow
                     continue;
 
                 float scale = textureData.scale;
+                float scaleX = textureData.scaleX;
+                float scaleY = textureData.scaleY;
                 int numberOfColumns = spriteAnimationItem.numberOfColumns;
                 int numberOfRows = spriteAnimationItem.numberOfRows;
                 float offsetX = textureData.offsetX;
                 float offsetY = textureData.offsetY;
-                defaultImgSize.x = 256 * scale / 100;
+                
+                float baseScale = 256 * (scale / 100f);
+                float imgW = baseScale * (scaleX / 100f);
+                float heightFactor = ((float)texture.height / (float)texture.width) * ((float)numberOfColumns / (float)numberOfRows);
+                float imgH = baseScale * heightFactor * (scaleY / 100f);
 
-                float heightFactor = ((float)texture.height / (float)texture.width) * ((float)numberOfColumns / numberOfRows);
+                float x = (centerPointOfPreviewArea.x - imgW / 2) + offsetX;
+                float y = (centerPointOfPreviewArea.y - imgH / 2) - offsetY;
 
-                float x = (centerPointOfPreviewArea.x - defaultImgSize.x / 2) + offsetX;
-                float y = (centerPointOfPreviewArea.y - defaultImgSize.x * heightFactor / 2) - offsetY;
+                float framePaddingX = imgW * (spriteAnimationItem.currentFrame % numberOfColumns);
+                float framePaddingY = imgH * (spriteAnimationItem.currentFrame / numberOfColumns);
 
-                float framePaddingX = defaultImgSize.x * (spriteAnimationItem.currentFrame % numberOfColumns);
-                float framePaddingY = defaultImgSize.x * heightFactor * (spriteAnimationItem.currentFrame / numberOfColumns);
-
-                Rect imgRect = new Rect(x, y, defaultImgSize.x, defaultImgSize.x * heightFactor);
+                Rect imgRect = new Rect(x, y, imgW, imgH);
 
                 GUI.BeginGroup(imgRect);
-                GUI.DrawTexture(new Rect(-framePaddingX, -framePaddingY, defaultImgSize.x * numberOfColumns, defaultImgSize.x * spriteAnimationItem.numberOfRows * heightFactor), texture);
+                GUI.DrawTexture(new Rect(-framePaddingX, -framePaddingY, imgW * numberOfColumns, imgH * numberOfRows), texture);
                 GUI.EndGroup();
             }
         }
@@ -921,21 +941,56 @@ public class ItemEditorWindow : EditorWindow
         ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
 
         this.spriteAnimationList = new List<SpriteAnimationItem>();
+
+        // 1. Handle ID-based sprites
         foreach (int spriteId in itemData.GetSprites((Common.State)state))
         {
             SpriteCollection.SpriteData sprite = spriteCollection.GetSprite(spriteId);
+            if (sprite == null) continue;
 
             SpriteAnimationItem spriteAnimationData = new SpriteAnimationItem();
             spriteAnimationData.sprite = sprite;
             spriteAnimationData.lastUpdatedTime = Time.realtimeSinceStartup;
 
             SpriteCollection.TextureData textureData = GetTextureDataDirection(sprite);
-
             spriteAnimationData.numberOfColumns = textureData.numberOfColumns;
             spriteAnimationData.numberOfRows = textureData.numberOfRows;
 
             this.spriteAnimationList.Add(spriteAnimationData);
         }
+
+        // 2. Handle direct texture-based sprites (new workflow)
+        List<Texture2D> textures = itemData.GetSpriteTextures((Common.State)state);
+        if (textures != null)
+        {
+            foreach (Texture2D tex in textures)
+            {
+                if (tex == null) continue;
+                
+                SpriteCollection.SpriteData sprite = Sprites.GetSpriteByTexture(tex);
+                if (sprite == null)
+                {
+                    // create temporary SpriteData/TextureData for rendering
+                    sprite = new SpriteCollection.SpriteData();
+                    sprite.bottomTexture.texture = tex;
+                    sprite.bottomRightTexture.texture = tex;
+                    sprite.rightTexture.texture = tex;
+                    sprite.topRightTexture.texture = tex;
+                    sprite.topTexture.texture = tex;
+                }
+
+                SpriteAnimationItem spriteAnimationData = new SpriteAnimationItem();
+                spriteAnimationData.sprite = sprite;
+                spriteAnimationData.lastUpdatedTime = Time.realtimeSinceStartup;
+
+                SpriteCollection.TextureData textureData = GetTextureDataDirection(sprite);
+                spriteAnimationData.numberOfColumns = textureData.numberOfColumns;
+                spriteAnimationData.numberOfRows = textureData.numberOfRows;
+
+                this.spriteAnimationList.Add(spriteAnimationData);
+            }
+        }
+
         this.spriteAnimationList.Sort(SortByDepth);
     }
 

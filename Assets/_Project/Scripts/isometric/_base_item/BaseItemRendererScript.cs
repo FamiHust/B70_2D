@@ -109,14 +109,16 @@ public class BaseItemRendererScript : MonoBehaviour
 		renderQuadInstance.transform.SetParent(this.RenderQuadsContainer.transform);
 
 		//POSITIONING AND SCALING
-		Vector3 defaultImgSize = new Vector3(1.4142f, 1.4142f, 1.4142f) * 4 * textureData.scale / 100.0f;
+		float baseScale = 1.4142f * 4 * (textureData.scale / 100.0f);
 		float heightFactor = ((float)textureData.texture.height / (float)textureData.texture.width) * ((float)textureData.numberOfColumns / textureData.numberOfRows);
+		float imgW = baseScale * (textureData.scaleX / 100.0f);
+		float imgH = baseScale * heightFactor * (textureData.scaleY / 100.0f);
 
 		float offsetX = (1.414f / 256.0f) * textureData.offsetX * 4;
 		float offsetY = (1.414f / 256.0f) * textureData.offsetY * 4;
 		renderQuadInstance.transform.localPosition = new Vector3(offsetX, offsetY, 0);
 		renderQuadInstance.transform.localRotation = Quaternion.Euler(Vector3.zero);
-		renderQuadInstance.transform.localScale = new Vector3(defaultImgSize.x, defaultImgSize.x * heightFactor, 1);
+		renderQuadInstance.transform.localScale = new Vector3(imgW, imgH, 1);
 
 		renderQuadInstance.SetData(textureData, layer);
 		renderQuadInstance.GetComponent<TextureSheetAnimationScript>()
@@ -172,6 +174,8 @@ public class BaseItemRendererScript : MonoBehaviour
 					tmp.bottomTexture.offsetX = 0;
 					tmp.bottomTexture.offsetY = 0;
 					tmp.bottomTexture.scale = 100.0f;
+					tmp.bottomTexture.scaleX = 100.0f;
+					tmp.bottomTexture.scaleY = 100.0f;
 					tmp.bottomTexture.numberOfColumns = 1;
 					tmp.bottomTexture.numberOfRows = 1;
 					tmp.bottomTexture.framesCount = 1;

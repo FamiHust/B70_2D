@@ -40,18 +40,14 @@ MonoBehaviour:
       productPrice: 100
       price: 100
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures: []
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 3635
     name: D4
-    description: "T\xF2a D4 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
-      l\xE0 tr\u1EE5 s\u1EDF ch\xEDnh c\u1EE7a Tr\u01B0\u1EDDng Ngo\u1EA1i ng\u1EEF
-      (tr\u01B0\u1EDBc \u0111\xE2y l\xE0 Khoa Ngo\u1EA1i ng\u1EEF). \u0110\xE2y l\xE0
-      \u0111\u1ECBa \u0111i\u1EC3m quen thu\u1ED9c v\u1EDBi sinh vi\xEAn B\xE1ch
-      khoa, \u0111\u1EB7c bi\u1EC7t l\xE0 trong c\xE1c k\u1EF3 thi ti\u1EBFng Anh
-      v\xE0 c\xE1c ho\u1EA1t \u0111\u1ED9ng h\u1ECDc t\u1EADp ng\xF4n ng\u1EEF"
+    description: 
     thumb: {fileID: 2800000, guid: a75b2b3d36e143640a71abb4af87ee5f, type: 3}
     gridWidth: 2
     gridHeight: 2
@@ -76,6 +72,7 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 5eace487d50e5d549b93aad6918f4336, type: 3}
     walkSpriteTextures: []
@@ -108,16 +105,17 @@ MonoBehaviour:
       productPrice: 100
       price: 100
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures: []
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 3336
-    name: B7
+    name: C7
     description: 
-    thumb: {fileID: 2800000, guid: d6b487688e965004d9e8058470511c9c, type: 3}
-    gridWidth: 2
-    gridHeight: 2
+    thumb: {fileID: 2800000, guid: 480b8896fb117f247b171fa65776f6df, type: 3}
+    gridWidth: 10
+    gridHeight: 9
     arrowOffsetX: 1
     arrowOffsetZ: 1
     gridOffsetX: 0
@@ -139,22 +137,15 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
+      studentCapacityIncrease: 10
     idleSpriteTextures:
-    - {fileID: 2800000, guid: 221d168e0a49c03489ec3eb5501f8b07, type: 3}
-    walkSpriteTextures:
-    - {fileID: 2800000, guid: d6b487688e965004d9e8058470511c9c, type: 3}
+    - {fileID: 2800000, guid: 480b8896fb117f247b171fa65776f6df, type: 3}
+    walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 3265
     name: C4
-    description: "T\xF2a C4 t\u1EA1i Tr\u01B0\u1EDDng \u0110\u1EA1i h\u1ECDc B\xE1ch
-      khoa H\xE0 N\u1ED9i l\xE0 tr\u1EE5 s\u1EDF c\u1EE7a Vi\u1EC7n C\xF4ng ngh\u1EC7
-      Sinh h\u1ECDc v\xE0 C\xF4ng ngh\u1EC7 Th\u1EF1c ph\u1EA9m (SBFT), n\u1EB1m
-      trong khu\xF4n vi\xEAn tr\u01B0\u1EDDng. \u0110\xE2y l\xE0 n\u01A1i l\xE0m
-      vi\u1EC7c, gi\u1EA3ng d\u1EA1y v\xE0 nghi\xEAn c\u1EE9u ch\xEDnh c\u1EE7a vi\u1EC7n,
-      th\u01B0\u1EDDng bao g\u1ED3m c\xE1c v\u0103n ph\xF2ng khoa, ph\xF2ng l\xE0m
-      vi\u1EC7c c\u1EE7a gi\u1EA3ng vi\xEAn v\xE0 c\xE1c ph\xF2ng th\xED nghi\u1EC7m
-      chuy\xEAn ng\xE0nh. "
+    description: 
     thumb: {fileID: 2800000, guid: 46902b07f11e2f14cab78898a681e67e, type: 3}
     gridWidth: 2
     gridHeight: 2
@@ -179,6 +170,7 @@ MonoBehaviour:
       productPrice: 50
       price: 50
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 22361cd878e38ec4b8ffbce614f104dc, type: 3}
     walkSpriteTextures:
@@ -212,6 +204,7 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 6a3b1f249bcd4e546b2e3acb15a5fd8d, type: 3}
     walkSpriteTextures:
@@ -245,6 +238,7 @@ MonoBehaviour:
       productPrice: 100
       price: 300
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures: []
     walkSpriteTextures: []
     attackSpriteTextures: []
@@ -276,21 +270,17 @@ MonoBehaviour:
       productPrice: 100
       price: 300
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures: []
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 2496
     name: C1
-    description: "t\xF2a nh\xE0 C1 \u0111\u01B0\u1EE3c bi\u1EBFt \u0111\u1EBFn l\xE0
-      m\u1ED9t trong nh\u1EEFng c\xF4ng tr\xECnh ki\u1EBFn tr\xFAc tr\u1ECDng \u0111i\u1EC3m
-      c\u1EE7a tr\u01B0\u1EDDng, do c\xE1c k\u0129 s\u01B0 Li\xEAn X\xF4 qua Vi\u1EC7t
-      Nam h\u1ED7 tr\u1EE3 v\xE0 x\xE2y d\u1EF1ng. Hi\u1EC7n nay, t\xF2a C1 \u0111\u01B0\u1EE3c
-      s\u1EED d\u1EE5ng l\xE0m trung t\xE2m v\u0103n ph\xF2ng v\xE0 qu\u1EA3n tr\u1ECB
-      c\u1EE7a to\xE0n b\u1ED9 nh\xE0 tr\u01B0\u1EDDng."
-    thumb: {fileID: 2800000, guid: 77f5830868abd584da989ffc17d48294, type: 3}
-    gridWidth: 2
-    gridHeight: 2
+    description: 
+    thumb: {fileID: 2800000, guid: 1ceade1864812f24da43cf4214fea2ef, type: 3}
+    gridWidth: 8
+    gridHeight: 5
     arrowOffsetX: 1
     arrowOffsetZ: 1
     gridOffsetX: 0
@@ -312,18 +302,19 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
+      studentCapacityIncrease: 10
     idleSpriteTextures:
-    - {fileID: 2800000, guid: 470026a9b13b710488329a553a4ec67d, type: 3}
+    - {fileID: 2800000, guid: 1ceade1864812f24da43cf4214fea2ef, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 77f5830868abd584da989ffc17d48294, type: 3}
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 2949
-    name: Tree1
+    name: "C\u1ED5ng Parabol"
     description: 
-    thumb: {fileID: 2800000, guid: 534e80de4710ef240b00e4fc4554276d, type: 3}
-    gridWidth: 4
-    gridHeight: 4
+    thumb: {fileID: 2800000, guid: e430ceaa8c3b4154fab4480bb99aa5c3, type: 3}
+    gridWidth: 2
+    gridHeight: 8
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -333,7 +324,7 @@ MonoBehaviour:
     defaultPosX: -1
     defaultPosZ: -1
     configuration:
-      buildTime: 0
+      buildTime: 20
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -343,16 +334,17 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 300
+      price: 50
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures:
-    - {fileID: 2800000, guid: 534e80de4710ef240b00e4fc4554276d, type: 3}
+    - {fileID: 2800000, guid: e430ceaa8c3b4154fab4480bb99aa5c3, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 534e80de4710ef240b00e4fc4554276d, type: 3}
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 1251
-    name: Tree2
+    name: "C\u1ED5ng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a"
     description: 
     thumb: {fileID: 2800000, guid: f6a366038e86b41439baf294f4dbaf06, type: 3}
     gridWidth: 4
@@ -366,7 +358,7 @@ MonoBehaviour:
     defaultPosX: -1
     defaultPosZ: -1
     configuration:
-      buildTime: 0
+      buildTime: 20
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -376,10 +368,11 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 300
+      price: 50
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures:
-    - {fileID: 2800000, guid: f6a366038e86b41439baf294f4dbaf06, type: 3}
+    - {fileID: 2800000, guid: 9ead3a103af3345cf9f3b88840f3ce02, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: f6a366038e86b41439baf294f4dbaf06, type: 3}
     attackSpriteTextures: []
@@ -387,9 +380,9 @@ MonoBehaviour:
   - id: 6677
     name: Library
     description: 
-    thumb: {fileID: 2800000, guid: 85beb8109f293fc46b532d5b289cede7, type: 3}
-    gridWidth: 2
-    gridHeight: 2
+    thumb: {fileID: 2800000, guid: 21fe2969c39455e4a99c3b78ef3afbbf, type: 3}
+    gridWidth: 8
+    gridHeight: 7
     arrowOffsetX: 1
     arrowOffsetZ: 1
     gridOffsetX: 0
@@ -411,8 +404,9 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
+      studentCapacityIncrease: 20
     idleSpriteTextures:
-    - {fileID: 2800000, guid: a394dca3b66c0674f90ea7f752c8b704, type: 3}
+    - {fileID: 2800000, guid: 21fe2969c39455e4a99c3b78ef3afbbf, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 85beb8109f293fc46b532d5b289cede7, type: 3}
     attackSpriteTextures: []
@@ -444,6 +438,7 @@ MonoBehaviour:
       productPrice: 100
       price: 100
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures: []
     walkSpriteTextures: []
     attackSpriteTextures: []
@@ -475,6 +470,7 @@ MonoBehaviour:
       productPrice: 100
       price: 100
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures: []
     walkSpriteTextures: []
     attackSpriteTextures: []
@@ -506,6 +502,7 @@ MonoBehaviour:
       productPrice: 100
       price: 0
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 44c123b010d7f4357a072774f7164b83, type: 3}
     walkSpriteTextures:
@@ -539,6 +536,7 @@ MonoBehaviour:
       productPrice: 100
       price: 300
       resourceType: gold
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 4c29b59126111df458ea771f07adb0fb, type: 3}
     walkSpriteTextures:
@@ -546,11 +544,11 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 5342
-    name: B8
+    name: B1
     description: 
-    thumb: {fileID: 2800000, guid: 942a7277306944842b6c11a9ab5df4df, type: 3}
-    gridWidth: 2
-    gridHeight: 2
+    thumb: {fileID: 2800000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
+    gridWidth: 8
+    gridHeight: 8
     arrowOffsetX: 1
     arrowOffsetZ: 1
     gridOffsetX: 0
@@ -572,8 +570,9 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
+      studentCapacityIncrease: 10
     idleSpriteTextures:
-    - {fileID: 2800000, guid: af78c049a6b1ebd4ebeaae16f6ed00db, type: 3}
+    - {fileID: 2800000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 942a7277306944842b6c11a9ab5df4df, type: 3}
     attackSpriteTextures: []

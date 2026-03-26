@@ -34,14 +34,14 @@ public class ShopWindowScript : WindowScript
 		CANNON,
 		// ELIXIR_COLLECTOR,
 		// ELIXIR_STORAGE,
-		B7,
-		B8,
+		C7,
+		B1,
 		C4,
 		GOLD_STORAGE,
 		TOWER,
 		C1,
-		TREE1,
-		TREE2,
+		GIAI_PHONG_GATE,
+		TDN_GATE,
 		TREE3,
 		LIBRARY,
 		WALL
@@ -106,17 +106,17 @@ public class ShopWindowScript : WindowScript
 				subItems = new SubCategory[] { SubCategory.C4, SubCategory.GOLD_STORAGE, SubCategory.LIBRARY };
 				break;
 			case Category.DECORATIONS:
-				subItems = new SubCategory[] { SubCategory.TREE1, SubCategory.TREE2, SubCategory.TREE3 };
+				subItems = new SubCategory[] { SubCategory.GIAI_PHONG_GATE, SubCategory.TDN_GATE, SubCategory.WALL, SubCategory.TREE3 };
 				break;
 			// case Category.DEFENCE:
 			// 	subItems = new SubCategory[]{ SubCategory.CANNON, SubCategory.TOWER};
 			// 	break;
 			case Category.SERVICE:
-				subItems = new SubCategory[] { SubCategory.C1, SubCategory.D4, SubCategory.WALL };
+				subItems = new SubCategory[] { SubCategory.C1, SubCategory.D4 };
 				break;
 
 			case Category.STUDENT:
-				subItems = new SubCategory[] { SubCategory.B7, SubCategory.B8 };
+				subItems = new SubCategory[] { SubCategory.C7, SubCategory.B1 };
 				break;
 		}
 
@@ -126,7 +126,7 @@ public class ShopWindowScript : WindowScript
 			SubCategory subCat = subItems[index];
 
 			// Allow walls and trees to be bought multiple times
-			bool canBuyMultiple = (subCat == SubCategory.WALL || subCat == SubCategory.TREE1 || subCat == SubCategory.TREE2 || subCat == SubCategory.TREE3);
+			bool canBuyMultiple = (subCat == SubCategory.WALL || subCat == SubCategory.TREE3);
 			int itemId = GetItemIdFromSubCategory(subCat);
 
 			if (canBuyMultiple || !SceneManager.instance.IsItemBuiltInScene(itemId))
@@ -157,11 +157,11 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.C1: return 2496;
 			case SubCategory.LIBRARY: return 6677;
 			case SubCategory.WALL: return 7666;
-			case SubCategory.TREE1: return 2949;
-			case SubCategory.TREE2: return 1251;
+			case SubCategory.GIAI_PHONG_GATE: return 2949;
+			case SubCategory.TDN_GATE: return 1251;
 			case SubCategory.TREE3: return 5341;
-			case SubCategory.B7: return 3336;
-			case SubCategory.B8: return 5342;
+			case SubCategory.C7: return 3336;
+			case SubCategory.B1: return 5342;
 			default: return 0;
 		}
 	}

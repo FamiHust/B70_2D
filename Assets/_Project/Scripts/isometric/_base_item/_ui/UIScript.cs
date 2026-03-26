@@ -73,7 +73,7 @@ public class UIScript : MonoBehaviour {
 
             if (this._baseItem.OnConstructionComplete != null)
             {
-                this._baseItem.OnConstructionComplete.Invoke();
+                this._baseItem.OnConstructionComplete.Invoke(this._baseItem);
                 this._baseItem.OnConstructionComplete = null;
             }
         }

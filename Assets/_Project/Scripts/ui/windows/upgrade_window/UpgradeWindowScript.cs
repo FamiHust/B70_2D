@@ -41,10 +41,11 @@ public class UpgradeWindowScript : WindowScript
         if (SceneManager.instance.ConsumeResource("gold", cost))
         {
             // Set callback to apply upgrade when construction is done
-            _targetItem.OnConstructionComplete = () =>
+            _targetItem.OnConstructionComplete = (item) =>
             {
                 _targetItem.level++;
                 DataBaseManager.instance.UpdateItemData(_targetItem);
+                SceneManager.instance.UpdateStudentStorageCapacity();
 
                 // Refresh Selection UI if it's currently active
                 if (_targetItem.UI.selectionUIInstance != null)

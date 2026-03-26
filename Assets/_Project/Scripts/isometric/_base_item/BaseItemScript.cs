@@ -36,7 +36,7 @@ public class BaseItemScript : MonoBehaviour
 
 	/* events */
 	public UnityAction<BaseItemScript> OnItemDestroy;
-	public UnityAction OnConstructionComplete;
+	public UnityAction<BaseItemScript> OnConstructionComplete;
 
 	/* private vars */
 	private Dictionary<float, Common.Direction> _angleToDirectionMap;
@@ -596,9 +596,7 @@ public class BaseItemScript : MonoBehaviour
 	public void UpdateWall()
 	{
 		bool hasRighNeighbourWall = false;
-		bool hasLeftNeighbourWall = false;
 		bool hasTopNeighbourWall = false;
-		bool hasBottomNeighbourWall = false;
 
 		//check item in right
 		BaseItemScript item = GroundManager.instance.GetItemInPosition(this.GetPosition() + new Vector3(1, 0, 0));
@@ -609,10 +607,7 @@ public class BaseItemScript : MonoBehaviour
 
 		//check item in left
 		item = GroundManager.instance.GetItemInPosition(this.GetPosition() + new Vector3(-1, 0, 0));
-		if (item != null && item.itemData.name == "Wall")
-		{
-			hasLeftNeighbourWall = true;
-		}
+		// (removed unused left check usage)
 
 		//check item in top
 		item = GroundManager.instance.GetItemInPosition(this.GetPosition() + new Vector3(0, 0, 1));
@@ -623,10 +618,7 @@ public class BaseItemScript : MonoBehaviour
 
 		//check item in bottom
 		item = GroundManager.instance.GetItemInPosition(this.GetPosition() + new Vector3(0, 0, -1));
-		if (item != null && item.itemData.name == "Wall")
-		{
-			hasBottomNeighbourWall = true;
-		}
+		// (removed unused bottom check usage)
 
 
 		int frame = 0;

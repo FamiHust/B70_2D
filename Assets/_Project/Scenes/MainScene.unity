@@ -6069,8 +6069,10 @@ MonoBehaviour:
   gameMode: 0
   numberOfGoldInStorage: 0
   numberOfDiamondsInStorage: 0
+  numberOfStudentInStorage: 0
   goldStorageCapacity: 0
   diamondStorageCapacity: 0
+  studentStorageCapacity: 0
   selectedItem: {fileID: 1429170894}
   selectedUnit: 0
 --- !u!114 &966815248

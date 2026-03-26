@@ -196,6 +196,11 @@ public class CameraManager : MonoBehaviour
 		{
 			this._isTappedBaseItem = false;
 			this._selectedBaseItem = null;
+			if (SceneManager.instance.selectedItem != null)
+			{
+				SceneManager.instance.selectedItem.SetSelected(false);
+				SceneManager.instance.selectedItem = null;
+			}
 		}
 	}
 
@@ -269,6 +274,13 @@ public class CameraManager : MonoBehaviour
 						point = currentTapPosition,
 						baseItem = this._selectedBaseItem
 					};
+
+					if (evt.baseItem == null || evt.baseItem.gameObject == null)
+					{
+						this._isDragItemStarted = false;
+						this._isDraggingBaseItem = false;
+						return;
+					}
 
 					if (!this._isDragItemStarted)
 					{

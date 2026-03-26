@@ -33,10 +33,11 @@ public class SceneManager : MonoBehaviour
 	public int numberOfGoldInStorage;
 	// public int numberOfElixirInStorage;
 	public int numberOfDiamondsInStorage;
+	public int numberOfStudentInStorage;
 
 	public int goldStorageCapacity;
 	public int diamondStorageCapacity;
-
+	public int studentStorageCapacity;
 
 
 	void Awake()
@@ -82,11 +83,13 @@ public class SceneManager : MonoBehaviour
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
 		this.goldStorageCapacity = 1000;
 		this.diamondStorageCapacity = 100;
+		this.studentStorageCapacity = 10;
 		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
 		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
 		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
+		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 10);
 		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
 	}
 
@@ -97,6 +100,7 @@ public class SceneManager : MonoBehaviour
 	{
 		PlayerPrefs.SetInt("numberOfGoldInStorage", this.numberOfGoldInStorage);
 		PlayerPrefs.SetInt("numberOfDiamondsInStorage", this.numberOfDiamondsInStorage);
+		PlayerPrefs.SetInt("numberOfStudentInStorage", this.numberOfStudentInStorage);
 		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
 		PlayerPrefs.Save();
 	}
@@ -141,6 +145,10 @@ public class SceneManager : MonoBehaviour
 		if (!immediate)
 		{
 			instance.UI.ShowProgressUI(true);
+			instance.OnConstructionComplete = (item) =>
+			{
+				this.UpdateStudentStorageCapacity();
+			};
 
 			// if (!instance.itemData.configuration.isCharacter && instance.itemData.configuration.buildTime > 0)
 			// {
@@ -200,6 +208,15 @@ public class SceneManager : MonoBehaviour
 		this._itemInstances.Remove(item.instanceId);
 		if (item != null)
 		{
+			// Clear grid nodes
+			if (!item.itemData.configuration.isCharacter)
+			{
+				GroundManager.instance.UpdateBaseItemNodes(item, GroundManager.Action.REMOVE);
+			}
+
+			if (this.selectedItem == item) this.selectedItem = null;
+			if (this._dragItem == item) this._dragItem = null;
+
 			Destroy(item.gameObject);
 		}
 	}
@@ -222,7 +239,7 @@ public class SceneManager : MonoBehaviour
 	/// <param name="evt">Evt.</param>
 	public void OnItemDragStart(CameraManager.CameraEvent evt)
 	{
-		if (this.gameMode == Common.GameMode.ATTACK)
+		if (this.gameMode == Common.GameMode.ATTACK || evt.baseItem == null)
 		{
 			return;
 		}
@@ -495,6 +512,7 @@ public class SceneManager : MonoBehaviour
 
 		GroundManager.instance.UpdateAllNodes();
 		this.UpdateWalls();
+		this.UpdateStudentStorageCapacity();
 
 		UIManager.instance.ShowGameOverlayWindow();
 	}
@@ -728,6 +746,8 @@ public class SceneManager : MonoBehaviour
 			//     GameOverlayWindowScript.instance.CollectResource("elixir", this.numberOfElixirInStorage);
 			else if (resourceType == "diamond")
 				GameOverlayWindowScript.instance.CollectResource("diamond", this.numberOfDiamondsInStorage);
+			else if (resourceType == "student")
+				GameOverlayWindowScript.instance.CollectResource("student", this.numberOfStudentInStorage);
 		}
 
 		if (TrainTroopsWindowScript.instance != null)
@@ -769,5 +789,24 @@ public class SceneManager : MonoBehaviour
 		return nearestArmyCamp;
 	}
 
-
+	public void UpdateStudentStorageCapacity()
+	{
+		int baseCapacity = 10;
+		int totalIncrease = 0;
+		foreach (var item in GetAllItems())
+		{
+			if (!item.itemData.configuration.isCharacter && item.UI.progressUIInstance == null)
+			{
+				totalIncrease += item.level * item.itemData.configuration.studentCapacityIncrease;
+			}
+		}
+		this.studentStorageCapacity = baseCapacity + totalIncrease;
+		this.SaveResources();
+		
+		if (GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.StudentInfo.maxValue = this.studentStorageCapacity;
+			this.RefreshResourceUIs("student");
+		}
+	}
 }

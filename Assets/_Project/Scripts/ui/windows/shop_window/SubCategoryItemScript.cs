@@ -6,21 +6,21 @@ using UnityEngine.UI;
 public class SubCategoryItemScript : MonoBehaviour
 {
 	/* prefabs */
-	public Sprite BarrackSprite;
-	public Sprite BoatSprite;
+	// public Sprite BarrackSprite;
+	// public Sprite BoatSprite;
 	public Sprite D4Sprite;
-	public Sprite CampSprite;
-	public Sprite CannonSprite;
-	public Sprite ElixirCollectorSprite;
-	public Sprite ElixirStorageSprite;
-	public Sprite B7Sprite;
-	public Sprite B8Sprite;
+	// public Sprite CampSprite;
+	// public Sprite CannonSprite;
+	// public Sprite ElixirCollectorSprite;
+	// public Sprite ElixirStorageSprite;
+	public Sprite C7Sprite;
+	public Sprite B1Sprite;
 	public Sprite C4Sprite;
 	public Sprite GoldStorageSprite;
-	public Sprite TowerSprite;
+	// public Sprite TowerSprite;
 	public Sprite C1Sprite;
-	public Sprite Tree1Sprite;
-	public Sprite Tree2Sprite;
+	public Sprite GiaiPhongGateSprite;
+	public Sprite TDNGateSprite;
 	public Sprite LibSprite;
 	public Sprite WallSprite;
 	public Sprite Tree3Sprite;
@@ -47,30 +47,30 @@ public class SubCategoryItemScript : MonoBehaviour
 
 		switch (this._subCategory)
 		{
-			case ShopWindowScript.SubCategory.BARRACK:
-				this.Name.text = "BARRACK";
-				this.Image.sprite = this.BarrackSprite;
-				break;
+			// case ShopWindowScript.SubCategory.BARRACK:
+			// 	this.Name.text = "BARRACK";
+			// 	this.Image.sprite = this.BarrackSprite;
+			// 	break;
 
-			case ShopWindowScript.SubCategory.BOAT:
-				this.Name.text = "BOAT";
-				this.Image.sprite = this.BoatSprite;
-				break;
+			// case ShopWindowScript.SubCategory.BOAT:
+			// 	this.Name.text = "BOAT";
+			// 	this.Image.sprite = this.BoatSprite;
+			// 	break;
 
 			case ShopWindowScript.SubCategory.D4:
 				this.Name.text = "D4";
 				this.Image.sprite = this.D4Sprite;
 				break;
 
-			case ShopWindowScript.SubCategory.CAMP:
-				this.Name.text = "CAMP";
-				this.Image.sprite = this.CampSprite;
-				break;
+			// case ShopWindowScript.SubCategory.CAMP:
+			// 	this.Name.text = "CAMP";
+			// 	this.Image.sprite = this.CampSprite;
+			// 	break;
 
-			case ShopWindowScript.SubCategory.CANNON:
-				this.Name.text = "CANNON";
-				this.Image.sprite = this.CannonSprite;
-				break;
+			// case ShopWindowScript.SubCategory.CANNON:
+			// 	this.Name.text = "CANNON";
+			// 	this.Image.sprite = this.CannonSprite;
+			// 	break;
 
 			// case ShopWindowScript.SubCategory.ELIXIR_COLLECTOR:
 			// 	this.Name.text = "ELIXIR COLLECTOR";
@@ -82,13 +82,13 @@ public class SubCategoryItemScript : MonoBehaviour
 			// 	this.Image.sprite = this.ElixirStorageSprite;
 			// 	break;
 
-			case ShopWindowScript.SubCategory.B7:
-				this.Name.text = "B7";
-				this.Image.sprite = this.B7Sprite;
+			case ShopWindowScript.SubCategory.C7:
+				this.Name.text = "C7";
+				this.Image.sprite = this.C7Sprite;
 				break;
-			case ShopWindowScript.SubCategory.B8:
-				this.Name.text = "B8";
-				this.Image.sprite = this.B8Sprite;
+			case ShopWindowScript.SubCategory.B1:
+				this.Name.text = "B1";
+				this.Image.sprite = this.B1Sprite;
 				break;
 
 			case ShopWindowScript.SubCategory.C4:
@@ -101,24 +101,24 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Image.sprite = this.GoldStorageSprite;
 				break;
 
-			case ShopWindowScript.SubCategory.TOWER:
-				this.Name.text = "TOWER";
-				this.Image.sprite = this.TowerSprite;
-				break;
+			// case ShopWindowScript.SubCategory.TOWER:
+			// 	this.Name.text = "TOWER";
+			// 	this.Image.sprite = this.TowerSprite;
+			// 	break;
 
 			case ShopWindowScript.SubCategory.C1:
 				this.Name.text = "C1";
 				this.Image.sprite = this.C1Sprite;
 				break;
 
-			case ShopWindowScript.SubCategory.TREE1:
-				this.Name.text = "TREE1";
-				this.Image.sprite = this.Tree1Sprite;
+			case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
+				this.Name.text = "GP GATE";
+				this.Image.sprite = this.GiaiPhongGateSprite;
 				break;
 
-			case ShopWindowScript.SubCategory.TREE2:
-				this.Name.text = "TREE2";
-				this.Image.sprite = this.Tree2Sprite;
+			case ShopWindowScript.SubCategory.TDN_GATE:
+				this.Name.text = "TDN GATE";
+				this.Image.sprite = this.TDNGateSprite;
 				break;
 
 			case ShopWindowScript.SubCategory.LIBRARY:
@@ -177,19 +177,19 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.WALL:
 				itemId = 7666;
 				break;
-			case ShopWindowScript.SubCategory.TREE1:
+			case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
 				itemId = 2949;
 				break;
-			case ShopWindowScript.SubCategory.TREE2:
+			case ShopWindowScript.SubCategory.TDN_GATE:
 				itemId = 1251;
 				break;
 			case ShopWindowScript.SubCategory.TREE3:
 				itemId = 5341;
 				break;
-			case ShopWindowScript.SubCategory.B7:
+			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			case ShopWindowScript.SubCategory.B8:
+			case ShopWindowScript.SubCategory.B1:
 				itemId = 5342;
 				break;
 		}
@@ -245,19 +245,19 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.WALL:
 				itemId = 7666;
 				break;
-			case ShopWindowScript.SubCategory.TREE1:
+			case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
 				itemId = 2949;
 				break;
-			case ShopWindowScript.SubCategory.TREE2:
+			case ShopWindowScript.SubCategory.TDN_GATE:
 				itemId = 1251;
 				break;
 			case ShopWindowScript.SubCategory.TREE3:
 				itemId = 5341;
 				break;
-			case ShopWindowScript.SubCategory.B7:
+			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			case ShopWindowScript.SubCategory.B8:
+			case ShopWindowScript.SubCategory.B1:
 				itemId = 5342;
 				break;
 		}

@@ -72,7 +72,7 @@ public class SpriteEditorWindow : EditorWindow {
 		
 		EnsureSpriteCollection ();
 
-		gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
+		gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
 
 		// Get existing open window or if none, make a new one:
 		SpriteEditorWindow window = (SpriteEditorWindow)EditorWindow.GetWindow(typeof(SpriteEditorWindow));
@@ -304,7 +304,7 @@ public class SpriteEditorWindow : EditorWindow {
 	}
 		
 
-	public string name;
+	public new string name;
 	private string _oldName = "";
 
 	public Texture2D textureBottom;
@@ -510,7 +510,8 @@ public class SpriteEditorWindow : EditorWindow {
 		outTexture = (Texture2D)EditorGUILayout.ObjectField (
 			name,
 			texture,
-			typeof(Texture2D));
+			typeof(Texture2D),
+			false);
 		GUILayout.EndHorizontal ();
 		return outTexture;
 	}
@@ -522,13 +523,32 @@ public class SpriteEditorWindow : EditorWindow {
 		defaultImgSize.x = 256 * scale / 100;
 		defaultImgSize.y = 256 * scale / 100;
 
-		if(gridTexture == null){
-			gridTexture = Resources.Load("grid", typeof(Texture2D)) as Texture2D;
-		}
+		gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
 
 		//DRAW GRID
 		Vector2 centerPointOfPreviewArea = new Vector2 ((WidthOfLetPanel + position.width - WidthOfRightPanel) / 2, position.height / 2);
-		GUI.Label(new Rect (centerPointOfPreviewArea.x-defaultGridSize.x/2, centerPointOfPreviewArea.y-defaultGridSize.y/2, defaultGridSize.x, defaultGridSize.y), gridTexture);
+
+        int gW = 4; // default for Sprite Editor
+        int gH = 4;
+        float cw = 140;
+        float ch = 70;
+
+        float ox = (gW - gH) * cw / 4;
+        float oy = (gW + gH) * ch / 4;
+
+        for (int ix = 0; ix < gW; ix++)
+        {
+            for (int iy = 0; iy < gH; iy++)
+            {
+                float px = (ix - iy) * cw / 2;
+                float py = (ix + iy) * ch / 2;
+
+                float finalX = centerPointOfPreviewArea.x + px - ox;
+                float finalY = centerPointOfPreviewArea.y + py - oy + ch/2;
+
+                GUI.DrawTexture(new Rect(finalX - cw/2, finalY - cw/2, cw, cw), gridTexture);
+            }
+        }
 
 		//DRAW ITEM SPRITE
 		if (selectedSpriteIndex != -1) {

@@ -20,6 +20,7 @@ public class ItemsCollection : ScriptableObject
         public int productPrice = 100;          // GIÁ BUILD
         public int price = 100;          // GIÁ BUILD
         public string resourceType = "gold";
+        public int studentCapacityIncrease = 0;
     }
 
     [System.Serializable]

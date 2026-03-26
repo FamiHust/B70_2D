@@ -158,24 +158,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36149f0aa44054dc7a320cb30bdb5e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarrackSprite: {fileID: 21300000, guid: 9b31a37f84da245ab9196afca50193be, type: 3}
-  BoatSprite: {fileID: 21300000, guid: e602c8186a6a4478d8fd9d4a18eddf95, type: 3}
   D4Sprite: {fileID: 21300000, guid: b71f6cb89505e9d46b27a7703533aaaa, type: 3}
-  CampSprite: {fileID: 21300000, guid: 24281285aa89e48b5beb700038ac4517, type: 3}
-  CannonSprite: {fileID: 21300000, guid: 0cebb485fc10049249571e2831af9294, type: 3}
-  ElixirCollectorSprite: {fileID: 21300000, guid: 74992e226f4234e7ab4a141db866fdca,
-    type: 3}
-  ElixirStorageSprite: {fileID: 21300000, guid: e152cb780ed644a238901e9bba9f68ab,
-    type: 3}
-  B7Sprite: {fileID: 21300000, guid: d6b487688e965004d9e8058470511c9c, type: 3}
-  B8Sprite: {fileID: 21300000, guid: 942a7277306944842b6c11a9ab5df4df, type: 3}
+  C7Sprite: {fileID: 21300000, guid: 480b8896fb117f247b171fa65776f6df, type: 3}
+  B1Sprite: {fileID: 21300000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
   C4Sprite: {fileID: 21300000, guid: 46902b07f11e2f14cab78898a681e67e, type: 3}
   GoldStorageSprite: {fileID: 21300000, guid: 939de0a4accc080439b6f55b69342e1e, type: 3}
-  TowerSprite: {fileID: 21300000, guid: 11361f6c487624448ab3931a680e82cf, type: 3}
-  C1Sprite: {fileID: 21300000, guid: 77f5830868abd584da989ffc17d48294, type: 3}
+  C1Sprite: {fileID: 21300000, guid: 1ceade1864812f24da43cf4214fea2ef, type: 3}
   Tree1Sprite: {fileID: 21300000, guid: 534e80de4710ef240b00e4fc4554276d, type: 3}
   Tree2Sprite: {fileID: 21300000, guid: f6a366038e86b41439baf294f4dbaf06, type: 3}
-  LibSprite: {fileID: 21300000, guid: 85beb8109f293fc46b532d5b289cede7, type: 3}
+  LibSprite: {fileID: 21300000, guid: 21fe2969c39455e4a99c3b78ef3afbbf, type: 3}
   WallSprite: {fileID: 21300000, guid: 71964cee2744c4897959828431d40578, type: 3}
   Tree3Sprite: {fileID: 21300000, guid: 4c29b59126111df458ea771f07adb0fb, type: 3}
   Name: {fileID: 114733654531682908}
