@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b2ce9da243c1944c38860708c81f6ee6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2a0da1b7fd53a64caa12e676b8ca6b4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -164,8 +164,8 @@ MonoBehaviour:
   C4Sprite: {fileID: 21300000, guid: 46902b07f11e2f14cab78898a681e67e, type: 3}
   GoldStorageSprite: {fileID: 21300000, guid: 939de0a4accc080439b6f55b69342e1e, type: 3}
   C1Sprite: {fileID: 21300000, guid: 1ceade1864812f24da43cf4214fea2ef, type: 3}
-  Tree1Sprite: {fileID: 21300000, guid: 534e80de4710ef240b00e4fc4554276d, type: 3}
-  Tree2Sprite: {fileID: 21300000, guid: f6a366038e86b41439baf294f4dbaf06, type: 3}
+  GiaiPhongGateSprite: {fileID: 0}
+  TDNGateSprite: {fileID: 0}
   LibSprite: {fileID: 21300000, guid: 21fe2969c39455e4a99c3b78ef3afbbf, type: 3}
   WallSprite: {fileID: 21300000, guid: 71964cee2744c4897959828431d40578, type: 3}
   Tree3Sprite: {fileID: 21300000, guid: 4c29b59126111df458ea771f07adb0fb, type: 3}
@@ -590,8 +590,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b22b6f1656f394abab25b573ff656bdd, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: e134e439793c7a14fbd8814f233a3675, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -660,15 +660,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6402876, g: 0.7794118, b: 0.32093424, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e607ea106b544a32aca61cb81b20adf, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c5c6de4dc03fef949acfcf5e7777b2d6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
