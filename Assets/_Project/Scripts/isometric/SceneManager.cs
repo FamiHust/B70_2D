@@ -33,11 +33,15 @@ public class SceneManager : MonoBehaviour
 	public int numberOfGoldInStorage;
 	// public int numberOfElixirInStorage;
 	public int numberOfDiamondsInStorage;
+	public int numberOfHappyInStorage;
 	public int numberOfStudentInStorage;
+	public int numberOfEducationInStorage;
 
 	public int goldStorageCapacity;
 	public int diamondStorageCapacity;
+	public int happyStorageCapacity;
 	public int studentStorageCapacity;
+	public int educationStorageCapacity;
 
 
 	void Awake()
@@ -83,13 +87,17 @@ public class SceneManager : MonoBehaviour
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
 		this.goldStorageCapacity = 1000;
 		this.diamondStorageCapacity = 100;
+		this.happyStorageCapacity = 100;
 		this.studentStorageCapacity = 10;
+		this.educationStorageCapacity = 10;
 		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
 		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
 		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
-		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 10);
+		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 100);
+		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 1);
+		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 1);
 		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
 	}
 
@@ -100,7 +108,9 @@ public class SceneManager : MonoBehaviour
 	{
 		PlayerPrefs.SetInt("numberOfGoldInStorage", this.numberOfGoldInStorage);
 		PlayerPrefs.SetInt("numberOfDiamondsInStorage", this.numberOfDiamondsInStorage);
+		PlayerPrefs.SetInt("numberOfHappyInStorage", this.numberOfHappyInStorage);
 		PlayerPrefs.SetInt("numberOfStudentInStorage", this.numberOfStudentInStorage);
+		PlayerPrefs.SetInt("numberOfEducationInStorage", this.numberOfEducationInStorage);
 		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
 		PlayerPrefs.Save();
 	}
@@ -267,7 +277,7 @@ public class SceneManager : MonoBehaviour
 		if (this._dragItem != null)
 		{
 			this._dragItem.OnItemDrag(evt);
-			//			this.ShowGrid ();
+			this.ShowGrid();
 		}
 	}
 
@@ -294,7 +304,7 @@ public class SceneManager : MonoBehaviour
 
 			this._dragItem = null;
 		}
-
+		this.HideGrid();
 	}
 
 	public BaseItemScript selectedItem;
@@ -323,6 +333,7 @@ public class SceneManager : MonoBehaviour
 		}
 		this.selectedItem = tappedItem;
 		tappedItem.SetSelected(true);
+		// this.ShowGrid();
 	}
 
 
@@ -341,7 +352,7 @@ public class SceneManager : MonoBehaviour
 	public void OnTapGround(CameraManager.CameraEvent evt)
 	{
 		//		Debug.Log ("OnTapGround");
-
+		// this.HideGrid();
 		if (this.gameMode == Common.GameMode.NORMAL)
 		{
 			if (this.selectedItem != null)
@@ -425,22 +436,28 @@ public class SceneManager : MonoBehaviour
 	private IEnumerator _ShowGridEnumerator;
 	public void ShowGrid()
 	{
-		if (this._ShowGridEnumerator != null)
-		{
-			this.StopCoroutine(_ShowGridEnumerator);
-			this._ShowGridEnumerator = null;
-		}
-		this._ShowGridEnumerator = this._ShowGrid();
-		this.StartCoroutine(this._ShowGridEnumerator);
+		// if (this._ShowGridEnumerator != null)
+		// {
+		// 	this.StopCoroutine(_ShowGridEnumerator);
+		// 	this._ShowGridEnumerator = null;
+		// }
+		// this._ShowGridEnumerator = this._ShowGrid();
+		// this.StartCoroutine(this._ShowGridEnumerator);
+		this.Grid.SetActive(true);
 	}
 
-	private IEnumerator _ShowGrid()
+	public void HideGrid()
 	{
-		this.Grid.SetActive(true);
-		yield return new WaitForSeconds(3);
 		this.Grid.SetActive(false);
-		this._ShowGridEnumerator = null;
 	}
+
+	// private IEnumerator _ShowGrid()
+	// {
+	// 	this.Grid.SetActive(true);
+	// 	yield return new WaitForSeconds(1);
+	// 	this.Grid.SetActive(false);
+	// 	this._ShowGridEnumerator = null;
+	// }
 
 
 	//private int _builderHut_ID = 3635;
@@ -802,7 +819,7 @@ public class SceneManager : MonoBehaviour
 		}
 		this.studentStorageCapacity = baseCapacity + totalIncrease;
 		this.SaveResources();
-		
+
 		if (GameOverlayWindowScript.instance != null)
 		{
 			GameOverlayWindowScript.instance.StudentInfo.maxValue = this.studentStorageCapacity;

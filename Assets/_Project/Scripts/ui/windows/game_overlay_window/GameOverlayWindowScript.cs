@@ -12,7 +12,9 @@ public class GameOverlayWindowScript : WindowScript
 	public ProgressPanelScript GoldInfo;
 	public ProgressPanelScript ElixirInfo;
 	public ProgressPanelScript DiamondInfo;
+	public ProgressPanelScript HappyInfo;
 	public ProgressPanelScript StudentInfo;
+	public ProgressPanelScript EducationInfo;
 
 	private void Awake()
 	{
@@ -39,9 +41,17 @@ public class GameOverlayWindowScript : WindowScript
 		this.DiamondInfo.maxValue = SceneManager.instance.diamondStorageCapacity;
 		this.DiamondInfo.value = SceneManager.instance.numberOfDiamondsInStorage;
 
+		this.HappyInfo.hasMaxValue = true;
+		this.HappyInfo.maxValue = SceneManager.instance.happyStorageCapacity;
+		this.HappyInfo.value = SceneManager.instance.numberOfHappyInStorage;
+
 		this.StudentInfo.hasMaxValue = true;
 		this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
 		this.StudentInfo.value = SceneManager.instance.numberOfStudentInStorage;
+
+		this.EducationInfo.hasMaxValue = true;
+		this.EducationInfo.maxValue = SceneManager.instance.educationStorageCapacity;
+		this.EducationInfo.value = SceneManager.instance.numberOfEducationInStorage;
 
 	}
 
@@ -67,9 +77,17 @@ public class GameOverlayWindowScript : WindowScript
 		{
 			DiamondInfo.TweenValueChange(value);
 		}
+		else if (resourceType == "happy")
+		{
+			HappyInfo.TweenValueChange(value);
+		}
 		else if (resourceType == "student")
 		{
 			StudentInfo.TweenValueChange(value);
+		}
+		else if (resourceType == "education")
+		{
+			EducationInfo.TweenValueChange(value);
 		}
 	}
 }
