@@ -62,7 +62,8 @@ public class BaseItemSelectionUIScript : MonoBehaviour
 		this.ArrowTop.localPosition = ExpandFromCenter(this.ArrowTop.localPosition, 1f, 1f, gw, gh, ax, az);
 		this.ArrowBottom.localPosition = ExpandFromCenter(this.ArrowBottom.localPosition, 1f, 1f, gw, gh, ax, az);
 
-		this.ItemInfoContainer.localPosition = ExpandFromCenter(this.ItemInfoContainer.localPosition, 1f, 1f, gw, gh);
+		// this.ItemInfoContainer.localPosition = ExpandFromCenter(this.ItemInfoContainer.localPosition, 1f, 1f, gw, gh);
+		this.ItemInfoContainer.localPosition = new Vector3((gw - 1f) / 2f, this.ItemInfoContainer.localPosition.y, (gh - 1f) / 2f);
 		this.Grid.transform.localPosition = ExpandFromCenter(this.Grid.transform.localPosition, 1f, 1f, gw, gh);
 		this.Grid.transform.localPosition += new Vector3(baseItem.itemData.gridOffsetX, 0, baseItem.itemData.gridOffsetZ);
 		

@@ -137,7 +137,7 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
-      studentCapacityIncrease: 10
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 480b8896fb117f247b171fa65776f6df, type: 3}
     walkSpriteTextures: []
@@ -302,7 +302,7 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
-      studentCapacityIncrease: 10
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 1ceade1864812f24da43cf4214fea2ef, type: 3}
     walkSpriteTextures:
@@ -404,7 +404,7 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
-      studentCapacityIncrease: 20
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: 21fe2969c39455e4a99c3b78ef3afbbf, type: 3}
     walkSpriteTextures:
@@ -570,7 +570,7 @@ MonoBehaviour:
       productPrice: 100
       price: 50
       resourceType: gold
-      studentCapacityIncrease: 10
+      studentCapacityIncrease: 0
     idleSpriteTextures:
     - {fileID: 2800000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
     walkSpriteTextures:

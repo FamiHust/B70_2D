@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 	public GameObject GameOverlayWindow;
 	public GameObject AttackOverlayWindow;
 	public GameObject ShopWindow;
+	public GameObject ItemWindow;
 	public GameObject SceneEnteringWindow;
 	public GameObject BuildersBusyWindow;
 	public GameObject ResultWindow;
@@ -140,5 +141,12 @@ public class UIManager : MonoBehaviour
 	public void ShowBoostWindow()
 	{
 		this.ShowWindow(this.BoostWindow);
+	}
+
+	public ItemWindowScript ShowMapShopWindow(string areaName, List<int> itemIds, MapShopAreaScript mapShopArea = null)
+	{
+		ItemWindowScript window = this.ShowWindow(this.ItemWindow) as ItemWindowScript;
+		window.RenderItems(areaName, itemIds, mapShopArea);
+		return window;
 	}
 }

@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 114008008076338788}
   - component: {fileID: 114431292156272836}
   - component: {fileID: 114807311948488204}
+  - component: {fileID: 6629121483517156068}
   m_Layer: 5
   m_Name: SubCategoryItem
   m_TagString: Untagged
@@ -160,9 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   D4Sprite: {fileID: 21300000, guid: b71f6cb89505e9d46b27a7703533aaaa, type: 3}
   C7Sprite: {fileID: 21300000, guid: 480b8896fb117f247b171fa65776f6df, type: 3}
-  B1Sprite: {fileID: 21300000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
+  B8Sprite: {fileID: 0}
   C4Sprite: {fileID: 21300000, guid: 46902b07f11e2f14cab78898a681e67e, type: 3}
-  GoldStorageSprite: {fileID: 21300000, guid: 939de0a4accc080439b6f55b69342e1e, type: 3}
   C1Sprite: {fileID: 21300000, guid: 1ceade1864812f24da43cf4214fea2ef, type: 3}
   GiaiPhongGateSprite: {fileID: 0}
   TDNGateSprite: {fileID: 0}
@@ -228,6 +228,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6629121483517156068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178358295597180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1916a48fa2561a7459ed67a2dabd1721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: {fileID: 114733654531682908}
+  PriceText: {fileID: 114073632159367454}
+  Image: {fileID: 114645770851548556}
 --- !u!1 &1257787271080552
 GameObject:
   m_ObjectHideFlags: 0

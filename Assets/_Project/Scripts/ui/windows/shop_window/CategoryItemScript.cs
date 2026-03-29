@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class CategoryItemScript : MonoBehaviour {
 	/* prefabs */
-	public Sprite ArmySprite;
-	public Sprite DefenceSprite;
+	// public Sprite ArmySprite;
+	// public Sprite DefenceSprite;
 	public Sprite ServiceSprite;
 	public Sprite ResourcesSprite;
 	public Sprite StudentSprite;

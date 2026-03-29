@@ -6069,10 +6069,14 @@ MonoBehaviour:
   gameMode: 0
   numberOfGoldInStorage: 0
   numberOfDiamondsInStorage: 0
+  numberOfHappyInStorage: 0
   numberOfStudentInStorage: 0
+  numberOfEducationInStorage: 0
   goldStorageCapacity: 0
   diamondStorageCapacity: 0
+  happyStorageCapacity: 0
   studentStorageCapacity: 0
+  educationStorageCapacity: 0
   selectedItem: {fileID: 1429170894}
   selectedUnit: 0
 --- !u!114 &966815248
@@ -13150,7 +13154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1894441012193192, guid: 9f33ad7e32f3e42df83eb9c52bec9ca3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4026172839656318, guid: 9f33ad7e32f3e42df83eb9c52bec9ca3, type: 3}
       propertyPath: m_RootOrder

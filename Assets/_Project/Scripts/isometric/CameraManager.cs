@@ -135,6 +135,26 @@ public class CameraManager : MonoBehaviour
 		return null;
 	}
 
+	private MapShopAreaScript _TryGetRaycastHitMapShop(Vector2 touch)
+	{
+		Ray ray = MainCamera.ScreenPointToRay(touch);
+		
+		// Use RaycastAll to hit all colliders, then filter for MapShop
+		RaycastHit[] hits = Physics.RaycastAll(ray, 1000);
+		
+		for (int i = 0; i < hits.Length; i++)
+		{
+			RaycastHit hit = hits[i];
+			MapShopAreaScript mapShop = hit.collider.gameObject.GetComponent<MapShopAreaScript>();
+			if (mapShop != null)
+			{
+				return mapShop;
+			}
+		}
+
+		return null;
+	}
+
 	private Vector3 _TryGetRaycastHitBaseGround(Vector2 touch)
 	{
 		RaycastHit hit;
@@ -158,7 +178,6 @@ public class CameraManager : MonoBehaviour
 			return;
 		}
 
-
 		if (this._isPanningSceneStarted)
 		{
 			return;
@@ -171,6 +190,14 @@ public class CameraManager : MonoBehaviour
 
 		if (this.IsUsingUI())
 		{
+			return;
+		}
+
+		// First, try to detect MapShopArea click
+		MapShopAreaScript mapShopArea = this._TryGetRaycastHitMapShop(Input.mousePosition);
+		if (mapShopArea != null)
+		{
+			mapShopArea.OnMapShopClicked();
 			return;
 		}
 

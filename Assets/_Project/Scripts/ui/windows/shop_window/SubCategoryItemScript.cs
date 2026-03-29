@@ -14,9 +14,9 @@ public class SubCategoryItemScript : MonoBehaviour
 	// public Sprite ElixirCollectorSprite;
 	// public Sprite ElixirStorageSprite;
 	public Sprite C7Sprite;
-	public Sprite B1Sprite;
+	public Sprite B8Sprite;
 	public Sprite C4Sprite;
-	public Sprite GoldStorageSprite;
+	// public Sprite GoldStorageSprite;
 	// public Sprite TowerSprite;
 	public Sprite C1Sprite;
 	public Sprite GiaiPhongGateSprite;
@@ -86,20 +86,20 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "C7";
 				this.Image.sprite = this.C7Sprite;
 				break;
-			case ShopWindowScript.SubCategory.B1:
-				this.Name.text = "B1";
-				this.Image.sprite = this.B1Sprite;
-				break;
+			case ShopWindowScript.SubCategory.B8:
+					this.Name.text = "B8";
+					this.Image.sprite = this.B8Sprite;
+					break;
 
 			case ShopWindowScript.SubCategory.C4:
 				this.Name.text = "C4";
 				this.Image.sprite = this.C4Sprite;
 				break;
 
-			case ShopWindowScript.SubCategory.GOLD_STORAGE:
-				this.Name.text = "GOLD STORAGE";
-				this.Image.sprite = this.GoldStorageSprite;
-				break;
+			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
+			// 	this.Name.text = "GOLD STORAGE";
+			// 	this.Image.sprite = this.GoldStorageSprite;
+			// 	break;
 
 			// case ShopWindowScript.SubCategory.TOWER:
 			// 	this.Name.text = "TOWER";
@@ -162,9 +162,9 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.C4:
 				itemId = 3265;
 				break;
-			case ShopWindowScript.SubCategory.GOLD_STORAGE:
-				itemId = 9074;
-				break;
+			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
+			// 	itemId = 9074;
+			// 	break;
 			//case ShopWindowScript.SubCategory.TOWER:
 			//	itemId = 4764;
 			//	break;
@@ -189,7 +189,7 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			case ShopWindowScript.SubCategory.B1:
+			case ShopWindowScript.SubCategory.B8:
 				itemId = 5342;
 				break;
 		}
@@ -219,7 +219,25 @@ public class SubCategoryItemScript : MonoBehaviour
 			}
 		}
 
-		this.GetComponentInParent<ShopWindowScript>().Close();
+		// Đóng window - check cả ShopWindowScript và ItemWindowScript
+		ShopWindowScript shopWindow = this.GetComponentInParent<ShopWindowScript>();
+		if (shopWindow != null)
+		{
+			shopWindow.Close();
+			return;
+		}
+
+		ItemWindowScript itemWindow = this.GetComponentInParent<ItemWindowScript>();
+		if (itemWindow != null)
+		{
+			// Destroy MapShopArea GameObject khi mua từ map shop
+			MapShopAreaScript mapShop = itemWindow.GetMapShopArea();
+			if (mapShop != null)
+			{
+				mapShop.gameObject.SetActive(false);
+			}
+			itemWindow.Close();
+		}
 	}
 
 	private int GetItemId(ShopWindowScript.SubCategory subCategory)
@@ -233,9 +251,9 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.C4:
 				itemId = 3265;
 				break;
-			case ShopWindowScript.SubCategory.GOLD_STORAGE:
-				itemId = 9074;
-				break;
+			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
+			// 	itemId = 9074;
+			// 	break;
 			case ShopWindowScript.SubCategory.C1:
 				itemId = 2496;
 				break;
@@ -257,7 +275,7 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			case ShopWindowScript.SubCategory.B1:
+			case ShopWindowScript.SubCategory.B8:
 				itemId = 5342;
 				break;
 		}
