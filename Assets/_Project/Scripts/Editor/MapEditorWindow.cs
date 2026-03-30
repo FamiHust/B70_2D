@@ -12,6 +12,8 @@ public class MapEditorWindow : EditorWindow
     private int _selectedItemIndex = 0;
     private string[] _itemNames;
 
+    private MapShopAreaScript[] _sceneAreas;
+
     private const int GridWidth = 60;
     private const int GridHeight = 60;
     private const float CellSize = 30f;
@@ -27,7 +29,22 @@ public class MapEditorWindow : EditorWindow
     private void OnEnable()
     {
         LoadItemsCollection();
+        RefreshSceneAreas();
         LoadData();
+    }
+
+    private void OnFocus()
+    {
+        RefreshSceneAreas();
+        if (_shopLayoutData != null)
+        {
+            SyncShopAreas();
+        }
+    }
+
+    private void RefreshSceneAreas()
+    {
+        _sceneAreas = FindObjectsOfType<MapShopAreaScript>();
     }
 
     private void LoadItemsCollection()
@@ -87,6 +104,61 @@ public class MapEditorWindow : EditorWindow
                         }
                     }
                 }
+            }
+        }
+
+        SyncShopAreas();
+    }
+
+    private void SyncShopAreas()
+    {
+        if (_sceneAreas == null) RefreshSceneAreas();
+
+        foreach (var area in _sceneAreas)
+        {
+            if (area == null) continue;
+            
+            Collider coll = area.GetComponent<Collider>();
+            if (coll == null) continue;
+
+            Bounds bounds = coll.bounds;
+            List<int> newIds = new List<int>();
+
+            foreach (var item in _shopLayoutData.items)
+            {
+                var config = GetItemConfig(item.itemId);
+                float width = config != null ? config.gridWidth : 1f;
+                float height = config != null ? config.gridHeight : 1f;
+                
+                float centerX = item.posX + width / 2f;
+                float centerZ = item.posZ + height / 2f;
+                
+                if (centerX >= bounds.min.x && centerX <= bounds.max.x &&
+                    centerZ >= bounds.min.z && centerZ <= bounds.max.z)
+                {
+                    if (!newIds.Contains(item.itemId))
+                    {
+                        newIds.Add(item.itemId);
+                    }
+                }
+            }
+
+            // Check if different
+            bool isDifferent = false;
+            if (area.itemIds.Count != newIds.Count) {
+                isDifferent = true;
+            } else {
+                for (int j = 0; j < newIds.Count; j++) {
+                    if (area.itemIds[j] != newIds[j]) {
+                        isDifferent = true; break;
+                    }
+                }
+            }
+
+            if (isDifferent) {
+                Undo.RecordObject(area, "Sync Map Shop Area");
+                area.itemIds = newIds;
+                EditorUtility.SetDirty(area);
             }
         }
     }
@@ -189,6 +261,48 @@ public class MapEditorWindow : EditorWindow
         // Draw Background
         EditorGUI.DrawRect(new Rect(0, 0, gridContentRect.width, gridContentRect.height), new Color(0.15f, 0.15f, 0.15f));
 
+        // Draw Shop Areas
+        if (_sceneAreas != null)
+        {
+            foreach (var area in _sceneAreas)
+            {
+                if (area == null) continue;
+                Collider coll = area.GetComponent<Collider>();
+                if (coll != null)
+                {
+                    Bounds b = coll.bounds;
+                    int minX = Mathf.FloorToInt(b.min.x);
+                    int minZ = Mathf.FloorToInt(b.min.z);
+                    int maxX = Mathf.CeilToInt(b.max.x);
+                    int maxZ = Mathf.CeilToInt(b.max.z);
+
+                    minX = Mathf.Clamp(minX, 0, GridWidth);
+                    minZ = Mathf.Clamp(minZ, 0, GridHeight);
+                    maxX = Mathf.Clamp(maxX, 0, GridWidth);
+                    maxZ = Mathf.Clamp(maxZ, 0, GridHeight);
+
+                    if (maxX > minX && maxZ > minZ)
+                    {
+                        float startX = minX * CellSize;
+                        float endX = maxX * CellSize;
+                        float startZ = (GridHeight - maxZ) * CellSize;
+                        float endZ = (GridHeight - minZ) * CellSize;
+
+                        Rect areaRect = new Rect(startX, startZ, endX - startX, endZ - startZ);
+                        EditorGUI.DrawRect(areaRect, new Color(1f, 0.8f, 0.2f, 0.15f)); // Yellowish tint
+                        
+                        // Border
+                        EditorGUI.DrawRect(new Rect(startX, startZ, endX - startX, 2), new Color(1f, 0.8f, 0.2f, 0.5f)); // Top
+                        EditorGUI.DrawRect(new Rect(startX, endZ - 2, endX - startX, 2), new Color(1f, 0.8f, 0.2f, 0.5f)); // Bottom
+                        EditorGUI.DrawRect(new Rect(startX, startZ, 2, endZ - startZ), new Color(1f, 0.8f, 0.2f, 0.5f)); // Left
+                        EditorGUI.DrawRect(new Rect(endX - 2, startZ, 2, endZ - startZ), new Color(1f, 0.8f, 0.2f, 0.5f)); // Right
+                        
+                        GUI.Label(new Rect(startX + 5, startZ + 5, endX - startX, 20), area.areaName, GetAreaLabelStyle());
+                    }
+                }
+            }
+        }
+
         for (int x = 0; x < GridWidth; x++)
         {
             for (int z = 0; z < GridHeight; z++)
@@ -255,6 +369,19 @@ public class MapEditorWindow : EditorWindow
             _headerStyle.normal.textColor = Color.gray;
         }
         return _headerStyle;
+    }
+
+    private GUIStyle _areaLabelStyle;
+    private GUIStyle GetAreaLabelStyle()
+    {
+        if (_areaLabelStyle == null)
+        {
+            _areaLabelStyle = new GUIStyle(EditorStyles.boldLabel);
+            _areaLabelStyle.alignment = TextAnchor.UpperLeft;
+            _areaLabelStyle.fontSize = 11;
+            _areaLabelStyle.normal.textColor = new Color(1f, 0.8f, 0.2f, 0.8f);
+        }
+        return _areaLabelStyle;
     }
 
     private GUIStyle _labelStyle;

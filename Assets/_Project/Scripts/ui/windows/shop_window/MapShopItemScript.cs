@@ -72,6 +72,15 @@ public class MapShopItemScript : MonoBehaviour
 		ItemWindowScript itemWindow = this.GetComponentInParent<ItemWindowScript>();
 		if (itemWindow != null)
 		{
+			MapShopAreaScript mapShop = itemWindow.GetMapShopArea();
+			if (mapShop != null)
+			{
+				mapShop.RemoveItem(_itemId);
+				if (mapShop.GetItemIds().Count == 0)
+				{
+					mapShop.gameObject.SetActive(false);
+				}
+			}
 			itemWindow.Close();
 		}
 	}

@@ -11,6 +11,7 @@ public class SceneManager : MonoBehaviour
 	/* prefabs */
 	public GameObject BaseItem;
 	public GameObject MenuWindow;
+	public GameObject MapShopAreaPrefab;
 
 	public GameObject RenderQuad;
 	public Material RenderQuadMaterial;
@@ -27,6 +28,7 @@ public class SceneManager : MonoBehaviour
 
 	/* private vars */
 	private Dictionary<int, BaseItemScript> _itemInstances;
+	private Dictionary<int, MapShopAreaScript> _activeShopAreas = new Dictionary<int, MapShopAreaScript>();
 	private ShopLayoutData _shopLayout;
 
 	//resource values
@@ -148,6 +150,16 @@ public class SceneManager : MonoBehaviour
 
 		instance.SetItemData(itemId, posX, posZ, level);
 		instance.SetState(Common.State.IDLE);
+
+		// Remove the map shop area if it exists for this item
+		if (_activeShopAreas.ContainsKey(itemId))
+		{
+			if (_activeShopAreas[itemId] != null)
+			{
+				Destroy(_activeShopAreas[itemId].gameObject);
+			}
+			_activeShopAreas.Remove(itemId);
+		}
 
 		//		GroundManager.Cell freeCell = GroundManager.instance.GetRandomFreeCellForItem (instance);
 		//		instance.SetPosition (GroundManager.instance.CellToPosition (freeCell));
@@ -501,6 +513,38 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 
+		if (this._shopLayout != null && this._shopLayout.items != null && this.MapShopAreaPrefab != null)
+		{
+			foreach (var layoutItem in this._shopLayout.items)
+			{
+				if (!this.IsItemBuiltInScene(layoutItem.itemId))
+				{
+					// Convert grid coordinates to world position
+					// Assuming GroundManager.instance.nodeWidth / height logic, but a simple Vector3 might suffice if base items use it directly.
+					// We use Vector3(posX, 0, posZ) as base for many such generic scripts.
+					Vector3 pos = new Vector3(layoutItem.posX, 0, layoutItem.posZ);
+					
+					GameObject shopAreaObj = Utilities.CreateInstance(this.MapShopAreaPrefab, this.ItemsContainer, true);
+					shopAreaObj.transform.position = pos;
+					
+					MapShopAreaScript shopAreaScript = shopAreaObj.GetComponent<MapShopAreaScript>();
+					if (shopAreaScript != null)
+					{
+						shopAreaScript.ClearItems();
+						shopAreaScript.AddItem(layoutItem.itemId);
+						
+						ItemsCollection.ItemData data = Items.GetItem(layoutItem.itemId);
+						if (data != null)
+						{
+							shopAreaScript.areaName = "Buy " + data.name;
+						}
+						
+						_activeShopAreas[layoutItem.itemId] = shopAreaScript;
+					}
+				}
+			}
+		}
+
 		//LOAD UNITS ON CAMP 
 		// BaseItemScript[] armyCamps = GetArmyCamps();
 		// if (armyCamps.Length > 0)
@@ -570,6 +614,22 @@ public class SceneManager : MonoBehaviour
 			Destroy(entry.Value.gameObject);
 		}
 		this._itemInstances = new Dictionary<int, BaseItemScript>();
+
+		if (this._activeShopAreas != null)
+		{
+			foreach (var entry in _activeShopAreas)
+			{
+				if (entry.Value != null)
+				{
+					Destroy(entry.Value.gameObject);
+				}
+			}
+			this._activeShopAreas.Clear();
+		}
+		else
+		{
+			this._activeShopAreas = new Dictionary<int, MapShopAreaScript>();
+		}
 	}
 
 

@@ -51,15 +51,34 @@ public class ItemWindowScript : WindowScript
 			if (itemData != null)
 			{
 				GameObject inst = Utilities.CreateInstance(this.SubCategoryItem, this.ItemsList, true);
+				
+				// Ensure we don't trigger the wrong script's OnClick if the user attached SubCategoryItemScript on the prefab
+				SubCategoryItemScript oldScript = inst.GetComponent<SubCategoryItemScript>();
 				MapShopItemScript shopItem = inst.GetComponent<MapShopItemScript>();
 				
+				if (shopItem == null)
+				{
+					shopItem = inst.AddComponent<MapShopItemScript>();
+				}
+
+				if (oldScript != null)
+				{
+					shopItem.Name = oldScript.Name;
+					shopItem.PriceText = oldScript.PriceText;
+					shopItem.Image = oldScript.Image;
+					Destroy(oldScript);
+				}
+
 				if (shopItem != null)
 				{
 					shopItem.SetItemData(itemId, itemData);
-				}
-				else
-				{
-					Debug.LogWarning($"SubCategoryItem prefab doesn't have MapShopItemScript component!");
+
+					Button btn = inst.GetComponent<Button>();
+					if (btn != null)
+					{
+						btn.onClick.RemoveAllListeners();
+						btn.onClick.AddListener(() => shopItem.OnClick());
+					}
 				}
 			}
 			else
