@@ -57,8 +57,8 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: 39
-    defaultPosZ: 41
+    defaultPosX: 45
+    defaultPosZ: 3
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -122,8 +122,8 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
+    defaultPosX: 19
+    defaultPosZ: 36
     configuration:
       buildTime: 15
       isCharacter: 0
@@ -155,8 +155,8 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
+    defaultPosX: 14
+    defaultPosZ: 58
     configuration:
       buildTime: 15
       isCharacter: 0
@@ -287,7 +287,7 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: 33
+    defaultPosX: 3
     defaultPosZ: 18
     configuration:
       buildTime: 20
@@ -389,8 +389,8 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
+    defaultPosX: 35
+    defaultPosZ: 26
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -555,8 +555,8 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
+    defaultPosX: 35
+    defaultPosZ: 38
     configuration:
       buildTime: 20
       isCharacter: 0

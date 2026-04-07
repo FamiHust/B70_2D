@@ -191,7 +191,8 @@ public class MapEditorWindow : EditorWindow
         }
 
         EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
-        if (GUILayout.Button("Load", EditorStyles.toolbarButton)) LoadData();
+if (GUILayout.Button("Load", EditorStyles.toolbarButton)) LoadData();
+if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefaultPositions();
         if (GUILayout.Button("Save", EditorStyles.toolbarButton)) SaveData();
         if (GUILayout.Button("Clear All", EditorStyles.toolbarButton)) {
             if (EditorUtility.DisplayDialog("Clear Layout", "Are you sure you want to delete all positions?", "Yes", "No")) {
@@ -429,5 +430,30 @@ public class MapEditorWindow : EditorWindow
             UpdateGrid();
             Repaint();
         }
+    }
+
+    private void ImportDefaultPositions()
+    {
+        foreach (var item in _itemsCollection.list)
+        {
+            if (item.defaultPosX != -1 && item.defaultPosZ != -1)
+            {
+                // Check bounds
+                if (item.defaultPosX + item.gridWidth > GridWidth || item.defaultPosZ + item.gridHeight > GridHeight) continue;
+                
+                // Remove existing mapping for this itemId
+                _shopLayoutData.items.RemoveAll(i => i.itemId == item.id);
+
+                ShopLayoutItem newItem = new ShopLayoutItem()
+                {
+                    itemId = item.id,
+                    posX = item.defaultPosX,
+                    posZ = item.defaultPosZ
+                };
+                _shopLayoutData.items.Add(newItem);
+            }
+        }
+        UpdateGrid();
+        Repaint();
     }
 }
