@@ -239,6 +239,38 @@ public class SceneManager : MonoBehaviour
 			if (this.selectedItem == item) this.selectedItem = null;
 			if (this._dragItem == item) this._dragItem = null;
 
+			// Recreate the Map Shop Area if the item is part of the Shop Layout
+			if (this._shopLayout != null && this._shopLayout.items != null && this.MapShopAreaPrefab != null)
+			{
+				int itemId = item.itemData.id;
+				ShopLayoutItem layoutItem = this._shopLayout.items.Find(i => i.itemId == itemId);
+				if (layoutItem != null)
+				{
+					if (!this._activeShopAreas.ContainsKey(itemId) || this._activeShopAreas[itemId] == null)
+					{
+						ItemsCollection.ItemData data = Items.GetItem(layoutItem.itemId);
+						Vector3 pos = new Vector3(layoutItem.posX + (data != null ? data.gridWidth / 2f : 0), 0, layoutItem.posZ + (data != null ? data.gridHeight / 2f : 0));
+						
+						GameObject shopAreaObj = Utilities.CreateInstance(this.MapShopAreaPrefab, this.ItemsContainer, true);
+						shopAreaObj.transform.localPosition = pos;
+						
+						MapShopAreaScript shopAreaScript = shopAreaObj.GetComponent<MapShopAreaScript>();
+						if (shopAreaScript != null)
+						{
+							shopAreaScript.ClearItems();
+							shopAreaScript.AddItem(layoutItem.itemId);
+							
+							if (data != null)
+							{
+								shopAreaScript.areaName = "Buy " + data.name;
+							}
+							
+							this._activeShopAreas[itemId] = shopAreaScript;
+						}
+					}
+				}
+			}
+
 			Destroy(item.gameObject);
 		}
 	}
@@ -519,13 +551,11 @@ public class SceneManager : MonoBehaviour
 			{
 				if (!this.IsItemBuiltInScene(layoutItem.itemId))
 				{
-					// Convert grid coordinates to world position
-					// Assuming GroundManager.instance.nodeWidth / height logic, but a simple Vector3 might suffice if base items use it directly.
-					// We use Vector3(posX, 0, posZ) as base for many such generic scripts.
-					Vector3 pos = new Vector3(layoutItem.posX, 0, layoutItem.posZ);
+					ItemsCollection.ItemData data = Items.GetItem(layoutItem.itemId);
+					Vector3 pos = new Vector3(layoutItem.posX + (data != null ? data.gridWidth / 2f : 0), 0, layoutItem.posZ + (data != null ? data.gridHeight / 2f : 0));
 					
 					GameObject shopAreaObj = Utilities.CreateInstance(this.MapShopAreaPrefab, this.ItemsContainer, true);
-					shopAreaObj.transform.position = pos;
+					shopAreaObj.transform.localPosition = pos;
 					
 					MapShopAreaScript shopAreaScript = shopAreaObj.GetComponent<MapShopAreaScript>();
 					if (shopAreaScript != null)
@@ -533,7 +563,6 @@ public class SceneManager : MonoBehaviour
 						shopAreaScript.ClearItems();
 						shopAreaScript.AddItem(layoutItem.itemId);
 						
-						ItemsCollection.ItemData data = Items.GetItem(layoutItem.itemId);
 						if (data != null)
 						{
 							shopAreaScript.areaName = "Buy " + data.name;

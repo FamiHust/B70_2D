@@ -548,6 +548,11 @@ public class CameraManager : MonoBehaviour
 	public void OnChangeTouchCountScenePan(CameraEvent evt)
 	{
 		this._previousPanPoint = evt.point;
+		if (this._focusCoroutine != null)
+		{
+			StopCoroutine(this._focusCoroutine);
+			this._focusCoroutine = null;
+		}
 	}
 
 	public void OnScenePan(CameraEvent evt)
@@ -624,15 +629,51 @@ public class CameraManager : MonoBehaviour
 		}
 	}
 
+	private Coroutine _focusCoroutine;
+
 	public void FocusOn(Vector3 targetGroundPos)
 	{
 		Vector3 currentCenterPos = this._TryGetRaycastHitBaseGround(new Vector2(Screen.width / 2f, Screen.height / 2f));
 		if (currentCenterPos != positiveInfinityVector)
 		{
 			Vector3 delta = targetGroundPos - currentCenterPos;
+			
+			// Save current pos
+			Vector3 startPos = this.MainCamera.transform.localPosition;
+			
+			// Apply delta and clamp to get the exact target position
 			this.MainCamera.transform.localPosition += delta;
 			this.ClampCamera();
+			Vector3 targetLocalPos = this.MainCamera.transform.localPosition;
+			
+			// Revert to start pos for lerping
+			this.MainCamera.transform.localPosition = startPos;
+
+			if (_focusCoroutine != null)
+			{
+				StopCoroutine(_focusCoroutine);
+			}
+
+			_focusCoroutine = StartCoroutine(_SmoothFocus(startPos, targetLocalPos));
 		}
+	}
+
+	private IEnumerator _SmoothFocus(Vector3 startPos, Vector3 targetLocalPos)
+	{
+		float t = 0;
+		float duration = 0.25f; // Fast and smooth
+
+		while (t < 1f)
+		{
+			t += Time.deltaTime / duration;
+			this.MainCamera.transform.localPosition = Vector3.Lerp(startPos, targetLocalPos, Mathf.SmoothStep(0f, 1f, t));
+			this.ClampCamera();
+			yield return null;
+		}
+
+		this.MainCamera.transform.localPosition = targetLocalPos;
+		this.ClampCamera();
+		_focusCoroutine = null;
 	}
 
 	public void FocusOnItem(BaseItemScript item)
