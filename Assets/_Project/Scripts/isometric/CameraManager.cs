@@ -680,7 +680,7 @@ public class CameraManager : MonoBehaviour
 	{
 		if (item != null)
 		{
-			FocusOn(item.GetPosition());
+			FocusOn(item.GetCenterPosition());
 		}
 	}
     
