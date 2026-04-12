@@ -321,7 +321,7 @@ public class SceneManager : MonoBehaviour
 		if (this._dragItem != null)
 		{
 			this._dragItem.OnItemDrag(evt);
-			this.ShowGrid();
+			// this.ShowGrid();
 		}
 	}
 
@@ -348,7 +348,7 @@ public class SceneManager : MonoBehaviour
 
 			this._dragItem = null;
 		}
-		this.HideGrid();
+		// this.HideGrid();
 	}
 
 	public BaseItemScript selectedItem;
