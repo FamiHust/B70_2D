@@ -1,0 +1,1196 @@
+fileFormatVersion: 2
+guid: 96b3349095be50941a80aa5d724bc55c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 4
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 0
+  flipbookColumns: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_0
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 408
+        width: 45
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 646a607358ee23f45a4165cb830d8b0a
+      internalID: -313170790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_1
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 416
+        width: 50
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 003d739848ee8fa4cb0594b823e45355
+      internalID: -1115236518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_2
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 443
+        width: 90
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cbb3fded75ad3749a44a42b606f6934
+      internalID: -1346289863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_3
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 471
+        width: 64
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b3e6aa3a353074d8b304f49ecc09bc
+      internalID: 1655928234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 67
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e61794398a90c9348ab8f8d3017dd689
+      internalID: 1840964134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_5
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 416
+        width: 67
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971e93e174f728747b4a6032dde3df1e
+      internalID: 1735358516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_6
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 416
+        width: 62
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04499e27314207d47846624d27943de6
+      internalID: -965068798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_7
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 408
+        width: 92
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8e85fe05c6ab2843afc0e974acbea31
+      internalID: -817655607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_8
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 431
+        width: 65
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeae8679481c05e41a4631eb570a6268
+      internalID: -1918532426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360
+        width: 70
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5c2b468a605d984b877fa282907d045
+      internalID: 60239236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_10
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 359
+        width: 74
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d47c58383360b0048ae5c95a5b70de7b
+      internalID: -1716162233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_11
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 352
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9913c65081d19a64582972b9adf6f03d
+      internalID: -338593962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_12
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 353
+        width: 61
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07d0d508d13c483458445aa08aac5e10
+      internalID: 1179454452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_13
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 388
+        width: 64
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84569ece0ee5f9843a8ff0ed5d9ec49e
+      internalID: 2127586266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 293
+        width: 61
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c2d59737f3bbe6428419e9317ec8001
+      internalID: -497767740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_15
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 304
+        width: 53
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 354b1872c835dc54881b8f78b538f757
+      internalID: -2131400368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_16
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 304
+        width: 67
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4252ff0950f625439122e64a6c633c3
+      internalID: 297777600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_17
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 348
+        width: 71
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49a640b80e3b7fc4ab57c388c9b1da7c
+      internalID: -1468132278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_18
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 280
+        width: 45
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbef107e8368db94b879f335fb7344af
+      internalID: 437829999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_19
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 304
+        width: 74
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5520645c919a68c4387daf5bf987119e
+      internalID: 1131563696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_20
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 300
+        width: 76
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b0bb90cf45fedd4d852e28df766f1f6
+      internalID: 503481764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_21
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 280
+        width: 53
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0b7b48dcdd585d45a63579e54bb8d17
+      internalID: 849159012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 235
+        width: 76
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62550819813001c4a8a20edfcb741929
+      internalID: 1517173464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_23
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 236
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ffb8e5653d21fb48a2bc983cb6879df
+      internalID: 1528840071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_24
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 251
+        width: 80
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0362545e621adbc45a13e93a8896afb7
+      internalID: 811642295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_25
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 239
+        width: 58
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37baac2406020a942918a859200512c9
+      internalID: 740738951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_26
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 239
+        width: 59
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d727c7864bd6dc7439ac34e6ee878b7c
+      internalID: -836100292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_27
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 214
+        width: 62
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e0410afb9a4dbe4abb8d9b40f9fba04
+      internalID: -1029485541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_28
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 214
+        width: 61
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5cfef4d454df5748aaa6ed75b8a9a9a
+      internalID: 1492307992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_29
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 162
+        width: 80
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 051dfafc11ba0de4c8144e01ba9ba7bd
+      internalID: -1874855386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_30
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 160
+        width: 75
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00a2a6b710e6a8a469cd334c0b852c83
+      internalID: -1918570897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_31
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 171
+        width: 67
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da7101175434e8d41aeb2110fe9cb215
+      internalID: 1677152118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_32
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 171
+        width: 62
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bd92b235fee1c3439498a97f7191603
+      internalID: 1314278485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_33
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 156
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e133f9ecfc13f346ad1e013240a79fe
+      internalID: 108858378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_34
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 156
+        width: 78
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f644a00684b700943886ccee30097414
+      internalID: -1219759233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 89
+        width: 83
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 339e99d67ffd13e4593f9d7d3f51ca03
+      internalID: -692009726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_36
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 88
+        width: 83
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e65992f1317537245a5d718439209cd8
+      internalID: 391542279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_37
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 85
+        width: 66
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd3c08f4af775044d8a08ea57ca2d0c7
+      internalID: -582275589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_38
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 80
+        width: 61
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeecb315f78e5e74fa8545c6b61038b2
+      internalID: -369240231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_39
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 78
+        width: 55
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 933ca58ed57079446b0ceec7835662e7
+      internalID: 1199515054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_40
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 78
+        width: 55
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe1fef33ce5304f49a607cddcecfaabc
+      internalID: -1622310962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_41
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 68
+        width: 64
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 401e8f20c2eace74495b1ff1cab2e8ea
+      internalID: -514043376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 75
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ab6c8dda2decd042b614d9b4f1d9062
+      internalID: -546714463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_43
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 0
+        width: 74
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49001b5af3d969b4683863d237b141d8
+      internalID: 2040084182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_44
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 0
+        width: 71
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aefb5e593784924ab68f74b3c69aeeb
+      internalID: -1334321373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_45
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 0
+        width: 67
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5955cee21f761b48ab40e90a8611a34
+      internalID: 1190260354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_46
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 63
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391291c9c2f9cd84f94c0468bee56bb9
+      internalID: 1492382955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_47
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 0
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5de9f3d0ec7afb4cb98ffb083579a77
+      internalID: 527629207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 3beaf38e83192cf488aaeae43192247b
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_0: -313170790
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_1: -1115236518
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_10: -1716162233
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_11: -338593962
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_12: 1179454452
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_13: 2127586266
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_14: -497767740
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_15: -2131400368
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_16: 297777600
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_17: -1468132278
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_18: 437829999
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_19: 1131563696
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_2: -1346289863
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_20: 503481764
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_21: 849159012
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_22: 1517173464
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_23: 1528840071
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_24: 811642295
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_25: 740738951
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_26: -836100292
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_27: -1029485541
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_28: 1492307992
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_29: -1874855386
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_3: 1655928234
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_30: -1918570897
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_31: 1677152118
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_32: 1314278485
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_33: 108858378
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_34: -1219759233
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_35: -692009726
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_36: 391542279
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_37: -582275589
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_38: -369240231
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_39: 1199515054
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_4: 1840964134
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_40: -1622310962
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_41: -514043376
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_42: -546714463
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_43: 2040084182
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_44: -1334321373
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_45: 1190260354
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_46: 1492382955
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_47: 527629207
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_5: 1735358516
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_6: -965068798
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_7: -817655607
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_8: -1918532426
+      sactx-0-1024x1024-Uncompressed-FlyingCurrenciesUI-b7f16d4c-var-0.50-#1_9: 60239236
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

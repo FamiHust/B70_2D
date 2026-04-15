@@ -1,0 +1,4188 @@
+fileFormatVersion: 2
+guid: 7646e5a0308092f4b8027af05ab777da
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 47
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 2
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 0
+  flipbookColumns: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 428
+        width: 120
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86946cc39e46704a817b88fc9c20776
+      internalID: 1320300338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 458
+        width: 54
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96f546cd7eb22954aba1682993e7adb9
+      internalID: -1865563831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 458
+        width: 49
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 128104e974341d143902337d5f9dd736
+      internalID: -989181880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_3
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 473
+        width: 52
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f832dc1466c7f45ac5a68d217321d9
+      internalID: -213687484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_4
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 428
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aa5cbae637512347912378e025323e7
+      internalID: 194153964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_5
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 430
+        width: 30
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86976bf6248cc3745bf6ded731dc0214
+      internalID: 37534296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_6
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 428
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bca6d87f0d1cefe46a7c4a19efa81034
+      internalID: -471636913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_7
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 453
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed004a2e64421d84881bcc77bcef014d
+      internalID: 888263971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 415
+        width: 44
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c561e6d1fd7b964caca7b1cf85b2e79
+      internalID: 489668742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_9
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 414
+        width: 55
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea48ccaa8493094ca0cf4488e28531f
+      internalID: -653361879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_10
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 439
+        width: 50
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16914f296344f5843851948004aff625
+      internalID: -1872930644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_11
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 432
+        width: 47
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41a156f47bc9ba74c96de33adb5eddd8
+      internalID: 24009906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_12
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 423
+        width: 40
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a1f08e0f9a5e3b40aa00da41403cd02
+      internalID: -1087760285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_13
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 404
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855d7f6d1cf01b946b27aa471ed5a873
+      internalID: 789900118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_14
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 403
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c812633c27188e4d91fff981e98c594
+      internalID: -1491301679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 362
+        width: 68
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a9983fa5bfc2a94db958f97739f208f
+      internalID: -460188996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_16
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 362
+        width: 47
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13945f716a47129409ecc48f0faf7238
+      internalID: -1576244685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_17
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 368
+        width: 47
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 562cb6e9df219864eb3ad5f88dc55784
+      internalID: -1295256526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_18
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 364
+        width: 53
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5051fe645e5c0d54eb0205201ad2aaed
+      internalID: 1590532547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_19
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 402
+        width: 50
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dda1f11f6fe1fb3428b4fd06ebf87d1a
+      internalID: 1906923315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_20
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 387
+        width: 73
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ef45e90320b2484b9e44887274d1195
+      internalID: -722465581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_21
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 380
+        width: 68
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35fb9d0df5bdeac469ae71ea7f8ee43f
+      internalID: 25131569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_22
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 358
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 280139b57b120bd469d20d71697fe257
+      internalID: 2108978373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_23
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 363
+        width: 50
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 686144d3c481d064486434db6c0ba847
+      internalID: -1850455488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_24
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 396
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6cfa5b163a6faa409c5c1dcad86edaa
+      internalID: -1730783587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_25
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 353
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc08dd915c55d8c478bc7b4d1a82a75f
+      internalID: 207197278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_26
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 352
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964b82f80c019e04394f332ec388daf3
+      internalID: 1248595238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_27
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 349
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c0e177f1f449d64da7c781b45b136a0
+      internalID: 413816654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_28
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 357
+        width: 48
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1228b7931b9d2f49aa67b081a3f4c09
+      internalID: -1389231436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_29
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 385
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b06c99d0f7706d4ca00e29f2d10e1b2
+      internalID: 85379226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_30
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 362
+        width: 38
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9f8ea9099f4ccf40972b7955196e584
+      internalID: -1866628077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_31
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 309
+        width: 72
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50fae6a1f7980484290326a523b028e2
+      internalID: -267435370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_32
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 300
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 013e24c6a33f6224688e8e7124718fa0
+      internalID: -343161258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_33
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 301
+        width: 46
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dca60c6e3f5b0e41a05ebebe22b0219
+      internalID: -1247485853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_34
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 300
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62ab7d8fb97b0774db633fe062cc8a9a
+      internalID: 1382464122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_35
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 324
+        width: 56
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3bb9f826ce1c0a4c892758c3f71c6ca
+      internalID: -57800928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_36
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 348
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c30604f6fa66a64ea6ad760206d85f4
+      internalID: -1858841351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_37
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 331
+        width: 30
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3059ceaaafd8bd940b9a03349df83edd
+      internalID: 1394757292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_38
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 331
+        width: 30
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6ef23f7428c27948a775f1b4bd1a2b9
+      internalID: 1221207950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_39
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 323
+        width: 29
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f551501b4920d4fab50e724fc88bff
+      internalID: 17064503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_40
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 350
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af6a28c81a830bc48b2c4ed68782ac77
+      internalID: -1685112453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_41
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 300
+        width: 27
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c98a96f65cfe94d99f84f383b13bc1
+      internalID: -593661053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_42
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 310
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e0332d1df9100b4395c5e6c8a8d3269
+      internalID: -29657306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_43
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 310
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b9e5bf50af4f340ab8c685b20ed916
+      internalID: 188329747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_44
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 308
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 747fff2201b419d45b39676619ac3fc1
+      internalID: 1840530147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_45
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 307
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9840cf168c74322489e9637dcc9f0200
+      internalID: -504528959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_46
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 288
+        width: 48
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a2d4b31d947e84eab4e5de6c7df7c8
+      internalID: -1907794898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_47
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 285
+        width: 49
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8687c0ca6a5f9f43a000a785aba6b73
+      internalID: -327258934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_48
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 308
+        width: 52
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a31910d5ad99a404b983a479c7d2bd35
+      internalID: -1260911221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_49
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 293
+        width: 43
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b2598fd3cf595449beb099f728f46b6
+      internalID: 371481658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_50
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 243
+        width: 51
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbb18fc340c005f489a79577280cd217
+      internalID: -23709902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_51
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 296
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d770c2acd08b54989b37cfead52984
+      internalID: -771012844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_52
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 301
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f045964d1bfb3548a69e136e2ba2b74
+      internalID: 561819920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_53
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 298
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39ffc0c2fa32d25419edeb18d65b57a1
+      internalID: 1947226424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_54
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 297
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9531eec2c3637947b9fa742352ae6b4
+      internalID: 59986683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_55
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 304
+        width: 34
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65d73767ef2ba224f99e82b7b78eada4
+      internalID: -223491768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_56
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 294
+        width: 35
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6ec0694a4e033545b0ac757bf46fbe7
+      internalID: 620690402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_57
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 248
+        width: 147
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b419c9ee0fde84aba2b0cc35a36839
+      internalID: -326644275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_58
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 247
+        width: 120
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: febb32ab1065ce54faf21ac450ea7f17
+      internalID: -103071212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_59
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 244
+        width: 46
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e40ad15f855f1d1419f9e72841e93e37
+      internalID: 1604025615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_60
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 274
+        width: 47
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 499b22922cd24694f8c2c9218acbae28
+      internalID: 825502757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_61
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 244
+        width: 37
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fabe2b4873bd98d478b32f72686fee86
+      internalID: -1939648287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_62
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 244
+        width: 27
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572addd258b7db34ea6530c24b51864a
+      internalID: -1869228810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_63
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 250
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b48ee43d0121f60429d247412f56b852
+      internalID: 1630173887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_64
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 250
+        width: 27
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26fa47af521419748b29a4c93da12610
+      internalID: 457637180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_65
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 259
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4765470a34f9d144aa0d64282627f916
+      internalID: -1239336961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_66
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 248
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37227f9d4e9a68349945f954c039fcd8
+      internalID: 1362132154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_67
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 247
+        width: 28
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4195cd141a7b66d47b7de237839380b1
+      internalID: 130911078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_68
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 258
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5190265bf4c70c942933fa4c9e8866b6
+      internalID: -1999616467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_69
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 257
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85daad5ee2955094da4145cce3ee0713
+      internalID: -1726221335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_70
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 246
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de178747cf58e594faa68551951c07a4
+      internalID: 342898975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_71
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 255
+        width: 27
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f69b388c01e5f5f4283fa0e50261c1f7
+      internalID: -947224015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_72
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 255
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 100dea3451b28684f8d35b8b7d9a7ae4
+      internalID: -653353828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_73
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 254
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63dd9d45ed1af444192db3f4b1b57225
+      internalID: -305616602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_74
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 195
+        width: 68
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0935be7fcfae72243bc37ef12646bfb5
+      internalID: 1082662177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_75
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 188
+        width: 131
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80fe24c81cbc227438eeb18f2c906766
+      internalID: -421116580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_76
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 207
+        width: 49
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f3f72c16b2f8b5448771f77326cdf3c
+      internalID: -1607589919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_77
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 202
+        width: 49
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9acc678530276547be7cf6bcb979e0c
+      internalID: -1991029962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_78
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 232
+        width: 5
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25e44f2191c1eb843b61bbcc6f2f6390
+      internalID: 975010466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_79
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 238
+        width: 51
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c929ee0184bda049936e7db2c8a4f71
+      internalID: -437818490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_80
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 192
+        width: 36
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bffb6fad52b158643adbdc006c1404b7
+      internalID: 1300225659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_81
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 203
+        width: 45
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760a13a228b837d408ce9fda18f7f17f
+      internalID: 793398432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_82
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 208
+        width: 27
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 874e2dceaac7ce14ea59b1f93ee13041
+      internalID: -289401929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_83
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 198
+        width: 27
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44844debbe40dfe4aae924aae39a8992
+      internalID: -231492517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_84
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 198
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10f48de8f1b716441a42c12a6d278b72
+      internalID: -2122644199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_85
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 208
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 882cb75329b45604ead08fdd5a120eb3
+      internalID: 1411629897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_86
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 196
+        width: 28
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b7cb992d74ee34c9468cbb0b02cf05
+      internalID: -1239135837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_87
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 196
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10f23409856be734abe847b18e736089
+      internalID: -1973671545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_88
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 207
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b644ec1c43ee84fa38472f342c485d
+      internalID: -4523987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_89
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 206
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0190cd488c57104d9ea0594a1199712
+      internalID: 945711664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_90
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 196
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8361864ec5aa0c468504b689d831aaf
+      internalID: 1194165599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_91
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 205
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533a2962cd2ba99439b4c2ead2409755
+      internalID: 1270119807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_92
+      rect:
+        serializedVersion: 2
+        x: 796
+        y: 204
+        width: 31
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d6487658a81fd844a54e79e755df6a7
+      internalID: -515715899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_93
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 204
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31552b4f450d69a45be43e05fcafa8e0
+      internalID: -406611067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_94
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 166
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d2c7cb13453e3049852112b67c8a7ac
+      internalID: 1525526086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_95
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 121
+        width: 56
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a54ad3db0ffed2408a95b1a2e083c61
+      internalID: 818645307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_96
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 159
+        width: 49
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a10e4fc55ee89894ba1acf22f09285e5
+      internalID: 2122487279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_97
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 195
+        width: 50
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf3b2e35eab4f346a23c813ee85b5df
+      internalID: -1487456286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_98
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 164
+        width: 42
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d206170a6950f449b1c9214c2c4e038
+      internalID: 378415138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_99
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 156
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8865d0bc36770be4faee400eb726ea7b
+      internalID: -1530724389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_100
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 147
+        width: 28
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40679fea4ad4cbb4db246f2bb20505ad
+      internalID: 2123013538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_101
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 156
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4be56932b282284eb68766db5ad56b0
+      internalID: 1666984380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_102
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 156
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e6d704162aa32340adb2f45b9e6a88f
+      internalID: 203936057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_103
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 155
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2e7147240872f04abcb7797a773c1d5
+      internalID: 1876983659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_104
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 154
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c0ad0abd538c6446af7069528d8cedb
+      internalID: 752712714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_105
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 154
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5529bfbccbbd04479e41b58bbfbdec3
+      internalID: 245975701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_106
+      rect:
+        serializedVersion: 2
+        x: 823
+        y: 103
+        width: 33
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15443ac5385797f47a8a7c33d696ef1a
+      internalID: 192846912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_107
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 189
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea8e66ec0b391d43888b3fe00947960
+      internalID: 1803733300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_108
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 188
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b623427cf87d1b6449860fc3162faa9b
+      internalID: -1392978555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_109
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 131
+        width: 68
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96d7b0fe4c8916b4cbd924f1ed887d77
+      internalID: -1730584525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_110
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 128
+        width: 67
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccac03805d46301449bb64bf8b67353a
+      internalID: 1231004501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_111
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 123
+        width: 58
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bca839b6a99137e43818013cd4e15864
+      internalID: -646824345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_112
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 123
+        width: 52
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 852fda53ac91e144c9797ea860324938
+      internalID: -1468600424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_113
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 156
+        width: 51
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 382a56b7a5090354fa9409851e79bacb
+      internalID: 1203405343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_114
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 121
+        width: 40
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 435e3fb5cc732674580c9c947db61953
+      internalID: -1791063234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_115
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 145
+        width: 29
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d89bf67dd2fe59246a58721e47f1a894
+      internalID: 432029598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_116
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 145
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1470372b5a8d4f64d8507587e5aa8a0f
+      internalID: -425714465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_117
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 152
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 752a4a47222f37443b9f28568a12e66a
+      internalID: 1310769382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_118
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 139
+        width: 27
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e03f0d2c4d86bd4390dcbe2a3067b31
+      internalID: -308797924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_119
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 70
+        width: 71
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b0a0f990860f66408e57b46283e456d
+      internalID: -535148709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_120
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 64
+        width: 65
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c78a184cbc4634fbfc07afc0aa919c
+      internalID: 695531303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_121
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 122
+        width: 54
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae253283ac66d2f488975f6a52948b4b
+      internalID: 730516133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_122
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 116
+        width: 51
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06ef2d6044020b54f9f20ee5f8d2889d
+      internalID: 2042708032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_123
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 120
+        width: 49
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f43e6dfb50383cf4596805822020d1b7
+      internalID: -1588219363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_124
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 107
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d97aa6a1aa9384a8d3e7fd182746dc
+      internalID: -1047931901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_125
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 91
+        width: 27
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d98c77800633584397e03754df68be6
+      internalID: 1917635439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_126
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 105
+        width: 41
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb7dd6a840f7af49895c0ec6c9ba7d4
+      internalID: 834364836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_127
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 93
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0cd71f322de891459732e0ee97a610c
+      internalID: -2088653006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_128
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 104
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2300762aacb31d649a6bff20cb8965a0
+      internalID: 1571441897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_129
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 104
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1cc531a923257341a6c85d77bb28238
+      internalID: -663046505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_130
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 103
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47b7578c5a4345d47990bb1353b6babf
+      internalID: -542137945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_131
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 103
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95fc16614b95b5644a1dba126f5d3ed6
+      internalID: 1007353459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_132
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 103
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f74bddc60ff655a42a7811040c11873c
+      internalID: -1970409983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_133
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 100
+        width: 27
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c62a8060a6d8e468c9205246346e41
+      internalID: 2083210435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_134
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 100
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21fc37b223d0da6459bb37e84d67e36f
+      internalID: 334395869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_135
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 101
+        width: 28
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56d5b47a2edb8f34b85d35504aeedd2c
+      internalID: 94189528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_136
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 100
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e554273ecd578c24a93e6859af2b5a3d
+      internalID: -58129198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_137
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 62
+        width: 68
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d72e524a2212ae45a16037a1862f962
+      internalID: 346158803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_138
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 41
+        width: 47
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f4e1084129e174e8a63307cfa7e51f
+      internalID: -804285048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_139
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 79
+        width: 48
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48cec6d0378e6f74e8ed0dea44d43dae
+      internalID: -556339243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_140
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 65
+        width: 47
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 832a81377e506394e9392a75acc7484c
+      internalID: -1956950525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_141
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 80
+        width: 56
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d72bf1ad6408739498cd7eea02a372a1
+      internalID: 922769266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_142
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 80
+        width: 43
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2fd37b592bc33a478da87d1cfa09485
+      internalID: 870695881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_143
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 71
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971d490427fda894b81636d9added0c0
+      internalID: 4095418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_144
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 52
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 024d5ec4daa79a246b732b1379a24f5b
+      internalID: 248216580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_145
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 48
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6724ecbfee71c4e4188f6fd30c5cf745
+      internalID: 1997621597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_146
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 53
+        width: 27
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb7adabdeb503646b45fbfa7ab77028
+      internalID: -1372904105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_147
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 53
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e783001b32f8f8a41a9457ef4f5b85e8
+      internalID: 577590228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_148
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 52
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dab5f23304c65db4bb544b2eeec77af6
+      internalID: 1426128152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_149
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 53
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e81c16a5701ab46a64b94d772ee86d
+      internalID: -365278603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_150
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 52
+        width: 27
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59b820477913ab045a321b568a6b8016
+      internalID: -616829881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_151
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 52
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ee70a6fa28c032448f2ddd8f5352b67
+      internalID: -403640614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_152
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 0
+        width: 31
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db18363d5c2127a4194606b1c807624f
+      internalID: 903377557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_153
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 52
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d8a203e83bce564793fae670ab427fb
+      internalID: -1532927809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_154
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 51
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c4c478043d71344bb5c6630162df72
+      internalID: -816047787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_155
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 51
+        width: 28
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cd807c683fcb7443a35d9d3f604b024
+      internalID: -864669290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_156
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 51
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb78510b37a0544cb0ebed2eae68f4f
+      internalID: -738293706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_157
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 50
+        width: 26
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91556e573760e144b852d122aaa617fd
+      internalID: -677574629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_158
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 72
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f26cc471ce25f584783ae99f3c2363d2
+      internalID: 1650902327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_159
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1
+        width: 65
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddb70a253ae0c3a46aa7e7631171d66d
+      internalID: -1146731403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_160
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 66
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d02384658e69bd5408cff3c078e0c902
+      internalID: -154833298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_161
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 42
+        width: 58
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e398aff4c6b9b4f9d0155129a87ea2
+      internalID: -1933951978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_162
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 38
+        width: 47
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87bf45bc8cacf624d9e49aa7e7be9662
+      internalID: 1957123159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_163
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 36
+        width: 57
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 134f7e7d4524afd45b0ea46095145c71
+      internalID: -1873323399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_164
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 30
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 014928b303d482c4581f4ff784637875
+      internalID: -1186009495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_165
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5113b4250e776e248a72459d7ba07789
+      internalID: 335654822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_166
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 0
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc52e773b77f4894584201058dabbfc6
+      internalID: 2068049057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_167
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 0
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c918de667a0c549b7c6277d0844a67
+      internalID: -1618454793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_168
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 0
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a69d8acd01cadc74e92d18f4735d9ac7
+      internalID: -700179341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_169
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 0
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08189a4ab02d4ba47983445ac2b0cd6c
+      internalID: -1990600172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_170
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 0
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adfdc176e98de49459f13840031137bd
+      internalID: -26440635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_171
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 0
+        width: 26
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36c7cf1f4582d154abe382c50cf32b4f
+      internalID: -1828147351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_172
+      rect:
+        serializedVersion: 2
+        x: 752
+        y: 0
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c35ed98956aa08343aa37995635d4c3c
+      internalID: 1145944008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_173
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 0
+        width: 26
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df277adc8ee478240b1367acdeebe6c9
+      internalID: -1942127100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_174
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 0
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0bcc909187842468b25b086aa08692
+      internalID: 1689032287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_175
+      rect:
+        serializedVersion: 2
+        x: 868
+        y: 0
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd8b8921648674a4d9df18003054031f
+      internalID: 2004153119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_176
+      rect:
+        serializedVersion: 2
+        x: 897
+        y: 0
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f68047d3a0d8c247928b6021b497a28
+      internalID: -853612620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_177
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 0
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bf8d428514ef524b91f8f8a29cf69d6
+      internalID: 1560580064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_178
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 0
+        width: 26
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3236f42dbe17b6a4c85ae3157674b773
+      internalID: 282588695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_179
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 1
+        width: 54
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f201b44b59ec0db428161fa2484c2f18
+      internalID: -104892984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_180
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 56
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c101bd5d3d406a468d3f4e07baa172a
+      internalID: 824036202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_181
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 0
+        width: 47
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a9225258337ea24399c6399ff761f4d
+      internalID: -591364232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_182
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 1
+        width: 54
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a9bcfc6e4d6c94e83b230dc2aa7b22
+      internalID: 383408261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_183
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 1
+        width: 36
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cc0ba556bd64e646b51e305edc08021
+      internalID: 1023829127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 048f9300391019644933c7772a2d27cd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_0: 1320300338
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_1: -1865563831
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_10: -1872930644
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_100: 2123013538
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_101: 1666984380
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_102: 203936057
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_103: 1876983659
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_104: 752712714
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_105: 245975701
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_106: 192846912
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_107: 1803733300
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_108: -1392978555
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_109: -1730584525
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_11: 24009906
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_110: 1231004501
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_111: -646824345
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_112: -1468600424
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_113: 1203405343
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_114: -1791063234
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_115: 432029598
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_116: -425714465
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_117: 1310769382
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_118: -308797924
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_119: -535148709
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_12: -1087760285
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_120: 695531303
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_121: 730516133
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_122: 2042708032
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_123: -1588219363
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_124: -1047931901
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_125: 1917635439
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_126: 834364836
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_127: -2088653006
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_128: 1571441897
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_129: -663046505
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_13: 789900118
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_130: -542137945
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_131: 1007353459
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_132: -1970409983
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_133: 2083210435
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_134: 334395869
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_135: 94189528
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_136: -58129198
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_137: 346158803
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_138: -804285048
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_139: -556339243
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_14: -1491301679
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_140: -1956950525
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_141: 922769266
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_142: 870695881
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_143: 4095418
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_144: 248216580
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_145: 1997621597
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_146: -1372904105
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_147: 577590228
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_148: 1426128152
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_149: -365278603
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_15: -460188996
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_150: -616829881
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_151: -403640614
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_152: 903377557
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_153: -1532927809
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_154: -816047787
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_155: -864669290
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_156: -738293706
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_157: -677574629
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_158: 1650902327
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_159: -1146731403
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_16: -1576244685
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_160: -154833298
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_161: -1933951978
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_162: 1957123159
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_163: -1873323399
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_164: -1186009495
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_165: 335654822
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_166: 2068049057
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_167: -1618454793
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_168: -700179341
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_169: -1990600172
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_17: -1295256526
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_170: -26440635
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_171: -1828147351
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_172: 1145944008
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_173: -1942127100
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_174: 1689032287
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_175: 2004153119
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_176: -853612620
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_177: 1560580064
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_178: 282588695
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_179: -104892984
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_18: 1590532547
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_180: 824036202
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_181: -591364232
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_182: 383408261
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_183: 1023829127
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_19: 1906923315
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_2: -989181880
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_20: -722465581
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_21: 25131569
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_22: 2108978373
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_23: -1850455488
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_24: -1730783587
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_25: 207197278
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_26: 1248595238
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_27: 413816654
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_28: -1389231436
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_29: 85379226
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_3: -213687484
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_30: -1866628077
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_31: -267435370
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_32: -343161258
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_33: -1247485853
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_34: 1382464122
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_35: -57800928
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_36: -1858841351
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_37: 1394757292
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_38: 1221207950
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_39: 17064503
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_4: 194153964
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_40: -1685112453
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_41: -593661053
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_42: -29657306
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_43: 188329747
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_44: 1840530147
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_45: -504528959
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_46: -1907794898
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_47: -327258934
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_48: -1260911221
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_49: 371481658
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_5: 37534296
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_50: -23709902
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_51: -771012844
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_52: 561819920
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_53: 1947226424
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_54: 59986683
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_55: -223491768
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_56: 620690402
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_57: -326644275
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_58: -103071212
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_59: 1604025615
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_6: -471636913
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_60: 825502757
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_61: -1939648287
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_62: -1869228810
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_63: 1630173887
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_64: 457637180
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_65: -1239336961
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_66: 1362132154
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_67: 130911078
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_68: -1999616467
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_69: -1726221335
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_7: 888263971
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_70: 342898975
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_71: -947224015
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_72: -653353828
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_73: -305616602
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_74: 1082662177
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_75: -421116580
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_76: -1607589919
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_77: -1991029962
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_78: 975010466
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_79: -437818490
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_8: 489668742
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_80: 1300225659
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_81: 793398432
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_82: -289401929
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_83: -231492517
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_84: -2122644199
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_85: 1411629897
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_86: -1239135837
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_87: -1973671545
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_88: -4523987
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_89: 945711664
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_9: -653361879
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_90: 1194165599
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_91: 1270119807
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_92: -515715899
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_93: -406611067
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_94: 1525526086
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_95: 818645307
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_96: 2122487279
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_97: -1487456286
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_98: 378415138
+      sactx-0-2048x1024-ETC2-GridAgents-3031d110-var-0.50-#1_99: -1530724389
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

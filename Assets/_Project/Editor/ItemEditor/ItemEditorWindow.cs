@@ -239,7 +239,7 @@ public class ItemEditorWindow : EditorWindow
         selectedItemIndex = index;
         if (itemsCollection != null && itemsCollection.list.Count > 0 && index <= itemsCollection.list.Count - 1)
             LoadDataValues();
-        
+
         this.InitSpriteAnimations();
 
         direction = 0;
@@ -250,13 +250,13 @@ public class ItemEditorWindow : EditorWindow
     {
         if (selectedItemIndex == -1)
             return;
-        
+
         ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
 
         id = itemData.id.ToString();
         name = itemData.name;
         description = itemData.description;
-		thumb = itemData.thumb;
+        thumb = itemData.thumb;
 
         gridTexture = Resources.Load("grid_1x1", typeof(Texture2D)) as Texture2D;
     }
@@ -348,8 +348,8 @@ public class ItemEditorWindow : EditorWindow
         "Bottom", "Bottom Right", "Right", "Top Right", "Top"
     };
 
-	private Texture2D thumb;
-	private Texture2D textureToAdd = null;
+    private Texture2D thumb;
+    private Texture2D textureToAdd = null;
 
     void RenderRightPanel()
     {
@@ -389,7 +389,7 @@ public class ItemEditorWindow : EditorWindow
 
             if (spritesFoldout)
             {
-				
+
                 state = EditorGUILayout.Popup("State", state, stateOptions);
                 if (state != _oldState)
                 {
@@ -404,35 +404,38 @@ public class ItemEditorWindow : EditorWindow
                     _oldDirection = direction;
                     this.LoadDataValues();
                 }
-				GUILayout.Space(5);
-				this.RenderSpritesList();
+                GUILayout.Space(5);
+                this.RenderSpritesList();
 
-				// Allow dragging a Texture2D to add directly to the current state's texture list
-				textureToAdd = (Texture2D)EditorGUILayout.ObjectField("Add Texture", textureToAdd, typeof(Texture2D));
-				GUILayout.BeginHorizontal();
-				GUILayout.Space(20);
-				if (GUILayout.Button("Add Texture")) {
-					if (textureToAdd != null) {
-						ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
-						switch ((Common.State)state) {
-							case Common.State.IDLE: itemData.idleSpriteTextures.Add(textureToAdd); break;
-							case Common.State.WALK: itemData.walkSpriteTextures.Add(textureToAdd); break;
-							case Common.State.ATTACK: itemData.attackSpriteTextures.Add(textureToAdd); break;
-							case Common.State.DESTROYED: itemData.destroyedSpriteTextures.Add(textureToAdd); break;
-						}
-						textureToAdd = null;
-						EditorUtility.SetDirty(itemsCollection);
-						this.InitSpriteAnimations();
-					}
-				}
-				GUILayout.EndHorizontal();
+                // Allow dragging a Texture2D to add directly to the current state's texture list
+                textureToAdd = (Texture2D)EditorGUILayout.ObjectField("Add Texture", textureToAdd, typeof(Texture2D));
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                if (GUILayout.Button("Add Texture"))
+                {
+                    if (textureToAdd != null)
+                    {
+                        ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
+                        switch ((Common.State)state)
+                        {
+                            case Common.State.IDLE: itemData.idleSpriteTextures.Add(textureToAdd); break;
+                            case Common.State.WALK: itemData.walkSpriteTextures.Add(textureToAdd); break;
+                            case Common.State.ATTACK: itemData.attackSpriteTextures.Add(textureToAdd); break;
+                            case Common.State.DESTROYED: itemData.destroyedSpriteTextures.Add(textureToAdd); break;
+                        }
+                        textureToAdd = null;
+                        EditorUtility.SetDirty(itemsCollection);
+                        this.InitSpriteAnimations();
+                    }
+                }
+                GUILayout.EndHorizontal();
 
-				GUILayout.BeginHorizontal();
-				GUILayout.Space(20);
-				if (GUILayout.Button("Add Sprite"))
-					AddSpriteButtonMenu();
-				GUILayout.EndHorizontal();
-				thumb = (Texture2D)EditorGUILayout.ObjectField("Thumb", thumb, typeof(Texture2D));
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                if (GUILayout.Button("Add Sprite"))
+                    AddSpriteButtonMenu();
+                GUILayout.EndHorizontal();
+                thumb = (Texture2D)EditorGUILayout.ObjectField("Thumb", thumb, typeof(Texture2D));
             }
 
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
@@ -445,12 +448,14 @@ public class ItemEditorWindow : EditorWindow
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(20);
-                itemData.gridWidth = EditorGUILayout.IntField("Grid Width", itemData.gridWidth);
+                itemData.gridHeight = EditorGUILayout.IntField("Grid Height", itemData.gridHeight);
+
                 GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(20);
-                itemData.gridHeight = EditorGUILayout.IntField("Grid Height", itemData.gridHeight);
+                itemData.gridWidth = EditorGUILayout.IntField("Grid Width", itemData.gridWidth);
+
                 GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal();
@@ -790,12 +795,12 @@ public class ItemEditorWindow : EditorWindow
 
         if (selectedItemIndex == -1)
             return;
-        
+
         ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
 
         itemData.name = this.name;
         itemData.description = this.description;
-		itemData.thumb = thumb;
+        itemData.thumb = thumb;
 
         EditorUtility.SetDirty(itemsCollection);
     }
@@ -827,8 +832,8 @@ public class ItemEditorWindow : EditorWindow
         if (selectedItemIndex != -1)
         {
             ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
-            int gW = Mathf.Max(1, itemData.gridWidth);
-            int gH = Mathf.Max(1, itemData.gridHeight);
+            int gW = Mathf.Max(1, itemData.gridHeight);
+            int gH = Mathf.Max(1, itemData.gridWidth);
 
             float cw = 140; // grid cell width
             float ch = 70;  // grid cell height
@@ -845,15 +850,15 @@ public class ItemEditorWindow : EditorWindow
                     float py = (ix + iy) * ch / 2;
 
                     float finalX = centerPointOfPreviewArea.x + px - ox;
-                    float finalY = centerPointOfPreviewArea.y + py - oy + ch/2;
+                    float finalY = centerPointOfPreviewArea.y + py - oy + ch / 2;
 
-                    GUI.DrawTexture(new Rect(finalX - cw/2, finalY - cw/2, cw, cw), gridTexture);
+                    GUI.DrawTexture(new Rect(finalX - cw / 2, finalY - cw / 2, cw, cw), gridTexture);
                 }
             }
         }
         else
         {
-             if (gridTexture == null)
+            if (gridTexture == null)
                 gridTexture = Resources.Load("grid_4x4", typeof(Texture2D)) as Texture2D;
 
             GUI.Label(new Rect(centerPointOfPreviewArea.x - defaultGridSize.x / 2, centerPointOfPreviewArea.y - defaultGridSize.y / 2, defaultGridSize.x, defaultGridSize.y), gridTexture);
@@ -862,6 +867,10 @@ public class ItemEditorWindow : EditorWindow
         //DRAW ITEM SPRITE
         if (selectedItemIndex != -1)
         {
+            ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
+            int gW = Mathf.Max(1, itemData.gridWidth);
+            int gH = Mathf.Max(1, itemData.gridHeight);
+
             for (int index = 0; index < this.spriteAnimationList.Count; index++)
             {
                 SpriteAnimationItem spriteAnimationItem = this.spriteAnimationList[index];
@@ -879,14 +888,17 @@ public class ItemEditorWindow : EditorWindow
                 int numberOfRows = spriteAnimationItem.numberOfRows;
                 float offsetX = textureData.offsetX;
                 float offsetY = textureData.offsetY;
-                
+
                 float baseScale = 256 * (scale / 100f);
                 float imgW = baseScale * (scaleX / 100f);
                 float heightFactor = ((float)texture.height / (float)texture.width) * ((float)numberOfColumns / (float)numberOfRows);
                 float imgH = baseScale * heightFactor * (scaleY / 100f);
 
+                float ch = 70; // grid cell height used for calculation
+                float oy = (gW + gH) * ch / 4;
+
                 float x = (centerPointOfPreviewArea.x - imgW / 2) + offsetX;
-                float y = (centerPointOfPreviewArea.y - imgH / 2) - offsetY;
+                float y = (centerPointOfPreviewArea.y + oy) - imgH - offsetY;
 
                 float framePaddingX = imgW * (spriteAnimationItem.currentFrame % numberOfColumns);
                 float framePaddingY = imgH * (spriteAnimationItem.currentFrame / numberOfColumns);
@@ -937,7 +949,7 @@ public class ItemEditorWindow : EditorWindow
     {
         if (selectedItemIndex == -1)
             return;
-        
+
         ItemsCollection.ItemData itemData = itemsCollection.list[selectedItemIndex];
 
         this.spriteAnimationList = new List<SpriteAnimationItem>();
@@ -966,7 +978,7 @@ public class ItemEditorWindow : EditorWindow
             foreach (Texture2D tex in textures)
             {
                 if (tex == null) continue;
-                
+
                 SpriteCollection.SpriteData sprite = Sprites.GetSpriteByTexture(tex);
                 if (sprite == null)
                 {
@@ -1053,18 +1065,20 @@ public class ItemEditorWindow : EditorWindow
             valueInt--;
             if (valueInt < min)
                 valueInt = min;
-            
+
             valueString = valueInt.ToString();
-        };
+        }
+        ;
 
         if (GUILayout.Button("+"))
         {
             valueInt++;
             if (valueInt > max)
                 valueInt = max;
-            
+
             valueString = valueInt.ToString();
-        };
+        }
+        ;
 
         GUILayout.EndHorizontal();
     }
