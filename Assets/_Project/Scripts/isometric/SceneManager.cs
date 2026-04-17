@@ -97,9 +97,9 @@ public class SceneManager : MonoBehaviour
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
 		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
 		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
-		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 100);
-		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 1);
-		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 1);
+		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 80);
+		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 5);
+		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 5);
 		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
 	}
 

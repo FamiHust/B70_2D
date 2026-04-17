@@ -3,90 +3,87 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ProgressPanelScript : MonoBehaviour {
-	/* object references */
-	public RectTransform Filler;
-	public Text ValueLabel;
+public class ProgressPanelScript : MonoBehaviour
+{
+    /* object references */
+    public Image Filler;   // đổi từ RectTransform → Image
+    public Text ValueLabel;
 
-	/* public variables */
-	public bool hasMaxValue;
-	private float _maxValue;
-	public float maxValue
-	{
-		get
-		{
-			return _maxValue;
-		}
-		set
-		{
-			_maxValue = value;
-			UpdateComponents();
-		}
-	}
+    /* public variables */
+    public bool hasMaxValue;
+    public bool isPercent;
 
-	private float _value;
-    public float value
+    private float _maxValue;
+    public float maxValue
     {
-        get
-        {
-			return _value;
-        }
+        get { return _maxValue; }
         set
         {
-			_value = value;
+            _maxValue = value;
             UpdateComponents();
         }
     }
 
-    /* private variables */
-	private float _fillerInitialSize;
+    private float _value;
+    public float value
+    {
+        get { return _value; }
+        set
+        {
+            _value = value;
+            UpdateComponents();
+        }
+    }
 
-	void Awake () {
-		this._fillerInitialSize = Filler.sizeDelta.x;
-	}
+    public void UpdateComponents()
+{
+    if (isPercent)
+    {
+        ValueLabel.text = ((int)value) + "%";
+    }
+    else
+    {
+        ValueLabel.text = ((int)value).ToString();
+    }
 
-	public void UpdateComponents()
-	{
-		this.ValueLabel.text = ((int)value).ToString();
-		if (hasMaxValue)
-		{
-			float progress = (value / maxValue) * 100;
-			this.SetProgress(progress);
-		}
-	}
-	
-	public void SetProgress (float progress) {
-		Vector2 sizeDelta = Filler.sizeDelta;
-		sizeDelta.x = this._fillerInitialSize / 100 * progress;
-		Filler.sizeDelta = sizeDelta;
-	}
+    if (hasMaxValue && maxValue > 0)
+    {
+        float progress = value / maxValue;
+        SetProgress(progress);
+    }
+}
 
-	public void TweenValueChange(float changedValue)
-	{
-		this.StartCoroutine(_TweenValueChange(changedValue));
-	}
+    public void SetProgress(float progress)
+    {
+        Filler.fillAmount = Mathf.Clamp01(progress);
+    }
 
-	private IEnumerator _TweenValueChange(float changedValue)
-	{
-		int oldValue = (int)this.value;
+    public void TweenValueChange(float changedValue)
+    {
+        StartCoroutine(_TweenValueChange(changedValue));
+    }
 
-		if (changedValue > oldValue)
-		{
-			for (int i = oldValue; i < (int)changedValue; i++)
-			{
-				yield return null;
-				this.value ++;
-			}
-		}
-		else
-		{
-			for (int i = oldValue; i > (int)changedValue; i--)
+    private IEnumerator _TweenValueChange(float changedValue)
+    {
+        int oldValue = (int)value;
+
+        if (changedValue > oldValue)
+        {
+            for (int i = oldValue; i < (int)changedValue; i++)
             {
                 yield return null;
-                this.value --;
+                value++;
             }
-		}
+        }
+        else
+        {
+            for (int i = oldValue; i > (int)changedValue; i--)
+            {
+                yield return null;
+                value--;
+            }
+        }
 
-		this.value = changedValue;
-	}
+        value = changedValue;
+    }
 }

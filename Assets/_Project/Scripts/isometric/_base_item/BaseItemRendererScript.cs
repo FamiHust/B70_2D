@@ -105,8 +105,20 @@ public class BaseItemRendererScript : MonoBehaviour
 			return;
 		}
 
+		if (this.RenderQuadsContainer == null)
+		{
+			Debug.LogError("RenderQuadsContainer is null in BaseItemRendererScript!");
+			return;
+		}
+
 		RenderQuadScript renderQuadInstance = Utilities.CreateRenderQuad();
-		renderQuadInstance.transform.SetParent(this.RenderQuadsContainer.transform);
+		if (renderQuadInstance == null)
+		{
+			Debug.LogError("Failed to create RenderQuad instance!");
+			return;
+		}
+
+		renderQuadInstance.transform.SetParent(this.RenderQuadsContainer.transform, false);
 
 		//POSITIONING AND SCALING
 		float baseScale = 1.4142f * 4 * (textureData.scale / 100.0f);
@@ -121,8 +133,15 @@ public class BaseItemRendererScript : MonoBehaviour
 		renderQuadInstance.transform.localScale = new Vector3(imgW, imgH, 1);
 
 		renderQuadInstance.SetData(textureData, layer);
-		renderQuadInstance.GetComponent<TextureSheetAnimationScript>()
-			.SetTextureSheetData(textureData.numberOfColumns, textureData.numberOfRows, textureData.framesCount, textureData.fps);
+		
+		TextureSheetAnimationScript textureSheetAnim = renderQuadInstance.GetComponent<TextureSheetAnimationScript>();
+		if (textureSheetAnim == null)
+		{
+			Debug.LogError("RenderQuad missing TextureSheetAnimationScript component!");
+			return;
+		}
+		
+		textureSheetAnim.SetTextureSheetData(textureData.numberOfColumns, textureData.numberOfRows, textureData.framesCount, textureData.fps);
 
 		this._renderQuads.Add(renderQuadInstance);
 

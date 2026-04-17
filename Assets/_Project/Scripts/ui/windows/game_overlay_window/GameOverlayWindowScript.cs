@@ -10,7 +10,7 @@ public class GameOverlayWindowScript : WindowScript
 
 	/* object references */
 	public ProgressPanelScript GoldInfo;
-	public ProgressPanelScript ElixirInfo;
+	// public ProgressPanelScript ElixirInfo;
 	public ProgressPanelScript DiamondInfo;
 	public ProgressPanelScript HappyInfo;
 	public ProgressPanelScript StudentInfo;
@@ -44,6 +44,7 @@ public class GameOverlayWindowScript : WindowScript
 		this.HappyInfo.hasMaxValue = true;
 		this.HappyInfo.maxValue = SceneManager.instance.happyStorageCapacity;
 		this.HappyInfo.value = SceneManager.instance.numberOfHappyInStorage;
+		this.HappyInfo.isPercent = true;
 
 		this.StudentInfo.hasMaxValue = true;
 		this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
@@ -52,6 +53,7 @@ public class GameOverlayWindowScript : WindowScript
 		this.EducationInfo.hasMaxValue = true;
 		this.EducationInfo.maxValue = SceneManager.instance.educationStorageCapacity;
 		this.EducationInfo.value = SceneManager.instance.numberOfEducationInStorage;
+		this.EducationInfo.isPercent = true;
 
 	}
 

@@ -8,7 +8,9 @@ public class UpgradeWindowScript : WindowScript
     public Text Title;
     public Text LevelText;
     public Text CostText;
+    public Text DiamondCostText;
     public Button UpgradeButton;
+    public Button BoostButton;
 
     private BaseItemScript _targetItem;
 
@@ -31,6 +33,7 @@ public class UpgradeWindowScript : WindowScript
         Title.text = _targetItem.itemData.name;
         LevelText.text = "Level: " + (_targetItem.level + 1);
         CostText.text = _targetItem.GetUpgradeCost().ToString();
+        DiamondCostText.text = "5";
     }
 
     public void OnClickUpgradeButton()
@@ -66,6 +69,36 @@ public class UpgradeWindowScript : WindowScript
         else
         {
             Debug.Log("Not enough gold to upgrade!");
+        }
+    }
+
+    public void OnClickBoostButton()
+    {
+        if (_targetItem == null) return;
+
+        // Consume diamonds (5 diamonds to boost)
+        if (SceneManager.instance.ConsumeResource("diamond", 5))
+        {
+            // Instantly upgrade the item without waiting for construction
+            _targetItem.level++;
+            DataBaseManager.instance.UpdateItemData(_targetItem);
+            SceneManager.instance.UpdateStudentStorageCapacity();
+
+            // Refresh Selection UI if it's currently active
+            if (_targetItem.UI.selectionUIInstance != null)
+            {
+                _targetItem.UI.selectionUIInstance.RefreshLevel(_targetItem.level);
+            }
+
+            Debug.Log("Boost Complete! New Level: " + _targetItem.level);
+            
+            // Close window and item options
+            this.Close();
+            UIManager.instance.HideItemOptions();
+        }
+        else
+        {
+            Debug.Log("Not enough diamonds to boost!");
         }
     }
 }
