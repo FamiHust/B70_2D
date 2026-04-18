@@ -57,8 +57,8 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: 45
-    defaultPosZ: 3
+    defaultPosX: 43
+    defaultPosZ: 2
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -177,40 +177,6 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 46902b07f11e2f14cab78898a681e67e, type: 3}
     attackSpriteTextures: []
     destroyedSpriteTextures: []
-  - id: 9074
-    name: GoldStorage
-    description: 
-    thumb: {fileID: 2800000, guid: 6a3b1f249bcd4e546b2e3acb15a5fd8d, type: 3}
-    gridWidth: 2
-    gridHeight: 2
-    arrowOffsetX: 1
-    arrowOffsetZ: 1
-    gridOffsetX: 0
-    gridOffsetZ: 0
-    uiOffsetX: 0
-    uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
-    configuration:
-      buildTime: 15
-      isCharacter: 0
-      speed: 0
-      attackRange: 0
-      defenceRange: 0
-      healthPoints: 300
-      hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
-      price: 50
-      resourceType: gold
-      studentCapacityIncrease: 0
-    idleSpriteTextures:
-    - {fileID: 2800000, guid: 6a3b1f249bcd4e546b2e3acb15a5fd8d, type: 3}
-    walkSpriteTextures:
-    - {fileID: 2800000, guid: 939de0a4accc080439b6f55b69342e1e, type: 3}
-    attackSpriteTextures: []
-    destroyedSpriteTextures: []
   - id: 6704
     name: SwordMan
     description: 
@@ -287,8 +253,8 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: 3
-    defaultPosZ: 18
+    defaultPosX: 1
+    defaultPosZ: 8
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -556,7 +522,7 @@ MonoBehaviour:
     uiOffsetX: 0
     uiOffsetZ: 0
     defaultPosX: 35
-    defaultPosZ: 38
+    defaultPosZ: 36
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -575,5 +541,401 @@ MonoBehaviour:
     - {fileID: 2800000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 942a7277306944842b6c11a9ab5df4df, type: 3}
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 8216
+    name: C2
+    description: 
+    thumb: {fileID: 0}
+    gridWidth: 10
+    gridHeight: 6
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 9
+    defaultPosZ: 7
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 2939f2f7beed55c40affa9e8c54a51ea, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 2454
+    name: C3
+    description: 
+    thumb: {fileID: 2800000, guid: 813482aa3ebdd35478609a58e8b0e990, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 813482aa3ebdd35478609a58e8b0e990, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 5835
+    name: C3B
+    description: 
+    thumb: {fileID: 2800000, guid: 8d8eff9a0210b9f47b2625104aa3f9cf, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 8d8eff9a0210b9f47b2625104aa3f9cf, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 3504
+    name: C5
+    description: 
+    thumb: {fileID: 2800000, guid: 47344db2c85660a4898eb643bbd3c85c, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 47344db2c85660a4898eb643bbd3c85c, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 2617
+    name: C6
+    description: 
+    thumb: {fileID: 2800000, guid: 2253f03b93efe4b41baa97c261ac01c8, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 2253f03b93efe4b41baa97c261ac01c8, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 9295
+    name: C9
+    description: 
+    thumb: {fileID: 2800000, guid: 7ea65dba491b92b4fbdf6189b4d4abe5, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 7ea65dba491b92b4fbdf6189b4d4abe5, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 8385
+    name: C10
+    description: 
+    thumb: {fileID: 2800000, guid: 6e9037d69118bcf439031e0cd35d3c00, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 6e9037d69118bcf439031e0cd35d3c00, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 4407
+    name: D35
+    description: 
+    thumb: {fileID: 2800000, guid: 3919e080dd1104a419fd6a3e74cd941c, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 3919e080dd1104a419fd6a3e74cd941c, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 6330
+    name: D6
+    description: 
+    thumb: {fileID: 2800000, guid: ac7397bac5f2bd445928cf235c3a8a90, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: ac7397bac5f2bd445928cf235c3a8a90, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 5134
+    name: D8
+    description: 
+    thumb: {fileID: 2800000, guid: 52e4fdcbc4b6e1f4da8619fb4b91be80, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 52e4fdcbc4b6e1f4da8619fb4b91be80, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 1399
+    name: Canteen
+    description: 
+    thumb: {fileID: 2800000, guid: eda7a9109f723ab4996cabe11c272d73, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: eda7a9109f723ab4996cabe11c272d73, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 4132
+    name: GaraD6
+    description: 
+    thumb: {fileID: 2800000, guid: cd0273c881d0cb247bc263936b1f2711, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -1
+    defaultPosZ: -1
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: cd0273c881d0cb247bc263936b1f2711, type: 3}
+    walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []

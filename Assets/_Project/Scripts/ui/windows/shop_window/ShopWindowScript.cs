@@ -36,16 +36,28 @@ public class ShopWindowScript : WindowScript
 		// BARRACK,
 		// BOAT,
 		C1,
+		C2,
+		C3,
+		C3B,
 		C4,
+		C5,
+		C6,
+		C7,
+		C9,
+		C10,
 		D4,
+		D35,
+		D6,
+		D8,
 		// CAMP,
 		// CANNON,
 		// ELIXIR_COLLECTOR,
 		// ELIXIR_STORAGE,
 		B8,
-		C7,
 		// GOLD_STORAGE,
 		// TOWER,
+		Canteen,
+		GaraD6,
 		GIAI_PHONG_GATE,
 		TDN_GATE,
 		TREE3,
@@ -109,10 +121,10 @@ public class ShopWindowScript : WindowScript
 			// 	subItems = new SubCategory[]{ SubCategory.BARRACK, SubCategory.CAMP, SubCategory.BOAT};
 			// 	break;
 			case Category.SERVICE:
-				subItems = new SubCategory[] { SubCategory.C1, SubCategory.D4 };
+				subItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
 				break;
 			case Category.RESOURCES:
-				subItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY };
+				subItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6 };
 				break;
 			case Category.STUDENT:
 				subItems = new SubCategory[] { SubCategory.C7, SubCategory.B8 };
@@ -160,6 +172,18 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.C4: return 3265;
 			// case SubCategory.GOLD_STORAGE: return 9074;
 			case SubCategory.C1: return 2496;
+			case SubCategory.C2: return 8216;
+			case SubCategory.C3: return 2454;
+			case SubCategory.C3B: return 5835;
+			case SubCategory.C5: return 3504;
+			case SubCategory.C6: return 2617;
+			case SubCategory.C9: return 9295;
+			case SubCategory.C10: return 8385;
+			case SubCategory.D35: return 4407;
+			case SubCategory.D6: return 6330;
+			case SubCategory.D8: return 5134;
+			case SubCategory.Canteen: return 1399;
+			case SubCategory.GaraD6: return 4132;
 			case SubCategory.LIBRARY: return 6677;
 			case SubCategory.WALL: return 7666;
 			case SubCategory.GIAI_PHONG_GATE: return 2949;

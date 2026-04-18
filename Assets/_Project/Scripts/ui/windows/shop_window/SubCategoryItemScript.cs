@@ -9,6 +9,16 @@ public class SubCategoryItemScript : MonoBehaviour
 	// public Sprite BarrackSprite;
 	// public Sprite BoatSprite;
 	public Sprite D4Sprite;
+	public Sprite C2Sprite;
+	public Sprite C3Sprite;
+	public Sprite C3BSprite;
+	public Sprite C5Sprite;
+	public Sprite C6Sprite;
+	public Sprite C9Sprite;
+	public Sprite C10Sprite;
+	public Sprite D35Sprite;
+	public Sprite D6Sprite;
+	public Sprite D8Sprite;
 	// public Sprite CampSprite;
 	// public Sprite CannonSprite;
 	// public Sprite ElixirCollectorSprite;
@@ -16,6 +26,8 @@ public class SubCategoryItemScript : MonoBehaviour
 	public Sprite C7Sprite;
 	public Sprite B8Sprite;
 	public Sprite C4Sprite;
+	public Sprite CanteenSprite;
+	public Sprite GaraD6Sprite;
 	// public Sprite GoldStorageSprite;
 	// public Sprite TowerSprite;
 	public Sprite C1Sprite;
@@ -61,7 +73,55 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "D4";
 				this.Image.sprite = this.D4Sprite;
 				break;
+		case ShopWindowScript.SubCategory.C2:
+			this.Name.text = "C2";
+			this.Image.sprite = this.C2Sprite;
+			break;
 
+		case ShopWindowScript.SubCategory.C3:
+			this.Name.text = "C3";
+			this.Image.sprite = this.C3Sprite;
+			break;
+
+		case ShopWindowScript.SubCategory.C3B:
+			this.Name.text = "C3B";
+			this.Image.sprite = this.C3BSprite;
+			break;
+
+		case ShopWindowScript.SubCategory.C5:
+			this.Name.text = "C5";
+			this.Image.sprite = this.C5Sprite;
+			break;
+
+		case ShopWindowScript.SubCategory.C6:
+			this.Name.text = "C6";
+			this.Image.sprite = this.C6Sprite;
+			break;
+
+		case ShopWindowScript.SubCategory.C9:
+			this.Name.text = "C9";
+			this.Image.sprite = this.C9Sprite;
+			break;
+
+		case ShopWindowScript.SubCategory.C10:
+			this.Name.text = "C10";
+			this.Image.sprite = this.C10Sprite;
+			break;
+
+		case ShopWindowScript.SubCategory.D35:
+			this.Name.text = "D35";
+			this.Image.sprite = this.D35Sprite;
+			break;
+
+		case ShopWindowScript.SubCategory.D6:
+			this.Name.text = "D6";
+			this.Image.sprite = this.D6Sprite;
+			break;
+
+		case ShopWindowScript.SubCategory.D8:
+			this.Name.text = "D8";
+			this.Image.sprite = this.D8Sprite;
+			break;
 			// case ShopWindowScript.SubCategory.CAMP:
 			// 	this.Name.text = "CAMP";
 			// 	this.Image.sprite = this.CampSprite;
@@ -95,7 +155,15 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "C4";
 				this.Image.sprite = this.C4Sprite;
 				break;
+		case ShopWindowScript.SubCategory.Canteen:
+			this.Name.text = "CANTEEN";
+			this.Image.sprite = this.CanteenSprite;
+			break;
 
+		case ShopWindowScript.SubCategory.GaraD6:
+			this.Name.text = "GARA D6";
+			this.Image.sprite = this.GaraD6Sprite;
+			break;
 			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
 			// 	this.Name.text = "GOLD STORAGE";
 			// 	this.Image.sprite = this.GoldStorageSprite;
@@ -153,7 +221,37 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.D4:
 				itemId = 3635;
 				break;
-			//case ShopWindowScript.SubCategory.CAMP:
+		case ShopWindowScript.SubCategory.C2:
+			itemId = 8216;
+			break;
+		case ShopWindowScript.SubCategory.C3:
+			itemId = 2454;
+			break;
+		case ShopWindowScript.SubCategory.C3B:
+			itemId = 5835;
+			break;
+		case ShopWindowScript.SubCategory.C5:
+			itemId = 3504;
+			break;
+		case ShopWindowScript.SubCategory.C6:
+			itemId = 2617;
+			break;
+		case ShopWindowScript.SubCategory.C9:
+			itemId = 9295;
+			break;
+		case ShopWindowScript.SubCategory.C10:
+			itemId = 8385;
+			break;
+		case ShopWindowScript.SubCategory.D35:
+			itemId = 4407;
+			break;
+		case ShopWindowScript.SubCategory.D6:
+			itemId = 6330;
+			break;
+		case ShopWindowScript.SubCategory.D8:
+			itemId = 5134;
+			break;
+		//case ShopWindowScript.SubCategory.CAMP:
 			//	itemId = 2728;
 			//	break;
 			//case ShopWindowScript.SubCategory.CANNON:
@@ -161,6 +259,12 @@ public class SubCategoryItemScript : MonoBehaviour
 			//	break;
 			case ShopWindowScript.SubCategory.C4:
 				itemId = 3265;
+				break;
+			case ShopWindowScript.SubCategory.Canteen:
+				itemId = 1399;
+				break;
+			case ShopWindowScript.SubCategory.GaraD6:
+				itemId = 4132;
 				break;
 			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
 			// 	itemId = 9074;
@@ -248,6 +352,36 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.D4:
 				itemId = 3635;
 				break;
+			case ShopWindowScript.SubCategory.C2:
+				itemId = 8216;
+				break;
+			case ShopWindowScript.SubCategory.C3:
+				itemId = 2454;
+				break;
+			case ShopWindowScript.SubCategory.C3B:
+				itemId = 5835;
+				break;
+			case ShopWindowScript.SubCategory.C5:
+				itemId = 3504;
+				break;
+			case ShopWindowScript.SubCategory.C6:
+				itemId = 2617;
+				break;
+			case ShopWindowScript.SubCategory.C9:
+				itemId = 9295;
+				break;
+			case ShopWindowScript.SubCategory.C10:
+				itemId = 8385;
+				break;
+			case ShopWindowScript.SubCategory.D35:
+				itemId = 4407;
+				break;
+			case ShopWindowScript.SubCategory.D6:
+				itemId = 6330;
+				break;
+			case ShopWindowScript.SubCategory.D8:
+				itemId = 5134;
+				break;
 			case ShopWindowScript.SubCategory.C4:
 				itemId = 3265;
 				break;
@@ -277,6 +411,12 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.B8:
 				itemId = 5342;
+				break;
+			case ShopWindowScript.SubCategory.Canteen:
+				itemId = 1399;
+				break;
+			case ShopWindowScript.SubCategory.GaraD6:
+				itemId = 4132;
 				break;
 		}
 		return itemId;
