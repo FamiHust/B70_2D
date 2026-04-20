@@ -254,6 +254,14 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.xgame.unity-mcp-uitoolkit": {
+      "version": "file:C:/Users/Admin/Downloads/xgame-mcp-plugin-v1.0.3",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      }
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

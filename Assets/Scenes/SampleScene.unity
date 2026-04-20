@@ -50314,7 +50314,7 @@ MonoBehaviour:
     type: 3}
   ShopWindow: {fileID: 1678858075550006, guid: 5a1c81eb361b2411dbf7194926caf3d1, type: 3}
   ItemWindow: {fileID: 1678858075550006, guid: fd0ada4f452126a4b9a713ea2da51fd3, type: 3}
-  SceneEnteringWindow: {fileID: 1558085284865896, guid: 0d49e445c60ee449b8915c17f4b3b047,
+  SceneEnteringWindow: {fileID: 79434794931205346, guid: b30b3ab62950a2c488e616fd9b5f4d4f,
     type: 3}
   BuildersBusyWindow: {fileID: 1302423457251904, guid: 422c824df08574a0c9154475ae212869,
     type: 3}
