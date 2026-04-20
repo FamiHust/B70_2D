@@ -41,6 +41,9 @@ public class SubCategoryItemScript : MonoBehaviour
 	public Text Name;
 	public Text PriceText;
 	public Image Image;
+	public GameObject LockImage;
+	public Text UnlockText;
+
 
 
 	/* private variables */
@@ -55,7 +58,19 @@ public class SubCategoryItemScript : MonoBehaviour
 		if (itemData != null && PriceText != null)
 		{
 			PriceText.text = itemData.configuration.price.ToString();
+			
+			if (UnlockText != null)
+			{
+				UnlockText.text = "Semester " + itemData.configuration.unlockItemAtSemester;
+			}
+			
+			bool isUnlocked = SceneManager.instance.currentSemester >= itemData.configuration.unlockItemAtSemester;
+			if (LockImage != null)
+			{
+				LockImage.SetActive(!isUnlocked);
+			}
 		}
+
 
 		switch (this._subCategory)
 		{
@@ -208,7 +223,22 @@ public class SubCategoryItemScript : MonoBehaviour
 
 	public void OnClick()
 	{
+		// LẤY DATA ITEM
+		int itemIdToBuy = GetItemId(this._subCategory);
+		ItemsCollection.ItemData itemToBuyData = Items.GetItem(itemIdToBuy);
+		
+		if (itemToBuyData != null)
+		{
+			bool isUnlocked = SceneManager.instance.currentSemester >= itemToBuyData.configuration.unlockItemAtSemester;
+			if (!isUnlocked)
+			{
+				Debug.Log("Item is locked! Requires Semester " + itemToBuyData.configuration.unlockItemAtSemester);
+				return;
+			}
+		}
+
 		int itemId = 0;
+
 
 		switch (this._subCategory)
 		{
@@ -421,4 +451,15 @@ public class SubCategoryItemScript : MonoBehaviour
 		}
 		return itemId;
 	}
+	public void OnClickInfoButton()
+	{
+		int itemId = GetItemId(this._subCategory);
+		ItemsCollection.ItemData itemData = Items.GetItem(itemId);
+		if (itemData != null)
+		{
+			InfoWindowScript infoWindow = UIManager.instance.ShowInfoWindow();
+			infoWindow.Init(itemData);
+		}
+	}
 }
+

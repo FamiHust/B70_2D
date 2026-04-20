@@ -12,6 +12,7 @@ public class ProgressPanelScript : MonoBehaviour
     /* public variables */
     public bool hasMaxValue;
     public bool isPercent;
+    public bool showAsCurrentMax;  // Hiển thị dạng "current/max" (e.g. 5/10)
 
     private float _maxValue;
     public float maxValue
@@ -37,7 +38,12 @@ public class ProgressPanelScript : MonoBehaviour
 
     public void UpdateComponents()
 {
-    if (isPercent)
+    if (showAsCurrentMax && hasMaxValue)
+    {
+        // Hiển thị dạng "current/max" (e.g. 5/10)
+        ValueLabel.text = ((int)value) + "/" + ((int)maxValue);
+    }
+    else if (isPercent)
     {
         ValueLabel.text = ((int)value) + "%";
     }

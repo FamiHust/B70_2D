@@ -44,6 +44,9 @@ public class SceneManager : MonoBehaviour
 	public int happyStorageCapacity;
 	public int studentStorageCapacity;
 	public int educationStorageCapacity;
+	public int currentSemester;
+	public float semesterProgress;
+
 
 
 	void Awake()
@@ -90,17 +93,44 @@ public class SceneManager : MonoBehaviour
 		this.goldStorageCapacity = 1000;
 		this.diamondStorageCapacity = 100;
 		this.happyStorageCapacity = 100;
-		this.studentStorageCapacity = 10;
-		this.educationStorageCapacity = 10;
+		this.studentStorageCapacity = 20;
+		this.educationStorageCapacity = 100;
 		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
 		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
 		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
-		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 80);
-		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 5);
-		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 5);
+		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
+		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 0);
+		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 0);
+		this.currentSemester = PlayerPrefs.GetInt("currentSemester", 1);
+		this.semesterProgress = PlayerPrefs.GetFloat("semesterProgress", 0);
 		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
+
+	}
+
+	private void OnApplicationQuit()
+	{
+		if (DataBaseManager.instance != null)
+		{
+			DataBaseManager.instance.SaveScene();
+		}
+	}
+
+	private void OnApplicationPause(bool pauseStatus)
+	{
+		if (pauseStatus && DataBaseManager.instance != null)
+		{
+			DataBaseManager.instance.SaveScene();
+		}
+	}
+
+	private void OnApplicationFocus(bool hasFocus)
+	{
+		if (!hasFocus && DataBaseManager.instance != null)
+		{
+			DataBaseManager.instance.SaveScene();
+		}
 	}
 
 	/// <summary>
@@ -113,7 +143,10 @@ public class SceneManager : MonoBehaviour
 		PlayerPrefs.SetInt("numberOfHappyInStorage", this.numberOfHappyInStorage);
 		PlayerPrefs.SetInt("numberOfStudentInStorage", this.numberOfStudentInStorage);
 		PlayerPrefs.SetInt("numberOfEducationInStorage", this.numberOfEducationInStorage);
+		PlayerPrefs.SetInt("currentSemester", this.currentSemester);
+		PlayerPrefs.SetFloat("semesterProgress", this.semesterProgress);
 		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
+
 		PlayerPrefs.Save();
 	}
 
@@ -123,7 +156,7 @@ public class SceneManager : MonoBehaviour
 	/// </summary>
 	/// <returns>The item.</returns>
 	/// <param name="itemId">Item identifier.</param>
-	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1)
+	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0)
 	{
 		BaseItemScript builder = null;
 
@@ -148,7 +181,7 @@ public class SceneManager : MonoBehaviour
 		instance.instanceId = instanceId;
 		this._itemInstances.Add(instanceId, instance);
 
-		instance.SetItemData(itemId, posX, posZ, level);
+		instance.SetItemData(itemId, posX, posZ, level, lastCollectedTime);
 		instance.SetState(Common.State.IDLE);
 
 		// Remove the map shop area if it exists for this item
@@ -188,6 +221,12 @@ public class SceneManager : MonoBehaviour
 			this.UpdateWalls();
 		}
 		instance.ownedItem = ownedItem;
+
+		if (ownedItem)
+		{
+			DataBaseManager.instance.SaveScene();
+		}
+
 		return instance;
 	}
 
@@ -271,6 +310,7 @@ public class SceneManager : MonoBehaviour
 				}
 			}
 
+			DataBaseManager.instance.RemoveItem(item);
 			Destroy(item.gameObject);
 		}
 	}
@@ -541,7 +581,9 @@ public class SceneManager : MonoBehaviour
 		{
 			foreach (ItemData itemData in sceneData.items)
 			{
-				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true, itemData.level);
+				double lastTime = 0;
+				double.TryParse(itemData.lastCollectedTime, out lastTime);
+				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true, itemData.level, lastTime);
 			}
 		}
 
@@ -854,7 +896,10 @@ public class SceneManager : MonoBehaviour
 				GameOverlayWindowScript.instance.CollectResource("diamond", this.numberOfDiamondsInStorage);
 			else if (resourceType == "student")
 				GameOverlayWindowScript.instance.CollectResource("student", this.numberOfStudentInStorage);
+			else if (resourceType == "semester")
+				GameOverlayWindowScript.instance.RefreshSemesterUI();
 		}
+
 
 		if (TrainTroopsWindowScript.instance != null)
 		{
@@ -897,7 +942,7 @@ public class SceneManager : MonoBehaviour
 
 	public void UpdateStudentStorageCapacity()
 	{
-		int baseCapacity = 10;
+		int baseCapacity = 20;
 		int totalIncrease = 0;
 		foreach (var item in GetAllItems())
 		{

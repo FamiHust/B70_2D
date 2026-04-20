@@ -11,6 +11,7 @@ public class ItemData
 	public int posX;
 	public int posZ;
 	public int level = 1;
+	public string lastCollectedTime;
 }
 
 [System.Serializable]
@@ -36,7 +37,7 @@ public class SceneData
 		items = new List<ItemData>();
 	}
 
-	public void AddOrUpdateItem(int instanceId, int itemId, int posX, int posZ, int level)
+	public void AddOrUpdateItem(int instanceId, int itemId, int posX, int posZ, int level, double lastCollectedTime)
 	{
 		ItemData itemData = null;
 		foreach (ItemData item in this.items)
@@ -58,6 +59,7 @@ public class SceneData
 		itemData.posX = posX;
 		itemData.posZ = posZ;
 		itemData.level = level;
+		itemData.lastCollectedTime = lastCollectedTime.ToString();
 	}
 
 	public void RemoveItem(int instanceId)
@@ -361,17 +363,21 @@ public class DataBaseManager : MonoBehaviour
 		this.EnsureInMemoryData();
 		foreach (BaseItemScript item in SceneManager.instance.GetAllItems())
 		{
-			this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level);
+			double lastCollectedTime = (item.Production != null) ? item.Production.GetLastCollectedTime() : 0;
+			this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level, lastCollectedTime);
 		}
 		this.SaveDataBase();
 	}
 
 	public void UpdateItemData(BaseItemScript item)
 	{
+		if (item == null) return;
 		this.EnsureInMemoryData();
-		this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level);
+		double lastCollectedTime = (item.Production != null) ? item.Production.GetLastCollectedTime() : 0;
+		this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level, lastCollectedTime);
 		this.SaveDataBase();
 	}
+
 
 	public void RemoveItem(BaseItemScript item)
     {

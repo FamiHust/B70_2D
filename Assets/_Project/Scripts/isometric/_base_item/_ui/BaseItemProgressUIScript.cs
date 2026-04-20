@@ -54,8 +54,14 @@ public class BaseItemProgressUIScript : MonoBehaviour
 		float elapsedTime = Time.time - this._buildStartTime;
 		float progress = elapsedTime / this._buildTime;
 
+		float oldWidth = this.ProgressFiller.size.x;
 		_tempSize.x = progress * this._fillerFullLength;
 		_tempSize.y = this.ProgressFiller.size.y;
+		
+		// Adjust position to keep left edge fixed while growing to the right
+		float positionOffset = (_tempSize.x - oldWidth) / 2f;
+		this.ProgressFiller.transform.localPosition += new Vector3(positionOffset, 0, 0);
+		
 		this.ProgressFiller.size = _tempSize;
 
 		int timeToFinish = (int)(_buildTime - elapsedTime);

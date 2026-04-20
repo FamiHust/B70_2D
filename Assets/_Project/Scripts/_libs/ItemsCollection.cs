@@ -21,7 +21,10 @@ public class ItemsCollection : ScriptableObject
         public int price = 100;          // GIÁ BUILD
         public string resourceType = "gold";
         public int studentCapacityIncrease = 0;
+        public int levelMax = 99;                // Maximum upgrade level
+        public int unlockItemAtSemester = 1;
     }
+
 
     [System.Serializable]
     public class ItemData

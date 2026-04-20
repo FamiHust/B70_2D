@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +15,9 @@ public class GameOverlayWindowScript : WindowScript
 	public ProgressPanelScript HappyInfo;
 	public ProgressPanelScript StudentInfo;
 	public ProgressPanelScript EducationInfo;
+	public ProgressPanelScript SemesterInfo;
+	public Text SemesterLabel;
+
 
 	private void Awake()
 	{
@@ -49,13 +52,21 @@ public class GameOverlayWindowScript : WindowScript
 		this.StudentInfo.hasMaxValue = true;
 		this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
 		this.StudentInfo.value = SceneManager.instance.numberOfStudentInStorage;
+		this.StudentInfo.showAsCurrentMax = true;  // Hiển thị dạng "5/10"
 
 		this.EducationInfo.hasMaxValue = true;
 		this.EducationInfo.maxValue = SceneManager.instance.educationStorageCapacity;
 		this.EducationInfo.value = SceneManager.instance.numberOfEducationInStorage;
 		this.EducationInfo.isPercent = true;
 
+		this.SemesterInfo.hasMaxValue = true;
+		this.SemesterInfo.maxValue = 100;
+		this.SemesterInfo.value = SceneManager.instance.semesterProgress;
+		this.SemesterInfo.isPercent = true;
+
+		this.RefreshSemesterUI();
 	}
+
 
 	public void OnClickShopButton()
 	{
@@ -67,7 +78,54 @@ public class GameOverlayWindowScript : WindowScript
 		SceneManager.instance.EnterAttackMode();
 	}
 
+	public void OnClickMissionButton()
+	{
+		UIManager.instance.ShowMissionWindow();
+	}
+
+	public void OnClickIncreaseStudent()
+	{
+		SceneManager.instance.numberOfStudentInStorage++;
+		if (SceneManager.instance.numberOfStudentInStorage > SceneManager.instance.studentStorageCapacity)
+		{
+			SceneManager.instance.numberOfStudentInStorage = SceneManager.instance.studentStorageCapacity;
+		}
+		SceneManager.instance.SaveResources();
+		SceneManager.instance.RefreshResourceUIs("student");
+	}
+
+	public void OnClickDecreaseStudent()
+	{
+		SceneManager.instance.numberOfStudentInStorage--;
+		if (SceneManager.instance.numberOfStudentInStorage < 0)
+		{
+			SceneManager.instance.numberOfStudentInStorage = 0;
+		}
+		SceneManager.instance.SaveResources();
+		SceneManager.instance.RefreshResourceUIs("student");
+	}
+
+	public void RefreshSemesterUI()
+	{
+		this.SemesterInfo.value = SceneManager.instance.semesterProgress;
+		this.SemesterLabel.text = SceneManager.instance.currentSemester.ToString();
+	}
+
+	public void OnClickEndSemester()
+	{
+		// Tăng kỳ và reset progress
+		SceneManager.instance.currentSemester++;
+		SceneManager.instance.semesterProgress = 0;
+		SceneManager.instance.SaveResources();
+
+		this.RefreshSemesterUI();
+
+		// Hiển thị window kỳ mới
+		UIManager.instance.ShowNewSemesterWindow();
+	}
+
 	//RESOURCE  COLLECTION
+
 	public void CollectResource(string resourceType, int value)
 	{
 

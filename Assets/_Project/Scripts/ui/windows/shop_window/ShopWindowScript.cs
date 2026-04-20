@@ -141,18 +141,43 @@ public class ShopWindowScript : WindowScript
 		for (int index = 0; index < subItems.Length; index++)
 		{
 			SubCategory subCat = subItems[index];
-
-			// Allow walls and trees to be bought multiple times
 			bool canBuyMultiple = (subCat == SubCategory.WALL || subCat == SubCategory.TREE3);
 			int itemId = GetItemIdFromSubCategory(subCat);
 
 			if (canBuyMultiple || !SceneManager.instance.IsItemBuiltInScene(itemId))
 			{
-				GameObject inst = Utilities.CreateInstance(this.SubCategoryItem, this.ItemsList, true);
-				inst.GetComponent<SubCategoryItemScript>().SetSubCategory(subCat);
 				validSubItems.Add(subCat);
 			}
 		}
+
+		// Sắp xếp: item đã unlock lên trước, sau đó sắp xếp theo semester yêu cầu
+		validSubItems.Sort((a, b) =>
+		{
+			int itemIdA = GetItemIdFromSubCategory(a);
+			int itemIdB = GetItemIdFromSubCategory(b);
+			ItemsCollection.ItemData dataA = Items.GetItem(itemIdA);
+			ItemsCollection.ItemData dataB = Items.GetItem(itemIdB);
+
+			bool unlockedA = SceneManager.instance.currentSemester >= dataA.configuration.unlockItemAtSemester;
+			bool unlockedB = SceneManager.instance.currentSemester >= dataB.configuration.unlockItemAtSemester;
+
+			// Nếu trạng thái unlock khác nhau, cái nào unlock rồi thì lên trước (-1)
+			if (unlockedA != unlockedB)
+			{
+				return unlockedA ? -1 : 1;
+			}
+
+			// Nếu cùng trạng thái (cùng khóa hoặc cùng mở), sắp xếp theo số kỳ yêu cầu
+			return dataA.configuration.unlockItemAtSemester.CompareTo(dataB.configuration.unlockItemAtSemester);
+		});
+
+		// Hiển thị danh sách đã sắp xếp
+		foreach (SubCategory subCat in validSubItems)
+		{
+			GameObject inst = Utilities.CreateInstance(this.SubCategoryItem, this.ItemsList, true);
+			inst.GetComponent<SubCategoryItemScript>().SetSubCategory(subCat);
+		}
+
 
 		RectTransform rt = this.ItemsList.GetComponent<RectTransform>();
 		Vector2 sizeDelta = this.ItemsList.GetComponent<RectTransform>().sizeDelta;
@@ -242,7 +267,24 @@ public class ShopWindowScript : WindowScript
 
 		Debug.Log($"[ShopWindow] RenderMapShop: area='{areaName}', itemCount={itemIds.Count}");
 
-		// Create SubCategoryItem for each itemId
+		// Sắp xếp danh sách itemIds trước khi hiển thị
+		itemIds.Sort((a, b) =>
+		{
+			ItemsCollection.ItemData dataA = Items.GetItem(a);
+			ItemsCollection.ItemData dataB = Items.GetItem(b);
+
+			bool unlockedA = SceneManager.instance.currentSemester >= dataA.configuration.unlockItemAtSemester;
+			bool unlockedB = SceneManager.instance.currentSemester >= dataB.configuration.unlockItemAtSemester;
+
+			if (unlockedA != unlockedB)
+			{
+				return unlockedA ? -1 : 1;
+			}
+
+			return dataA.configuration.unlockItemAtSemester.CompareTo(dataB.configuration.unlockItemAtSemester);
+		});
+
+		// Create SubCategoryItem for each itemId (đã sắp xếp)
 		for (int i = 0; i < itemIds.Count; i++)
 		{
 			int itemId = itemIds[i];
@@ -268,6 +310,7 @@ public class ShopWindowScript : WindowScript
 				Debug.LogWarning($"[ShopWindow] ItemId {itemId} not found in Items database!");
 			}
 		}
+
 
 		// Adjust layout for items count
 		RectTransform rt = this.ItemsList.GetComponent<RectTransform>();

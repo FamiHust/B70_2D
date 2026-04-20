@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -24,6 +24,10 @@ public class UIManager : MonoBehaviour
 	public GameObject InfoWindow;
 	public GameObject UpgradeWindow;
 	public GameObject BoostWindow;
+	public GameObject TutorialWindow;
+	public GameObject NewSemesterWindow;
+	public GameObject MissionWindow;
+
 
 	/* object references */
 	public GameObject WindowsContainer;
@@ -128,10 +132,11 @@ public class UIManager : MonoBehaviour
 		}
 	}
 
-	public void ShowInfoWindow()
+	public InfoWindowScript ShowInfoWindow()
 	{
-		this.ShowWindow(this.InfoWindow);
+		return this.ShowWindow(this.InfoWindow) as InfoWindowScript;
 	}
+
 
 	public void ShowUpgradeWindow()
 	{
@@ -141,6 +146,22 @@ public class UIManager : MonoBehaviour
 	public void ShowBoostWindow()
 	{
 		this.ShowWindow(this.BoostWindow);
+	}
+
+	public void ShowTutorialWindow()
+	{
+		this.ShowWindow(this.TutorialWindow);
+	}
+
+	public void ShowNewSemesterWindow()
+	{
+		this.ShowWindow(this.NewSemesterWindow);
+	}
+
+
+	public void ShowMissionWindow()
+	{
+		this.ShowWindow(this.MissionWindow);
 	}
 
 	public ItemWindowScript ShowMapShopWindow(string areaName, List<int> itemIds, MapShopAreaScript mapShopArea = null)

@@ -34,11 +34,29 @@ public class UpgradeWindowScript : WindowScript
         LevelText.text = "Level: " + (_targetItem.level + 1);
         CostText.text = _targetItem.GetUpgradeCost().ToString();
         DiamondCostText.text = "5";
+        
+        // Disable upgrade button if already at max level
+        int nextLevel = _targetItem.level + 1;
+        int maxLevel = _targetItem.itemData.configuration.levelMax;
+        if (nextLevel > maxLevel)
+        {
+            UpgradeButton.interactable = false;
+            BoostButton.interactable = false;
+        }
     }
 
     public void OnClickUpgradeButton()
     {
         if (_targetItem == null) return;
+        
+        // Check if already at max level
+        int nextLevel = _targetItem.level + 1;
+        int maxLevel = _targetItem.itemData.configuration.levelMax;
+        if (nextLevel > maxLevel)
+        {
+            Debug.Log("Item is already at maximum level " + maxLevel);
+            return;
+        }
 
         int cost = _targetItem.GetUpgradeCost();
         if (SceneManager.instance.ConsumeResource("gold", cost))
@@ -75,6 +93,15 @@ public class UpgradeWindowScript : WindowScript
     public void OnClickBoostButton()
     {
         if (_targetItem == null) return;
+        
+        // Check if already at max level
+        int nextLevel = _targetItem.level + 1;
+        int maxLevel = _targetItem.itemData.configuration.levelMax;
+        if (nextLevel > maxLevel)
+        {
+            Debug.Log("Item is already at maximum level " + maxLevel);
+            return;
+        }
 
         // Consume diamonds (5 diamonds to boost)
         if (SceneManager.instance.ConsumeResource("diamond", 5))

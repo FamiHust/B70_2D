@@ -14,6 +14,9 @@ public class MapShopItemScript : MonoBehaviour
 	public Text Name;
 	public Text PriceText;
 	public Image Image;
+	public GameObject LockImage;
+	public Text UnlockText;
+
 
 	/* private variables */
 	private int _itemId = 0;
@@ -40,7 +43,19 @@ public class MapShopItemScript : MonoBehaviour
 			{
 				SetImageSprite(itemId);
 			}
+
+			if (UnlockText != null)
+			{
+				UnlockText.text = "Semester " + _itemData.configuration.unlockItemAtSemester;
+			}
+
+			bool isUnlocked = SceneManager.instance.currentSemester >= _itemData.configuration.unlockItemAtSemester;
+			if (LockImage != null)
+			{
+				LockImage.SetActive(!isUnlocked);
+			}
 		}
+
 	}
 
 	private void SetImageSprite(int itemId)
@@ -124,6 +139,14 @@ public class MapShopItemScript : MonoBehaviour
 		{
 			return;
 		}
+
+		bool isUnlocked = SceneManager.instance.currentSemester >= _itemData.configuration.unlockItemAtSemester;
+		if (!isUnlocked)
+		{
+			Debug.Log("Item is locked! Requires Semester " + _itemData.configuration.unlockItemAtSemester);
+			return;
+		}
+
 
 		int price = _itemData.configuration.price;
 		string resource = _itemData.configuration.resourceType;

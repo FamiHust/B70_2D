@@ -18,6 +18,7 @@ public class InfoWindowScript : WindowScript
 
 	/* private vars */
 	private BaseItemScript _baseItem;
+	private ItemsCollection.ItemData _itemData;
 
 	void Awake()
 	{
@@ -25,7 +26,10 @@ public class InfoWindowScript : WindowScript
 		if (SceneManager.instance == null)
 			return;
 
-		this.Init();
+		if (SceneManager.instance.selectedItem != null)
+		{
+			this.Init(SceneManager.instance.selectedItem.itemData);
+		}
 	}
 
 	private void OnDestroy()
@@ -33,69 +37,68 @@ public class InfoWindowScript : WindowScript
 		instance = null;
 	}
 
-	public void Init()
+	public void Init(ItemsCollection.ItemData itemData)
 	{
-		this._baseItem = SceneManager.instance.selectedItem;
+		this._itemData = itemData;
 		this.RenderInfo();
 	}
 
 	public void RenderInfo()
 	{
-		this.Title.text = this._baseItem.itemData.name;
-		this.ThumbImage.texture = this._baseItem.itemData.thumb;
+		if (this._itemData == null) return;
 
-		bool isCharacter = this._baseItem.itemData.configuration.isCharacter;
+		this.Title.text = this._itemData.name;
+		this.ThumbImage.texture = this._itemData.thumb;
+
+		bool isCharacter = this._itemData.configuration.isCharacter;
 
 		if (!isCharacter)
 		{
 			//GRID SIZE
-			string gridSize = this._baseItem.itemData.gridWidth.ToString() + "x" + this._baseItem.itemData.gridHeight.ToString();
+			string gridSize = this._itemData.gridWidth.ToString() + "x" + this._itemData.gridHeight.ToString();
 			this._CreateInfoItem("Grid Size", gridSize);
 		}
 
-		string buildTime = this._baseItem.itemData.configuration.buildTime.ToString() + "s";
+		string buildTime = this._itemData.configuration.buildTime.ToString() + "s";
 		this._CreateInfoItem("Build Time", buildTime);
 
-		if (this._baseItem.itemData.configuration.speed > 0)
+		if (this._itemData.configuration.speed > 0)
 		{
-			string speed = this._baseItem.itemData.configuration.speed.ToString();
+			string speed = this._itemData.configuration.speed.ToString();
 			this._CreateInfoItem("Speed", speed);
 		}
 
-		if (this._baseItem.itemData.configuration.attackRange > 0)
+		if (this._itemData.configuration.attackRange > 0)
 		{
-			string attackRange = this._baseItem.itemData.configuration.attackRange.ToString();
+			string attackRange = this._itemData.configuration.attackRange.ToString();
 			this._CreateInfoItem("Attack Range", attackRange);
 		}
 
-		if (this._baseItem.itemData.configuration.defenceRange > 0)
+		if (this._itemData.configuration.defenceRange > 0)
 		{
-			string defenceRange = this._baseItem.itemData.configuration.defenceRange.ToString();
+			string defenceRange = this._itemData.configuration.defenceRange.ToString();
 			this._CreateInfoItem("Defence Range", defenceRange);
 		}
 
-
-		// string healthPoints = this._baseItem.itemData.configuration.healthPoints.ToString();
-		// this._CreateInfoItem("Health Points", healthPoints);
-
-		if (this._baseItem.itemData.configuration.hitPoints > 0)
+		if (this._itemData.configuration.hitPoints > 0)
 		{
-			string hitPoints = this._baseItem.itemData.configuration.hitPoints.ToString();
+			string hitPoints = this._itemData.configuration.hitPoints.ToString();
 			this._CreateInfoItem("Hit Points", hitPoints);
 		}
 
-		if (this._baseItem.itemData.configuration.productionRate > 0)
+		if (this._itemData.configuration.productionRate > 0)
 		{
-			string productionRate = this._baseItem.itemData.configuration.productionRate.ToString();
+			string productionRate = this._itemData.configuration.productionRate.ToString();
 			this._CreateInfoItem("Production Rate", productionRate);
 
-			string product = this._baseItem.itemData.configuration.product;
+			string product = this._itemData.configuration.product;
 			this._CreateInfoItem("Product", product);
 		}
 
-		if (!string.IsNullOrEmpty(this._baseItem.itemData.description))
-			this._CreateInfoItem("Description", this._baseItem.itemData.description);
+		if (!string.IsNullOrEmpty(this._itemData.description))
+			this._CreateInfoItem("Description", this._itemData.description);
 	}
+
 
 	private void _CreateInfoItem(string property, string value)
 	{

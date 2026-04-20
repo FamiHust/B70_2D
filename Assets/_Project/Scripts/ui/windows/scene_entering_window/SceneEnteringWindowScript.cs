@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,5 +12,9 @@ public class SceneEnteringWindowScript : WindowScript {
 		if (OnIntermediate != null) {
 			OnIntermediate.Invoke ();
 		}
+	}
+
+	void LateUpdate() {
+		transform.SetAsLastSibling();
 	}
 }

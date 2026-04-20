@@ -67,7 +67,7 @@ public class BaseItemScript : MonoBehaviour
 		}
 	}
 
-	public void SetItemData(int itemId, int posX, int posZ, int level = 1)
+	public void SetItemData(int itemId, int posX, int posZ, int level = 1, double lastCollectedTime = 0)
 	{
 		this.itemData = Items.GetItem(itemId);
 		this.level = level;
@@ -89,8 +89,9 @@ public class BaseItemScript : MonoBehaviour
 		this.UI.SetData(this);
 		this.Particles.SetData(this);
 
-		if (this.itemData.configuration.productionRate > 0)
-			this.Production.SetData(this);
+		if (this.Production != null)
+			this.Production.SetData(this, lastCollectedTime);
+
 
 		this.connectedItems = new List<BaseItemScript>();
 

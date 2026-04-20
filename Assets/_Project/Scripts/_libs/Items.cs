@@ -1,4 +1,4 @@
-﻿/* **************************************************************************
+/* **************************************************************************
  * ITEMS
  * **************************************************************************
  * Written by: Coppra Games
@@ -28,7 +28,23 @@ public class Items : MonoBehaviour {
 		}
 	}
 		
+	public static List<ItemsCollection.ItemData> GetItemsBySemester(int semester)
+	{
+		List<ItemsCollection.ItemData> result = new List<ItemsCollection.ItemData>();
+		if (items == null) return result;
+
+		foreach (var item in items.Values)
+		{
+			if (item.configuration.unlockItemAtSemester == semester)
+			{
+				result.Add(item);
+			}
+		}
+		return result;
+	}
+
 	public static ItemsCollection.ItemData GetItem(int itemId){
+
 		ItemsCollection.ItemData item = null;
 		items.TryGetValue (itemId, out item);
 		return item;

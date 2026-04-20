@@ -57,6 +57,14 @@ public class ItemOptionsWindowScript : WindowScript
 			haveBoostButton = false;
 			haveUpgradeButton = true;
 			
+			// Check if already at max level - disable upgrade button
+			int nextLevel = selectedItem.level + 1;
+			int maxLevel = selectedItem.itemData.configuration.levelMax;
+			if (nextLevel > maxLevel)
+			{
+				haveUpgradeButton = false;
+			}
+			
 			// if (selectedItem.itemData.name == "Barrack")
 			// 	haveTrainButton = true;
 			// else
