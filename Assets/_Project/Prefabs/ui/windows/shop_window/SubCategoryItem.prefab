@@ -190,6 +190,7 @@ MonoBehaviour:
   Image: {fileID: 114645770851548556}
   LockImage: {fileID: 2658737479395028585}
   UnlockText: {fileID: 6773630006602803090}
+  InfoButton: {fileID: 8554354581952057570}
 --- !u!114 &114807311948488204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +265,7 @@ MonoBehaviour:
   Image: {fileID: 114645770851548556}
   LockImage: {fileID: 2658737479395028585}
   UnlockText: {fileID: 6773630006602803090}
+  InfoButton: {fileID: 8554354581952057570}
 --- !u!1 &1257787271080552
 GameObject:
   m_ObjectHideFlags: 0
@@ -661,10 +663,10 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836328182501974}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 224091300572309780}
   - {fileID: 224985169601218226}
@@ -703,7 +705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a21bc5e70abf0c429076f8274da99f7, type: 2}
+  m_Sprite: {fileID: 21300000, guid: b3cdb37590c89154db098e2cee008373, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -712,7 +714,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1.5
+  m_PixelsPerUnitMultiplier: 4
 --- !u!1 &1153232263087777946
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5943396, g: 0.4737896, b: 0.4737896, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -966,7 +968,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 54aadd04b723edf4a972232242a90f45, type: 2}
+  m_Sprite: {fileID: 21300000, guid: 2f8edc8449e640044bac1d954c77b5b7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1086,7 +1088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -11.3, y: 10.3}
+  m_AnchoredPosition: {x: -11.299988, y: 10.300003}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4053169240154903510
@@ -1173,6 +1175,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114431292156272836}
         m_TargetAssemblyTypeName: SubCategoryItemScript, Assembly-CSharp
+        m_MethodName: OnClickInfoButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6629121483517156068}
+        m_TargetAssemblyTypeName: MapShopItemScript, Assembly-CSharp
         m_MethodName: OnClickInfoButton
         m_Mode: 1
         m_Arguments:

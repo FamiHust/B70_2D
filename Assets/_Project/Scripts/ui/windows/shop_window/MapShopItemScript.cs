@@ -16,6 +16,7 @@ public class MapShopItemScript : MonoBehaviour
 	public Image Image;
 	public GameObject LockImage;
 	public Text UnlockText;
+	public GameObject InfoButton;
 
 
 	/* private variables */
@@ -53,6 +54,11 @@ public class MapShopItemScript : MonoBehaviour
 			if (LockImage != null)
 			{
 				LockImage.SetActive(!isUnlocked);
+			}
+
+			if (InfoButton != null)
+			{
+				InfoButton.SetActive(isUnlocked);
 			}
 		}
 
@@ -185,6 +191,15 @@ public class MapShopItemScript : MonoBehaviour
 				}
 			}
 			itemWindow.Close();
+		}
+	}
+
+	public void OnClickInfoButton()
+	{
+		if (_itemData != null)
+		{
+			InfoWindowScript infoWindow = UIManager.instance.ShowInfoWindow();
+			infoWindow.Init(_itemData);
 		}
 	}
 }

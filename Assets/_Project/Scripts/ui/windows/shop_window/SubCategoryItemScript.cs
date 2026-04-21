@@ -43,6 +43,7 @@ public class SubCategoryItemScript : MonoBehaviour
 	public Image Image;
 	public GameObject LockImage;
 	public Text UnlockText;
+	public GameObject InfoButton;
 
 
 
@@ -68,6 +69,11 @@ public class SubCategoryItemScript : MonoBehaviour
 			if (LockImage != null)
 			{
 				LockImage.SetActive(!isUnlocked);
+			}
+
+			if (InfoButton != null)
+			{
+				InfoButton.SetActive(isUnlocked);
 			}
 		}
 
