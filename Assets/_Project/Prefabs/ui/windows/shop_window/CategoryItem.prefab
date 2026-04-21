@@ -144,6 +144,8 @@ MonoBehaviour:
   DecorationsSprite: {fileID: 21300000, guid: b38cc01d5308d7e41ace7421512e09a6, type: 2}
   Name: {fileID: 114956034562661668}
   Image: {fileID: 114960140593979912}
+  SelectedOverlay: {fileID: 1134148650516172}
+  Background: {fileID: 0}
 --- !u!114 &114006160625638124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +198,7 @@ MonoBehaviour:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 21300000, guid: 6ad0c7fce7bd12d4b89143753e47c629, type: 2}
     m_SelectedSprite: {fileID: 21300000, guid: 6ad0c7fce7bd12d4b89143753e47c629, type: 2}
-    m_DisabledSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 21300000, guid: 6ad0c7fce7bd12d4b89143753e47c629, type: 2}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted

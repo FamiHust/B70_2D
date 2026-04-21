@@ -113,6 +113,9 @@ public class ItemMissionScript : MonoBehaviour
 		// Award gold
 		SceneManager.instance.CollectResource("gold", _goldReward);
 		
+		// Increment semester progress
+		SceneManager.instance.AddMissionProgress();
+
 		// Mark as claimed
 		_data.isClaimed = true;
 

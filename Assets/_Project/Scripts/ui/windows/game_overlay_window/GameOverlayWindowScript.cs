@@ -107,7 +107,7 @@ public class GameOverlayWindowScript : WindowScript
 
 	public void RefreshSemesterUI()
 	{
-		this.SemesterInfo.value = SceneManager.instance.semesterProgress;
+		this.SemesterInfo.TweenValueChange(SceneManager.instance.semesterProgress);
 		this.SemesterLabel.text = SceneManager.instance.currentSemester.ToString();
 	}
 

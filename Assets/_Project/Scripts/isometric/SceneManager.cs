@@ -46,6 +46,7 @@ public class SceneManager : MonoBehaviour
 	public int educationStorageCapacity;
 	public int currentSemester;
 	public float semesterProgress;
+	public int missionsPerSemester = 5;
 
 
 
@@ -824,6 +825,36 @@ public class SceneManager : MonoBehaviour
 			//war ends
 			AttackOverlayWindowScript.instance.Close();
 			UIManager.instance.ShowResultWindow(false, _swordManExpended, _archerExpended);
+		}
+	}
+
+	public void AddMissionProgress()
+	{
+		float progressIncrease = 100f / this.missionsPerSemester;
+		this.semesterProgress += progressIncrease;
+
+		// Check for semester completion (using a small epsilon for float precision)
+		if (this.semesterProgress >= 99.9f)
+		{
+			this.CompleteSemester();
+		}
+		else
+		{
+			this.SaveResources();
+			this.RefreshResourceUIs("semester");
+		}
+	}
+
+	public void CompleteSemester()
+	{
+		this.currentSemester++;
+		this.semesterProgress = 0;
+		this.SaveResources();
+		this.RefreshResourceUIs("semester");
+
+		if (UIManager.instance != null)
+		{
+			UIManager.instance.ShowNewSemesterWindow();
 		}
 	}
 
