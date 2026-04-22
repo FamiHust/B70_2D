@@ -48,8 +48,8 @@ public class CameraManager : MonoBehaviour
 	private float screenRatio => (float)Screen.width / Screen.height;
 	private Vector2 _defaultTouchPos = new Vector2(9999, 9999);
 	private float _minimumMoveDistanceForItemMove = 0.2f;
-	private float _maxZoomFactor = 30;
-	private float _minZoomFactor = 3;
+	private float _maxZoomFactor = 20;
+	private float _minZoomFactor = 4;
 	private float _clampZoomOffset = 2.0f;
 
 	private Vector3 _tapItemStartPos;
@@ -60,6 +60,8 @@ public class CameraManager : MonoBehaviour
 	private bool _isPanningScene;
 	private bool _isUIBlocked;
 	public bool canMoveBuildings = true;
+	public bool isCameraMovementLocked = false;
+
 
 	private BaseItemScript _selectedBaseItem;
 
@@ -92,8 +94,12 @@ public class CameraManager : MonoBehaviour
 		this.UpdateBaseItemTap();
 		this.UpdateBaseItemMove();
 		this.UpdateGroundTap();
-		this.UpdateScenePan();
-		this.UpdateSceneZoom();
+
+		if (!this.isCameraMovementLocked)
+		{
+			this.UpdateScenePan();
+			this.UpdateSceneZoom();
+		}
 	}
 
 	public bool IsUsingUI()
@@ -757,4 +763,38 @@ public class CameraManager : MonoBehaviour
         this.canMoveBuildings = !this.canMoveBuildings;
         Debug.Log("Building movement toggled: " + this.canMoveBuildings);
     }
+
+	public void ZoomOutAndLock()
+	{
+		this.isCameraMovementLocked = true;
+		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
+		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(this._maxZoomFactor));
+	}
+
+	public void ResetZoom(float zoomSize = 10f)
+	{
+		this.isCameraMovementLocked = false;
+		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
+		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(zoomSize));
+	}
+
+	private Coroutine _zoomCoroutine;
+	private IEnumerator _SmoothZoom(float targetSize)
+	{
+		float startSize = this.MainCamera.orthographicSize;
+		float t = 0;
+		float duration = 0.5f;
+
+		while (t < 1f)
+		{
+			t += Time.deltaTime / duration;
+			this.MainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, Mathf.SmoothStep(0f, 1f, t));
+			this.ClampCamera();
+			yield return null;
+		}
+
+		this.MainCamera.orthographicSize = targetSize;
+		this.ClampCamera();
+		this._zoomCoroutine = null;
+	}
 }

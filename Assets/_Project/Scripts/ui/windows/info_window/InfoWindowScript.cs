@@ -24,14 +24,6 @@ public class InfoWindowScript : WindowScript
 	void Awake()
 	{
 		instance = this;
-		if (SceneManager.instance == null)
-			return;
-
-		if (SceneManager.instance.selectedItem != null)
-		{
-			this._baseItem = SceneManager.instance.selectedItem;
-			this.Init(this._baseItem.itemData);
-		}
 	}
 
 	private void OnDestroy()
@@ -39,15 +31,22 @@ public class InfoWindowScript : WindowScript
 		instance = null;
 	}
 
-	public void Init(ItemsCollection.ItemData itemData)
+	public void Init(ItemsCollection.ItemData itemData, BaseItemScript baseItem = null)
 	{
 		this._itemData = itemData;
+		this._baseItem = baseItem;
 		this.RenderInfo();
 	}
 
 	public void RenderInfo()
 	{
 		if (this._itemData == null) return;
+
+		// Clear previous items
+		foreach (Transform child in this.InfoPanel.transform)
+		{
+			Destroy(child.gameObject);
+		}
 
 		this.Title.text = this._itemData.name;
 

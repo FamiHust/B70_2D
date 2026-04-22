@@ -150,7 +150,11 @@ public class ItemOptionsWindowScript : WindowScript
 
 	public void OnClickInfoButton()
 	{
-		UIManager.instance.ShowInfoWindow();
+		InfoWindowScript infoWindow = UIManager.instance.ShowInfoWindow();
+		if (SceneManager.instance.selectedItem != null)
+		{
+			infoWindow.Init(SceneManager.instance.selectedItem.itemData, SceneManager.instance.selectedItem);
+		}
 	}
 
 	public void OnClickUpgradeButton()

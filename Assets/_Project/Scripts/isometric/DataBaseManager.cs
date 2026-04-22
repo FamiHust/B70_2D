@@ -408,14 +408,22 @@ public class DataBaseManager : MonoBehaviour
 
 	public void SaveShopLayout(ShopLayoutData layoutData)
 	{
-		string filePath = Application.dataPath + "/StreamingAssets/shop_layout.json";
+		string filePath = Application.dataPath + "/_Project/Resources/shop_layout.json";
 		string jsonData = JsonUtility.ToJson(layoutData);
 		File.WriteAllText(filePath, jsonData);
 	}
 
 	public ShopLayoutData GetShopLayout()
 	{
-		string filePath = Application.dataPath + "/StreamingAssets/shop_layout.json";
+		// Try to load from Resources first (works on all platforms)
+		TextAsset asset = Resources.Load<TextAsset>("shop_layout");
+		if (asset != null)
+		{
+			return JsonUtility.FromJson<ShopLayoutData>(asset.text);
+		}
+
+		// Fallback for editor if needed
+		string filePath = Application.dataPath + "/_Project/Resources/shop_layout.json";
 		if (File.Exists(filePath))
 		{
 			string jsonData = File.ReadAllText(filePath);

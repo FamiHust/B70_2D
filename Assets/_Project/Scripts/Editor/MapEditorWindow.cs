@@ -62,7 +62,7 @@ public class MapEditorWindow : EditorWindow
 
     private void LoadData()
     {
-        string filePath = Application.dataPath + "/StreamingAssets/shop_layout.json";
+        string filePath = Application.dataPath + "/_Project/Resources/shop_layout.json";
         if (File.Exists(filePath))
         {
             string jsonData = File.ReadAllText(filePath);
@@ -174,7 +174,7 @@ public class MapEditorWindow : EditorWindow
 
     private void SaveData()
     {
-        string filePath = Application.dataPath + "/StreamingAssets/shop_layout.json";
+        string filePath = Application.dataPath + "/_Project/Resources/shop_layout.json";
         string jsonData = JsonUtility.ToJson(_shopLayoutData);
         File.WriteAllText(filePath, jsonData);
         AssetDatabase.Refresh();

@@ -46,7 +46,8 @@ public class SceneManager : MonoBehaviour
 	public int educationStorageCapacity;
 	public int currentSemester;
 	public float semesterProgress;
-	public int missionsPerSemester = 5;
+	// public int missionsPerSemester = 5; // Removed in favor of building-based progress
+
 
 
 
@@ -92,7 +93,7 @@ public class SceneManager : MonoBehaviour
 	{
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
 		this.goldStorageCapacity = 1000;
-		this.diamondStorageCapacity = 100;
+		this.diamondStorageCapacity = 20;
 		this.happyStorageCapacity = 100;
 		this.studentStorageCapacity = 20;
 		this.educationStorageCapacity = 100;
@@ -108,6 +109,8 @@ public class SceneManager : MonoBehaviour
 		this.semesterProgress = PlayerPrefs.GetFloat("semesterProgress", 0);
 		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
 
+		// Initialize progress based on existing buildings
+		this.UpdateSemesterProgress();
 	}
 
 	private void OnApplicationQuit()
@@ -204,6 +207,7 @@ public class SceneManager : MonoBehaviour
 			instance.OnConstructionComplete = (item) =>
 			{
 				this.UpdateStudentStorageCapacity();
+				this.UpdateSemesterProgress();
 			};
 
 			// if (!instance.itemData.configuration.isCharacter && instance.itemData.configuration.buildTime > 0)
@@ -757,6 +761,18 @@ public class SceneManager : MonoBehaviour
 		return false;
 	}
 
+	public bool IsItemConstructionFinished(int itemId)
+	{
+		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
+		{
+			if (entry.Value.itemData.id == itemId && entry.Value.UI.progressUIInstance == null)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void UpdateWalls()
 	{
 		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
@@ -828,13 +844,38 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 
-	public void AddMissionProgress()
+	public void UpdateSemesterProgress()
 	{
-		float progressIncrease = 100f / this.missionsPerSemester;
-		this.semesterProgress += progressIncrease;
+		List<int> requiredItemIds = ShopWindowScript.GetAllShopItemIds();
+		int totalRequired = 0;
+		int builtCount = 0;
+
+		foreach (int itemId in requiredItemIds)
+		{
+			ItemsCollection.ItemData itemData = Items.GetItem(itemId);
+			if (itemData != null && itemData.configuration.unlockItemAtSemester == this.currentSemester)
+			{
+				totalRequired++;
+				if (this.IsItemConstructionFinished(itemId))
+				{
+					builtCount++;
+				}
+			}
+		}
+
+		if (totalRequired > 0)
+		{
+			this.semesterProgress = (float)builtCount / totalRequired * 100f;
+		}
+		else
+		{
+			// If no buildings required for this semester, we can potentially advance or keep at 0
+			// Usually there should be at least one building.
+			this.semesterProgress = 0;
+		}
 
 		// Check for semester completion (using a small epsilon for float precision)
-		if (this.semesterProgress >= 99.9f)
+		if (this.semesterProgress >= 99.9f && totalRequired > 0)
 		{
 			this.CompleteSemester();
 		}
