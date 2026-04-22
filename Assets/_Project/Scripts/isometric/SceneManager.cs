@@ -92,22 +92,21 @@ public class SceneManager : MonoBehaviour
 	public void Init()
 	{
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
-		this.goldStorageCapacity = 1000;
+		this.goldStorageCapacity = 10000;
 		this.diamondStorageCapacity = 20;
-		this.happyStorageCapacity = 100;
 		this.studentStorageCapacity = 20;
+		this.happyStorageCapacity = 100;
 		this.educationStorageCapacity = 100;
 		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
-		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
-		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
-		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
+		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 100);
+		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 20);
 		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 0);
+		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
 		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 0);
 		this.currentSemester = PlayerPrefs.GetInt("currentSemester", 1);
 		this.semesterProgress = PlayerPrefs.GetFloat("semesterProgress", 0);
-		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
 
 		// Initialize progress based on existing buildings
 		this.UpdateSemesterProgress();
