@@ -167,10 +167,10 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "C7";
 				this.Image.sprite = this.C7Sprite;
 				break;
-			case ShopWindowScript.SubCategory.B8:
-					this.Name.text = "B8";
-					this.Image.sprite = this.B8Sprite;
-					break;
+			// case ShopWindowScript.SubCategory.B8:
+			// 		this.Name.text = "B8";
+			// 		this.Image.sprite = this.B8Sprite;
+			// 		break;
 
 			case ShopWindowScript.SubCategory.C4:
 				this.Name.text = "C4";

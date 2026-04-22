@@ -18,6 +18,10 @@ public class GameOverlayWindowScript : WindowScript
 	public ProgressPanelScript SemesterInfo;
 	public Text SemesterLabel;
 
+	public GameObject ZoomInButton;
+	public GameObject ZoomOutButton;
+
+
 
 	private void Awake()
 	{
@@ -65,6 +69,10 @@ public class GameOverlayWindowScript : WindowScript
 		this.SemesterInfo.isPercent = true;
 
 		this.RefreshSemesterUI();
+
+		// Initial zoom button states
+		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(false);
+		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(true);
 	}
 
 
@@ -107,7 +115,7 @@ public class GameOverlayWindowScript : WindowScript
 
 	public void RefreshSemesterUI()
 	{
-		this.SemesterInfo.value = SceneManager.instance.semesterProgress;
+		this.SemesterInfo.TweenValueChange(SceneManager.instance.semesterProgress);
 		this.SemesterLabel.text = SceneManager.instance.currentSemester.ToString();
 	}
 
@@ -149,5 +157,19 @@ public class GameOverlayWindowScript : WindowScript
 		{
 			EducationInfo.TweenValueChange(value);
 		}
+	}
+
+	public void OnClickZoomOut()
+	{
+		CameraManager.instance.ZoomOutAndLock();
+		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(true);
+		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(false);
+	}
+
+	public void OnClickZoomIn()
+	{
+		CameraManager.instance.ResetZoom(10f); // Default zoom 10
+		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(false);
+		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(true);
 	}
 }

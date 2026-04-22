@@ -56,6 +56,13 @@ public class UIManager : MonoBehaviour
 	/// <param name="prefab">Prefab.</param>
 	public WindowScript ShowWindow(GameObject prefab)
 	{
+		// Automatically close other windows except the overlay before showing the new one
+		// but don't close windows if we are opening the overlay itself or an Info popup
+		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow)
+		{
+			this.CloseAllWindowsExceptOverlay();
+		}
+
 		WindowScript window = Utilities.CreateInstance(prefab, this.WindowsContainer, true).GetComponent<WindowScript>();
 		window.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		this._windowInstances.Add(window);
@@ -95,6 +102,27 @@ public class UIManager : MonoBehaviour
 			}
 		}
 		this._windowInstances = new List<WindowScript>();
+	}
+
+	public void CloseAllWindowsExceptOverlay()
+	{
+		List<WindowScript> remainingWindows = new List<WindowScript>();
+		foreach (WindowScript window in this._windowInstances)
+		{
+			if (window != null)
+			{
+				// Keep the GameOverlayWindow instance, close everything else
+				if (window is GameOverlayWindowScript)
+				{
+					remainingWindows.Add(window);
+				}
+				else
+				{
+					window.Close();
+				}
+			}
+		}
+		this._windowInstances = remainingWindows;
 	}
 
 	public void ShowSceneEnteringWindow(Action intermediateCallback)

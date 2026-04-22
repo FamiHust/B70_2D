@@ -12,6 +12,7 @@ public class InfoWindowScript : WindowScript
 
 	/* object references */
 	public Text Title;
+	public Text LevelText;
 	public RawImage ThumbImage;
 	public GameObject InfoPanel;
 
@@ -23,13 +24,6 @@ public class InfoWindowScript : WindowScript
 	void Awake()
 	{
 		instance = this;
-		if (SceneManager.instance == null)
-			return;
-
-		if (SceneManager.instance.selectedItem != null)
-		{
-			this.Init(SceneManager.instance.selectedItem.itemData);
-		}
 	}
 
 	private void OnDestroy()
@@ -37,9 +31,10 @@ public class InfoWindowScript : WindowScript
 		instance = null;
 	}
 
-	public void Init(ItemsCollection.ItemData itemData)
+	public void Init(ItemsCollection.ItemData itemData, BaseItemScript baseItem = null)
 	{
 		this._itemData = itemData;
+		this._baseItem = baseItem;
 		this.RenderInfo();
 	}
 
@@ -47,7 +42,20 @@ public class InfoWindowScript : WindowScript
 	{
 		if (this._itemData == null) return;
 
+		// Clear previous items
+		foreach (Transform child in this.InfoPanel.transform)
+		{
+			Destroy(child.gameObject);
+		}
+
 		this.Title.text = this._itemData.name;
+
+		int currentLevel = this._baseItem != null ? this._baseItem.level : 1;
+		if (this.LevelText != null)
+		{
+			this.LevelText.text = currentLevel.ToString();
+		}
+
 		this.ThumbImage.texture = this._itemData.thumb;
 
 		bool isCharacter = this._itemData.configuration.isCharacter;
@@ -97,6 +105,11 @@ public class InfoWindowScript : WindowScript
 
 		if (!string.IsNullOrEmpty(this._itemData.description))
 			this._CreateInfoItem("Description", this._itemData.description);
+
+		if (this._baseItem != null)
+		{
+			this._CreateInfoItem("Current Level", this._baseItem.level.ToString());
+		}
 	}
 
 

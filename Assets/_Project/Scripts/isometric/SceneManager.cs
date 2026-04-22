@@ -46,6 +46,8 @@ public class SceneManager : MonoBehaviour
 	public int educationStorageCapacity;
 	public int currentSemester;
 	public float semesterProgress;
+	// public int missionsPerSemester = 5; // Removed in favor of building-based progress
+
 
 
 
@@ -90,23 +92,24 @@ public class SceneManager : MonoBehaviour
 	public void Init()
 	{
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
-		this.goldStorageCapacity = 1000;
-		this.diamondStorageCapacity = 100;
-		this.happyStorageCapacity = 100;
+		this.goldStorageCapacity = 10000;
+		this.diamondStorageCapacity = 20;
 		this.studentStorageCapacity = 20;
+		this.happyStorageCapacity = 100;
 		this.educationStorageCapacity = 100;
 		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
-		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 1000);
-		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 100);
-		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
+		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 100);
+		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 20);
 		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 0);
+		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
 		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 0);
 		this.currentSemester = PlayerPrefs.GetInt("currentSemester", 1);
 		this.semesterProgress = PlayerPrefs.GetFloat("semesterProgress", 0);
-		// this.numberOfElixirInStorage = PlayerPrefs.GetInt("numberOfElixirInStorage", 150);
 
+		// Initialize progress based on existing buildings
+		this.UpdateSemesterProgress();
 	}
 
 	private void OnApplicationQuit()
@@ -203,6 +206,7 @@ public class SceneManager : MonoBehaviour
 			instance.OnConstructionComplete = (item) =>
 			{
 				this.UpdateStudentStorageCapacity();
+				this.UpdateSemesterProgress();
 			};
 
 			// if (!instance.itemData.configuration.isCharacter && instance.itemData.configuration.buildTime > 0)
@@ -756,6 +760,18 @@ public class SceneManager : MonoBehaviour
 		return false;
 	}
 
+	public bool IsItemConstructionFinished(int itemId)
+	{
+		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
+		{
+			if (entry.Value.itemData.id == itemId && entry.Value.UI.progressUIInstance == null)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void UpdateWalls()
 	{
 		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
@@ -824,6 +840,61 @@ public class SceneManager : MonoBehaviour
 			//war ends
 			AttackOverlayWindowScript.instance.Close();
 			UIManager.instance.ShowResultWindow(false, _swordManExpended, _archerExpended);
+		}
+	}
+
+	public void UpdateSemesterProgress()
+	{
+		List<int> requiredItemIds = ShopWindowScript.GetAllShopItemIds();
+		int totalRequired = 0;
+		int builtCount = 0;
+
+		foreach (int itemId in requiredItemIds)
+		{
+			ItemsCollection.ItemData itemData = Items.GetItem(itemId);
+			if (itemData != null && itemData.configuration.unlockItemAtSemester == this.currentSemester)
+			{
+				totalRequired++;
+				if (this.IsItemConstructionFinished(itemId))
+				{
+					builtCount++;
+				}
+			}
+		}
+
+		if (totalRequired > 0)
+		{
+			this.semesterProgress = (float)builtCount / totalRequired * 100f;
+		}
+		else
+		{
+			// If no buildings required for this semester, we can potentially advance or keep at 0
+			// Usually there should be at least one building.
+			this.semesterProgress = 0;
+		}
+
+		// Check for semester completion (using a small epsilon for float precision)
+		if (this.semesterProgress >= 99.9f && totalRequired > 0)
+		{
+			this.CompleteSemester();
+		}
+		else
+		{
+			this.SaveResources();
+			this.RefreshResourceUIs("semester");
+		}
+	}
+
+	public void CompleteSemester()
+	{
+		this.currentSemester++;
+		this.semesterProgress = 0;
+		this.SaveResources();
+		this.RefreshResourceUIs("semester");
+
+		if (UIManager.instance != null)
+		{
+			UIManager.instance.ShowNewSemesterWindow();
 		}
 	}
 

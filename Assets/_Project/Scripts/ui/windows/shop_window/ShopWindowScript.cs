@@ -65,6 +65,12 @@ public class ShopWindowScript : WindowScript
 		WALL
 	}
 
+	public static SubCategory[] ServiceSubItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
+	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6 };
+	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.C7};
+	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.GIAI_PHONG_GATE, SubCategory.TDN_GATE, SubCategory.WALL, SubCategory.TREE3 };
+
+
 
 	void Awake()
 	{
@@ -121,16 +127,16 @@ public class ShopWindowScript : WindowScript
 			// 	subItems = new SubCategory[]{ SubCategory.BARRACK, SubCategory.CAMP, SubCategory.BOAT};
 			// 	break;
 			case Category.SERVICE:
-				subItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
+				subItems = ServiceSubItems;
 				break;
 			case Category.RESOURCES:
-				subItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6 };
+				subItems = ResourcesSubItems;
 				break;
 			case Category.STUDENT:
-				subItems = new SubCategory[] { SubCategory.C7, SubCategory.B8 };
+				subItems = StudentSubItems;
 				break;
 			case Category.DECORATIONS:
-				subItems = new SubCategory[] { SubCategory.GIAI_PHONG_GATE, SubCategory.TDN_GATE, SubCategory.WALL, SubCategory.TREE3 };
+				subItems = DecorationsSubItems;
 				break;
 			// case Category.DEFENCE:
 			// 	subItems = new SubCategory[]{ SubCategory.CANNON, SubCategory.TOWER};
@@ -189,7 +195,31 @@ public class ShopWindowScript : WindowScript
 		this.ResetScrollPosition();
 	}
 
-	public int GetItemIdFromSubCategory(SubCategory subCategory)
+	public static List<int> GetAllShopItemIds()
+	{
+		List<int> ids = new List<int>();
+		// Chỉ lấy các ID từ những danh mục là tòa nhà (Service, Resources, Student)
+		// Bỏ qua Decorations theo yêu cầu
+		AddSubItemsToIds(ids, ServiceSubItems);
+		AddSubItemsToIds(ids, ResourcesSubItems);
+		AddSubItemsToIds(ids, StudentSubItems);
+		// AddSubItemsToIds(ids, DecorationsSubItems); // Bỏ qua đồ trang trí
+		return ids;
+	}
+
+	private static void AddSubItemsToIds(List<int> ids, SubCategory[] subItems)
+	{
+		foreach (var sub in subItems)
+		{
+			int id = GetItemIdFromSubCategory(sub);
+			if (id != 0 && !ids.Contains(id))
+			{
+				ids.Add(id);
+			}
+		}
+	}
+
+	public static int GetItemIdFromSubCategory(SubCategory subCategory)
 	{
 		switch (subCategory)
 		{
@@ -215,7 +245,7 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.TDN_GATE: return 1251;
 			case SubCategory.TREE3: return 5341;
 			case SubCategory.C7: return 3336;
-			case SubCategory.B8: return 5342;
+			// case SubCategory.B8: return 5342;
 			default: return 0;
 		}
 	}

@@ -31,10 +31,10 @@ public class UpgradeWindowScript : WindowScript
         if (_targetItem == null) return;
 
         Title.text = _targetItem.itemData.name;
-        LevelText.text = "Level: " + (_targetItem.level + 1);
+        LevelText.text = "Up To Level " + (_targetItem.level + 1);
         CostText.text = _targetItem.GetUpgradeCost().ToString();
         DiamondCostText.text = "5";
-        
+
         // Disable upgrade button if already at max level
         int nextLevel = _targetItem.level + 1;
         int maxLevel = _targetItem.itemData.configuration.levelMax;
@@ -48,7 +48,7 @@ public class UpgradeWindowScript : WindowScript
     public void OnClickUpgradeButton()
     {
         if (_targetItem == null) return;
-        
+
         // Check if already at max level
         int nextLevel = _targetItem.level + 1;
         int maxLevel = _targetItem.itemData.configuration.levelMax;
@@ -93,7 +93,7 @@ public class UpgradeWindowScript : WindowScript
     public void OnClickBoostButton()
     {
         if (_targetItem == null) return;
-        
+
         // Check if already at max level
         int nextLevel = _targetItem.level + 1;
         int maxLevel = _targetItem.itemData.configuration.levelMax;
@@ -118,7 +118,7 @@ public class UpgradeWindowScript : WindowScript
             }
 
             Debug.Log("Boost Complete! New Level: " + _targetItem.level);
-            
+
             // Close window and item options
             this.Close();
             UIManager.instance.HideItemOptions();

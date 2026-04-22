@@ -255,7 +255,7 @@
       "url": "https://packages.unity.com"
     },
     "com.xgame.unity-mcp-uitoolkit": {
-      "version": "file:C:/Users/Admins/Downloads/MCP-20260420T145756Z-3-001/MCP/xgame-mcp-plugin-v1.0.3",
+      "version": "file:C:/Users/Admin/Downloads/xgame-mcp-plugin-v1.0.3",
       "depth": 0,
       "source": "local",
       "dependencies": {

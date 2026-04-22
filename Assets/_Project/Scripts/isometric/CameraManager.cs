@@ -45,11 +45,11 @@ public class CameraManager : MonoBehaviour
 	private int _layerMaskBaseItemCollider;
 	private int _layerMaskGroundCollider;
 
-	private float screenRatio = Screen.width / Screen.height;
+	private float screenRatio => (float)Screen.width / Screen.height;
 	private Vector2 _defaultTouchPos = new Vector2(9999, 9999);
 	private float _minimumMoveDistanceForItemMove = 0.2f;
-	private float _maxZoomFactor = 30;
-	private float _minZoomFactor = 3;
+	private float _maxZoomFactor = 20;
+	private float _minZoomFactor = 4;
 	private float _clampZoomOffset = 2.0f;
 
 	private Vector3 _tapItemStartPos;
@@ -58,6 +58,10 @@ public class CameraManager : MonoBehaviour
 	private bool _isTappedBaseItem;
 	private bool _isDraggingBaseItem;
 	private bool _isPanningScene;
+	private bool _isUIBlocked;
+	public bool canMoveBuildings = true;
+	public bool isCameraMovementLocked = false;
+
 
 	private BaseItemScript _selectedBaseItem;
 
@@ -70,31 +74,60 @@ public class CameraManager : MonoBehaviour
 
 	void Update()
 	{
-		if (this.IsUsingUI())
+		// Capture UI state on press
+		if (Input.GetMouseButtonDown(0))
 		{
+			this._isUIBlocked = this.IsUsingUI();
+		}
+
+		// If we started on UI or are currently over UI, block all world interaction
+		if (this._isUIBlocked || this.IsUsingUI())
+		{
+			// Clean up state on release
+			if (Input.GetMouseButtonUp(0))
+			{
+				this._isUIBlocked = false;
+			}
 			return;
 		}
 
 		this.UpdateBaseItemTap();
 		this.UpdateBaseItemMove();
 		this.UpdateGroundTap();
-		this.UpdateScenePan();
-		this.UpdateSceneZoom();
+
+		if (!this.isCameraMovementLocked)
+		{
+			this.UpdateScenePan();
+			this.UpdateSceneZoom();
+		}
 	}
 
 	public bool IsUsingUI()
 	{
-		if (this._isDraggingBaseItem)
+		if (this._isDraggingBaseItem || _isPanningSceneStarted)
 		{
 			return false;
 		}
 
-		if (_isPanningSceneStarted)
+		if (EventSystem.current == null)
 		{
 			return false;
 		}
 
-		return (EventSystem.IsPointerOverGameObject() || EventSystem.IsPointerOverGameObject(0));
+		// On mobile, check all active touches
+		if (Input.touchCount > 0)
+		{
+			for (int i = 0; i < Input.touchCount; i++)
+			{
+				if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(i).fingerId))
+				{
+					return true;
+				}
+			}
+		}
+
+		// On PC or as a fallback on mobile
+		return EventSystem.current.IsPointerOverGameObject() || EventSystem.current.IsPointerOverGameObject(0);
 	}
 
 
@@ -278,6 +311,10 @@ public class CameraManager : MonoBehaviour
 	private bool _baseItemMoved;
 	public void UpdateBaseItemMove()
 	{
+		if (!this.canMoveBuildings)
+		{
+			return;
+		}
 
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -482,7 +519,6 @@ public class CameraManager : MonoBehaviour
 	private float _oldZoom = -1;
 	public void UpdateSceneZoom()
 	{
-
 		if (this._isDraggingBaseItem)
 		{
 			return;
@@ -490,50 +526,48 @@ public class CameraManager : MonoBehaviour
 
 		float newZoom = this.MainCamera.orthographicSize;
 
-		//Editor
+		// Editor Mouse Scroll
 		float scrollAmount = Input.GetAxis("Mouse ScrollWheel");
 		if (scrollAmount != 0)
 		{
-			newZoom = newZoom - scrollAmount;
+			newZoom -= scrollAmount * 5f; // Increased sensitivity for scroll
 		}
 
-		//Android
-		if (Input.touchCount == 0)
-		{
-			this._isZoomingStarted = false;
-		}
-
+		// Mobile Pinch Zoom
 		if (Input.touchCount == 2)
 		{
-			_touchPoint1 = _TryGetRaycastHitBaseGround(Input.GetTouch(0).position);
-			_touchPoint2 = _TryGetRaycastHitBaseGround(Input.GetTouch(1).position);
-			if (!_isZoomingStarted)
-			{
-				this._isZoomingStarted = true;
-				this._previousPinchDistance = (_touchPoint2 - _touchPoint1).magnitude;
-			}
+			Touch touch0 = Input.GetTouch(0);
+			Touch touch1 = Input.GetTouch(1);
+
+			// Calculate the distance between touches in each frame
+			Vector2 touch0PrevPos = touch0.position - touch0.deltaPosition;
+			Vector2 touch1PrevPos = touch1.position - touch1.deltaPosition;
+
+			float prevDistance = (touch0PrevPos - touch1PrevPos).magnitude;
+			float currentDistance = (touch0.position - touch1.position).magnitude;
+
+			float deltaDistance = prevDistance - currentDistance;
+
+			// Scale the delta by a factor related to the camera's size so it feels consistent
+			float zoomSensitivity = this.MainCamera.orthographicSize / Mathf.Min(Screen.width, Screen.height);
+			newZoom += deltaDistance * zoomSensitivity * 2.0f;
 		}
 
-		if (this._isZoomingStarted)
-		{
-			float _currentPinchDistance = (_touchPoint2 - _touchPoint1).magnitude;
-			float delta = this._previousPinchDistance - _currentPinchDistance;
-			newZoom = this.MainCamera.orthographicSize + (delta / (2 * screenRatio));
-		}
-
-		//clamp zoom
-		newZoom = Mathf.Clamp(newZoom - scrollAmount, this._minZoomFactor, this._maxZoomFactor);
+		// clamp zoom
+		newZoom = Mathf.Clamp(newZoom, this._minZoomFactor, this._maxZoomFactor);
+		
+		// Smoothly lerp towards the clamped boundaries if we're in the "soft clamp" zone
 		if (newZoom < this._minZoomFactor + _clampZoomOffset)
 		{
 			newZoom = Mathf.Lerp(newZoom, this._minZoomFactor + _clampZoomOffset, Time.deltaTime * 2);
-
 		}
 		else if (newZoom > this._maxZoomFactor - _clampZoomOffset)
 		{
 			newZoom = Mathf.Lerp(newZoom, this._maxZoomFactor - _clampZoomOffset, Time.deltaTime * 2);
 		}
 
-		if (this._oldZoom != newZoom)
+		// Apply the zoom if it has changed significantly
+		if (Mathf.Abs(this.MainCamera.orthographicSize - newZoom) > 0.001f)
 		{
 			this.MainCamera.orthographicSize = newZoom;
 			this.ClampCamera();
@@ -724,4 +758,43 @@ public class CameraManager : MonoBehaviour
         _isShaking = false;
     }
 
+    public void ToggleBuildingMovement()
+    {
+        this.canMoveBuildings = !this.canMoveBuildings;
+        Debug.Log("Building movement toggled: " + this.canMoveBuildings);
+    }
+
+	public void ZoomOutAndLock()
+	{
+		this.isCameraMovementLocked = true;
+		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
+		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(this._maxZoomFactor));
+	}
+
+	public void ResetZoom(float zoomSize = 10f)
+	{
+		this.isCameraMovementLocked = false;
+		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
+		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(zoomSize));
+	}
+
+	private Coroutine _zoomCoroutine;
+	private IEnumerator _SmoothZoom(float targetSize)
+	{
+		float startSize = this.MainCamera.orthographicSize;
+		float t = 0;
+		float duration = 0.5f;
+
+		while (t < 1f)
+		{
+			t += Time.deltaTime / duration;
+			this.MainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, Mathf.SmoothStep(0f, 1f, t));
+			this.ClampCamera();
+			yield return null;
+		}
+
+		this.MainCamera.orthographicSize = targetSize;
+		this.ClampCamera();
+		this._zoomCoroutine = null;
+	}
 }

@@ -35,37 +35,47 @@ public class MissionWindowScript : WindowScript
 	{
 		_activeMissions = new List<MissionData>();
 
-		// Add some default missions based on Shop IDs
-		_activeMissions.Add(new MissionData(2496, 1000)); // C1
-		_activeMissions.Add(new MissionData(8216, 1500)); // C2
-		_activeMissions.Add(new MissionData(2454, 2000)); // C3
-		_activeMissions.Add(new MissionData(3635, 500));  // D4
+		// Lấy danh sách ID trực tiếp từ Shop để đảm bảo đồng bộ
+		List<int> shopIds = ShopWindowScript.GetAllShopItemIds();
 
-		_activeMissions.Add(new MissionData(3265, 1000)); // C4
-		_activeMissions.Add(new MissionData(5835, 1000)); // C3B
-		_activeMissions.Add(new MissionData(3504, 1000)); // C5
-		_activeMissions.Add(new MissionData(2617, 1000)); // C6
-		_activeMissions.Add(new MissionData(9295, 1000)); // C9
-		_activeMissions.Add(new MissionData(8385, 1000)); // C10
-		_activeMissions.Add(new MissionData(4407, 1000)); // D35
-		_activeMissions.Add(new MissionData(6330, 1000)); // D6
-		_activeMissions.Add(new MissionData(5134, 1000)); // D8
-		_activeMissions.Add(new MissionData(1399, 1000)); // Canteen
-		_activeMissions.Add(new MissionData(4132, 1000)); // GaraD6
-		_activeMissions.Add(new MissionData(6677, 1000)); // LIBRARY
-														  // _activeMissions.Add(new MissionData(7666, 100));  // WALL
-														  // _activeMissions.Add(new MissionData(2949, 1000)); // GIAI_PHONG_GATE
-														  // _activeMissions.Add(new MissionData(1251, 1000)); // TDN_GATE
-														  // _activeMissions.Add(new MissionData(5341, 100));  // TREE3
-		_activeMissions.Add(new MissionData(3336, 1000)); // C7
-		_activeMissions.Add(new MissionData(5342, 1000)); // B8
+		foreach (int itemId in shopIds)
+		{
+			// Tạo nhiệm vụ cho mỗi item trong shop
+			_activeMissions.Add(new MissionData(itemId, 1000));
+		}
 	}
 
 	public void RenderMissions()
 	{
-		// Sắp xếp: item đã unlock lên trước, sau đó sắp xếp theo semester yêu cầu (như trong Shop)
+		// Cache finished IDs for performance during sort
+		HashSet<int> finishedIds = new HashSet<int>();
+		if (SceneManager.instance != null)
+		{
+			foreach (var item in SceneManager.instance.GetAllItems())
+			{
+				// Building is finished if it has no progress UI (construction done)
+				if (item.UI.progressUIInstance == null)
+				{
+					finishedIds.Add(item.itemData.id);
+				}
+			}
+		}
+
+		// Sắp xếp: 
+		// 1. Tòa nào xây xong rồi thì cho lên trước để nhận thưởng
+		// 2. Tiếp theo là theo trạng thái unlock (đã mở khóa > đang khóa)
+		// 3. Tiếp theo là theo số kỳ yêu cầu (semester)
+		// 4. Theo ID để đảm bảo thứ tự ổn định
 		_activeMissions.Sort((a, b) =>
 		{
+			bool finishedA = finishedIds.Contains(a.itemId);
+			bool finishedB = finishedIds.Contains(b.itemId);
+
+			if (finishedA != finishedB)
+			{
+				return finishedA ? -1 : 1;
+			}
+
 			ItemsCollection.ItemData dataA = Items.GetItem(a.itemId);
 			ItemsCollection.ItemData dataB = Items.GetItem(b.itemId);
 
@@ -74,14 +84,20 @@ public class MissionWindowScript : WindowScript
 			bool unlockedA = SceneManager.instance.currentSemester >= dataA.configuration.unlockItemAtSemester;
 			bool unlockedB = SceneManager.instance.currentSemester >= dataB.configuration.unlockItemAtSemester;
 
-			// Nếu trạng thái unlock khác nhau, cái nào unlock rồi thì lên trước (-1)
 			if (unlockedA != unlockedB)
 			{
 				return unlockedA ? -1 : 1;
 			}
 
 			// Nếu cùng trạng thái (cùng khóa hoặc cùng mở), sắp xếp theo số kỳ yêu cầu
-			return dataA.configuration.unlockItemAtSemester.CompareTo(dataB.configuration.unlockItemAtSemester);
+			int semesterCompare = dataA.configuration.unlockItemAtSemester.CompareTo(dataB.configuration.unlockItemAtSemester);
+			if (semesterCompare != 0)
+			{
+				return semesterCompare;
+			}
+
+			// Khóa phụ: Sắp xếp theo ID để đảm bảo tính ổn định (stable sort)
+			return dataA.id.CompareTo(dataB.id);
 		});
 
 		// Clear existing items in container
