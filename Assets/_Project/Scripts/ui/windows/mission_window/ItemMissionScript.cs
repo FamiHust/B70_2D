@@ -86,7 +86,7 @@ public class ItemMissionScript : MonoBehaviour
 
 		if (building != null)
 		{
-			CameraManager.instance.FocusOnItem(building);
+			CameraManager.instance.FocusOnItem(building, 10f);
 		}
 		else
 		{
@@ -96,7 +96,7 @@ public class ItemMissionScript : MonoBehaviour
 			{
 				if (area.itemIds.Contains(_itemId))
 				{
-					CameraManager.instance.FocusOn(area.transform.position);
+					CameraManager.instance.FocusAndZoom(area.transform.position, 10f);
 					break;
 				}
 			}
@@ -109,6 +109,25 @@ public class ItemMissionScript : MonoBehaviour
 	public void OnClickComplete()
 	{
 		if (_data == null || _data.isClaimed) return;
+
+		// Move camera to building and zoom to 8
+		BaseItemScript building = null;
+		foreach (var item in SceneManager.instance.GetAllItems())
+		{
+			if (item.itemData.id == _itemId)
+			{
+				building = item;
+				break;
+			}
+		}
+
+		if (building != null)
+		{
+			CameraManager.instance.FocusOnItem(building, 10f);
+
+			// Close the window since we are focusing on world
+			MissionWindowScript.instance.Close();
+		}
 
 		// Award gold
 		SceneManager.instance.CollectResource("gold", _goldReward);

@@ -386,7 +386,7 @@ MonoBehaviour:
       healthPoints: 300
       hitPoints: 0
       productionRate: 100
-      product: gold
+      product: 
       productPrice: 100
       price: 50
       resourceType: gold

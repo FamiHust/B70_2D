@@ -174,7 +174,7 @@ public class MapShopItemScript : MonoBehaviour
 			DataBaseManager.instance.UpdateItemData(item);
 			if (CameraManager.instance != null)
 			{
-				CameraManager.instance.FocusOnItem(item);
+				CameraManager.instance.FocusOnItem(item, 10f);
 			}
 		}
 
