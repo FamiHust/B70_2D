@@ -7,12 +7,12 @@ public class MissionData
 {
 	public int itemId;
 	public int goldReward;
-	public bool isClaimed = false;
+	public bool isClaimed;
 
-	public MissionData(int itemId, int goldReward)
+	public MissionData(int itemId, int goldReward, bool isClaimed = false)
 	{
 		this.itemId = itemId;
 		this.goldReward = goldReward;
-		this.isClaimed = false;
+		this.isClaimed = isClaimed;
 	}
 }

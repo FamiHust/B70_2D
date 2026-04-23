@@ -41,7 +41,7 @@ public class MissionWindowScript : WindowScript
 		foreach (int itemId in shopIds)
 		{
 			// Tạo nhiệm vụ cho mỗi item trong shop
-			_activeMissions.Add(new MissionData(itemId, 1000));
+			_activeMissions.Add(new MissionData(itemId, 100));
 		}
 	}
 
