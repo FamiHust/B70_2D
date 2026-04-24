@@ -22,7 +22,7 @@ public class MissionWindowScript : WindowScript
 
 		if (_activeMissions == null)
 		{
-			InitDefaultMissions();
+			InitActiveMissions();
 		}
 	}
 
@@ -31,7 +31,7 @@ public class MissionWindowScript : WindowScript
 		RenderMissions();
 	}
 
-	private void InitDefaultMissions()
+	private static void InitActiveMissions()
 	{
 		_activeMissions = new List<MissionData>();
 
@@ -130,5 +130,25 @@ public class MissionWindowScript : WindowScript
 	public override void Close()
 	{
 		base.Close();
+	}
+
+	public static bool HasReadyToClaimMission()
+	{
+		if (_activeMissions == null)
+		{
+			InitActiveMissions();
+		}
+
+		if (_activeMissions == null || SceneManager.instance == null) return false;
+
+		foreach (var mission in _activeMissions)
+		{
+			if (!mission.isClaimed && SceneManager.instance.IsItemConstructionFinished(mission.itemId))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

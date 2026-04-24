@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +15,8 @@ public class Common
         IDLE,
         WALK,
         ATTACK,
-        DESTROYED
+        DESTROYED,
+        PREVIEW
     }
 
     public enum Direction

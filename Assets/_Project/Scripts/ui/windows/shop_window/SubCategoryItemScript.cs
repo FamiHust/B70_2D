@@ -348,11 +348,16 @@ public class SubCategoryItemScript : MonoBehaviour
 			return;
 		}
 
-		BaseItemScript item = SceneManager.instance.AddItem(itemId, false, true);
+		// Create the item in preview mode
+		BaseItemScript item = SceneManager.instance.AddItem(itemId, false, true, 1, true);
 
 		if (item != null)
 		{
 			DataBaseManager.instance.UpdateItemData(item);
+			
+			// Focus and select the item to show Yes/No buttons
+			SceneManager.instance.OnItemTap(new CameraManager.CameraEvent { baseItem = item });
+			
 			if (CameraManager.instance != null)
 			{
 				CameraManager.instance.FocusOnItem(item, 10f);

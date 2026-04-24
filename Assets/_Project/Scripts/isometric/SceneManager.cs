@@ -159,7 +159,7 @@ public class SceneManager : MonoBehaviour
 	/// </summary>
 	/// <returns>The item.</returns>
 	/// <param name="itemId">Item identifier.</param>
-	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0)
+	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0, bool isPreview = false)
 	{
 		BaseItemScript builder = null;
 
@@ -185,7 +185,15 @@ public class SceneManager : MonoBehaviour
 		this._itemInstances.Add(instanceId, instance);
 
 		instance.SetItemData(itemId, posX, posZ, level, lastCollectedTime);
-		instance.SetState(Common.State.IDLE);
+		
+		if (isPreview)
+		{
+			instance.SetState(Common.State.PREVIEW);
+		}
+		else
+		{
+			instance.SetState(Common.State.IDLE);
+		}
 
 		// Remove the map shop area if it exists for this item
 		if (_activeShopAreas.ContainsKey(itemId))
@@ -200,7 +208,7 @@ public class SceneManager : MonoBehaviour
 		//		GroundManager.Cell freeCell = GroundManager.instance.GetRandomFreeCellForItem (instance);
 		//		instance.SetPosition (GroundManager.instance.CellToPosition (freeCell));
 
-		if (!immediate)
+		if (!immediate && !isPreview)
 		{
 			instance.UI.ShowProgressUI(true);
 			instance.OnConstructionComplete = (item) =>
@@ -234,7 +242,7 @@ public class SceneManager : MonoBehaviour
 		return instance;
 	}
 
-	public BaseItemScript AddItem(int itemId, bool immediate, bool ownedItem, int level = 1)
+	public BaseItemScript AddItem(int itemId, bool immediate, bool ownedItem, int level = 1, bool isPreview = false)
 	{
 		int posX = 0;
 		int posZ = 0;
@@ -261,7 +269,7 @@ public class SceneManager : MonoBehaviour
 				posZ = (int)freePosition.z;
 			}
 		}
-		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem, level);
+		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem, level, 0, isPreview);
 	}
 
 	/// <summary>
@@ -882,6 +890,11 @@ public class SceneManager : MonoBehaviour
 		{
 			this.SaveResources();
 			this.RefreshResourceUIs("semester");
+
+			if (GameOverlayWindowScript.instance != null)
+			{
+				GameOverlayWindowScript.instance.RefreshHint();
+			}
 		}
 	}
 

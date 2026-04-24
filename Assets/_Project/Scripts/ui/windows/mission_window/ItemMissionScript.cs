@@ -45,7 +45,7 @@ public class ItemMissionScript : MonoBehaviour
 	{
 		if (_data == null || _data.isClaimed) return;
 
-		bool isFinished = IsBuildingFinished();
+		bool isFinished = SceneManager.instance.IsItemConstructionFinished(_itemId);
 		
 		if (CompleteButton != null)
 			CompleteButton.gameObject.SetActive(isFinished);
@@ -54,22 +54,6 @@ public class ItemMissionScript : MonoBehaviour
 			UncompleteButton.gameObject.SetActive(!isFinished);
 	}
 
-	private bool IsBuildingFinished()
-	{
-		// Check all items in the scene
-		foreach (var item in SceneManager.instance.GetAllItems())
-		{
-			if (item.itemData.id == _itemId)
-			{
-				// Building is finished if it has no progress UI (construction done)
-				if (item.UI.progressUIInstance == null)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 
 	public void OnClickUncomplete()
 	{
@@ -137,6 +121,12 @@ public class ItemMissionScript : MonoBehaviour
 
 		// Mark as claimed
 		_data.isClaimed = true;
+
+		// Refresh hint on overlay
+		if (GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.RefreshHint();
+		}
 
 		// Play sound
 		SoundManager.instance.PlaySound(SoundManager.instance.Tap2, false);

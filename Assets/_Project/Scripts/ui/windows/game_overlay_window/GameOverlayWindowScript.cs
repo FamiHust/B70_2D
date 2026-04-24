@@ -20,6 +20,9 @@ public class GameOverlayWindowScript : WindowScript
 
 	public GameObject ZoomInButton;
 	public GameObject ZoomOutButton;
+	public GameObject Hint;
+
+	private float _nextHintCheckTime;
 
 
 
@@ -73,6 +76,25 @@ public class GameOverlayWindowScript : WindowScript
 		// Initial zoom button states
 		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(false);
 		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(true);
+
+		this.RefreshHint();
+	}
+
+	private void Update()
+	{
+		if (Time.time >= _nextHintCheckTime)
+		{
+			RefreshHint();
+			_nextHintCheckTime = Time.time + 0.5f;
+		}
+	}
+
+	public void RefreshHint()
+	{
+		if (this.Hint != null)
+		{
+			this.Hint.SetActive(MissionWindowScript.HasReadyToClaimMission());
+		}
 	}
 
 

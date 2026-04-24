@@ -385,10 +385,10 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 300
       hitPoints: 0
-      productionRate: 100
+      productionRate: 0
       product: 
       productPrice: 100
-      price: 50
+      price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 2
@@ -564,7 +564,7 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 50
+      price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 99

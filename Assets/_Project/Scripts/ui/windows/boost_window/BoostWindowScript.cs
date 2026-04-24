@@ -20,7 +20,7 @@ public class BoostWindowScript : WindowScript
         if (SceneManager.instance.ConsumeResource("diamond", 5))
         {
             selectedItem.FinishConstruction();
-            
+
             // Close window and item options
             this.Close();
             UIManager.instance.HideItemOptions();
@@ -29,5 +29,9 @@ public class BoostWindowScript : WindowScript
         {
             Debug.Log("Not enough diamonds to boost!");
         }
+    }
+    public override void Close()
+    {
+        base.Close();
     }
 }
