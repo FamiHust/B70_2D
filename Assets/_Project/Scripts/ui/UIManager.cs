@@ -66,6 +66,13 @@ public class UIManager : MonoBehaviour
 		WindowScript window = Utilities.CreateInstance(prefab, this.WindowsContainer, true).GetComponent<WindowScript>();
 		window.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		this._windowInstances.Add(window);
+
+		// Hide GameOverlay when another window opens
+		if (prefab != this.GameOverlayWindow && GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.HideOverlay();
+		}
+
 		return window;
 	}
 
@@ -197,5 +204,30 @@ public class UIManager : MonoBehaviour
 		ItemWindowScript window = this.ShowWindow(this.ItemWindow) as ItemWindowScript;
 		window.RenderItems(areaName, itemIds, mapShopArea);
 		return window;
+	}
+
+	public IEnumerator CheckWindowsAfterClose()
+	{
+		yield return new WaitForEndOfFrame();
+		
+		if (_windowInstances != null)
+		{
+			_windowInstances.RemoveAll(w => w == null);
+			
+			bool hasOtherWindow = false;
+			foreach (var w in _windowInstances)
+			{
+				if (w != null && !(w is GameOverlayWindowScript))
+				{
+					hasOtherWindow = true;
+					break;
+				}
+			}
+
+			if (!hasOtherWindow && GameOverlayWindowScript.instance != null)
+			{
+				GameOverlayWindowScript.instance.ShowOverlay();
+			}
+		}
 	}
 }

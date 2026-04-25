@@ -21,6 +21,7 @@ public class GameOverlayWindowScript : WindowScript
 	public GameObject ZoomInButton;
 	public GameObject ZoomOutButton;
 	public GameObject Hint;
+	public Animator anim;
 
 	private float _nextHintCheckTime;
 
@@ -193,5 +194,15 @@ public class GameOverlayWindowScript : WindowScript
 		CameraManager.instance.ResetZoom(10f); // Default zoom 10
 		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(false);
 		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(true);
+	}
+
+	public void HideOverlay()
+	{
+		if (anim != null) anim.Play("Hide");
+	}
+
+	public void ShowOverlay()
+	{
+		if (anim != null) anim.Play("Show");
 	}
 }

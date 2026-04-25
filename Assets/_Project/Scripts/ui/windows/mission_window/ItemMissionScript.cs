@@ -68,20 +68,32 @@ public class ItemMissionScript : MonoBehaviour
 			}
 		}
 
+		MapShopAreaScript[] shopAreas = Object.FindObjectsOfType<MapShopAreaScript>();
+
 		if (building != null)
 		{
 			CameraManager.instance.FocusOnItem(building, 10f);
+			foreach (var area in shopAreas)
+			{
+				if (area.Arrow != null) area.Arrow.SetActive(false);
+			}
 		}
 		else
 		{
 			// 2. If not found, look for MapShopArea that contains this item
-			MapShopAreaScript[] shopAreas = Object.FindObjectsOfType<MapShopAreaScript>();
+			bool foundFocus = false;
 			foreach (var area in shopAreas)
 			{
-				if (area.itemIds.Contains(_itemId))
+				bool isTarget = area.itemIds.Contains(_itemId);
+				if (area.Arrow != null)
+				{
+					area.Arrow.SetActive(isTarget);
+				}
+
+				if (isTarget && !foundFocus)
 				{
 					CameraManager.instance.FocusAndZoom(area.transform.position, 10f);
-					break;
+					foundFocus = true;
 				}
 			}
 		}
@@ -121,6 +133,7 @@ public class ItemMissionScript : MonoBehaviour
 
 		// Mark as claimed
 		_data.isClaimed = true;
+		DataBaseManager.instance.MarkMissionAsClaimed(_itemId);
 
 		// Refresh hint on overlay
 		if (GameOverlayWindowScript.instance != null)

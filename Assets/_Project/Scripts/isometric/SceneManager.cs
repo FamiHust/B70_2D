@@ -107,9 +107,6 @@ public class SceneManager : MonoBehaviour
 		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 0);
 		this.currentSemester = PlayerPrefs.GetInt("currentSemester", 1);
 		this.semesterProgress = PlayerPrefs.GetFloat("semesterProgress", 0);
-
-		// Initialize progress based on existing buildings
-		this.UpdateSemesterProgress();
 	}
 
 	private void OnApplicationQuit()
@@ -425,7 +422,19 @@ public class SceneManager : MonoBehaviour
 
 		if (this.selectedItem != null)
 		{
-			this.selectedItem.SetSelected(false);
+			// If the currently selected item is in PREVIEW state, cancel it entirely
+			if (this.selectedItem.state == Common.State.PREVIEW)
+			{
+				BaseItemScript previewItem = this.selectedItem;
+				this.selectedItem = null;
+				UIManager.instance.HideItemOptions();
+				this.RemoveItem(previewItem);
+				Destroy(previewItem.gameObject);
+			}
+			else
+			{
+				this.selectedItem.SetSelected(false);
+			}
 		}
 		this.selectedItem = tappedItem;
 		tappedItem.SetSelected(true);
@@ -453,6 +462,17 @@ public class SceneManager : MonoBehaviour
 		{
 			if (this.selectedItem != null)
 			{
+				// If the selected item is in PREVIEW state, cancel it entirely
+				if (this.selectedItem.state == Common.State.PREVIEW)
+				{
+					BaseItemScript previewItem = this.selectedItem;
+					this.selectedItem = null;
+					UIManager.instance.HideItemOptions();
+					this.RemoveItem(previewItem);
+					Destroy(previewItem.gameObject);
+					return;
+				}
+
 				BaseItemScript temp = this.selectedItem;
 				this.selectedItem = null;
 				temp.SetSelected(false);
@@ -598,6 +618,9 @@ public class SceneManager : MonoBehaviour
 				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true, itemData.level, lastTime);
 			}
 		}
+
+		// Update semester progress after all buildings are loaded
+		this.UpdateSemesterProgress();
 
 		if (this._shopLayout != null && this._shopLayout.items != null && this.MapShopAreaPrefab != null)
 		{
@@ -772,7 +795,9 @@ public class SceneManager : MonoBehaviour
 	{
 		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
 		{
-			if (entry.Value.itemData.id == itemId && entry.Value.UI.progressUIInstance == null)
+			if (entry.Value.itemData.id == itemId
+				&& entry.Value.state != Common.State.PREVIEW
+				&& entry.Value.UI.progressUIInstance == null)
 			{
 				return true;
 			}
@@ -963,6 +988,20 @@ public class SceneManager : MonoBehaviour
 				this.RefreshResourceUIs(resourceType);
 				return true;
 			}
+		}
+
+		return false;
+	}
+
+	public bool HasEnoughResource(string resourceType, int count)
+	{
+		if (resourceType == "gold")
+		{
+			return this.numberOfGoldInStorage >= count;
+		}
+		else if (resourceType == "diamond")
+		{
+			return this.numberOfDiamondsInStorage >= count;
 		}
 
 		return false;

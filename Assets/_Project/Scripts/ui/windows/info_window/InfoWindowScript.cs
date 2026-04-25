@@ -15,6 +15,7 @@ public class InfoWindowScript : WindowScript
 	public Text LevelText;
 	public RawImage ThumbImage;
 	public GameObject InfoPanel;
+	public Animator anim;
 
 
 	/* private vars */
@@ -119,4 +120,18 @@ public class InfoWindowScript : WindowScript
 		comp.SetData(property, value);
 	}
 
+	public void HideWindow()
+	{
+		if (anim != null) anim.Play("Hide");
+	}
+
+	public void CloseWindow()
+	{
+		if (anim != null) anim.Play("Close");
+	}
+
+	public void ShowWindow()
+	{
+		if (anim != null) anim.Play("Show");
+	}
 }

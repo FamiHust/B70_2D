@@ -4,6 +4,36 @@ using UnityEngine;
 
 public class BoostWindowScript : WindowScript
 {
+    public ProgressPanelScript GoldInfo;
+    public ProgressPanelScript DiamondInfo;
+    public ProgressPanelScript StudentInfo;
+    public Animator anim;
+
+    void Start()
+    {
+        if (this.GoldInfo != null && SceneManager.instance != null)
+        {
+            this.GoldInfo.hasMaxValue = true;
+            this.GoldInfo.maxValue = SceneManager.instance.goldStorageCapacity;
+            this.GoldInfo.value = SceneManager.instance.numberOfGoldInStorage;
+        }
+
+        if (this.DiamondInfo != null && SceneManager.instance != null)
+        {
+            this.DiamondInfo.hasMaxValue = true;
+            this.DiamondInfo.maxValue = SceneManager.instance.diamondStorageCapacity;
+            this.DiamondInfo.value = SceneManager.instance.numberOfDiamondsInStorage;
+        }
+
+        if (this.StudentInfo != null && SceneManager.instance != null)
+        {
+            this.StudentInfo.hasMaxValue = true;
+            this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
+            this.StudentInfo.value = SceneManager.instance.numberOfStudentInStorage;
+            this.StudentInfo.showAsCurrentMax = true;
+        }
+    }
+
     public void OnClickBoostButton()
     {
         BaseItemScript selectedItem = SceneManager.instance.selectedItem;
@@ -33,5 +63,15 @@ public class BoostWindowScript : WindowScript
     public override void Close()
     {
         base.Close();
+    }
+
+    public void HideWindow()
+    {
+        if (anim != null) anim.Play("Hide");
+    }
+
+    public void ShowWindow()
+    {
+        if (anim != null) anim.Play("Show");
     }
 }

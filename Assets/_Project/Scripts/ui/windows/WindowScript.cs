@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,11 @@ public class WindowScript : MonoBehaviour {
 		if (this.gameObject != null)
 		{
 			Destroy(this.gameObject);
+		}
+		
+		if (UIManager.instance != null)
+		{
+			UIManager.instance.StartCoroutine(UIManager.instance.CheckWindowsAfterClose());
 		}
 	}
 }

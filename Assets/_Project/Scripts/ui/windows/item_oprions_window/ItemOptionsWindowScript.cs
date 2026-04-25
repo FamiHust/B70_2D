@@ -227,12 +227,23 @@ public class ItemOptionsWindowScript : WindowScript
 		BaseItemScript selectedItem = SceneManager.instance.selectedItem;
 		if (selectedItem != null && selectedItem.state == Common.State.PREVIEW)
 		{
-			selectedItem.SetState(Common.State.IDLE);
-			// Show progress UI and start construction
-			selectedItem.UI.ShowProgressUI(true);
+			// Try to consume resources now
+			bool canBuild = SceneManager.instance.ConsumeResource(selectedItem.itemData.configuration.resourceType, selectedItem.itemData.configuration.price);
 			
-			// Refresh options to show standard buttons (like Boost)
-			ShowOptions();
+			if (canBuild)
+			{
+				selectedItem.SetState(Common.State.IDLE);
+				// Show progress UI and start construction
+				selectedItem.UI.ShowProgressUI(true);
+				
+				// Refresh options to show standard buttons (like Boost)
+				ShowOptions();
+			}
+			else
+			{
+				// If somehow they don't have enough resources now, cancel the build
+				OnClickNoButton();
+			}
 		}
 	}
 
@@ -241,12 +252,12 @@ public class ItemOptionsWindowScript : WindowScript
 		BaseItemScript selectedItem = SceneManager.instance.selectedItem;
 		if (selectedItem != null && selectedItem.state == Common.State.PREVIEW)
 		{
-			// Refund resources
-			SceneManager.instance.CollectResource(selectedItem.itemData.configuration.resourceType, selectedItem.itemData.configuration.price);
+			// Resources were never deducted, so no need to refund
 			
 			// Remove item
 			UIManager.instance.HideItemOptions();
 			SceneManager.instance.RemoveItem(selectedItem);
+			Destroy(selectedItem.gameObject);
 		}
 	}
 

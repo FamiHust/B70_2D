@@ -158,7 +158,7 @@ public class MapShopItemScript : MonoBehaviour
 		string resource = _itemData.configuration.resourceType;
 
 		// Try to consume resources
-		bool canBuild = SceneManager.instance.ConsumeResource(resource, price);
+		bool canBuild = SceneManager.instance.HasEnoughResource(resource, price);
 
 		if (!canBuild)
 		{

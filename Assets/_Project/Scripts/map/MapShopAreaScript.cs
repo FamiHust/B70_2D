@@ -11,6 +11,7 @@ public class MapShopAreaScript : MonoBehaviour
 {
 	public string areaName = "Map Shop";
 	public List<int> itemIds = new List<int>();
+	public GameObject Arrow;
 
 	private Collider _collider;
 
@@ -26,6 +27,8 @@ public class MapShopAreaScript : MonoBehaviour
 
 	public void OnMapShopClicked()
 	{
+		if (Arrow != null) Arrow.SetActive(false);
+
 		if (itemIds.Count == 0)
 		{
 			Debug.LogWarning($"MapShopArea '{areaName}' has no items!");

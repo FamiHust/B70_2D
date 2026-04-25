@@ -91,6 +91,12 @@ public class CameraManager : MonoBehaviour
 			return;
 		}
 
+		// Block all map interactions (tap, move, pan, etc.) if in PREVIEW state. Only UI buttons allowed.
+		if (SceneManager.instance.selectedItem != null && SceneManager.instance.selectedItem.state == Common.State.PREVIEW)
+		{
+			return;
+		}
+
 		this.UpdateBaseItemTap();
 		this.UpdateBaseItemMove();
 		this.UpdateGroundTap();

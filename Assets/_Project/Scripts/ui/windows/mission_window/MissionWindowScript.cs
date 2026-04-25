@@ -9,8 +9,12 @@ public class MissionWindowScript : WindowScript
 	/* prefabs */
 	public GameObject ItemMissionPrefab;
 
-	/* references */
 	public Transform MissionListContainer;
+
+	public ProgressPanelScript GoldInfo;
+	public ProgressPanelScript DiamondInfo;
+	public ProgressPanelScript StudentInfo;
+	public Animator anim;
 
 	/* mission data */
 	// Static list so it persists across window opens within the same session
@@ -29,6 +33,28 @@ public class MissionWindowScript : WindowScript
 	void Start()
 	{
 		RenderMissions();
+
+		if (this.GoldInfo != null && SceneManager.instance != null)
+		{
+			this.GoldInfo.hasMaxValue = true;
+			this.GoldInfo.maxValue = SceneManager.instance.goldStorageCapacity;
+			this.GoldInfo.value = SceneManager.instance.numberOfGoldInStorage;
+		}
+
+		if (this.DiamondInfo != null && SceneManager.instance != null)
+		{
+			this.DiamondInfo.hasMaxValue = true;
+			this.DiamondInfo.maxValue = SceneManager.instance.diamondStorageCapacity;
+			this.DiamondInfo.value = SceneManager.instance.numberOfDiamondsInStorage;
+		}
+
+		if (this.StudentInfo != null && SceneManager.instance != null)
+		{
+			this.StudentInfo.hasMaxValue = true;
+			this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
+			this.StudentInfo.value = SceneManager.instance.numberOfStudentInStorage;
+			this.StudentInfo.showAsCurrentMax = true;
+		}
 	}
 
 	private static void InitActiveMissions()
@@ -37,11 +63,13 @@ public class MissionWindowScript : WindowScript
 
 		// Lấy danh sách ID trực tiếp từ Shop để đảm bảo đồng bộ
 		List<int> shopIds = ShopWindowScript.GetAllShopItemIds();
+		List<int> claimedIds = DataBaseManager.instance.GetClaimedMissionIds();
 
 		foreach (int itemId in shopIds)
 		{
-			// Tạo nhiệm vụ cho mỗi item trong shop
-			_activeMissions.Add(new MissionData(itemId, 100));
+			// Tạo nhiệm vụ cho mỗi item trong shop, check xem đã nhận thưởng chưa
+			bool isClaimed = claimedIds.Contains(itemId);
+			_activeMissions.Add(new MissionData(itemId, 100, isClaimed));
 		}
 	}
 
@@ -150,5 +178,15 @@ public class MissionWindowScript : WindowScript
 		}
 
 		return false;
+	}
+
+	public void HideWindow()
+	{
+		if (anim != null) anim.Play("Hide");
+	}
+
+	public void ShowWindow()
+	{
+		if (anim != null) anim.Play("Show");
 	}
 }

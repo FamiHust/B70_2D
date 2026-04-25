@@ -340,7 +340,7 @@ public class SubCategoryItemScript : MonoBehaviour
 		int price = itemData.configuration.price;
 		string resource = itemData.configuration.resourceType;
 
-		bool canBuild = SceneManager.instance.ConsumeResource(resource, price);
+		bool canBuild = SceneManager.instance.HasEnoughResource(resource, price);
 
 		if (!canBuild)
 		{
