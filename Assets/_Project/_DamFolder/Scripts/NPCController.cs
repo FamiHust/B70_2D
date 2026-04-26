@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class NPCController : MonoBehaviour
 {
@@ -9,13 +10,39 @@ public class NPCController : MonoBehaviour
     Queue<Vector2Int> path = new Queue<Vector2Int>();
 
     float tickTimer = 0f;
-    public float tickRate = 0.2f;
+    public float tickRate = 0.25f;
+
+    SpriteRenderer sr;
+    Transform cachedTransform;
+
+    public int sortingOffset = 4000;
+
+    Transform visual;
+    Tween moveTween;
+
+    public float moveDuration = 0.2f;
+    public Ease moveEase = Ease.Linear;
+
+    void Awake()
+    {
+        cachedTransform = transform;
+
+        sr = GetComponentInChildren<SpriteRenderer>();
+        if (sr == null)
+        {
+            Debug.LogError("NPCController: Missing SpriteRenderer!");
+            return;
+        }
+
+        visual = sr.transform;
+    }
 
     void Start()
     {
-        currentCell = WorldToCell(transform.position);
+        currentCell = WorldToCell(cachedTransform.position);
         NPCGridSystem.Instance.Occupy(currentCell.x, currentCell.y, id);
 
+        UpdateSorting();
         RequestNewPath();
     }
 
@@ -34,7 +61,7 @@ public class NPCController : MonoBehaviour
     {
         Vector3 target = GroundManager.instance.GetRandomFreePosition();
 
-        var rawPath = GroundManager.instance.GetPath(transform.position, target, false);
+        var rawPath = GroundManager.instance.GetPath(cachedTransform.position, target, false);
 
         path.Clear();
 
@@ -43,7 +70,6 @@ public class NPCController : MonoBehaviour
             path.Enqueue(WorldToCell(p));
         }
     }
-
     void TickMove()
     {
         if (path.Count == 0)
@@ -54,7 +80,6 @@ public class NPCController : MonoBehaviour
 
         Vector2Int next = path.Peek();
 
-        // check walkable (tránh building)
         if (!GroundManager.instance.pathNodesWithoutWall[next.x, next.y])
         {
             RequestNewPath();
@@ -63,30 +88,62 @@ public class NPCController : MonoBehaviour
 
         if (!NPCGridSystem.Instance.IsFree(next.x, next.y))
         {
-            // cell bị chiếm
             HandleBlocked();
             return;
         }
 
-        // move
         NPCGridSystem.Instance.Release(currentCell.x, currentCell.y);
+
+        Vector2Int prevCell = currentCell;
 
         currentCell = next;
         path.Dequeue();
 
         NPCGridSystem.Instance.Occupy(currentCell.x, currentCell.y, id);
 
-        transform.position = CellToWorld(currentCell);
+        Vector3 oldWorldPos = cachedTransform.position;
+        Vector3 newWorldPos = CellToWorld(currentCell);
+
+        cachedTransform.position = newWorldPos;
+
+        AnimateMove(oldWorldPos, newWorldPos, prevCell, currentCell);
+
+        UpdateSorting();
+    }
+
+    void AnimateMove(Vector3 oldWorldPos, Vector3 newWorldPos, Vector2Int from, Vector2Int to)
+    {
+        if (visual == null) return;
+
+        moveTween?.Kill();
+
+        visual.position = oldWorldPos;
+
+        Vector2Int dir = to - from;
+
+        if (dir.x != 0)
+        {
+            Vector3 scale = visual.localScale;
+            scale.x = dir.x > 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+            visual.localScale = scale;
+        }
+
+        moveTween = visual.DOMove(newWorldPos, moveDuration)
+            .SetEase(moveEase);
+    }
+
+    void UpdateSorting()
+    {
+        if (sr == null) return;
+
+        int z = currentCell.y;
+
+        sr.sortingOrder = -(z * 100) + sortingOffset;
     }
 
     void HandleBlocked()
     {
-        // Cách đơn giản: chờ
-        // (stable nhất)
 
-        // nâng cấp sau:
-        // - random side step
-        // - priority
     }
 
     Vector2Int WorldToCell(Vector3 pos)
