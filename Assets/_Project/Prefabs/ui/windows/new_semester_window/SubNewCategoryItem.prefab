@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 114008008076338788}
   - component: {fileID: 114807311948488204}
   - component: {fileID: 1332266814641231058}
+  - component: {fileID: 4712873132296553409}
   m_Layer: 5
   m_Name: SubNewCategoryItem
   m_TagString: Untagged
@@ -149,6 +150,29 @@ MonoBehaviour:
   Tree3Sprite: {fileID: 0}
   Name: {fileID: 7717030034338720666}
   Image: {fileID: 7874292832408170031}
+--- !u!114 &4712873132296553409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178358295597180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d58260a0825f1d4d90626068bb8448d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScale: {x: 1, y: 1}
+  endScale: {x: 0.95, y: 0.95}
+  targetTF: {fileID: 2144322978486977250}
+  eventOnPointDown:
+    m_PersistentCalls:
+      m_Calls: []
+  eventOnPointUp:
+    m_PersistentCalls:
+      m_Calls: []
+  isActiveSound: 1
+  ignoreVib: 0
 --- !u!1 &1289569444920560864
 GameObject:
   m_ObjectHideFlags: 0

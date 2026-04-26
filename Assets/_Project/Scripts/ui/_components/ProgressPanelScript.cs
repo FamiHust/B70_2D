@@ -66,7 +66,14 @@ public class ProgressPanelScript : MonoBehaviour
 
     public void TweenValueChange(float changedValue)
     {
-        StartCoroutine(_TweenValueChange(changedValue));
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(_TweenValueChange(changedValue));
+        }
+        else
+        {
+            value = changedValue;
+        }
     }
 
     private IEnumerator _TweenValueChange(float changedValue)

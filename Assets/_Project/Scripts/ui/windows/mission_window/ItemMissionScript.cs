@@ -106,6 +106,24 @@ public class ItemMissionScript : MonoBehaviour
 	{
 		if (_data == null || _data.isClaimed) return;
 
+		// End tutorial state before awarding resources to avoid errors with inactive UI panels
+		if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+		{
+			SceneManager.instance.SetMapShopAreasVisible(true);
+			SceneManager.instance.isTutorialActive = false;
+
+			if (GameOverlayWindowScript.instance != null)
+			{
+				GameOverlayWindowScript.instance.SetTutorialState(false);
+			}
+
+			// Also close the tutorial window
+			if (TutorialWindowScript.instance != null)
+			{
+				TutorialWindowScript.instance.Close();
+			}
+		}
+
 		// Move camera to building and zoom to 8
 		BaseItemScript building = null;
 		foreach (var item in SceneManager.instance.GetAllItems())
@@ -120,16 +138,10 @@ public class ItemMissionScript : MonoBehaviour
 		if (building != null)
 		{
 			CameraManager.instance.FocusOnItem(building, 10f);
-
-			// Close the window since we are focusing on world
-			MissionWindowScript.instance.Close();
 		}
 
 		// Award gold
 		SceneManager.instance.CollectResource("gold", _goldReward);
-		
-		// Increment semester progress
-		SceneManager.instance.UpdateSemesterProgress();
 
 		// Mark as claimed
 		_data.isClaimed = true;

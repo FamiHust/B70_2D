@@ -407,6 +407,14 @@ public class DataBaseManager : MonoBehaviour
 		return this._gameData.claimedMissionIds;
 	}
 
+	public int GetSavedBuildingCount()
+	{
+		this.EnsureInMemoryData();
+		if (this._gameData == null || this._gameData.sceneData == null || this._gameData.sceneData.items == null)
+			return 0;
+		return this._gameData.sceneData.items.Count;
+	}
+
 	public void SaveDataBase()
 	{
 		if (Application.platform == RuntimePlatform.WebGLPlayer)

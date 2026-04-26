@@ -57,6 +57,24 @@ public class MissionWindowScript : WindowScript
 		}
 	}
 
+	public void UpdateResourcePanel()
+	{
+		if (this.GoldInfo != null && SceneManager.instance != null)
+		{
+			this.GoldInfo.TweenValueChange((float)SceneManager.instance.numberOfGoldInStorage);
+		}
+
+		if (this.DiamondInfo != null && SceneManager.instance != null)
+		{
+			this.DiamondInfo.TweenValueChange((float)SceneManager.instance.numberOfDiamondsInStorage);
+		}
+
+		if (this.StudentInfo != null && SceneManager.instance != null)
+		{
+			this.StudentInfo.TweenValueChange((float)SceneManager.instance.numberOfStudentInStorage);
+		}
+	}
+
 	private static void InitActiveMissions()
 	{
 		_activeMissions = new List<MissionData>();

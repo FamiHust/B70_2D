@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 	{
 		// Automatically close other windows except the overlay before showing the new one
 		// but don't close windows if we are opening the overlay itself or an Info popup
-		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow)
+		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow)
 		{
 			this.CloseAllWindowsExceptOverlay();
 		}
@@ -118,8 +118,8 @@ public class UIManager : MonoBehaviour
 		{
 			if (window != null)
 			{
-				// Keep the GameOverlayWindow instance, close everything else
-				if (window is GameOverlayWindowScript)
+				// Keep the GameOverlayWindow and TutorialWindow instances, close everything else
+				if (window is GameOverlayWindowScript || window is TutorialWindowScript)
 				{
 					remainingWindows.Add(window);
 				}
@@ -183,20 +183,20 @@ public class UIManager : MonoBehaviour
 		this.ShowWindow(this.BoostWindow);
 	}
 
-	public void ShowTutorialWindow()
+	public WindowScript ShowTutorialWindow()
 	{
-		this.ShowWindow(this.TutorialWindow);
+		return this.ShowWindow(this.TutorialWindow);
 	}
 
-	public void ShowNewSemesterWindow()
+	public WindowScript ShowNewSemesterWindow()
 	{
-		this.ShowWindow(this.NewSemesterWindow);
+		return this.ShowWindow(this.NewSemesterWindow);
 	}
 
 
-	public void ShowMissionWindow()
+	public WindowScript ShowMissionWindow()
 	{
-		this.ShowWindow(this.MissionWindow);
+		return this.ShowWindow(this.MissionWindow);
 	}
 
 	public ItemWindowScript ShowMapShopWindow(string areaName, List<int> itemIds, MapShopAreaScript mapShopArea = null)
@@ -226,7 +226,15 @@ public class UIManager : MonoBehaviour
 
 			if (!hasOtherWindow && GameOverlayWindowScript.instance != null)
 			{
-				GameOverlayWindowScript.instance.ShowOverlay();
+				// During tutorial, if building is under construction, don't show normal overlay
+				if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.IsAnyBuildingUnderConstruction())
+				{
+					// Stay hidden
+				}
+				else
+				{
+					GameOverlayWindowScript.instance.ShowOverlay();
+				}
 			}
 		}
 	}

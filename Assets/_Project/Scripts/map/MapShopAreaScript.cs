@@ -27,7 +27,10 @@ public class MapShopAreaScript : MonoBehaviour
 
 	public void OnMapShopClicked()
 	{
-		if (Arrow != null) Arrow.SetActive(false);
+		if (SceneManager.instance != null)
+		{
+			SceneManager.instance.HideAllShopAreaArrows();
+		}
 
 		if (itemIds.Count == 0)
 		{

@@ -48,6 +48,8 @@ public class SceneManager : MonoBehaviour
 	public float semesterProgress;
 	// public int missionsPerSemester = 5; // Removed in favor of building-based progress
 
+	public bool isTutorialActive;
+
 
 
 
@@ -100,7 +102,7 @@ public class SceneManager : MonoBehaviour
 		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
-		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 100);
+		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 200);
 		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 20);
 		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 0);
 		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
@@ -646,9 +648,20 @@ public class SceneManager : MonoBehaviour
 						}
 						
 						_activeShopAreas[layoutItem.itemId] = shopAreaScript;
+
+						// Hide immediately if starting fresh tutorial
+						if (this.GetBuildingCount() == 0)
+						{
+							shopAreaObj.SetActive(false);
+						}
 					}
 				}
 			}
+		}
+
+		if (this.GetBuildingCount() == 0)
+		{
+			this.SetMapShopAreasVisible(false);
 		}
 
 		//LOAD UNITS ON CAMP 
@@ -779,6 +792,31 @@ public class SceneManager : MonoBehaviour
 		return items;
 	}
 
+	public int GetBuildingCount()
+	{
+		int count = 0;
+		foreach (var entry in this._itemInstances)
+		{
+			if (entry.Value != null && entry.Value.itemData != null && entry.Value.itemData.configuration != null && !entry.Value.itemData.configuration.isCharacter)
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public bool IsAnyBuildingUnderConstruction()
+	{
+		foreach (var entry in this._itemInstances)
+		{
+			if (entry.Value != null && entry.Value.Production != null && entry.Value.Production.isUnderConstruction)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public bool IsItemBuiltInScene(int itemId)
 	{
 		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
@@ -789,6 +827,30 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	public void SetMapShopAreasVisible(bool visible)
+	{
+		if (this._activeShopAreas == null) return;
+		foreach (var entry in this._activeShopAreas)
+		{
+			if (entry.Value != null)
+			{
+				entry.Value.gameObject.SetActive(visible);
+			}
+		}
+	}
+
+	public void HideAllShopAreaArrows()
+	{
+		if (this._activeShopAreas == null) return;
+		foreach (var entry in this._activeShopAreas)
+		{
+			if (entry.Value != null && entry.Value.Arrow != null)
+			{
+				entry.Value.Arrow.SetActive(false);
+			}
+		}
 	}
 
 	public bool IsItemConstructionFinished(int itemId)
@@ -1027,6 +1089,11 @@ public class SceneManager : MonoBehaviour
 		if (TrainTroopsWindowScript.instance != null)
 		{
 			TrainTroopsWindowScript.instance.UpdateResourcePanel();
+		}
+
+		if (MissionWindowScript.instance != null)
+		{
+			MissionWindowScript.instance.UpdateResourcePanel();
 		}
 	}
 

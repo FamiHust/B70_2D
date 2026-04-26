@@ -54,6 +54,13 @@ public class ItemOptionsWindowScript : WindowScript
 		{
 			haveYesButton = true;
 			haveNoButton = true;
+
+			// Tutorial handling: hide NoButton for the first building
+			if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+			{
+				haveNoButton = false;
+			}
+
 			haveInfoButton = false;
 			haveUpgradeButton = false;
 			haveTrainButton = false;
@@ -235,9 +242,17 @@ public class ItemOptionsWindowScript : WindowScript
 				selectedItem.SetState(Common.State.IDLE);
 				// Show progress UI and start construction
 				selectedItem.UI.ShowProgressUI(true);
-				
-				// Refresh options to show standard buttons (like Boost)
-				ShowOptions();
+
+				// Tutorial handling: close window after confirming the first building
+				if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+				{
+					UIManager.instance.HideItemOptions();
+				}
+				else
+				{
+					// Refresh options to show standard buttons (like Boost)
+					ShowOptions();
+				}
 			}
 			else
 			{
