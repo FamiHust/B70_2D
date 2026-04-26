@@ -10,6 +10,7 @@ public class NewSemesterWindowScript : WindowScript
     public GameObject SubNewCategoryItemPrefab;
     public Transform ItemList;
     public Text NextSemesterLabel;
+    public Animator anim;
 
 
     private void Awake()
@@ -23,6 +24,7 @@ public class NewSemesterWindowScript : WindowScript
         {
             this.NextSemesterLabel.text = SceneManager.instance.currentSemester.ToString();
             this.RefreshNewItemsList();
+            this.ShowWindow();
         }
     }
 
@@ -54,7 +56,18 @@ public class NewSemesterWindowScript : WindowScript
 
     public void OnClickClose()
     {
+        this.HideWindow();
         this.Close();
+    }
+
+    public void HideWindow()
+    {
+        if (anim != null) anim.Play("Hide");
+    }
+
+    public void ShowWindow()
+    {
+        if (anim != null) anim.Play("Show");
     }
 }
 

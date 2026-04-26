@@ -144,8 +144,6 @@ MonoBehaviour:
   DecorationsSprite: {fileID: 21300000, guid: b38cc01d5308d7e41ace7421512e09a6, type: 2}
   Name: {fileID: 114956034562661668}
   Image: {fileID: 114960140593979912}
-  SelectedOverlay: {fileID: 1134148650516172}
-  Background: {fileID: 0}
 --- !u!114 &114006160625638124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,9 +194,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 21300000, guid: 6ad0c7fce7bd12d4b89143753e47c629, type: 2}
-    m_SelectedSprite: {fileID: 21300000, guid: 6ad0c7fce7bd12d4b89143753e47c629, type: 2}
-    m_DisabledSprite: {fileID: 21300000, guid: 6ad0c7fce7bd12d4b89143753e47c629, type: 2}
+    m_PressedSprite: {fileID: 21300000, guid: e37504b15e6874541a73bfec5580a661, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: e37504b15e6874541a73bfec5580a661, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: e37504b15e6874541a73bfec5580a661, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -242,7 +240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 943a9ed6b2ad79c44af9b8bed5ef442e, type: 2}
+  m_Sprite: {fileID: 21300000, guid: 6676d93932d704146a4a592fda518f1e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -321,7 +319,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 08d0c6412719f4c46b00e69b6388e5f4, type: 3}
-    m_FontSize: 20
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

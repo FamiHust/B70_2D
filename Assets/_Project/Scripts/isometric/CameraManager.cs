@@ -91,6 +91,12 @@ public class CameraManager : MonoBehaviour
 			return;
 		}
 
+		// Block all map interactions (tap, move, pan, etc.) if in PREVIEW state. Only UI buttons allowed.
+		if (SceneManager.instance.selectedItem != null && SceneManager.instance.selectedItem.state == Common.State.PREVIEW)
+		{
+			return;
+		}
+
 		this.UpdateBaseItemTap();
 		this.UpdateBaseItemMove();
 		this.UpdateGroundTap();
@@ -716,6 +722,65 @@ public class CameraManager : MonoBehaviour
 		{
 			FocusOn(item.GetCenterPosition());
 		}
+	}
+
+	public void FocusOnItem(BaseItemScript item, float zoomSize, float duration = 0.5f)
+	{
+		if (item != null)
+		{
+			FocusAndZoom(item.GetCenterPosition(), zoomSize, duration);
+		}
+	}
+
+	public void FocusAndZoom(Vector3 targetGroundPos, float targetSize, float duration = 0.5f)
+	{
+		this.isCameraMovementLocked = false;
+		if (this._focusCoroutine != null) StopCoroutine(this._focusCoroutine);
+		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
+
+		this._focusCoroutine = StartCoroutine(this._SmoothFocusAndZoom(targetGroundPos, targetSize, duration));
+	}
+
+	private IEnumerator _SmoothFocusAndZoom(Vector3 targetGroundPos, float targetSize, float duration)
+	{
+		float startSize = this.MainCamera.orthographicSize;
+		Vector3 startPos = this.MainCamera.transform.localPosition;
+
+		// Calculate target local position based on TARGET zoom size to ensure we land in the right spot after clamping
+		float originalSize = this.MainCamera.orthographicSize;
+		this.MainCamera.orthographicSize = targetSize;
+
+		Vector3 currentCenterPos = this._TryGetRaycastHitBaseGround(new Vector2(Screen.width / 2f, Screen.height / 2f));
+		Vector3 targetLocalPos = startPos;
+		if (currentCenterPos != positiveInfinityVector)
+		{
+			Vector3 delta = targetGroundPos - currentCenterPos;
+			this.MainCamera.transform.localPosition += delta;
+			this.ClampCamera();
+			targetLocalPos = this.MainCamera.transform.localPosition;
+		}
+
+		// Restore original state for lerping
+		this.MainCamera.orthographicSize = originalSize;
+		this.MainCamera.transform.localPosition = startPos;
+
+		float t = 0;
+		while (t < 1f)
+		{
+			t += Time.deltaTime / duration;
+			float smoothT = Mathf.SmoothStep(0f, 1f, t);
+
+			this.MainCamera.orthographicSize = Mathf.Lerp(startSize, targetSize, smoothT);
+			this.MainCamera.transform.localPosition = Vector3.Lerp(startPos, targetLocalPos, smoothT);
+			this.ClampCamera();
+			yield return null;
+		}
+
+		this.MainCamera.orthographicSize = targetSize;
+		this.MainCamera.transform.localPosition = targetLocalPos;
+		this.ClampCamera();
+
+		this._focusCoroutine = null;
 	}
     
     /* SHAKE SCRIPT */

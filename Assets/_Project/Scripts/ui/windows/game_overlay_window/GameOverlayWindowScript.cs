@@ -20,6 +20,14 @@ public class GameOverlayWindowScript : WindowScript
 
 	public GameObject ZoomInButton;
 	public GameObject ZoomOutButton;
+	public GameObject ShopButton;
+	public GameObject MissionButton;
+	public GameObject HandTutorial;
+	public GameObject HandTutMission;
+	public GameObject Hint;
+	public Animator anim;
+
+	private float _nextHintCheckTime;
 
 
 
@@ -73,12 +81,45 @@ public class GameOverlayWindowScript : WindowScript
 		// Initial zoom button states
 		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(false);
 		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(true);
+
+		this.RefreshHint();
+	}
+
+	private void Update()
+	{
+		if (Time.time >= _nextHintCheckTime)
+		{
+			RefreshHint();
+			_nextHintCheckTime = Time.time + 0.5f;
+		}
+	}
+
+	public void RefreshHint()
+	{
+		if (this.Hint != null)
+		{
+			bool hasReady = MissionWindowScript.HasReadyToClaimMission();
+			bool isMissionButtonActive = MissionButton != null && MissionButton.activeInHierarchy;
+			
+			this.Hint.SetActive(hasReady && isMissionButtonActive);
+		}
 	}
 
 
 	public void OnClickShopButton()
 	{
 		UIManager.instance.ShowShopWidow();
+
+		if (SceneManager.instance != null && SceneManager.instance.isTutorialActive)
+		{
+			if (ShopButton != null) ShopButton.SetActive(false);
+			if (HandTutorial != null) HandTutorial.SetActive(false);
+
+			if (TutorialWindowScript.instance != null)
+			{
+				TutorialWindowScript.instance.Close();
+			}
+		}
 	}
 
 	public void OnClickAttackButton()
@@ -171,5 +212,92 @@ public class GameOverlayWindowScript : WindowScript
 		CameraManager.instance.ResetZoom(10f); // Default zoom 10
 		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(false);
 		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(true);
+	}
+
+	public void HideOverlay()
+	{
+		if (anim != null) anim.Play("Hide");
+	}
+
+	public void ShowOverlay()
+	{
+		if (anim != null) anim.Play("Show");
+		
+		// If tutorial is active, ensure the correct tutorial state is applied
+		if (SceneManager.instance != null && SceneManager.instance.isTutorialActive)
+		{
+			// If we have a building, check if it's finished to show the mission tutorial
+			if (SceneManager.instance.GetBuildingCount() == 1)
+			{
+				// Only show mission tutorial state if the building is actually finished
+				if (MissionWindowScript.HasReadyToClaimMission())
+				{
+					SetMissionTutorialState(true);
+				}
+				else
+				{
+					// If not finished, we are still in the waiting phase or normal tutorial state
+					SetTutorialState(true);
+					// Hide hand if we are just waiting
+					if (HandTutorial != null) HandTutorial.SetActive(false);
+				}
+			}
+			else
+			{
+				SetTutorialState(true);
+			}
+		}
+	}
+
+	public void SetTutorialState(bool active)
+	{
+		// Hide/Show info panels
+		if (GoldInfo != null) GoldInfo.gameObject.SetActive(!active);
+		if (DiamondInfo != null) DiamondInfo.gameObject.SetActive(!active);
+		if (HappyInfo != null) HappyInfo.gameObject.SetActive(!active);
+		if (StudentInfo != null) StudentInfo.gameObject.SetActive(!active);
+		if (EducationInfo != null) EducationInfo.gameObject.SetActive(!active);
+		if (SemesterInfo != null) SemesterInfo.gameObject.SetActive(!active);
+
+		// Hide/Show other buttons
+		if (ZoomInButton != null) ZoomInButton.SetActive(!active);
+		if (ZoomOutButton != null) ZoomOutButton.SetActive(!active);
+		if (MissionButton != null) MissionButton.SetActive(!active);
+		
+		// Let RefreshHint handle the hint visibility based on mission status
+		RefreshHint();
+
+		// ShopButton should be visible in both normal and tutorial states
+		if (ShopButton != null) ShopButton.SetActive(true);
+		
+		// HandTutorial is only visible during the tutorial step
+		if (HandTutorial != null) HandTutorial.SetActive(active);
+		if (HandTutMission != null) HandTutMission.SetActive(false);
+	}
+
+	public void SetMissionTutorialState(bool active)
+	{
+		// Hide info panels
+		if (GoldInfo != null) GoldInfo.gameObject.SetActive(!active);
+		if (DiamondInfo != null) DiamondInfo.gameObject.SetActive(!active);
+		if (HappyInfo != null) HappyInfo.gameObject.SetActive(!active);
+		if (StudentInfo != null) StudentInfo.gameObject.SetActive(!active);
+		if (EducationInfo != null) EducationInfo.gameObject.SetActive(!active);
+		if (SemesterInfo != null) SemesterInfo.gameObject.SetActive(!active);
+
+		// Hide other buttons
+		if (ZoomInButton != null) ZoomInButton.SetActive(!active);
+		if (ZoomOutButton != null) ZoomOutButton.SetActive(!active);
+		if (ShopButton != null) ShopButton.SetActive(!active);
+		
+		// Show MissionButton and its tutorial hand
+		if (MissionButton != null) MissionButton.SetActive(active);
+		if (HandTutMission != null) HandTutMission.SetActive(active);
+		
+		// Let RefreshHint handle the hint visibility based on mission status
+		RefreshHint();
+		
+		// Ensure other hand is off
+		if (HandTutorial != null) HandTutorial.SetActive(false);
 	}
 }

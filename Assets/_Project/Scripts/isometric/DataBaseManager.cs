@@ -90,6 +90,7 @@ public class SceneData
 public class GameData
 {
 	public SceneData sceneData;
+	public List<int> claimedMissionIds = new List<int>();
 }
 
 public class DataBaseManager : MonoBehaviour
@@ -109,6 +110,10 @@ public class DataBaseManager : MonoBehaviour
 		if (this._gameData.sceneData == null)
 		{
 			this._gameData.sceneData = new SceneData();
+		}
+		if (this._gameData.claimedMissionIds == null)
+		{
+			this._gameData.claimedMissionIds = new List<int>();
 		}
 	}
 
@@ -380,11 +385,35 @@ public class DataBaseManager : MonoBehaviour
 
 
 	public void RemoveItem(BaseItemScript item)
-    {
+	{
 		this.EnsureInMemoryData();
 		this._gameData.sceneData.RemoveItem(item.instanceId);
 		this.SaveDataBase();
-    }
+	}
+
+	public void MarkMissionAsClaimed(int itemId)
+	{
+		this.EnsureInMemoryData();
+		if (!this._gameData.claimedMissionIds.Contains(itemId))
+		{
+			this._gameData.claimedMissionIds.Add(itemId);
+			this.SaveDataBase();
+		}
+	}
+
+	public List<int> GetClaimedMissionIds()
+	{
+		this.EnsureInMemoryData();
+		return this._gameData.claimedMissionIds;
+	}
+
+	public int GetSavedBuildingCount()
+	{
+		this.EnsureInMemoryData();
+		if (this._gameData == null || this._gameData.sceneData == null || this._gameData.sceneData.items == null)
+			return 0;
+		return this._gameData.sceneData.items.Count;
+	}
 
 	public void SaveDataBase()
 	{

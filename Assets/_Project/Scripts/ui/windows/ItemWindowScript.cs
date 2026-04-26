@@ -18,6 +18,7 @@ public class ItemWindowScript : WindowScript
 	public ScrollRect ScrollView;
 	public GameObject ItemsList;
 	public GameObject BackButton;
+	public Animator anim;
 
 	/* Map Shop references */
 	private string _currentAreaName = "";
@@ -142,5 +143,15 @@ public class ItemWindowScript : WindowScript
 		_currentItemIds.Clear();
 		_mapShopArea = null;
 		base.Close();
+	}
+
+	public void HideWindow()
+	{
+		if (anim != null) anim.Play("Hide");
+	}
+
+	public void ShowWindow()
+	{
+		if (anim != null) anim.Play("Show");
 	}
 }

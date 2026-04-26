@@ -126,8 +126,8 @@ TextureImporter:
       name: Slider_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1486
+        x: 79
+        y: 1488
         width: 92
         height: 560
       alignment: 0
@@ -2937,7 +2937,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slider_134
+      name: Outline
       rect:
         serializedVersion: 2
         x: 750
@@ -2946,7 +2946,7 @@ TextureImporter:
         height: 150
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 69, y: 76, z: 69, w: 70}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -3033,6 +3033,7 @@ TextureImporter:
     nameFileIdTable:
       Bg_2: -1023208692
       Money_Bg: 799508371
+      Outline: 116728868
       Slider_0: -1820980928
       Slider_1: 52567354
       Slider_10: -1273420196
@@ -3072,7 +3073,6 @@ TextureImporter:
       Slider_131: -112405329
       Slider_132: -793282822
       Slider_133: 763576837
-      Slider_134: 116728868
       Slider_135: 839444239
       Slider_136: -1898777525
       Slider_137: -638660993

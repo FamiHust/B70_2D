@@ -340,7 +340,7 @@ public class SubCategoryItemScript : MonoBehaviour
 		int price = itemData.configuration.price;
 		string resource = itemData.configuration.resourceType;
 
-		bool canBuild = SceneManager.instance.ConsumeResource(resource, price);
+		bool canBuild = SceneManager.instance.HasEnoughResource(resource, price);
 
 		if (!canBuild)
 		{
@@ -348,14 +348,19 @@ public class SubCategoryItemScript : MonoBehaviour
 			return;
 		}
 
-		BaseItemScript item = SceneManager.instance.AddItem(itemId, false, true);
+		// Create the item in preview mode
+		BaseItemScript item = SceneManager.instance.AddItem(itemId, false, true, 1, true);
 
 		if (item != null)
 		{
 			DataBaseManager.instance.UpdateItemData(item);
+			
+			// Focus and select the item to show Yes/No buttons
+			SceneManager.instance.OnItemTap(new CameraManager.CameraEvent { baseItem = item });
+			
 			if (CameraManager.instance != null)
 			{
-				CameraManager.instance.FocusOnItem(item);
+				CameraManager.instance.FocusOnItem(item, 10f);
 			}
 		}
 

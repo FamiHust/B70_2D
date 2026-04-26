@@ -216,6 +216,11 @@ public class BaseItemScript : MonoBehaviour
 			this.state = state;
 			this.UpdateConnectedItems();
 		}
+
+		if (this.BoxCollider != null)
+		{
+			this.BoxCollider.enabled = (state != Common.State.PREVIEW);
+		}
 	}
 
 	/// <summary>

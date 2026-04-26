@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 	{
 		// Automatically close other windows except the overlay before showing the new one
 		// but don't close windows if we are opening the overlay itself or an Info popup
-		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow)
+		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow)
 		{
 			this.CloseAllWindowsExceptOverlay();
 		}
@@ -66,6 +66,13 @@ public class UIManager : MonoBehaviour
 		WindowScript window = Utilities.CreateInstance(prefab, this.WindowsContainer, true).GetComponent<WindowScript>();
 		window.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 		this._windowInstances.Add(window);
+
+		// Hide GameOverlay when another window opens
+		if (prefab != this.GameOverlayWindow && GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.HideOverlay();
+		}
+
 		return window;
 	}
 
@@ -111,8 +118,8 @@ public class UIManager : MonoBehaviour
 		{
 			if (window != null)
 			{
-				// Keep the GameOverlayWindow instance, close everything else
-				if (window is GameOverlayWindowScript)
+				// Keep the GameOverlayWindow and TutorialWindow instances, close everything else
+				if (window is GameOverlayWindowScript || window is TutorialWindowScript)
 				{
 					remainingWindows.Add(window);
 				}
@@ -176,20 +183,20 @@ public class UIManager : MonoBehaviour
 		this.ShowWindow(this.BoostWindow);
 	}
 
-	public void ShowTutorialWindow()
+	public WindowScript ShowTutorialWindow()
 	{
-		this.ShowWindow(this.TutorialWindow);
+		return this.ShowWindow(this.TutorialWindow);
 	}
 
-	public void ShowNewSemesterWindow()
+	public WindowScript ShowNewSemesterWindow()
 	{
-		this.ShowWindow(this.NewSemesterWindow);
+		return this.ShowWindow(this.NewSemesterWindow);
 	}
 
 
-	public void ShowMissionWindow()
+	public WindowScript ShowMissionWindow()
 	{
-		this.ShowWindow(this.MissionWindow);
+		return this.ShowWindow(this.MissionWindow);
 	}
 
 	public ItemWindowScript ShowMapShopWindow(string areaName, List<int> itemIds, MapShopAreaScript mapShopArea = null)
@@ -197,5 +204,38 @@ public class UIManager : MonoBehaviour
 		ItemWindowScript window = this.ShowWindow(this.ItemWindow) as ItemWindowScript;
 		window.RenderItems(areaName, itemIds, mapShopArea);
 		return window;
+	}
+
+	public IEnumerator CheckWindowsAfterClose()
+	{
+		yield return new WaitForEndOfFrame();
+		
+		if (_windowInstances != null)
+		{
+			_windowInstances.RemoveAll(w => w == null);
+			
+			bool hasOtherWindow = false;
+			foreach (var w in _windowInstances)
+			{
+				if (w != null && !(w is GameOverlayWindowScript))
+				{
+					hasOtherWindow = true;
+					break;
+				}
+			}
+
+			if (!hasOtherWindow && GameOverlayWindowScript.instance != null)
+			{
+				// During tutorial, if building is under construction, don't show normal overlay
+				if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.IsAnyBuildingUnderConstruction())
+				{
+					// Stay hidden
+				}
+				else
+				{
+					GameOverlayWindowScript.instance.ShowOverlay();
+				}
+			}
+		}
 	}
 }

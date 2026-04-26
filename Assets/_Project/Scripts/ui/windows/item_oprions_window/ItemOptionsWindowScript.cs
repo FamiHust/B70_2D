@@ -14,6 +14,8 @@ public class ItemOptionsWindowScript : WindowScript
 	public GameObject TrainButton;
 	public GameObject BoostButton;
 	public GameObject RemoveButton;
+	public GameObject YesButton;
+	public GameObject NoButton;
 
 	private void Awake()
 	{
@@ -37,6 +39,8 @@ public class ItemOptionsWindowScript : WindowScript
 	bool haveTrainButton = false;
 	bool haveBoostButton = false;
 	bool haveRemoveButton = true;
+	bool haveYesButton = false;
+	bool haveNoButton = false;
 
 	private IEnumerator _ShowOptions()
 	{
@@ -46,16 +50,37 @@ public class ItemOptionsWindowScript : WindowScript
 		haveInfoButton = true;
 		haveRemoveButton = true;
 
-		if (isBuilding)
+		if (selectedItem.state == Common.State.PREVIEW)
+		{
+			haveYesButton = true;
+			haveNoButton = true;
+
+			// Tutorial handling: hide NoButton for the first building
+			if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+			{
+				haveNoButton = false;
+			}
+
+			haveInfoButton = false;
+			haveUpgradeButton = false;
+			haveTrainButton = false;
+			haveBoostButton = false;
+			haveRemoveButton = false;
+		}
+		else if (isBuilding)
 		{
 			haveBoostButton = true;
 			haveUpgradeButton = false;
 			haveTrainButton = false;
+			haveYesButton = false;
+			haveNoButton = false;
 		}
 		else
 		{
 			haveBoostButton = false;
 			haveUpgradeButton = true;
+			haveYesButton = false;
+			haveNoButton = false;
 			
 			// Check if already at max level - disable upgrade button
 			int nextLevel = selectedItem.level + 1;
@@ -76,6 +101,8 @@ public class ItemOptionsWindowScript : WindowScript
 		TrainButton.SetActive(haveTrainButton);
 		BoostButton.SetActive(haveBoostButton);
 		RemoveButton.SetActive(haveRemoveButton);
+		YesButton.SetActive(haveYesButton);
+		NoButton.SetActive(haveNoButton);
 
 		if (haveInfoButton)
 		{
@@ -104,6 +131,17 @@ public class ItemOptionsWindowScript : WindowScript
 		if (haveRemoveButton)
 		{
 			InfoButton.GetComponent<Animator>().SetTrigger("show");
+		}
+
+		if (haveYesButton)
+		{
+			YesButton.GetComponent<Animator>().SetTrigger("show");
+			yield return new WaitForSeconds(_waitTime);
+		}
+
+		if (haveNoButton)
+		{
+			NoButton.GetComponent<Animator>().SetTrigger("show");
 		}
 	}
 
@@ -145,6 +183,18 @@ public class ItemOptionsWindowScript : WindowScript
 			yield return new WaitForSeconds(_waitTime);
 		}
 
+		if (haveYesButton)
+		{
+			YesButton.GetComponent<Animator>().SetTrigger("hide");
+			yield return new WaitForSeconds(_waitTime);
+		}
+
+		if (haveNoButton)
+		{
+			NoButton.GetComponent<Animator>().SetTrigger("hide");
+			yield return new WaitForSeconds(_waitTime);
+		}
+
 		base.Close();
 	}
 
@@ -177,6 +227,53 @@ public class ItemOptionsWindowScript : WindowScript
 		UIManager.instance.HideItemOptions();
 		DataBaseManager.instance.RemoveItem(SceneManager.instance.selectedItem);
 		SceneManager.instance.RemoveItem(SceneManager.instance.selectedItem);
+	}
+
+	public void OnClickYesButton()
+	{
+		BaseItemScript selectedItem = SceneManager.instance.selectedItem;
+		if (selectedItem != null && selectedItem.state == Common.State.PREVIEW)
+		{
+			// Try to consume resources now
+			bool canBuild = SceneManager.instance.ConsumeResource(selectedItem.itemData.configuration.resourceType, selectedItem.itemData.configuration.price);
+			
+			if (canBuild)
+			{
+				selectedItem.SetState(Common.State.IDLE);
+				// Show progress UI and start construction
+				selectedItem.UI.ShowProgressUI(true);
+
+				// Tutorial handling: close window after confirming the first building
+				if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+				{
+					UIManager.instance.HideItemOptions();
+				}
+				else
+				{
+					// Refresh options to show standard buttons (like Boost)
+					ShowOptions();
+				}
+			}
+			else
+			{
+				// If somehow they don't have enough resources now, cancel the build
+				OnClickNoButton();
+			}
+		}
+	}
+
+	public void OnClickNoButton()
+	{
+		BaseItemScript selectedItem = SceneManager.instance.selectedItem;
+		if (selectedItem != null && selectedItem.state == Common.State.PREVIEW)
+		{
+			// Resources were never deducted, so no need to refund
+			
+			// Remove item
+			UIManager.instance.HideItemOptions();
+			SceneManager.instance.RemoveItem(selectedItem);
+			Destroy(selectedItem.gameObject);
+		}
 	}
 
 	public override void Close()

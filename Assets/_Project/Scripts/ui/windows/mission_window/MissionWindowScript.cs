@@ -9,8 +9,12 @@ public class MissionWindowScript : WindowScript
 	/* prefabs */
 	public GameObject ItemMissionPrefab;
 
-	/* references */
 	public Transform MissionListContainer;
+
+	public ProgressPanelScript GoldInfo;
+	public ProgressPanelScript DiamondInfo;
+	public ProgressPanelScript StudentInfo;
+	public Animator anim;
 
 	/* mission data */
 	// Static list so it persists across window opens within the same session
@@ -22,26 +26,68 @@ public class MissionWindowScript : WindowScript
 
 		if (_activeMissions == null)
 		{
-			InitDefaultMissions();
+			InitActiveMissions();
 		}
 	}
 
 	void Start()
 	{
 		RenderMissions();
+
+		if (this.GoldInfo != null && SceneManager.instance != null)
+		{
+			this.GoldInfo.hasMaxValue = true;
+			this.GoldInfo.maxValue = SceneManager.instance.goldStorageCapacity;
+			this.GoldInfo.value = SceneManager.instance.numberOfGoldInStorage;
+		}
+
+		if (this.DiamondInfo != null && SceneManager.instance != null)
+		{
+			this.DiamondInfo.hasMaxValue = true;
+			this.DiamondInfo.maxValue = SceneManager.instance.diamondStorageCapacity;
+			this.DiamondInfo.value = SceneManager.instance.numberOfDiamondsInStorage;
+		}
+
+		if (this.StudentInfo != null && SceneManager.instance != null)
+		{
+			this.StudentInfo.hasMaxValue = true;
+			this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
+			this.StudentInfo.value = SceneManager.instance.numberOfStudentInStorage;
+			this.StudentInfo.showAsCurrentMax = true;
+		}
 	}
 
-	private void InitDefaultMissions()
+	public void UpdateResourcePanel()
+	{
+		if (this.GoldInfo != null && SceneManager.instance != null)
+		{
+			this.GoldInfo.TweenValueChange((float)SceneManager.instance.numberOfGoldInStorage);
+		}
+
+		if (this.DiamondInfo != null && SceneManager.instance != null)
+		{
+			this.DiamondInfo.TweenValueChange((float)SceneManager.instance.numberOfDiamondsInStorage);
+		}
+
+		if (this.StudentInfo != null && SceneManager.instance != null)
+		{
+			this.StudentInfo.TweenValueChange((float)SceneManager.instance.numberOfStudentInStorage);
+		}
+	}
+
+	private static void InitActiveMissions()
 	{
 		_activeMissions = new List<MissionData>();
 
 		// Lấy danh sách ID trực tiếp từ Shop để đảm bảo đồng bộ
 		List<int> shopIds = ShopWindowScript.GetAllShopItemIds();
+		List<int> claimedIds = DataBaseManager.instance.GetClaimedMissionIds();
 
 		foreach (int itemId in shopIds)
 		{
-			// Tạo nhiệm vụ cho mỗi item trong shop
-			_activeMissions.Add(new MissionData(itemId, 1000));
+			// Tạo nhiệm vụ cho mỗi item trong shop, check xem đã nhận thưởng chưa
+			bool isClaimed = claimedIds.Contains(itemId);
+			_activeMissions.Add(new MissionData(itemId, 100, isClaimed));
 		}
 	}
 
@@ -130,5 +176,35 @@ public class MissionWindowScript : WindowScript
 	public override void Close()
 	{
 		base.Close();
+	}
+
+	public static bool HasReadyToClaimMission()
+	{
+		if (_activeMissions == null)
+		{
+			InitActiveMissions();
+		}
+
+		if (_activeMissions == null || SceneManager.instance == null) return false;
+
+		foreach (var mission in _activeMissions)
+		{
+			if (!mission.isClaimed && SceneManager.instance.IsItemConstructionFinished(mission.itemId))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public void HideWindow()
+	{
+		if (anim != null) anim.Play("Hide");
+	}
+
+	public void ShowWindow()
+	{
+		if (anim != null) anim.Play("Show");
 	}
 }

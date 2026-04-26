@@ -48,6 +48,8 @@ public class SceneManager : MonoBehaviour
 	public float semesterProgress;
 	// public int missionsPerSemester = 5; // Removed in favor of building-based progress
 
+	public bool isTutorialActive;
+
 
 
 
@@ -100,16 +102,13 @@ public class SceneManager : MonoBehaviour
 		// this.elixirStorageCapacity = 500;
 
 		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
-		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 100);
+		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 200);
 		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 20);
 		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 0);
 		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
 		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 0);
 		this.currentSemester = PlayerPrefs.GetInt("currentSemester", 1);
 		this.semesterProgress = PlayerPrefs.GetFloat("semesterProgress", 0);
-
-		// Initialize progress based on existing buildings
-		this.UpdateSemesterProgress();
 	}
 
 	private void OnApplicationQuit()
@@ -159,7 +158,7 @@ public class SceneManager : MonoBehaviour
 	/// </summary>
 	/// <returns>The item.</returns>
 	/// <param name="itemId">Item identifier.</param>
-	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0)
+	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0, bool isPreview = false)
 	{
 		BaseItemScript builder = null;
 
@@ -185,7 +184,15 @@ public class SceneManager : MonoBehaviour
 		this._itemInstances.Add(instanceId, instance);
 
 		instance.SetItemData(itemId, posX, posZ, level, lastCollectedTime);
-		instance.SetState(Common.State.IDLE);
+		
+		if (isPreview)
+		{
+			instance.SetState(Common.State.PREVIEW);
+		}
+		else
+		{
+			instance.SetState(Common.State.IDLE);
+		}
 
 		// Remove the map shop area if it exists for this item
 		if (_activeShopAreas.ContainsKey(itemId))
@@ -200,7 +207,7 @@ public class SceneManager : MonoBehaviour
 		//		GroundManager.Cell freeCell = GroundManager.instance.GetRandomFreeCellForItem (instance);
 		//		instance.SetPosition (GroundManager.instance.CellToPosition (freeCell));
 
-		if (!immediate)
+		if (!immediate && !isPreview)
 		{
 			instance.UI.ShowProgressUI(true);
 			instance.OnConstructionComplete = (item) =>
@@ -234,7 +241,7 @@ public class SceneManager : MonoBehaviour
 		return instance;
 	}
 
-	public BaseItemScript AddItem(int itemId, bool immediate, bool ownedItem, int level = 1)
+	public BaseItemScript AddItem(int itemId, bool immediate, bool ownedItem, int level = 1, bool isPreview = false)
 	{
 		int posX = 0;
 		int posZ = 0;
@@ -261,7 +268,7 @@ public class SceneManager : MonoBehaviour
 				posZ = (int)freePosition.z;
 			}
 		}
-		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem, level);
+		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem, level, 0, isPreview);
 	}
 
 	/// <summary>
@@ -417,7 +424,19 @@ public class SceneManager : MonoBehaviour
 
 		if (this.selectedItem != null)
 		{
-			this.selectedItem.SetSelected(false);
+			// If the currently selected item is in PREVIEW state, cancel it entirely
+			if (this.selectedItem.state == Common.State.PREVIEW)
+			{
+				BaseItemScript previewItem = this.selectedItem;
+				this.selectedItem = null;
+				UIManager.instance.HideItemOptions();
+				this.RemoveItem(previewItem);
+				Destroy(previewItem.gameObject);
+			}
+			else
+			{
+				this.selectedItem.SetSelected(false);
+			}
 		}
 		this.selectedItem = tappedItem;
 		tappedItem.SetSelected(true);
@@ -445,6 +464,17 @@ public class SceneManager : MonoBehaviour
 		{
 			if (this.selectedItem != null)
 			{
+				// If the selected item is in PREVIEW state, cancel it entirely
+				if (this.selectedItem.state == Common.State.PREVIEW)
+				{
+					BaseItemScript previewItem = this.selectedItem;
+					this.selectedItem = null;
+					UIManager.instance.HideItemOptions();
+					this.RemoveItem(previewItem);
+					Destroy(previewItem.gameObject);
+					return;
+				}
+
 				BaseItemScript temp = this.selectedItem;
 				this.selectedItem = null;
 				temp.SetSelected(false);
@@ -591,6 +621,9 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 
+		// Update semester progress after all buildings are loaded
+		this.UpdateSemesterProgress();
+
 		if (this._shopLayout != null && this._shopLayout.items != null && this.MapShopAreaPrefab != null)
 		{
 			foreach (var layoutItem in this._shopLayout.items)
@@ -615,9 +648,20 @@ public class SceneManager : MonoBehaviour
 						}
 						
 						_activeShopAreas[layoutItem.itemId] = shopAreaScript;
+
+						// Hide immediately if starting fresh tutorial
+						if (this.GetBuildingCount() == 0)
+						{
+							shopAreaObj.SetActive(false);
+						}
 					}
 				}
 			}
+		}
+
+		if (this.GetBuildingCount() == 0)
+		{
+			this.SetMapShopAreasVisible(false);
 		}
 
 		//LOAD UNITS ON CAMP 
@@ -748,6 +792,31 @@ public class SceneManager : MonoBehaviour
 		return items;
 	}
 
+	public int GetBuildingCount()
+	{
+		int count = 0;
+		foreach (var entry in this._itemInstances)
+		{
+			if (entry.Value != null && entry.Value.itemData != null && entry.Value.itemData.configuration != null && !entry.Value.itemData.configuration.isCharacter)
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public bool IsAnyBuildingUnderConstruction()
+	{
+		foreach (var entry in this._itemInstances)
+		{
+			if (entry.Value != null && entry.Value.Production != null && entry.Value.Production.isUnderConstruction)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public bool IsItemBuiltInScene(int itemId)
 	{
 		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
@@ -760,11 +829,37 @@ public class SceneManager : MonoBehaviour
 		return false;
 	}
 
+	public void SetMapShopAreasVisible(bool visible)
+	{
+		if (this._activeShopAreas == null) return;
+		foreach (var entry in this._activeShopAreas)
+		{
+			if (entry.Value != null)
+			{
+				entry.Value.gameObject.SetActive(visible);
+			}
+		}
+	}
+
+	public void HideAllShopAreaArrows()
+	{
+		if (this._activeShopAreas == null) return;
+		foreach (var entry in this._activeShopAreas)
+		{
+			if (entry.Value != null && entry.Value.Arrow != null)
+			{
+				entry.Value.Arrow.SetActive(false);
+			}
+		}
+	}
+
 	public bool IsItemConstructionFinished(int itemId)
 	{
 		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
 		{
-			if (entry.Value.itemData.id == itemId && entry.Value.UI.progressUIInstance == null)
+			if (entry.Value.itemData.id == itemId
+				&& entry.Value.state != Common.State.PREVIEW
+				&& entry.Value.UI.progressUIInstance == null)
 			{
 				return true;
 			}
@@ -882,6 +977,11 @@ public class SceneManager : MonoBehaviour
 		{
 			this.SaveResources();
 			this.RefreshResourceUIs("semester");
+
+			if (GameOverlayWindowScript.instance != null)
+			{
+				GameOverlayWindowScript.instance.RefreshHint();
+			}
 		}
 	}
 
@@ -955,6 +1055,20 @@ public class SceneManager : MonoBehaviour
 		return false;
 	}
 
+	public bool HasEnoughResource(string resourceType, int count)
+	{
+		if (resourceType == "gold")
+		{
+			return this.numberOfGoldInStorage >= count;
+		}
+		else if (resourceType == "diamond")
+		{
+			return this.numberOfDiamondsInStorage >= count;
+		}
+
+		return false;
+	}
+
 	public void RefreshResourceUIs(string resourceType)
 	{
 		if (GameOverlayWindowScript.instance != null)
@@ -975,6 +1089,11 @@ public class SceneManager : MonoBehaviour
 		if (TrainTroopsWindowScript.instance != null)
 		{
 			TrainTroopsWindowScript.instance.UpdateResourcePanel();
+		}
+
+		if (MissionWindowScript.instance != null)
+		{
+			MissionWindowScript.instance.UpdateResourcePanel();
 		}
 	}
 

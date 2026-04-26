@@ -67,6 +67,11 @@ public class BaseItemRendererScript : MonoBehaviour
 			}
 		}
 
+		if (BaseItem.state == Common.State.PREVIEW)
+		{
+			this.SetAlpha(0.5f);
+		}
+
 		//flip renderer for topleft, bottomleft, left
 		if (BaseItem.itemData.configuration.isCharacter)
 		{
@@ -227,5 +232,16 @@ public class BaseItemRendererScript : MonoBehaviour
 	public List<RenderQuadScript> GetRenderQuads()
 	{
 		return this._renderQuads;
+	}
+
+	public void SetAlpha(float alpha)
+	{
+		if (this._renderQuads != null)
+		{
+			foreach (RenderQuadScript renderQuad in this._renderQuads)
+			{
+				renderQuad.SetAlpha(alpha);
+			}
+		}
 	}
 }

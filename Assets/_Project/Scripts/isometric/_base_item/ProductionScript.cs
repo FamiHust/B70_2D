@@ -36,8 +36,43 @@ public class ProductionScript : MonoBehaviour
         this._lastCollectedTime = GetCurrentTime();
         if (this._baseItem != null)
             DataBaseManager.instance.UpdateItemData(this._baseItem);
-    }
 
+        // Tutorial handling: when the first building is finished
+        if (SceneManager.instance != null && SceneManager.instance.isTutorialActive)
+        {
+            if (SceneManager.instance.GetBuildingCount() == 1)
+            {
+                // Show TutorialWindow again
+                TutorialWindowScript tut = TutorialWindowScript.instance;
+                if (tut == null && UIManager.instance != null)
+                {
+                    tut = UIManager.instance.ShowTutorialWindow() as TutorialWindowScript;
+                }
+
+                if (tut != null)
+                {
+                    tut.ShowWindow();
+                    tut.SetTutorialContent("Tòa nhà đã xây xong! Hãy nhấn vào Mission để nhận thưởng.");
+                    tut.ShowCharacter(false);
+                    tut.transform.SetAsLastSibling();
+                }
+
+                // Show GameOverlay in Mission tutorial state
+                if (GameOverlayWindowScript.instance != null)
+                {
+                    GameOverlayWindowScript.instance.ShowOverlay();
+                    GameOverlayWindowScript.instance.SetMissionTutorialState(true);
+                    GameOverlayWindowScript.instance.transform.SetAsLastSibling();
+                }
+            }
+        }
+
+        // Update semester progress immediately when any construction finishes
+        if (SceneManager.instance != null)
+        {
+            SceneManager.instance.UpdateSemesterProgress();
+        }
+    }
 
     public void UpdateProduction()
     {
@@ -69,7 +104,7 @@ public class ProductionScript : MonoBehaviour
 
             DataBaseManager.instance.UpdateItemData(this._baseItem);
 
-            SceneManager.instance.CollectResource(this._productType, this._productPrice * productAmount);
+            SceneManager.instance.CollectResource(this._productType, this._productPrice);
             SoundManager.instance.PlaySound(SoundManager.instance.Collect, false);
         }
     }

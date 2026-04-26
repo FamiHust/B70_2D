@@ -158,7 +158,7 @@ public class MapShopItemScript : MonoBehaviour
 		string resource = _itemData.configuration.resourceType;
 
 		// Try to consume resources
-		bool canBuild = SceneManager.instance.ConsumeResource(resource, price);
+		bool canBuild = SceneManager.instance.HasEnoughResource(resource, price);
 
 		if (!canBuild)
 		{
@@ -166,15 +166,19 @@ public class MapShopItemScript : MonoBehaviour
 			return;
 		}
 
-		// Create the item
-		BaseItemScript item = SceneManager.instance.AddItem(_itemId, false, true);
+		// Create the item in preview mode
+		BaseItemScript item = SceneManager.instance.AddItem(_itemId, false, true, 1, true);
 
 		if (item != null)
 		{
 			DataBaseManager.instance.UpdateItemData(item);
+			
+			// Focus and select the item to show Yes/No buttons
+			SceneManager.instance.OnItemTap(new CameraManager.CameraEvent { baseItem = item });
+			
 			if (CameraManager.instance != null)
 			{
-				CameraManager.instance.FocusOnItem(item);
+				CameraManager.instance.FocusOnItem(item, 10f);
 			}
 		}
 

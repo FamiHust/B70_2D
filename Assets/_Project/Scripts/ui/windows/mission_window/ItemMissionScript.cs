@@ -45,7 +45,7 @@ public class ItemMissionScript : MonoBehaviour
 	{
 		if (_data == null || _data.isClaimed) return;
 
-		bool isFinished = IsBuildingFinished();
+		bool isFinished = SceneManager.instance.IsItemConstructionFinished(_itemId);
 		
 		if (CompleteButton != null)
 			CompleteButton.gameObject.SetActive(isFinished);
@@ -54,22 +54,6 @@ public class ItemMissionScript : MonoBehaviour
 			UncompleteButton.gameObject.SetActive(!isFinished);
 	}
 
-	private bool IsBuildingFinished()
-	{
-		// Check all items in the scene
-		foreach (var item in SceneManager.instance.GetAllItems())
-		{
-			if (item.itemData.id == _itemId)
-			{
-				// Building is finished if it has no progress UI (construction done)
-				if (item.UI.progressUIInstance == null)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
 
 	public void OnClickUncomplete()
 	{
@@ -84,20 +68,32 @@ public class ItemMissionScript : MonoBehaviour
 			}
 		}
 
+		MapShopAreaScript[] shopAreas = Object.FindObjectsOfType<MapShopAreaScript>();
+
 		if (building != null)
 		{
-			CameraManager.instance.FocusOnItem(building);
+			CameraManager.instance.FocusOnItem(building, 10f);
+			foreach (var area in shopAreas)
+			{
+				if (area.Arrow != null) area.Arrow.SetActive(false);
+			}
 		}
 		else
 		{
 			// 2. If not found, look for MapShopArea that contains this item
-			MapShopAreaScript[] shopAreas = Object.FindObjectsOfType<MapShopAreaScript>();
+			bool foundFocus = false;
 			foreach (var area in shopAreas)
 			{
-				if (area.itemIds.Contains(_itemId))
+				bool isTarget = area.itemIds.Contains(_itemId);
+				if (area.Arrow != null)
 				{
-					CameraManager.instance.FocusOn(area.transform.position);
-					break;
+					area.Arrow.SetActive(isTarget);
+				}
+
+				if (isTarget && !foundFocus)
+				{
+					CameraManager.instance.FocusAndZoom(area.transform.position, 10f);
+					foundFocus = true;
 				}
 			}
 		}
@@ -110,14 +106,52 @@ public class ItemMissionScript : MonoBehaviour
 	{
 		if (_data == null || _data.isClaimed) return;
 
+		// End tutorial state before awarding resources to avoid errors with inactive UI panels
+		if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+		{
+			SceneManager.instance.SetMapShopAreasVisible(true);
+			SceneManager.instance.isTutorialActive = false;
+
+			if (GameOverlayWindowScript.instance != null)
+			{
+				GameOverlayWindowScript.instance.SetTutorialState(false);
+			}
+
+			// Also close the tutorial window
+			if (TutorialWindowScript.instance != null)
+			{
+				TutorialWindowScript.instance.Close();
+			}
+		}
+
+		// Move camera to building and zoom to 8
+		BaseItemScript building = null;
+		foreach (var item in SceneManager.instance.GetAllItems())
+		{
+			if (item.itemData.id == _itemId)
+			{
+				building = item;
+				break;
+			}
+		}
+
+		if (building != null)
+		{
+			CameraManager.instance.FocusOnItem(building, 10f);
+		}
+
 		// Award gold
 		SceneManager.instance.CollectResource("gold", _goldReward);
-		
-		// Increment semester progress
-		SceneManager.instance.UpdateSemesterProgress();
 
 		// Mark as claimed
 		_data.isClaimed = true;
+		DataBaseManager.instance.MarkMissionAsClaimed(_itemId);
+
+		// Refresh hint on overlay
+		if (GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.RefreshHint();
+		}
 
 		// Play sound
 		SoundManager.instance.PlaySound(SoundManager.instance.Tap2, false);
