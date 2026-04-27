@@ -63,6 +63,9 @@ public class ShopWindowScript : WindowScript
 		// TOWER,
 		Canteen,
 		GaraD6,
+		ITIMS,
+		SECURITY_ROOM,
+		PC_LAB,
 		GIAI_PHONG_GATE,
 		TDN_GATE,
 		TREE3,
@@ -71,7 +74,7 @@ public class ShopWindowScript : WindowScript
 	}
 
 	public static SubCategory[] ServiceSubItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
-	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6 };
+	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6, SubCategory.ITIMS, SubCategory.SECURITY_ROOM, SubCategory.PC_LAB };
 	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.C7};
 	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.GIAI_PHONG_GATE, SubCategory.TDN_GATE, SubCategory.WALL, SubCategory.TREE3 };
 
@@ -275,6 +278,9 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.TDN_GATE: return 1251;
 			case SubCategory.TREE3: return 5341;
 			case SubCategory.C7: return 3336;
+			case SubCategory.ITIMS: return 3090;
+			case SubCategory.SECURITY_ROOM: return 1628;
+			case SubCategory.PC_LAB: return 9138;
 			// case SubCategory.B8: return 5342;
 			default: return 0;
 		}

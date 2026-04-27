@@ -147,7 +147,7 @@ MonoBehaviour:
       levelMax: 2
       unlockItemAtSemester: 3
     idleSpriteTextures:
-    - {fileID: 2800000, guid: dd45ad4b53a397b499e74b04ffbe8d73, type: 3}
+    - {fileID: 2800000, guid: b374b40666afa0f41b15a68e239f35e2, type: 3}
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
@@ -185,74 +185,6 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 246d36b63216d3a4487473cdeb3c7ff7, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 46902b07f11e2f14cab78898a681e67e, type: 3}
-    attackSpriteTextures: []
-    destroyedSpriteTextures: []
-  - id: 6704
-    name: SwordMan
-    description: 
-    thumb: {fileID: 0}
-    gridWidth: 4
-    gridHeight: 4
-    arrowOffsetX: 0
-    arrowOffsetZ: 0
-    gridOffsetX: 0
-    gridOffsetZ: 0
-    uiOffsetX: 0
-    uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
-    configuration:
-      buildTime: 10
-      isCharacter: 1
-      speed: 3
-      attackRange: 2
-      defenceRange: 0
-      healthPoints: 30
-      hitPoints: 15
-      productionRate: 0
-      product: 
-      productPrice: 100
-      price: 300
-      resourceType: gold
-      studentCapacityIncrease: 0
-      levelMax: 99
-      unlockItemAtSemester: 1
-    idleSpriteTextures: []
-    walkSpriteTextures: []
-    attackSpriteTextures: []
-    destroyedSpriteTextures: []
-  - id: 4764
-    name: Tower
-    description: 
-    thumb: {fileID: 2800000, guid: 11361f6c487624448ab3931a680e82cf, type: 3}
-    gridWidth: 4
-    gridHeight: 4
-    arrowOffsetX: 0
-    arrowOffsetZ: 0
-    gridOffsetX: 0
-    gridOffsetZ: 0
-    uiOffsetX: 0
-    uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
-    configuration:
-      buildTime: 15
-      isCharacter: 0
-      speed: 0
-      attackRange: 0
-      defenceRange: 5
-      healthPoints: 300
-      hitPoints: 20
-      productionRate: 0
-      product: 
-      productPrice: 100
-      price: 300
-      resourceType: gold
-      studentCapacityIncrease: 0
-      levelMax: 99
-      unlockItemAtSemester: 1
-    idleSpriteTextures: []
-    walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 2496
@@ -397,74 +329,6 @@ MonoBehaviour:
     - {fileID: 2800000, guid: e6bfd97cb851a304b9380e9490bb6867, type: 3}
     walkSpriteTextures:
     - {fileID: 2800000, guid: 85beb8109f293fc46b532d5b289cede7, type: 3}
-    attackSpriteTextures: []
-    destroyedSpriteTextures: []
-  - id: 5492
-    name: Archer
-    description: 
-    thumb: {fileID: 0}
-    gridWidth: 4
-    gridHeight: 4
-    arrowOffsetX: 0
-    arrowOffsetZ: 0
-    gridOffsetX: 0
-    gridOffsetZ: 0
-    uiOffsetX: 0
-    uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
-    configuration:
-      buildTime: 10
-      isCharacter: 1
-      speed: 4
-      attackRange: 6
-      defenceRange: 0
-      healthPoints: 40
-      hitPoints: 20
-      productionRate: 0
-      product: 
-      productPrice: 100
-      price: 100
-      resourceType: gold
-      studentCapacityIncrease: 0
-      levelMax: 99
-      unlockItemAtSemester: 1
-    idleSpriteTextures: []
-    walkSpriteTextures: []
-    attackSpriteTextures: []
-    destroyedSpriteTextures: []
-  - id: 1502
-    name: ArcherTower
-    description: 
-    thumb: {fileID: 0}
-    gridWidth: 4
-    gridHeight: 4
-    arrowOffsetX: 0
-    arrowOffsetZ: 0
-    gridOffsetX: 0
-    gridOffsetZ: 0
-    uiOffsetX: 0
-    uiOffsetZ: 0
-    defaultPosX: -1
-    defaultPosZ: -1
-    configuration:
-      buildTime: 0
-      isCharacter: 1
-      speed: 0
-      attackRange: 0
-      defenceRange: 0
-      healthPoints: 0
-      hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
-      price: 100
-      resourceType: gold
-      studentCapacityIncrease: 0
-      levelMax: 99
-      unlockItemAtSemester: 1
-    idleSpriteTextures: []
-    walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 7666
@@ -992,6 +856,111 @@ MonoBehaviour:
       unlockItemAtSemester: 4
     idleSpriteTextures:
     - {fileID: 2800000, guid: cd0273c881d0cb247bc263936b1f2711, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 3090
+    name: ITIMS
+    description: 
+    thumb: {fileID: 2800000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
+    gridWidth: 4
+    gridHeight: 3
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 23
+    defaultPosZ: 23
+    configuration:
+      buildTime: 20
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 2
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 1628
+    name: Security Room
+    description: 
+    thumb: {fileID: 2800000, guid: 640bcd5fa567d8643ac1aebf927ff9e5, type: 3}
+    gridWidth: 3
+    gridHeight: 7
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 34
+    defaultPosZ: -1
+    configuration:
+      buildTime: 20
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 2
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 640bcd5fa567d8643ac1aebf927ff9e5, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 9138
+    name: PC Lab
+    description: 
+    thumb: {fileID: 0}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 34
+    defaultPosZ: 11
+    configuration:
+      buildTime: 20
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 2
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 4dc9ce35610c82542bc82412b652142e, type: 3}
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []

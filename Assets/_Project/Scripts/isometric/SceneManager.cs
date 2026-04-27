@@ -256,7 +256,7 @@ public class SceneManager : MonoBehaviour
 				posX = layoutItem.posX;
 				posZ = layoutItem.posZ;
 			}
-			else if (itemData.defaultPosX != -1 && itemData.defaultPosZ != -1)
+			else if (!((itemData.defaultPosX == -1 && itemData.defaultPosZ == -1) || (itemData.defaultPosX == -999 && itemData.defaultPosZ == -999)))
 			{
 				posX = itemData.defaultPosX;
 				posZ = itemData.defaultPosZ;

@@ -42,8 +42,8 @@ public class ItemsCollection : ScriptableObject
         public float gridOffsetZ = 0f;
         public float uiOffsetX = 0f;
         public float uiOffsetZ = 0f;
-        public int defaultPosX = -1;
-        public int defaultPosZ = -1;
+        public int defaultPosX = -999;
+        public int defaultPosZ = -999;
         public Configuration configuration = new Configuration();
 
         // store textures directly for each state

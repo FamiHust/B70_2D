@@ -42232,7 +42232,7 @@ MonoBehaviour:
   MainCamera: {fileID: 1738780727}
   debugText: {fileID: 2056394907}
   EventSystem: {fileID: 968539564}
-  canMoveBuildings: 0
+  canMoveBuildings: 1
   isCameraMovementLocked: 0
 --- !u!81 &1738780725
 AudioListener:
@@ -49498,6 +49498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showNodes: 1
+  gridOriginX: -10
+  gridOriginZ: -10
 --- !u!114 &1872831890
 MonoBehaviour:
   m_ObjectHideFlags: 0

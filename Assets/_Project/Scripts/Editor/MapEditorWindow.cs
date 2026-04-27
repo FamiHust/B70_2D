@@ -14,8 +14,10 @@ public class MapEditorWindow : EditorWindow
 
     private MapShopAreaScript[] _sceneAreas;
 
-    private const int GridWidth = 60;
-    private const int GridHeight = 60;
+    private int _gridOriginX = -10;
+    private int _gridOriginZ = -10;
+    private int _gridWidth = 60;
+    private int _gridHeight = 60;
     private const float CellSize = 30f;
 
     private int[,] _grid; // Stores index of ShopLayoutItem in _shopLayoutData.items, or -1
@@ -28,9 +30,22 @@ public class MapEditorWindow : EditorWindow
 
     private void OnEnable()
     {
+        FetchGroundManagerSettings();
         LoadItemsCollection();
         RefreshSceneAreas();
         LoadData();
+    }
+
+    private void FetchGroundManagerSettings()
+    {
+        GroundManager gm = FindObjectOfType<GroundManager>();
+        if (gm != null)
+        {
+            _gridOriginX = gm.gridOriginX;
+            _gridOriginZ = gm.gridOriginZ;
+            _gridWidth = GroundManager.nodeWidth;
+            _gridHeight = GroundManager.nodeHeight;
+        }
     }
 
     private void OnFocus()
@@ -77,10 +92,11 @@ public class MapEditorWindow : EditorWindow
 
     private void UpdateGrid()
     {
-        _grid = new int[GridWidth, GridHeight];
-        for (int x = 0; x < GridWidth; x++)
+        FetchGroundManagerSettings();
+        _grid = new int[_gridWidth, _gridHeight];
+        for (int x = 0; x < _gridWidth; x++)
         {
-            for (int z = 0; z < GridHeight; z++)
+            for (int z = 0; z < _gridHeight; z++)
             {
                 _grid[x, z] = -1;
             }
@@ -96,9 +112,9 @@ public class MapEditorWindow : EditorWindow
                 {
                     for (int dz = 0; dz < config.gridHeight; dz++)
                     {
-                        int gx = item.posX + dx;
-                        int gz = item.posZ + dz;
-                        if (gx >= 0 && gx < GridWidth && gz >= 0 && gz < GridHeight)
+                        int gx = item.posX - _gridOriginX + dx;
+                        int gz = item.posZ - _gridOriginZ + dz;
+                        if (gx >= 0 && gx < _gridWidth && gz >= 0 && gz < _gridHeight)
                         {
                             _grid[gx, gz] = i;
                         }
@@ -230,7 +246,7 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
         _scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
         
         const float LabelWidth = 30f;
-        Rect containerRect = GUILayoutUtility.GetRect((GridWidth * CellSize) + LabelWidth, (GridHeight * CellSize) + LabelWidth);
+        Rect containerRect = GUILayoutUtility.GetRect((_gridWidth * CellSize) + LabelWidth, (_gridHeight * CellSize) + LabelWidth);
         DrawGrid(containerRect, labelWidth: LabelWidth);
         
         EditorGUILayout.EndScrollView();
@@ -243,20 +259,20 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
         Event e = Event.current;
         
         // Draw Column Indices (Top)
-        for (int x = 0; x < GridWidth; x++)
+        for (int x = 0; x < _gridWidth; x++)
         {
             Rect labelRect = new Rect(rect.x + labelWidth + x * CellSize, rect.y, CellSize, labelWidth);
-            GUI.Label(labelRect, x.ToString(), GetHeaderStyle());
+            GUI.Label(labelRect, (x + _gridOriginX).ToString(), GetHeaderStyle());
         }
 
         // Draw Row Indices (Left)
-        for (int z = 0; z < GridHeight; z++)
+        for (int z = 0; z < _gridHeight; z++)
         {
-            Rect labelRect = new Rect(rect.x, rect.y + labelWidth + (GridHeight - 1 - z) * CellSize, labelWidth, CellSize);
-            GUI.Label(labelRect, z.ToString(), GetHeaderStyle());
+            Rect labelRect = new Rect(rect.x, rect.y + labelWidth + (_gridHeight - 1 - z) * CellSize, labelWidth, CellSize);
+            GUI.Label(labelRect, (z + _gridOriginZ).ToString(), GetHeaderStyle());
         }
 
-        Rect gridContentRect = new Rect(rect.x + labelWidth, rect.y + labelWidth, GridWidth * CellSize, GridHeight * CellSize);
+        Rect gridContentRect = new Rect(rect.x + labelWidth, rect.y + labelWidth, _gridWidth * CellSize, _gridHeight * CellSize);
         GUI.BeginGroup(gridContentRect);
 
         // Draw Background
@@ -272,22 +288,22 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
                 if (coll != null)
                 {
                     Bounds b = coll.bounds;
-                    int minX = Mathf.FloorToInt(b.min.x);
-                    int minZ = Mathf.FloorToInt(b.min.z);
-                    int maxX = Mathf.CeilToInt(b.max.x);
-                    int maxZ = Mathf.CeilToInt(b.max.z);
+                    int minX = Mathf.FloorToInt(b.min.x) - _gridOriginX;
+                    int minZ = Mathf.FloorToInt(b.min.z) - _gridOriginZ;
+                    int maxX = Mathf.CeilToInt(b.max.x) - _gridOriginX;
+                    int maxZ = Mathf.CeilToInt(b.max.z) - _gridOriginZ;
 
-                    minX = Mathf.Clamp(minX, 0, GridWidth);
-                    minZ = Mathf.Clamp(minZ, 0, GridHeight);
-                    maxX = Mathf.Clamp(maxX, 0, GridWidth);
-                    maxZ = Mathf.Clamp(maxZ, 0, GridHeight);
+                    minX = Mathf.Clamp(minX, 0, _gridWidth);
+                    minZ = Mathf.Clamp(minZ, 0, _gridHeight);
+                    maxX = Mathf.Clamp(maxX, 0, _gridWidth);
+                    maxZ = Mathf.Clamp(maxZ, 0, _gridHeight);
 
                     if (maxX > minX && maxZ > minZ)
                     {
                         float startX = minX * CellSize;
                         float endX = maxX * CellSize;
-                        float startZ = (GridHeight - maxZ) * CellSize;
-                        float endZ = (GridHeight - minZ) * CellSize;
+                        float startZ = (_gridHeight - maxZ) * CellSize;
+                        float endZ = (_gridHeight - minZ) * CellSize;
 
                         Rect areaRect = new Rect(startX, startZ, endX - startX, endZ - startZ);
                         EditorGUI.DrawRect(areaRect, new Color(1f, 0.8f, 0.2f, 0.15f)); // Yellowish tint
@@ -304,11 +320,11 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
             }
         }
 
-        for (int x = 0; x < GridWidth; x++)
+        for (int x = 0; x < _gridWidth; x++)
         {
-            for (int z = 0; z < GridHeight; z++)
+            for (int z = 0; z < _gridHeight; z++)
             {
-                Rect cellRect = new Rect(x * CellSize, (GridHeight - 1 - z) * CellSize, CellSize, CellSize);
+                Rect cellRect = new Rect(x * CellSize, (_gridHeight - 1 - z) * CellSize, CellSize, CellSize);
                 
                 // Draw Cell Border
                 EditorGUI.DrawRect(new Rect(cellRect.x, cellRect.y, cellRect.width, 1), new Color(0.3f, 0.3f, 0.3f));
@@ -318,7 +334,7 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
                 if (itemIndex != -1)
                 {
                     ShopLayoutItem item = _shopLayoutData.items[itemIndex];
-                    bool isAnchor = (item.posX == x && item.posZ == z);
+                    bool isAnchor = (item.posX == x + _gridOriginX && item.posZ == z + _gridOriginZ);
                     
                     Color cellColor = isAnchor ? new Color(0.2f, 0.8f, 0.8f, 0.8f) : new Color(0.2f, 0.6f, 0.6f, 0.4f); // Cyan for Layout
                     EditorGUI.DrawRect(new Rect(cellRect.x + 1, cellRect.y + 1, cellRect.width - 1, cellRect.height - 1), cellColor);
@@ -353,8 +369,8 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
         }
 
         // Draw outer borders
-        EditorGUI.DrawRect(new Rect(0, GridHeight * CellSize, GridWidth * CellSize, 1), new Color(0.3f, 0.3f, 0.3f));
-        EditorGUI.DrawRect(new Rect(GridWidth * CellSize, 0, 1, GridHeight * CellSize), new Color(0.3f, 0.3f, 0.3f));
+        EditorGUI.DrawRect(new Rect(0, _gridHeight * CellSize, _gridWidth * CellSize, 1), new Color(0.3f, 0.3f, 0.3f));
+        EditorGUI.DrawRect(new Rect(_gridWidth * CellSize, 0, 1, _gridHeight * CellSize), new Color(0.3f, 0.3f, 0.3f));
 
         GUI.EndGroup();
     }
@@ -404,7 +420,7 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
         ItemsCollection.ItemData config = _itemsCollection.list[_selectedItemIndex];
         
         // Valid position check
-        if (x + config.gridWidth > GridWidth || z + config.gridHeight > GridHeight) return;
+        if (x + config.gridWidth > _gridWidth || z + config.gridHeight > _gridHeight) return;
         
         // Remove existing mapping for this itemId (since each type has only one position)
         _shopLayoutData.items.RemoveAll(i => i.itemId == config.id);
@@ -412,8 +428,8 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
         ShopLayoutItem newItem = new ShopLayoutItem()
         {
             itemId = config.id,
-            posX = x,
-            posZ = z
+            posX = x + _gridOriginX,
+            posZ = z + _gridOriginZ
         };
 
         _shopLayoutData.items.Add(newItem);
@@ -436,10 +452,14 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
     {
         foreach (var item in _itemsCollection.list)
         {
-            if (item.defaultPosX != -1 && item.defaultPosZ != -1)
+            bool isUnset = (item.defaultPosX == -1 && item.defaultPosZ == -1) || (item.defaultPosX == -999 && item.defaultPosZ == -999);
+            if (!isUnset)
             {
-                // Check bounds
-                if (item.defaultPosX + item.gridWidth > GridWidth || item.defaultPosZ + item.gridHeight > GridHeight) continue;
+                // Check bounds (defaultPosX is world, so convert to index)
+                int ix = item.defaultPosX - _gridOriginX;
+                int iz = item.defaultPosZ - _gridOriginZ;
+
+                if (ix < 0 || ix + item.gridWidth > _gridWidth || iz < 0 || iz + item.gridHeight > _gridHeight) continue;
                 
                 // Remove existing mapping for this itemId
                 _shopLayoutData.items.RemoveAll(i => i.itemId == item.id);

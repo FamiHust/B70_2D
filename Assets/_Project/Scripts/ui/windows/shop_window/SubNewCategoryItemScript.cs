@@ -28,6 +28,9 @@ public class SubNewCategoryItemScript : MonoBehaviour
 	public Sprite LibSprite;
 	public Sprite WallSprite;
 	public Sprite Tree3Sprite;
+	public Sprite ITIMSSprite;
+	public Sprite SecurityRoomSprite;
+	public Sprite PCLabSprite;
 
 	/* references */
 	public Text Name;
@@ -77,6 +80,9 @@ public class SubNewCategoryItemScript : MonoBehaviour
 			case 6677: this.Image.sprite = this.LibSprite; break;
 			case 7666: this.Image.sprite = this.WallSprite; break;
 			case 5341: this.Image.sprite = this.Tree3Sprite; break;
+			case 3090: this.Image.sprite = this.ITIMSSprite; break;
+			case 1628: this.Image.sprite = this.SecurityRoomSprite; break;
+			case 9138: this.Image.sprite = this.PCLabSprite; break;
 		}
 	}
 	public void OnClickInfoButton()

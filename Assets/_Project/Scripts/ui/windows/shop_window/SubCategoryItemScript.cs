@@ -24,7 +24,6 @@ public class SubCategoryItemScript : MonoBehaviour
 	// public Sprite ElixirCollectorSprite;
 	// public Sprite ElixirStorageSprite;
 	public Sprite C7Sprite;
-	public Sprite B8Sprite;
 	public Sprite C4Sprite;
 	public Sprite CanteenSprite;
 	public Sprite GaraD6Sprite;
@@ -36,6 +35,9 @@ public class SubCategoryItemScript : MonoBehaviour
 	public Sprite LibSprite;
 	public Sprite WallSprite;
 	public Sprite Tree3Sprite;
+	public Sprite ITIMSSprite;
+	public Sprite SecurityRoomSprite;
+	public Sprite PCLabSprite;
 
 	/* references */
 	public Text Name;
@@ -224,6 +226,18 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "TREE3";
 				this.Image.sprite = this.Tree3Sprite;
 				break;
+			case ShopWindowScript.SubCategory.ITIMS:
+				this.Name.text = "ITIMS";
+				this.Image.sprite = this.ITIMSSprite;
+				break;
+			case ShopWindowScript.SubCategory.SECURITY_ROOM:
+				this.Name.text = "SECURITY ROOM";
+				this.Image.sprite = this.SecurityRoomSprite;
+				break;
+			case ShopWindowScript.SubCategory.PC_LAB:
+				this.Name.text = "PC LAB";
+				this.Image.sprite = this.PCLabSprite;
+				break;
 		}
 	}
 
@@ -329,8 +343,17 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			case ShopWindowScript.SubCategory.B8:
-				itemId = 5342;
+			// case ShopWindowScript.SubCategory.B8:
+			// 	itemId = 5342;
+			// 	break;
+			case ShopWindowScript.SubCategory.ITIMS:
+				itemId = 3090;
+				break;
+			case ShopWindowScript.SubCategory.SECURITY_ROOM:
+				itemId = 1628;
+				break;
+			case ShopWindowScript.SubCategory.PC_LAB:
+				itemId = 9138;
 				break;
 		}
 
@@ -450,14 +473,23 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			case ShopWindowScript.SubCategory.B8:
-				itemId = 5342;
-				break;
+			// case ShopWindowScript.SubCategory.B8:
+			// 	itemId = 5342;
+			// 	break;
 			case ShopWindowScript.SubCategory.Canteen:
 				itemId = 1399;
 				break;
 			case ShopWindowScript.SubCategory.GaraD6:
 				itemId = 4132;
+				break;
+			case ShopWindowScript.SubCategory.ITIMS:
+				itemId = 3090;
+				break;
+			case ShopWindowScript.SubCategory.SECURITY_ROOM:
+				itemId = 1628;
+				break;
+			case ShopWindowScript.SubCategory.PC_LAB:
+				itemId = 9138;
 				break;
 		}
 		return itemId;

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,6 +40,9 @@ public class GroundManager : MonoBehaviour
 	public const int nodeWidth = 60;
 	public const int nodeHeight = 60;
 
+	public int gridOriginX = -10;
+	public int gridOriginZ = -10;
+
 	public int[,] instanceNodes;
 	public bool[,] pathNodesWithoutWall;
 	public bool[,] pathNodesWithWall;
@@ -80,7 +83,7 @@ public class GroundManager : MonoBehaviour
 					color.a = 0.5f;
 					Gizmos.color = color;
 				}
-				Gizmos.DrawCube(new Vector3(x + 0.5f, 0, z + 0.5f), new Vector3(0.4f, 0.4f, 0.4f));
+				Gizmos.DrawCube(new Vector3(x + gridOriginX + 0.5f, 0, z + gridOriginZ + 0.5f), new Vector3(0.4f, 0.4f, 0.4f));
 			}
 		}
 
@@ -118,8 +121,8 @@ public class GroundManager : MonoBehaviour
 
 		Vector3 pos = item.GetPosition();
 
-		int x = (int)(pos.x);
-		int z = (int)(pos.z);
+		int x = (int)(pos.x) - gridOriginX;
+		int z = (int)(pos.z) - gridOriginZ;
 		int sizeX = (int)item.GetSize().x;
 		int sizeZ = (int)item.GetSize().z;
 
@@ -174,14 +177,14 @@ public class GroundManager : MonoBehaviour
 	{
 		Path path = new Path();
 
-		if (endPoint.x < 0 || endPoint.x >= nodeWidth || endPoint.z < 0 || endPoint.z >= nodeHeight)
+		if (endPoint.x < gridOriginX || endPoint.x >= nodeWidth + gridOriginX || endPoint.z < gridOriginZ || endPoint.z >= nodeHeight + gridOriginZ)
 		{
 			Debug.LogError("The target point is out of the grid!");
 			return path;
 		}
 
-		Vector2 startPointInMap = new Vector2(startPoint.x, startPoint.z);
-		Vector2 endPointInMap = new Vector2(endPoint.x, endPoint.z);
+		Vector2 startPointInMap = new Vector2(startPoint.x - gridOriginX, startPoint.z - gridOriginZ);
+		Vector2 endPointInMap = new Vector2(endPoint.x - gridOriginX, endPoint.z - gridOriginZ);
 		SearchParameters searchParameter = null;
 
 		if (considerWalls)
@@ -205,7 +208,7 @@ public class GroundManager : MonoBehaviour
 			//			if (index < points.Count-1 && index % 2 == 1) {
 			//				continue; //skip consecutive nodes
 			//			}
-			Vector3 pointInGround = new Vector3(point.x, 0, point.y);
+			Vector3 pointInGround = new Vector3(point.x + gridOriginX, 0, point.y + gridOriginZ);
 			nodes.Add(pointInGround);
 		}
 		path.nodes = nodes.ToArray();
@@ -222,12 +225,12 @@ public class GroundManager : MonoBehaviour
 		{
 			return GetRandomFreePosition();
 		}
-		return new Vector3(x, 0, z);
+		return new Vector3(x + gridOriginX, 0, z + gridOriginZ);
 	}
 
 	public Vector3 GetRandomFreePositionForItem(int sizeX, int sizeZ)
 	{
-		Vector3 randomPosition = new Vector3(Random.Range(0, nodeWidth), 0, Random.Range(0, nodeHeight));
+		Vector3 randomPosition = new Vector3(Random.Range(gridOriginX, nodeWidth + gridOriginX), 0, Random.Range(gridOriginZ, nodeHeight + gridOriginZ));
 
 		if (!IsPositionPlacable(randomPosition, sizeX, sizeZ, -1))
 		{
@@ -251,8 +254,8 @@ public class GroundManager : MonoBehaviour
 				{
 					if (x == -r || x == r || z == -r || z == r)
 					{
-						freePosition.x = startX + x;
-						freePosition.z = startZ + z;
+						freePosition.x = startX + x + gridOriginX;
+						freePosition.z = startZ + z + gridOriginZ;
 						if (IsPositionPlacable(freePosition, sizeX, sizeZ, -1))
 						{
 							return freePosition;
@@ -266,8 +269,8 @@ public class GroundManager : MonoBehaviour
 
 	public bool IsPositionPlacable(Vector3 position, int sizeX, int sizeZ, int instanceId)
 	{
-		int posX = (int)position.x;
-		int posZ = (int)position.z;
+		int posX = (int)position.x - gridOriginX;
+		int posZ = (int)position.z - gridOriginZ;
 
 		for (int indexX = posX; indexX < posX + sizeX; indexX++)
 		{
@@ -291,8 +294,8 @@ public class GroundManager : MonoBehaviour
 
 	public BaseItemScript GetItemInPosition(Vector3 position)
 	{
-		int posX = (int)position.x;
-		int posZ = (int)position.z;
+		int posX = (int)position.x - gridOriginX;
+		int posZ = (int)position.z - gridOriginZ;
 
 		if (posX < 0 || posX >= nodeWidth || posZ < 0 || posZ >= nodeHeight)
 		{

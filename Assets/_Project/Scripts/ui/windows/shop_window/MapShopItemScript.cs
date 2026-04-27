@@ -109,9 +109,9 @@ public class MapShopItemScript : MonoBehaviour
 			case 5134: // D8
 				Image.sprite = subCategoryItemScript.D8Sprite;
 				break;
-			case 5342: // B8
-				Image.sprite = subCategoryItemScript.B8Sprite;
-				break;
+			// case 5342: // B8
+			// 	Image.sprite = subCategoryItemScript.B8Sprite;
+			// 	break;
 			case 1399: // Canteen
 				Image.sprite = subCategoryItemScript.CanteenSprite;
 				break;
@@ -135,6 +135,15 @@ public class MapShopItemScript : MonoBehaviour
 				break;
 			case 5341: // TREE3
 				Image.sprite = subCategoryItemScript.Tree3Sprite;
+				break;
+			case 3090: // ITIMS
+				Image.sprite = subCategoryItemScript.ITIMSSprite;
+				break;
+			case 1628: // Security Room
+				Image.sprite = subCategoryItemScript.SecurityRoomSprite;
+				break;
+			case 9138: // PC Lab
+				Image.sprite = subCategoryItemScript.PCLabSprite;
 				break;
 		}
 	}
