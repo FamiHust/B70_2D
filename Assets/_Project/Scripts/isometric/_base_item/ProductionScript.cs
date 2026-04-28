@@ -105,7 +105,7 @@ public class ProductionScript : MonoBehaviour
             DataBaseManager.instance.UpdateItemData(this._baseItem);
 
             SceneManager.instance.CollectResource(this._productType, this._productPrice);
-            SoundManager.instance.PlaySound(SoundManager.instance.Collect, false);
+
         }
     }
 

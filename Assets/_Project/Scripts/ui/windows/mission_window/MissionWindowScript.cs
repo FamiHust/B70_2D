@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MissionWindowScript : WindowScript
 {
@@ -10,6 +11,7 @@ public class MissionWindowScript : WindowScript
 	public GameObject ItemMissionPrefab;
 
 	public Transform MissionListContainer;
+	public GameObject CloseButton;
 
 	public ProgressPanelScript GoldInfo;
 	public ProgressPanelScript DiamondInfo;
@@ -33,6 +35,31 @@ public class MissionWindowScript : WindowScript
 	void Start()
 	{
 		RenderMissions();
+
+		// Tắt RayCastBlocker khi mở MissionWindow trong lúc hướng dẫn
+		if (TutorialWindowScript.instance != null && TutorialWindowScript.instance.RayCastBlocker != null)
+		{
+			if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+			{
+				TutorialWindowScript.instance.RayCastBlocker.SetActive(false);
+			}
+		}
+
+		if (CloseButton != null)
+		{
+			Button btn = CloseButton.GetComponent<Button>();
+			if (btn != null)
+			{
+				if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+				{
+					btn.interactable = false;
+				}
+				else
+				{
+					btn.interactable = true;
+				}
+			}
+		}
 
 		if (this.GoldInfo != null && SceneManager.instance != null)
 		{
@@ -175,6 +202,12 @@ public class MissionWindowScript : WindowScript
 
 	public override void Close()
 	{
+		// Prevent closing if we are in the first building tutorial step
+		if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
+		{
+			return;
+		}
+
 		base.Close();
 	}
 

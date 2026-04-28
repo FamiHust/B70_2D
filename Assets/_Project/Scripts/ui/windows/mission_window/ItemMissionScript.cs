@@ -9,11 +9,14 @@ public class ItemMissionScript : MonoBehaviour
 	public Text MissionText;
 	public Button CompleteButton;
 	public Button UncompleteButton;
+	public GameObject LockMission;
+	public Image ProcessImage;
 
 	/* private variables */
 	private int _itemId;
 	private int _goldReward;
 	private MissionData _data;
+	private BaseItemScript _cachedBuilding;
 
 	public void SetData(MissionData data)
 	{
@@ -45,6 +48,15 @@ public class ItemMissionScript : MonoBehaviour
 	{
 		if (_data == null || _data.isClaimed) return;
 
+		if (LockMission != null)
+		{
+			ItemsCollection.ItemData itemData = Items.GetItem(_itemId);
+			if (itemData != null)
+			{
+				LockMission.SetActive(itemData.configuration.unlockItemAtSemester != SceneManager.instance.currentSemester);
+			}
+		}
+
 		bool isFinished = SceneManager.instance.IsItemConstructionFinished(_itemId);
 		
 		if (CompleteButton != null)
@@ -52,11 +64,70 @@ public class ItemMissionScript : MonoBehaviour
 		
 		if (UncompleteButton != null)
 			UncompleteButton.gameObject.SetActive(!isFinished);
+
+		if (ProcessImage != null)
+		{
+			if (_cachedBuilding == null || _cachedBuilding.isDestroyed)
+			{
+				_cachedBuilding = null;
+				foreach (var item in SceneManager.instance.GetAllItems())
+				{
+					if (item.itemData.id == _itemId)
+					{
+						_cachedBuilding = item;
+						break;
+					}
+				}
+			}
+
+			if (_cachedBuilding != null && _cachedBuilding.UI != null && _cachedBuilding.UI.progressUIInstance != null)
+			{
+				// Tòa nhà đang được xây
+				ProcessImage.gameObject.SetActive(true);
+				
+				// Nếu ProcessImage có object cha là background (vd: bg tiến trình), ta có thể bật cha nó lên
+				if (ProcessImage.transform.parent != null && ProcessImage.transform.parent.name.Contains("BG"))
+				{
+					ProcessImage.transform.parent.gameObject.SetActive(true);
+				}
+
+				float targetProgress = _cachedBuilding.UI.progressUIInstance.GetProgress();
+				ProcessImage.fillAmount = Mathf.Lerp(ProcessImage.fillAmount, targetProgress, Time.deltaTime * 10f);
+			}
+			else
+			{
+				ProcessImage.gameObject.SetActive(false);
+				ProcessImage.fillAmount = 0; // Reset fill amount khi tắt
+				if (ProcessImage.transform.parent != null && ProcessImage.transform.parent.name.Contains("BG"))
+				{
+					ProcessImage.transform.parent.gameObject.SetActive(false);
+				}
+			}
+		}
 	}
 
 
 	public void OnClickUncomplete()
 	{
+		// Khóa các mission khác khi đang trong tutorial của tòa nhà đầu tiên
+		if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() >= 1)
+		{
+			bool isForCurrentBuilding = false;
+			foreach (var item in SceneManager.instance.GetAllItems())
+			{
+				if (item.itemData.id == _itemId)
+				{
+					isForCurrentBuilding = true;
+					break;
+				}
+			}
+
+			if (!isForCurrentBuilding)
+			{
+				return;
+			}
+		}
+
 		// 1. Try to find building in scene (placed but maybe under construction)
 		BaseItemScript building = null;
 		foreach (var item in SceneManager.instance.GetAllItems())
@@ -122,6 +193,16 @@ public class ItemMissionScript : MonoBehaviour
 			{
 				TutorialWindowScript.instance.Close();
 			}
+
+			// Bật lại chức năng của CloseButton của Mission Window
+			if (MissionWindowScript.instance != null && MissionWindowScript.instance.CloseButton != null)
+			{
+				Button btn = MissionWindowScript.instance.CloseButton.GetComponent<Button>();
+				if (btn != null)
+				{
+					btn.interactable = true;
+				}
+			}
 		}
 
 		// Move camera to building and zoom to 8
@@ -154,7 +235,7 @@ public class ItemMissionScript : MonoBehaviour
 		}
 
 		// Play sound
-		SoundManager.instance.PlaySound(SoundManager.instance.Tap2, false);
+
 
 		// Remove from UI
 		Destroy(this.gameObject);

@@ -24,6 +24,8 @@ public class GameOverlayWindowScript : WindowScript
 	public GameObject MissionButton;
 	public GameObject HandTutorial;
 	public GameObject HandTutMission;
+	public GameObject TutorialSemester;
+	public GameObject ContinueButton;
 	public GameObject Hint;
 	public Animator anim;
 
@@ -283,21 +285,50 @@ public class GameOverlayWindowScript : WindowScript
 		if (HappyInfo != null) HappyInfo.gameObject.SetActive(!active);
 		if (StudentInfo != null) StudentInfo.gameObject.SetActive(!active);
 		if (EducationInfo != null) EducationInfo.gameObject.SetActive(!active);
-		if (SemesterInfo != null) SemesterInfo.gameObject.SetActive(!active);
+		
+		if (active)
+		{
+			// Khi active, bật SemesterInfo và TutorialSemester trước
+			if (SemesterInfo != null) SemesterInfo.gameObject.SetActive(true);
+			if (TutorialSemester != null) TutorialSemester.SetActive(true);
+			if (ContinueButton != null) ContinueButton.SetActive(true);
+
+			// Chưa bật MissionButton vội
+			if (MissionButton != null) MissionButton.SetActive(false);
+			if (HandTutMission != null) HandTutMission.SetActive(false);
+		}
+		else
+		{
+			if (SemesterInfo != null) SemesterInfo.gameObject.SetActive(true);
+			if (TutorialSemester != null) TutorialSemester.SetActive(false);
+			if (ContinueButton != null) ContinueButton.SetActive(false);
+
+			if (MissionButton != null) MissionButton.SetActive(false);
+			if (HandTutMission != null) HandTutMission.SetActive(false);
+		}
 
 		// Hide other buttons
 		if (ZoomInButton != null) ZoomInButton.SetActive(!active);
 		if (ZoomOutButton != null) ZoomOutButton.SetActive(!active);
 		if (ShopButton != null) ShopButton.SetActive(!active);
 		
-		// Show MissionButton and its tutorial hand
-		if (MissionButton != null) MissionButton.SetActive(active);
-		if (HandTutMission != null) HandTutMission.SetActive(active);
-		
 		// Let RefreshHint handle the hint visibility based on mission status
 		RefreshHint();
 		
 		// Ensure other hand is off
 		if (HandTutorial != null) HandTutorial.SetActive(false);
+	}
+
+	public void OnClickContinueTutorialSemester()
+	{
+		if (TutorialSemester != null) TutorialSemester.SetActive(false);
+		if (ContinueButton != null) ContinueButton.SetActive(false);
+		if (SemesterInfo != null) SemesterInfo.gameObject.SetActive(false); // tắt SemesterInfo
+		
+		// Bật MissionButton
+		if (MissionButton != null) MissionButton.SetActive(true);
+		if (HandTutMission != null) HandTutMission.SetActive(true);
+		
+		RefreshHint();
 	}
 }

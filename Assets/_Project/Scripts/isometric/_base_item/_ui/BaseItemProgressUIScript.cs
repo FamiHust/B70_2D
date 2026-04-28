@@ -83,4 +83,12 @@ public class BaseItemProgressUIScript : MonoBehaviour
 	{
 		this._baseItem.UI.ShowProgressUI(false);
 	}
+
+	public float GetProgress()
+	{
+		if (this._buildTime <= 0) return 1f;
+		float elapsedTime = Time.time - this._buildStartTime;
+		float progress = elapsedTime / this._buildTime;
+		return Mathf.Clamp01(progress);
+	}
 }

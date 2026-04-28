@@ -37,8 +37,8 @@ public class GroundManager : MonoBehaviour
 	/* public variables */
 	public bool showNodes;
 
-	public const int nodeWidth = 60;
-	public const int nodeHeight = 60;
+	public const int nodeWidth = 80;
+	public const int nodeHeight = 80;
 
 	public int gridOriginX = -10;
 	public int gridOriginZ = -10;

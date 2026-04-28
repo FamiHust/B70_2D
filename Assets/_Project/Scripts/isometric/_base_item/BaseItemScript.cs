@@ -293,7 +293,7 @@ public class BaseItemScript : MonoBehaviour
 		if (isTrue)
 		{
 			//play sound for tap item , here loop is false
-			SoundManager.instance.PlaySound(SoundManager.instance.TapOnItem, false);
+
 			UIManager.instance.ShowItemOptions();
 		}
 	}
@@ -356,7 +356,7 @@ public class BaseItemScript : MonoBehaviour
 			}
 
 			//play sound for drag item , here loop is false
-			SoundManager.instance.PlaySound(SoundManager.instance.Tap1, false);
+
 		}
 	}
 
@@ -376,7 +376,7 @@ public class BaseItemScript : MonoBehaviour
 			DataBaseManager.instance.UpdateItemData(this);
 
 			//play sound for end drag item , here loop is false
-			SoundManager.instance.PlaySound(SoundManager.instance.TapOnItem, false);
+
 		}
 	}
 
@@ -672,7 +672,7 @@ public class BaseItemScript : MonoBehaviour
 	public int GetUpgradeCost()
 	{
 		// Basic formula: base price * current level * multiplier
-		return itemData.configuration.price * level;
+		return itemData.configuration.price * level + 50;
 	}
 
 	public void FinishConstruction()

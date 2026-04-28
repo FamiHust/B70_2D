@@ -212,10 +212,10 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 100
+      price: 0
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 1
     idleSpriteTextures:
     - {fileID: 2800000, guid: aea25fb5a58587e4381819efc975dba6, type: 3}

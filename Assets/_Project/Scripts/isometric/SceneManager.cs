@@ -489,42 +489,42 @@ public class SceneManager : MonoBehaviour
 			//			}
 		}
 
-		if (this.gameMode == Common.GameMode.ATTACK)
-		{
-			if (selectedUnit == 0)
-			{
-				if (this._swordManExpended == _swordManCount)
-				{
-					return;
-				}
-				this._swordManExpended++;
+		// if (this.gameMode == Common.GameMode.ATTACK)
+		// {
+		// 	if (selectedUnit == 0)
+		// 	{
+		// 		if (this._swordManExpended == _swordManCount)
+		// 		{
+		// 			return;
+		// 		}
+		// 		this._swordManExpended++;
 
-				AttackOverlayWindowScript.instance.SwordManCounter.text = (this._swordManCount - _swordManExpended).ToString() + "x";
+		// 		AttackOverlayWindowScript.instance.SwordManCounter.text = (this._swordManCount - _swordManExpended).ToString() + "x";
 
-			}
-			else if (selectedUnit == 1)
-			{
-				if (this._archerExpended == _archerCount)
-				{
-					return;
-				}
-				this._archerExpended++;
+		// 	}
+		// 	else if (selectedUnit == 1)
+		// 	{
+		// 		if (this._archerExpended == _archerCount)
+		// 		{
+		// 			return;
+		// 		}
+		// 		this._archerExpended++;
 
-				AttackOverlayWindowScript.instance.ArcherCounter.text = (this._archerCount - _archerExpended).ToString() + "x";
-			}
+		// 		AttackOverlayWindowScript.instance.ArcherCounter.text = (this._archerCount - _archerExpended).ToString() + "x";
+		// 	}
 
-			int[] unitIds = new int[] { _swordMan_ID, _archer_ID };
+		// 	int[] unitIds = new int[] { _swordMan_ID, _archer_ID };
 
-			evt.point.x = Mathf.Clamp(evt.point.x, 0, GroundManager.nodeWidth - 1);
-			evt.point.z = Mathf.Clamp(evt.point.z, 0, GroundManager.nodeHeight - 1);
+		// 	evt.point.x = Mathf.Clamp(evt.point.x, 0, GroundManager.nodeWidth - 1);
+		// 	evt.point.z = Mathf.Clamp(evt.point.z, 0, GroundManager.nodeHeight - 1);
 
-			this._unit = this.AddItem(unitIds[selectedUnit], true, true);
-			this._unit.SetPosition(evt.point);
-			this._unit.Attacker.AttackNearestTarget();
-			this._unit.OnItemDestroy += this.OnUnitDied;
+		// 	this._unit = this.AddItem(unitIds[selectedUnit], true, true);
+		// 	this._unit.SetPosition(evt.point);
+		// 	this._unit.Attacker.AttackNearestTarget();
+		// 	this._unit.OnItemDestroy += this.OnUnitDied;
 
-			SoundManager.instance.PlaySound(SoundManager.instance.Yeah, false);
-		}
+
+		// }
 
 		//		if (testCharacter != null) {
 		//			testCharacter.LookAt (_builderHutInstance);
@@ -761,8 +761,8 @@ public class SceneManager : MonoBehaviour
 			LoadUserScene();
 		});
 
-		SoundManager.instance.StopAllSounds();
-		SoundManager.instance.PlaySound(SoundManager.instance.BGM, true);
+		SoundManager.Instance.StopAllSounds();
+
 	}
 
 	public void EnterAttackMode()
@@ -778,7 +778,7 @@ public class SceneManager : MonoBehaviour
 			AttackOverlayWindowScript.instance.ArcherCounter.text = this._archerCount.ToString() + "x";
 		});
 
-		SoundManager.instance.StopAllSounds();
+		SoundManager.Instance.StopAllSounds();
 	}
 
 	public List<BaseItemScript> GetAllItems()

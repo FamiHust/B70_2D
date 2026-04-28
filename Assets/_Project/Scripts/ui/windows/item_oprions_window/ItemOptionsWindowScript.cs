@@ -16,6 +16,7 @@ public class ItemOptionsWindowScript : WindowScript
 	public GameObject RemoveButton;
 	public GameObject YesButton;
 	public GameObject NoButton;
+	public Text goldPriceText;
 
 	private void Awake()
 	{
@@ -54,6 +55,11 @@ public class ItemOptionsWindowScript : WindowScript
 		{
 			haveYesButton = true;
 			haveNoButton = true;
+
+			if (goldPriceText != null && selectedItem.itemData != null)
+			{
+				goldPriceText.text = selectedItem.itemData.configuration.price.ToString();
+			}
 
 			// Tutorial handling: hide NoButton for the first building
 			if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)

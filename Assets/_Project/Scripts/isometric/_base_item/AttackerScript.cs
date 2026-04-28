@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -134,11 +134,11 @@ public class AttackerScript : MonoBehaviour
 	{
 		AudioClip clip = null;
 		if (this._baseItem.itemData.name == "SwordMan")
-			clip = SoundManager.instance.Sword;
+			clip = SoundManager.Instance.Sword;
 		else if (this._baseItem.itemData.name == "Archer" || this._baseItem.itemData.name == "ArcherTower")
-			clip = SoundManager.instance.Bow;
+			clip = SoundManager.Instance.Bow;
 
-		SoundManager.instance.PlaySound(clip, false);
+
 	}
 
 	private BaseItemScript _GetNearestTargetItem()

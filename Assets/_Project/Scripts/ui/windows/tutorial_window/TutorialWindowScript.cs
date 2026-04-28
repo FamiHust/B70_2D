@@ -21,6 +21,7 @@ public class TutorialWindowScript : WindowScript
     public Text TutorialText;
     public Button ContinueButton;
     public Animator anim;
+    public GameObject RayCastBlocker;
 
     public List<TutorialStep> TutorialSteps = new List<TutorialStep>();
     private int _currentTextIndex = 0;

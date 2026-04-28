@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-	public static SoundManager instance;
+	public static SoundManager Instance;
 
 	/* object refs */
 	public GameObject AudioListener;
@@ -24,7 +24,7 @@ public class SoundManager : MonoBehaviour
 
 	public void Awake()
 	{
-		instance = this;
+		Instance = this;
 	}
     
 

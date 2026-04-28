@@ -2286,11 +2286,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubNewCategoryItem
       objectReference: {fileID: 0}
-    - target: {fileID: 114807311948488204, guid: b94973415ec0af047bc23cc4a7f35ed3,
-        type: 3}
-      propertyPath: m_Transition
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224542371961636930, guid: b94973415ec0af047bc23cc4a7f35ed3,
         type: 3}
       propertyPath: m_Pivot.x

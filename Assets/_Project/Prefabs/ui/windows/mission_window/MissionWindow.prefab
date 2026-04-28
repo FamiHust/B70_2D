@@ -395,8 +395,6 @@ GameObject:
   - component: {fileID: 224067425770449766}
   - component: {fileID: 222407366062422428}
   - component: {fileID: 114041430242010988}
-  - component: {fileID: 114868617922666222}
-  - component: {fileID: 7167427946375097516}
   m_Layer: 5
   m_Name: CloseButton
   m_TagString: Untagged
@@ -417,13 +415,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3212612931606725432}
-  m_Father: {fileID: 1241445125991999892}
+  m_Father: {fileID: 224535164538889238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -18, y: 40}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222407366062422428
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -451,7 +449,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -472,7 +470,7 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 114868617922666222}
+  m_TargetGraphic: {fileID: 4847379487437452709}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -488,59 +486,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &114868617922666222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649744129223850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7e4b5139e83cc14e8b7588e1086d2e0, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!114 &7167427946375097516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1649744129223850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d58260a0825f1d4d90626068bb8448d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startScale: {x: 1, y: 1}
-  endScale: {x: 0.95, y: 0.95}
-  targetTF: {fileID: 3212612931606725432}
-  eventOnPointDown:
-    m_PersistentCalls:
-      m_Calls: []
-  eventOnPointUp:
-    m_PersistentCalls:
-      m_Calls: []
-  isActiveSound: 1
-  ignoreVib: 0
 --- !u!1 &1678858075550006
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +518,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224822604876249734}
+  - {fileID: 224067425770449766}
   - {fileID: 1241445125991999892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -604,6 +550,7 @@ MonoBehaviour:
   ItemMissionPrefab: {fileID: 5484177724990406995, guid: cc109a29e18f449499c6ac7c988069f7,
     type: 3}
   MissionListContainer: {fileID: 224207094445715116}
+  CloseButton: {fileID: 1649744129223850}
   GoldInfo: {fileID: 4733866405291556520}
   DiamondInfo: {fileID: 310445724647430216}
   StudentInfo: {fileID: 5828507343806697433}
@@ -2084,7 +2031,6 @@ RectTransform:
   - {fileID: 224337991521119914}
   - {fileID: 224729498355721956}
   - {fileID: 3974382651550863341}
-  - {fileID: 224067425770449766}
   - {fileID: 7901038543205878233}
   m_Father: {fileID: 224535164538889238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3141,15 +3087,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7e4b5139e83cc14e8b7588e1086d2e0, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: d617992ebbde0a040a5cb1094c45404d, type: 2}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

@@ -637,6 +637,7 @@ MonoBehaviour:
   RemoveButton: {fileID: 1813374116713460}
   YesButton: {fileID: 348338198234469059}
   NoButton: {fileID: 3888841975415084086}
+  goldPriceText: {fileID: 8628452333427151631}
 --- !u!114 &5352986532945074030
 MonoBehaviour:
   m_ObjectHideFlags: 0

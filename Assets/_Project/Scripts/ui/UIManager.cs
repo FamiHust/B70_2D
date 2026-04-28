@@ -96,7 +96,7 @@ public class UIManager : MonoBehaviour
 	public void ShowShopWidow()
 	{
 		this.ShowWindow(this.ShopWindow);
-		SoundManager.instance.PlaySound(SoundManager.instance.Tap2, false);
+
 	}
 
 	public void CloseAllWindows()
