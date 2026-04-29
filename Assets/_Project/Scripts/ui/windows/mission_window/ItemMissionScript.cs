@@ -53,7 +53,7 @@ public class ItemMissionScript : MonoBehaviour
 			ItemsCollection.ItemData itemData = Items.GetItem(_itemId);
 			if (itemData != null)
 			{
-				LockMission.SetActive(itemData.configuration.unlockItemAtSemester != SceneManager.instance.currentSemester);
+				LockMission.SetActive(itemData.configuration.unlockItemAtSemester > SceneManager.instance.currentSemester);
 			}
 		}
 
@@ -124,7 +124,53 @@ public class ItemMissionScript : MonoBehaviour
 
 			if (!isForCurrentBuilding)
 			{
-				return;
+				bool isFirstBuildingClaimed = false;
+				foreach (var item in SceneManager.instance.GetAllItems())
+				{
+					if (DataBaseManager.instance.GetClaimedMissionIds().Contains(item.itemData.id))
+					{
+						isFirstBuildingClaimed = true;
+						break;
+					}
+				}
+
+				if (isFirstBuildingClaimed)
+				{
+					// End tutorial state
+					SceneManager.instance.SetMapShopAreasVisible(true);
+					SceneManager.instance.isTutorialActive = false;
+
+					if (GameOverlayWindowScript.instance != null)
+					{
+						GameOverlayWindowScript.instance.SetTutorialState(false);
+					}
+
+					// Close the tutorial window
+					if (TutorialWindowScript.instance != null)
+					{
+						TutorialWindowScript.instance.Close();
+					}
+
+					// Bật lại chức năng của CloseButton của Mission Window
+					if (MissionWindowScript.instance != null && MissionWindowScript.instance.CloseButton != null)
+					{
+						Button btn = MissionWindowScript.instance.CloseButton.GetComponent<Button>();
+						if (btn != null)
+						{
+							btn.interactable = true;
+						}
+					}
+
+					// Bật lại RayCastBlocker như cũ
+					if (MissionWindowScript.instance != null && MissionWindowScript.instance.RayCastBlocker != null)
+					{
+						MissionWindowScript.instance.RayCastBlocker.SetActive(true);
+					}
+				}
+				else
+				{
+					return;
+				}
 			}
 		}
 
@@ -180,28 +226,10 @@ public class ItemMissionScript : MonoBehaviour
 		// End tutorial state before awarding resources to avoid errors with inactive UI panels
 		if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
 		{
-			SceneManager.instance.SetMapShopAreasVisible(true);
-			SceneManager.instance.isTutorialActive = false;
-
-			if (GameOverlayWindowScript.instance != null)
-			{
-				GameOverlayWindowScript.instance.SetTutorialState(false);
-			}
-
-			// Also close the tutorial window
+			// Đổi sang Tut tiếp theo
 			if (TutorialWindowScript.instance != null)
 			{
-				TutorialWindowScript.instance.Close();
-			}
-
-			// Bật lại chức năng của CloseButton của Mission Window
-			if (MissionWindowScript.instance != null && MissionWindowScript.instance.CloseButton != null)
-			{
-				Button btn = MissionWindowScript.instance.CloseButton.GetComponent<Button>();
-				if (btn != null)
-				{
-					btn.interactable = true;
-				}
+				TutorialWindowScript.instance.SwitchTutorialObject(3); // Giả sử Tut 4 là index 3
 			}
 		}
 

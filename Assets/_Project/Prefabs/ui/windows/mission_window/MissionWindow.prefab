@@ -551,6 +551,7 @@ MonoBehaviour:
     type: 3}
   MissionListContainer: {fileID: 224207094445715116}
   CloseButton: {fileID: 1649744129223850}
+  RayCastBlocker: {fileID: 1118803302910658}
   GoldInfo: {fileID: 4733866405291556520}
   DiamondInfo: {fileID: 310445724647430216}
   StudentInfo: {fileID: 5828507343806697433}

@@ -12,6 +12,7 @@ public class MissionWindowScript : WindowScript
 
 	public Transform MissionListContainer;
 	public GameObject CloseButton;
+	public GameObject RayCastBlocker;
 
 	public ProgressPanelScript GoldInfo;
 	public ProgressPanelScript DiamondInfo;
@@ -36,12 +37,12 @@ public class MissionWindowScript : WindowScript
 	{
 		RenderMissions();
 
-		// Tắt RayCastBlocker khi mở MissionWindow trong lúc hướng dẫn
-		if (TutorialWindowScript.instance != null && TutorialWindowScript.instance.RayCastBlocker != null)
+		// Tắt RayCastBlocker của chính MissionWindow khi mở MissionWindow trong lúc hướng dẫn
+		if (this.RayCastBlocker != null)
 		{
 			if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)
 			{
-				TutorialWindowScript.instance.RayCastBlocker.SetActive(false);
+				this.RayCastBlocker.SetActive(false);
 			}
 		}
 

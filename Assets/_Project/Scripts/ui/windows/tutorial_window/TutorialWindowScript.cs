@@ -23,6 +23,19 @@ public class TutorialWindowScript : WindowScript
     public Animator anim;
     public GameObject RayCastBlocker;
 
+    public List<GameObject> TutorialObjects = new List<GameObject>();
+
+    public void SwitchTutorialObject(int index)
+    {
+        for (int i = 0; i < TutorialObjects.Count; i++)
+        {
+            if (TutorialObjects[i] != null)
+            {
+                TutorialObjects[i].SetActive(i == index);
+            }
+        }
+    }
+
     public List<TutorialStep> TutorialSteps = new List<TutorialStep>();
     private int _currentTextIndex = 0;
 
@@ -38,6 +51,7 @@ public class TutorialWindowScript : WindowScript
             ContinueButton.onClick.AddListener(OnClickContinueButton);
         }
         this.ShowCurrentStep();
+        this.SwitchTutorialObject(0);
     }
 
     public void SetTutorialContent(string content)

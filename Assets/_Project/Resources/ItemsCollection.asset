@@ -888,7 +888,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 2
-      unlockItemAtSemester: 1
+      unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
     walkSpriteTextures: []
@@ -923,7 +923,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 2
-      unlockItemAtSemester: 1
+      unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: 640bcd5fa567d8643ac1aebf927ff9e5, type: 3}
     walkSpriteTextures: []
@@ -958,7 +958,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 2
-      unlockItemAtSemester: 1
+      unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: 4dc9ce35610c82542bc82412b652142e, type: 3}
     walkSpriteTextures: []

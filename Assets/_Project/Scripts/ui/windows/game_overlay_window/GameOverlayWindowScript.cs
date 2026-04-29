@@ -293,6 +293,11 @@ public class GameOverlayWindowScript : WindowScript
 			if (TutorialSemester != null) TutorialSemester.SetActive(true);
 			if (ContinueButton != null) ContinueButton.SetActive(true);
 
+			if (TutorialWindowScript.instance != null)
+			{
+				TutorialWindowScript.instance.SwitchTutorialObject(1); // Tắt Tut 1 bật Tut 2
+			}
+
 			// Chưa bật MissionButton vội
 			if (MissionButton != null) MissionButton.SetActive(false);
 			if (HandTutMission != null) HandTutMission.SetActive(false);
@@ -329,6 +334,11 @@ public class GameOverlayWindowScript : WindowScript
 		if (MissionButton != null) MissionButton.SetActive(true);
 		if (HandTutMission != null) HandTutMission.SetActive(true);
 		
+		if (TutorialWindowScript.instance != null)
+		{
+			TutorialWindowScript.instance.SwitchTutorialObject(2); // Tắt Tut 2 bật Tut 3
+		}
+
 		RefreshHint();
 	}
 }
