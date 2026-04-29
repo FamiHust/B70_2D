@@ -23,17 +23,15 @@ public class NPCController : MonoBehaviour
     public float moveDuration = 0.2f;
     public Ease moveEase = Ease.Linear;
 
+    Vector2Int targetCell;
+
+    int stuckTicks = 0;
+    const int STUCK_THRESHOLD = 2;
+
     void Awake()
     {
         cachedTransform = transform;
-
         sr = GetComponentInChildren<SpriteRenderer>();
-        if (sr == null)
-        {
-            Debug.LogError("NPCController: Missing SpriteRenderer!");
-            return;
-        }
-
         visual = sr.transform;
     }
 
@@ -44,6 +42,7 @@ public class NPCController : MonoBehaviour
 
         UpdateSorting();
         RequestNewPath();
+
     }
 
     void Update()
@@ -60,6 +59,7 @@ public class NPCController : MonoBehaviour
     void RequestNewPath()
     {
         Vector3 target = GroundManager.instance.GetRandomFreePosition();
+        targetCell = WorldToCell(target);
 
         var rawPath = GroundManager.instance.GetPath(cachedTransform.position, target, false);
 
@@ -80,22 +80,25 @@ public class NPCController : MonoBehaviour
 
         Vector2Int next = path.Peek();
 
+        // Kiểm tra ô tiếp theo có đi được không (Wall)
         if (!GroundManager.instance.pathNodesWithoutWall[next.x, next.y])
         {
             RequestNewPath();
             return;
         }
 
+        // KIỂM TRA BỊ CHẶN BỞI NPC KHÁC
         if (!NPCGridSystem.Instance.IsFree(next.x, next.y))
         {
-            HandleBlocked();
+            HandleBlocked(); // Xử lý khi bị kẹt
             return;
         }
 
+        // Nếu không bị chặn, reset đếm kẹt và di chuyển
+        stuckTicks = 0;
+
         NPCGridSystem.Instance.Release(currentCell.x, currentCell.y);
-
         Vector2Int prevCell = currentCell;
-
         currentCell = next;
         path.Dequeue();
 
@@ -103,11 +106,9 @@ public class NPCController : MonoBehaviour
 
         Vector3 oldWorldPos = cachedTransform.position;
         Vector3 newWorldPos = CellToWorld(currentCell);
-
         cachedTransform.position = newWorldPos;
 
         AnimateMove(oldWorldPos, newWorldPos, prevCell, currentCell);
-
         UpdateSorting();
     }
 
@@ -143,7 +144,57 @@ public class NPCController : MonoBehaviour
 
     void HandleBlocked()
     {
+        stuckTicks++;
 
+        // Nếu bị kẹt quá lâu, thử lách sang các ô xung quanh (kể cả cỏ)
+        if (stuckTicks >= STUCK_THRESHOLD)
+        {
+            Vector2Int sidestepCell = FindSidestepCell();
+            if (sidestepCell != new Vector2Int(-1, -1))
+            {
+                // Thực hiện lách
+                NPCGridSystem.Instance.Release(currentCell.x, currentCell.y);
+                Vector2Int prevCell = currentCell;
+                currentCell = sidestepCell;
+
+                // Xóa path cũ vì đã đi lệch hướng, buộc NPC tìm đường mới từ vị trí mới
+                path.Clear();
+
+                NPCGridSystem.Instance.Occupy(currentCell.x, currentCell.y, id);
+
+                Vector3 oldWorldPos = cachedTransform.position;
+                Vector3 newWorldPos = CellToWorld(currentCell);
+                cachedTransform.position = newWorldPos;
+
+                AnimateMove(oldWorldPos, newWorldPos, prevCell, currentCell);
+                UpdateSorting();
+                stuckTicks = 0;
+            }
+        }
+    }
+
+    Vector2Int FindSidestepCell()
+    {
+        // Kiểm tra 8 ô xung quanh
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
+
+                Vector2Int checkCell = new Vector2Int(currentCell.x + x, currentCell.y + y);
+
+                // Điều kiện để lách: Trong map + Không có vật cản + Không có NPC khác
+                if (checkCell.x >= 0 && checkCell.x < GroundManager.nodeWidth &&
+                    checkCell.y >= 0 && checkCell.y < GroundManager.nodeHeight &&
+                    GroundManager.instance.pathNodesWithoutWall[checkCell.x, checkCell.y] &&
+                    NPCGridSystem.Instance.IsFree(checkCell.x, checkCell.y))
+                {
+                    return checkCell;
+                }
+            }
+        }
+        return new Vector2Int(-1, -1); // Không tìm được ô nào trống để lách
     }
 
     Vector2Int WorldToCell(Vector3 pos)
@@ -154,5 +205,31 @@ public class NPCController : MonoBehaviour
     Vector3 CellToWorld(Vector2Int cell)
     {
         return new Vector3(cell.x, 0, cell.y);
+    }
+
+    void OnDrawGizmos()
+    {
+        // Nếu game đang chạy, vẽ đích đến
+        if (Application.isPlaying)
+        {
+            // Vẽ một đường line từ vị trí hiện tại đến đích
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(transform.position + Vector3.up * 0.5f, CellToWorld(targetCell) + Vector3.up * 0.5f);
+
+            // Vẽ một khối lập phương tại điểm đích
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireCube(CellToWorld(targetCell) + Vector3.up * 0.5f, new Vector3(0.8f, 0.8f, 0.8f));
+
+            // Vẽ các bước tiếp theo trong Queue đường đi (nếu có)
+            if (path != null && path.Count > 0)
+            {
+                Gizmos.color = Color.red;
+                Vector2Int[] nodes = path.ToArray();
+                for (int i = 0; i < nodes.Length - 1; i++)
+                {
+                    Gizmos.DrawLine(CellToWorld(nodes[i]) + Vector3.up * 0.2f, CellToWorld(nodes[i + 1]) + Vector3.up * 0.2f);
+                }
+            }
+        }
     }
 }

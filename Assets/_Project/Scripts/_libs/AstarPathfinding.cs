@@ -24,7 +24,8 @@ public class SearchParameters {
 	}
 }
 
-public class Node{
+public class Node : IComparable<Node>
+{
 	private Node _parentNode;
 
 	public Vector2 location { get; private set; }
@@ -33,11 +34,11 @@ public class Node{
 	public bool isWalkable { get; set; }
 
 
-	// Cost from start to here
-	public float G { get; private set; }
+    // Cost from start to here
+    public float G { get; set; }
 
-	// Estimated cost from here to end
-	public float H { get; private set; }
+    // Estimated cost from here to end
+    public float H { get; private set; }
 
 	// Flags whether the node is open, closed or untested by the PathFinder
 	public NodeState State { get; set; }
@@ -54,8 +55,8 @@ public class Node{
 		{
 			// When setting the parent, also calculate the traversal cost from the start node to here (the 'G' value)
 			this._parentNode = value;
-			this.G = this._parentNode.G + GetTraversalCost(this.location, this._parentNode.location);
-		}
+            this.G = this._parentNode.G + GetTraversalCost(this.location, this._parentNode.location) * GetTerrainCost();
+        }
 	}
 
 	public Node(int x, int y, bool isWalkable, Vector2 endLocation){
@@ -73,6 +74,66 @@ public class Node{
 		float deltaY = otherLocation.y - location.y;
 		return (float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
 	}
+
+    public float GetTerrainCost()
+    {
+        int x = (int)location.x;
+        int y = (int)location.y;
+
+        if (GroundManager.instance.roadNodes[x, y])
+            return 1f; // road
+
+        return 8f; // grass penalty
+    }
+
+    public int CompareTo(Node other)
+    {
+        int compare = F.CompareTo(other.F);
+        if (compare == 0) compare = H.CompareTo(other.H);
+        return compare;
+    }
+}
+
+public class PriorityQueue<T> where T : IComparable<T>
+{
+    private List<T> data = new List<T>();
+
+    public int Count => data.Count;
+
+    public void Enqueue(T item)
+    {
+        data.Add(item);
+        int ci = data.Count - 1;
+        while (ci > 0)
+        {
+            int pi = (ci - 1) / 2;
+            if (data[ci].CompareTo(data[pi]) >= 0) break;
+            T tmp = data[ci]; data[ci] = data[pi]; data[pi] = tmp;
+            ci = pi;
+        }
+    }
+
+    public T Dequeue()
+    {
+        int li = data.Count - 1;
+        T frontItem = data[0];
+        data[0] = data[li];
+        data.RemoveAt(li);
+
+        --li;
+        int pi = 0;
+        while (true)
+        {
+            int ci = pi * 2 + 1;
+            if (ci > li) break;
+            int rc = ci + 1;
+            if (rc <= li && data[rc].CompareTo(data[ci]) < 0) ci = rc;
+            if (data[pi].CompareTo(data[ci]) <= 0) break;
+            T tmp = data[pi]; data[pi] = data[ci]; data[ci] = tmp;
+            pi = ci;
+        }
+        return frontItem;
+    }
 }
 
 public class PathFinder{
@@ -92,26 +153,59 @@ public class PathFinder{
 	}
 
 
-	public List<Vector2> FindPath(){
-		List<Vector2> path = new List<Vector2>();
-		bool success = Search(startNode);
-		if (success){
-			// If a path was found, follow the parents from the end node to build a list of locations
-			Node node = this.endNode;
-			while (node.parentNode != null){
-				path.Add(node.location);
-				node = node.parentNode;
-			}
+    public List<Vector2> FindPath()
+    {
+        PriorityQueue<Node> openList = new PriorityQueue<Node>();
 
-			// Reverse the list so it's in the correct order when returned
-			path.Reverse();
-		}
+        startNode.State = NodeState.Open;
+        openList.Enqueue(startNode);
 
-		return path;
-	}
+        while (openList.Count > 0)
+        {
+            Node currentNode = openList.Dequeue();
+            currentNode.State = NodeState.Closed;
 
+            if (currentNode.location == endNode.location)
+            {
+                return CalculatePath(currentNode);
+            }
 
-	private void InitializeNodes(bool[,] map) {
+            foreach (var neighbor in GetAdjacentWalkableNodes(currentNode))
+            {
+                if (neighbor.State == NodeState.Closed) continue;
+
+                float distance = Node.GetTraversalCost(currentNode.location, neighbor.location);
+                float newG = currentNode.G + distance * neighbor.GetTerrainCost();
+
+                if (neighbor.State != NodeState.Open || newG < neighbor.G)
+                {
+                    neighbor.G = newG;
+                    neighbor.parentNode = currentNode;
+
+                    if (neighbor.State != NodeState.Open)
+                    {
+                        neighbor.State = NodeState.Open;
+                        openList.Enqueue(neighbor);
+                    }
+                }
+            }
+        }
+        return new List<Vector2>();
+    }
+
+    private List<Vector2> CalculatePath(Node node)
+    {
+        List<Vector2> path = new List<Vector2>();
+        while (node.parentNode != null)
+        {
+            path.Add(node.location);
+            node = node.parentNode;
+        }
+        path.Reverse();
+        return path;
+    }
+
+    private void InitializeNodes(bool[,] map) {
 		this.width = map.GetLength(0);
 		this.height = map.GetLength(1);
 		this.nodes = new Node[this.width, this.height];
@@ -149,51 +243,32 @@ public class PathFinder{
 	}
 
 
-	private List<Node> GetAdjacentWalkableNodes(Node fromNode) {
-		List<Node> walkableNodes = new List<Node>();
-		IEnumerable<Vector2> nextLocations = GetAdjacentLocations(fromNode.location);
+    private List<Node> GetAdjacentWalkableNodes(Node fromNode)
+    {
+        List<Node> walkableNodes = new List<Node>();
+        int curX = (int)fromNode.location.x;
+        int curY = (int)fromNode.location.y;
 
-		foreach (var location in nextLocations){
-			int x = (int)location.x;
-			int y = (int)location.y;
+        for (int x = -1; x <= 1; x++)
+        {
+            for (int y = -1; y <= 1; y++)
+            {
+                if (x == 0 && y == 0) continue;
 
-			// Stay within the grid's boundaries
-			if(x < 0 || x >= this.width || y < 0 || y >= this.height) {
-				continue;
-			}
+                int checkX = curX + x;
+                int checkY = curY + y;
 
-			Node node = this.nodes[x, y];
-			// Ignore non-walkable nodes
-			if(!node.isWalkable) {
-				continue;
-			}
-				
-			// Ignore already-closed nodes
-			if(node.State == NodeState.Closed) {
-				continue;
-			}
+                if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
+                {
+                    Node node = nodes[checkX, checkY];
+                    if (node.isWalkable) walkableNodes.Add(node);
+                }
+            }
+        }
+        return walkableNodes;
+    }
 
-
-			// Already-open nodes are only added to the list if their G-value is lower going via this route.
-			if (node.State == NodeState.Open) {
-				float traversalCost = Node.GetTraversalCost(node.location, node.parentNode.location);
-				float gTemp = fromNode.G + traversalCost;
-				if (gTemp < node.G) {
-					node.parentNode = fromNode;
-					walkableNodes.Add(node);
-				}
-			} else {
-				// If it's untested, set the parent and flag it as 'Open' for consideration
-				node.parentNode = fromNode;
-				node.State = NodeState.Open;
-				walkableNodes.Add(node);
-			}
-		}
-
-		return walkableNodes;
-	}
-
-	private static IEnumerable<Vector2> GetAdjacentLocations(Vector2 fromLocation) {
+    private static IEnumerable<Vector2> GetAdjacentLocations(Vector2 fromLocation) {
 		return new Vector2[] {
 			new Vector2(fromLocation.x-1, fromLocation.y-1),
 			new Vector2(fromLocation.x-1, fromLocation.y  ),
