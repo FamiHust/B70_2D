@@ -271,42 +271,36 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.D4:
 				itemId = 3635;
 				break;
-		case ShopWindowScript.SubCategory.C2:
-			itemId = 8216;
-			break;
-		case ShopWindowScript.SubCategory.C3:
-			itemId = 2454;
-			break;
-		case ShopWindowScript.SubCategory.C3B:
-			itemId = 5835;
-			break;
-		case ShopWindowScript.SubCategory.C5:
-			itemId = 3504;
-			break;
-		case ShopWindowScript.SubCategory.C6:
-			itemId = 2617;
-			break;
-		case ShopWindowScript.SubCategory.C9:
-			itemId = 9295;
-			break;
-		case ShopWindowScript.SubCategory.C10:
-			itemId = 8385;
-			break;
-		case ShopWindowScript.SubCategory.D35:
-			itemId = 4407;
-			break;
-		case ShopWindowScript.SubCategory.D6:
-			itemId = 6330;
-			break;
-		case ShopWindowScript.SubCategory.D8:
-			itemId = 5134;
-			break;
-		//case ShopWindowScript.SubCategory.CAMP:
-			//	itemId = 2728;
-			//	break;
-			//case ShopWindowScript.SubCategory.CANNON:
-			//	itemId = 1712;
-			//	break;
+			case ShopWindowScript.SubCategory.C2:
+				itemId = 8216;
+				break;
+			case ShopWindowScript.SubCategory.C3:
+				itemId = 2454;
+				break;
+			case ShopWindowScript.SubCategory.C3B:
+				itemId = 5835;
+				break;
+			case ShopWindowScript.SubCategory.C5:
+				itemId = 3504;
+				break;
+			case ShopWindowScript.SubCategory.C6:
+				itemId = 2617;
+				break;
+			case ShopWindowScript.SubCategory.C9:
+				itemId = 9295;
+				break;
+			case ShopWindowScript.SubCategory.C10:
+				itemId = 8385;
+				break;
+			case ShopWindowScript.SubCategory.D35:
+				itemId = 4407;
+				break;
+			case ShopWindowScript.SubCategory.D6:
+				itemId = 6330;
+				break;
+			case ShopWindowScript.SubCategory.D8:
+				itemId = 5134;
+				break;
 			case ShopWindowScript.SubCategory.C4:
 				itemId = 3265;
 				break;
@@ -316,36 +310,15 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.GaraD6:
 				itemId = 4132;
 				break;
-			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
-			// 	itemId = 9074;
-			// 	break;
-			//case ShopWindowScript.SubCategory.TOWER:
-			//	itemId = 4764;
-			//	break;
 			case ShopWindowScript.SubCategory.C1:
 				itemId = 2496;
 				break;
 			case ShopWindowScript.SubCategory.LIBRARY:
 				itemId = 6677;
 				break;
-			// case ShopWindowScript.SubCategory.WALL:
-			// 	itemId = 7666;
-			// 	break;
-			// case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
-			// 	itemId = 2949;
-			// 	break;
-			// case ShopWindowScript.SubCategory.TDN_GATE:
-			// 	itemId = 1251;
-			// 	break;
-			// case ShopWindowScript.SubCategory.TREE3:
-			// 	itemId = 5341;
-			// 	break;
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			// case ShopWindowScript.SubCategory.B8:
-			// 	itemId = 5342;
-			// 	break;
 			case ShopWindowScript.SubCategory.ITIMS:
 				itemId = 3090;
 				break;
@@ -354,7 +327,7 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.PC_LAB:
 				itemId = 9138;
-				break;
+					break;
 		}
 
 		// LẤY DATA ITEM
@@ -449,33 +422,15 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.C4:
 				itemId = 3265;
 				break;
-			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
-			// 	itemId = 9074;
-			// 	break;
 			case ShopWindowScript.SubCategory.C1:
 				itemId = 2496;
 				break;
 			case ShopWindowScript.SubCategory.LIBRARY:
 				itemId = 6677;
 				break;
-			// case ShopWindowScript.SubCategory.WALL:
-			// 	itemId = 7666;
-			// 	break;
-			// case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
-			// 	itemId = 2949;
-			// 	break;
-			// case ShopWindowScript.SubCategory.TDN_GATE:
-			// 	itemId = 1251;
-			// 	break;
-			// case ShopWindowScript.SubCategory.TREE3:
-			// 	itemId = 5341;
-			// 	break;
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
-			// case ShopWindowScript.SubCategory.B8:
-			// 	itemId = 5342;
-			// 	break;
 			case ShopWindowScript.SubCategory.Canteen:
 				itemId = 1399;
 				break;

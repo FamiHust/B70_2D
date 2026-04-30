@@ -47,12 +47,8 @@ public class SceneManager : MonoBehaviour
 	public int educationStorageCapacity;
 	public int currentSemester;
 	public float semesterProgress;
-	// public int missionsPerSemester = 5; // Removed in favor of building-based progress
 
 	public bool isTutorialActive;
-
-
-
 
 	void Awake()
 	{
