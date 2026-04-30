@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GroundManager : MonoBehaviour
 {
-	public enum Action
+    [HideInInspector]
+    public bool[] serializedRoadData = new bool[nodeWidth * nodeHeight];
+    public enum Action
 	{
 		ADD,
 		REMOVE
@@ -47,63 +49,101 @@ public class GroundManager : MonoBehaviour
 	public bool[,] pathNodesWithoutWall;
 	public bool[,] pathNodesWithWall;
 
+    public bool[,] roadNodes;
 
-	void Awake()
+    void Awake()
 	{
 		instance = this;
 	}
 
 	Color color = Color.green;
-	void OnDrawGizmos()
-	{
-		if (!showNodes)
-		{
-			return;
-		}
+    void OnDrawGizmos()
+    {
+        if (!showNodes) return;
+        if (this.pathNodesWithoutWall == null) return;
 
-		if (this.pathNodesWithoutWall == null)
-		{
-			return;
-		}
+        for (int x = 0; x < nodeWidth; x++)
+        {
+            for (int z = 0; z < nodeHeight; z++)
+            {
+                if (roadNodes != null && roadNodes[x, z])
+                {
+                    color = Color.yellow;
+                    color.a = 0.6f;
+                }
+                else if (this.pathNodesWithoutWall[x, z])
+                {
+                    color = Color.green;
+                    color.a = 0.5f;
+                }
+                else
+                {
+                    color = Color.red;
+                    color.a = 0.5f;
+                }
 
-		for (int x = 0; x < nodeWidth; x++)
-		{
-			for (int z = 0; z < nodeHeight; z++)
-			{
-				if (this.pathNodesWithoutWall[x, z] == true)
-				{
-					//walkable
-					color = Color.green;
-					color.a = 0.5f;
-					Gizmos.color = color;
-				}
-				else
-				{
-					color = Color.red;
-					color.a = 0.5f;
-					Gizmos.color = color;
-				}
-				Gizmos.DrawCube(new Vector3(x + gridOriginX + 0.5f, 0, z + gridOriginZ + 0.5f), new Vector3(0.4f, 0.4f, 0.4f));
-			}
-		}
+                Gizmos.color = color;
+                Gizmos.DrawCube(
+                    new Vector3(x + 0.5f, 0, z + 0.5f),
+                    new Vector3(0.4f, 0.4f, 0.4f)
+                );
+            }
+        }
+    }
+
+    // public void UpdateAllNodes()
+	// {
+	// 	if (!showNodes)
+	// 	{
+	// 		return;
+	// 	}
+
+	// 	if (this.pathNodesWithoutWall == null)
+	// 	{
+	// 		return;
+	// 	}
+
+	// 	for (int x = 0; x < nodeWidth; x++)
+	// 	{
+	// 		for (int z = 0; z < nodeHeight; z++)
+	// 		{
+	// 			if (this.pathNodesWithoutWall[x, z] == true)
+	// 			{
+	// 				//walkable
+	// 				color = Color.green;
+	// 				color.a = 0.5f;
+	// 				Gizmos.color = color;
+	// 			}
+	// 			else
+	// 			{
+	// 				color = Color.red;
+	// 				color.a = 0.5f;
+	// 				Gizmos.color = color;
+	// 			}
+	// 			Gizmos.DrawCube(new Vector3(x + gridOriginX + 0.5f, 0, z + gridOriginZ + 0.5f), new Vector3(0.4f, 0.4f, 0.4f));
+	// 		}
+	// 	}
 
 
-	}
+	// }
 
 	public void UpdateAllNodes()
 	{
 		this.instanceNodes = new int[nodeWidth, nodeHeight];
+        this.instanceNodes = new int[nodeWidth, nodeHeight];
 		this.pathNodesWithoutWall = new bool[nodeWidth, nodeHeight];
 		this.pathNodesWithWall = new bool[nodeWidth, nodeHeight];
+        this.roadNodes = new bool[nodeWidth, nodeHeight];
 
-		for (int x = 0; x < nodeWidth; x++)
+        for (int x = 0; x < nodeWidth; x++)
 		{
 			for (int z = 0; z < nodeHeight; z++)
 			{
 				this.instanceNodes[x, z] = -1;
 				this.pathNodesWithoutWall[x, z] = true;
 				this.pathNodesWithWall[x, z] = true;
-			}
+                roadNodes[x, z] = serializedRoadData[z * nodeWidth + x]; ;
+            }
 		}
 
 		foreach (KeyValuePair<int, BaseItemScript> entry in SceneManager.instance.GetItemInstances())
@@ -115,8 +155,18 @@ public class GroundManager : MonoBehaviour
 			}
 		}
 	}
+    public void SetRoad(int x, int z, bool isRoad)
+    {
+        if (x < 0 || x >= nodeWidth || z < 0 || z >= nodeHeight) return;
 
-	public void UpdateBaseItemNodes(BaseItemScript item, Action action)
+        if (roadNodes == null) roadNodes = new bool[nodeWidth, nodeHeight];
+        if (serializedRoadData == null || serializedRoadData.Length == 0)
+            serializedRoadData = new bool[nodeWidth * nodeHeight];
+
+        roadNodes[x, z] = isRoad;
+        serializedRoadData[z * nodeWidth + x] = isRoad;
+    }
+    public void UpdateBaseItemNodes(BaseItemScript item, Action action)
 	{
 
 		Vector3 pos = item.GetPosition();
