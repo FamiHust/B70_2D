@@ -67,9 +67,10 @@ public class ProductionScript : MonoBehaviour
             }
         }
 
-        // Update semester progress immediately when any construction finishes
+        // Cập nhật sức chứa sinh viên và tiến độ học kỳ ngay khi tòa hoàn thành xây dựng
         if (SceneManager.instance != null)
         {
+            SceneManager.instance.UpdateStudentStorageCapacity();  // tăng cap AFTER xây xong
             SceneManager.instance.UpdateSemesterProgress();
         }
     }

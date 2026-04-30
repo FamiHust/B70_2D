@@ -37,11 +37,11 @@ public class CategoryItemScript : MonoBehaviour {
 			this.Image.sprite = this.ServiceSprite;
 			break;
 		case ShopWindowScript.Category.RESOURCES:
-			this.Name.text = "RESOURCES";
+			this.Name.text = "UTILITY";
 			this.Image.sprite = this.ResourcesSprite;
 			break;
 		case ShopWindowScript.Category.STUDENT:
-			this.Name.text = "STUDENT";
+			this.Name.text = "FACILITY";
 			this.Image.sprite = this.StudentSprite;
 			break;
 		case ShopWindowScript.Category.DECORATIONS:

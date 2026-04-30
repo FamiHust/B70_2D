@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using B70.Balance;
 
 public class SceneManager : MonoBehaviour
 {
@@ -96,19 +97,21 @@ public class SceneManager : MonoBehaviour
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
 		this.goldStorageCapacity = 10000;
 		this.diamondStorageCapacity = 20;
-		this.studentStorageCapacity = 20;
-		this.happyStorageCapacity = 100;
-		this.educationStorageCapacity = 100;
+		this.studentStorageCapacity = 500;    // Base capacity — tăng thêm khi xây công trình.
+		this.happyStorageCapacity = 100;       // Happiness [0, 100]
+		this.educationStorageCapacity = 100;   // Education [0, 100]
 		// this.elixirStorageCapacity = 500;
 
-		// Load saved resources (default to 1000 gold / 100 diamonds on first run)
-		this.numberOfGoldInStorage = PlayerPrefs.GetInt("numberOfGoldInStorage", 200);
-		this.numberOfDiamondsInStorage = PlayerPrefs.GetInt("numberOfDiamondsInStorage", 20);
-		this.numberOfStudentInStorage = PlayerPrefs.GetInt("numberOfStudentInStorage", 0);
-		this.numberOfHappyInStorage = PlayerPrefs.GetInt("numberOfHappyInStorage", 0);
-		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 0);
-		this.currentSemester = PlayerPrefs.GetInt("currentSemester", 1);
-		this.semesterProgress = PlayerPrefs.GetFloat("semesterProgress", 0);
+		// ── Giá trị mặc định lần đầu chơi ────────────────────────────────
+		// Happiness = 50 : ngưỡng trung lập → không bị phạt dropout, không thưởng.
+		// Education  = 50 : t1 = 50 → bắt đầu có freshmen nhập học.
+		this.numberOfGoldInStorage      = PlayerPrefs.GetInt("numberOfGoldInStorage",      200);
+		this.numberOfDiamondsInStorage  = PlayerPrefs.GetInt("numberOfDiamondsInStorage",  20);
+		this.numberOfStudentInStorage   = PlayerPrefs.GetInt("numberOfStudentInStorage",   0);
+		this.numberOfHappyInStorage     = PlayerPrefs.GetInt("numberOfHappyInStorage",     50);   // neutralH = 50
+		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 50);   // t1 = 30
+		this.currentSemester            = PlayerPrefs.GetInt("currentSemester",            0);   // bắt đầu từ kỳ 0
+		this.semesterProgress           = PlayerPrefs.GetFloat("semesterProgress",         0);
 	}
 
 	private void OnApplicationQuit()
@@ -985,8 +988,31 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 
+	// Tham số cân bằng — có thể chuyển sang ScriptableObject để designer tinh chỉnh.
+	private readonly BalanceParameters _balanceParams = new BalanceParameters();
+
 	public void CompleteSemester()
 	{
+		// ── 0. Kích hoạt các sự kiện ngẫu nhiên trước khi tính điểm ───────────
+		if (UniversityEventManager.instance != null)
+		{
+			UniversityEventManager.instance.RollAndApplyRandomEvents();
+		}
+
+		// ── 1. Chạy công thức balance cho kỳ học vừa kết thúc ─────────────────
+		BalanceState state = UniversityBalanceFormulas.StateFromSceneManager();
+		SemesterBreakdown bd = UniversityBalanceFormulas.ApplySemesterTick(ref state, _balanceParams);
+
+		// ── 3. Ghi kết quả ngược lại vào SceneManager + lưu + refresh UI ─────────
+		UniversityBalanceFormulas.ApplyStateToSceneManager(state);
+
+		Debug.Log($"[Semester {this.currentSemester} → {this.currentSemester + 1}] "
+			+ $"Education={this.numberOfEducationInStorage} | Happiness={this.numberOfHappyInStorage} "
+			+ $"| Freshmen={bd.freshmen:F0} | Dropouts={bd.dropouts:F0} | Graduated={bd.graduated:F0} "
+			+ $"| ΔStudents={bd.deltaStudents:F0} | Gold+={bd.semesterGoldIncome:F0} "
+			+ $"| GradRate={bd.graduationRate:P1}");
+
+		// ── 4. Tăng kỳ học và reset tiến độ ─────────────────────────────
 		this.currentSemester++;
 		this.semesterProgress = 0;
 		this.SaveResources();
@@ -1005,13 +1031,19 @@ public class SceneManager : MonoBehaviour
 		{
 			this.numberOfGoldInStorage = Mathf.Clamp(this.numberOfGoldInStorage + amount, 0, goldStorageCapacity);
 		}
-		// else if (resourceType == "elixir")
-		// {
-		// 	this.numberOfElixirInStorage = Mathf.Clamp(this.numberOfElixirInStorage + amount, 0, elixirStorageCapacity);
-		// }
 		else if (resourceType == "diamond")
 		{
 			this.numberOfDiamondsInStorage = Mathf.Clamp(this.numberOfDiamondsInStorage + amount, 0, diamondStorageCapacity);
+		}
+		else if (resourceType == "happy")
+		{
+			// Happiness là điểm [0,100] — tòa sản xuất "happy" sẽ tăng chỉ số này khi người chơi thu thập.
+			this.numberOfHappyInStorage = Mathf.Clamp(this.numberOfHappyInStorage + amount, 0, happyStorageCapacity);
+		}
+		else if (resourceType == "education")
+		{
+			// Education là điểm [0,100] — tòa sản xuất "education" sẽ tăng chỉ số này khi người chơi thu thập.
+			this.numberOfEducationInStorage = Mathf.Clamp(this.numberOfEducationInStorage + amount, 0, educationStorageCapacity);
 		}
 
 		this.SaveResources();
@@ -1132,7 +1164,7 @@ public class SceneManager : MonoBehaviour
 
 	public void UpdateStudentStorageCapacity()
 	{
-		int baseCapacity = 20;
+		int baseCapacity = 500; // Sức chứa cơ bản (không cần công trình nào).
 		int totalIncrease = 0;
 		foreach (var item in GetAllItems())
 		{

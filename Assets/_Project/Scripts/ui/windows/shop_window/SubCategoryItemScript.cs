@@ -202,30 +202,30 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Image.sprite = this.C1Sprite;
 				break;
 
-			case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
-				this.Name.text = "GP GATE";
-				this.Image.sprite = this.GiaiPhongGateSprite;
-				break;
+			// case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
+			// 	this.Name.text = "GP GATE";
+			// 	this.Image.sprite = this.GiaiPhongGateSprite;
+			// 	break;
 
-			case ShopWindowScript.SubCategory.TDN_GATE:
-				this.Name.text = "TDN GATE";
-				this.Image.sprite = this.TDNGateSprite;
-				break;
+			// case ShopWindowScript.SubCategory.TDN_GATE:
+			// 	this.Name.text = "TDN GATE";
+			// 	this.Image.sprite = this.TDNGateSprite;
+			// 	break;
 
 			case ShopWindowScript.SubCategory.LIBRARY:
 				this.Name.text = "LIBRARY";
 				this.Image.sprite = this.LibSprite;
 				break;
 
-			case ShopWindowScript.SubCategory.WALL:
-				this.Name.text = "WALL";
-				this.Image.sprite = this.WallSprite;
-				break;
+			// case ShopWindowScript.SubCategory.WALL:
+			// 	this.Name.text = "WALL";
+			// 	this.Image.sprite = this.WallSprite;
+			// 	break;
 
-			case ShopWindowScript.SubCategory.TREE3:
-				this.Name.text = "TREE3";
-				this.Image.sprite = this.Tree3Sprite;
-				break;
+			// case ShopWindowScript.SubCategory.TREE3:
+			// 	this.Name.text = "TREE3";
+			// 	this.Image.sprite = this.Tree3Sprite;
+			// 	break;
 			case ShopWindowScript.SubCategory.ITIMS:
 				this.Name.text = "ITIMS";
 				this.Image.sprite = this.ITIMSSprite;
@@ -328,18 +328,18 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.LIBRARY:
 				itemId = 6677;
 				break;
-			case ShopWindowScript.SubCategory.WALL:
-				itemId = 7666;
-				break;
-			case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
-				itemId = 2949;
-				break;
-			case ShopWindowScript.SubCategory.TDN_GATE:
-				itemId = 1251;
-				break;
-			case ShopWindowScript.SubCategory.TREE3:
-				itemId = 5341;
-				break;
+			// case ShopWindowScript.SubCategory.WALL:
+			// 	itemId = 7666;
+			// 	break;
+			// case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
+			// 	itemId = 2949;
+			// 	break;
+			// case ShopWindowScript.SubCategory.TDN_GATE:
+			// 	itemId = 1251;
+			// 	break;
+			// case ShopWindowScript.SubCategory.TREE3:
+			// 	itemId = 5341;
+			// 	break;
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
@@ -458,18 +458,18 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.LIBRARY:
 				itemId = 6677;
 				break;
-			case ShopWindowScript.SubCategory.WALL:
-				itemId = 7666;
-				break;
-			case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
-				itemId = 2949;
-				break;
-			case ShopWindowScript.SubCategory.TDN_GATE:
-				itemId = 1251;
-				break;
-			case ShopWindowScript.SubCategory.TREE3:
-				itemId = 5341;
-				break;
+			// case ShopWindowScript.SubCategory.WALL:
+			// 	itemId = 7666;
+			// 	break;
+			// case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
+			// 	itemId = 2949;
+			// 	break;
+			// case ShopWindowScript.SubCategory.TDN_GATE:
+			// 	itemId = 1251;
+			// 	break;
+			// case ShopWindowScript.SubCategory.TREE3:
+			// 	itemId = 5341;
+			// 	break;
 			case ShopWindowScript.SubCategory.C7:
 				itemId = 3336;
 				break;
