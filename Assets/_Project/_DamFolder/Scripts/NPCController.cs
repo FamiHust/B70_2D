@@ -28,6 +28,9 @@ public class NPCController : MonoBehaviour
     int stuckTicks = 0;
     const int STUCK_THRESHOLD = 2;
 
+    public Sprite frontSprite;
+    public Sprite backSprite;
+
     void Awake()
     {
         cachedTransform = transform;
@@ -79,22 +82,18 @@ public class NPCController : MonoBehaviour
         }
 
         Vector2Int next = path.Peek();
-
-        // Kiểm tra ô tiếp theo có đi được không (Wall)
         if (!GroundManager.instance.pathNodesWithoutWall[next.x, next.y])
         {
             RequestNewPath();
             return;
         }
 
-        // KIỂM TRA BỊ CHẶN BỞI NPC KHÁC
         if (!NPCGridSystem.Instance.IsFree(next.x, next.y))
         {
-            HandleBlocked(); // Xử lý khi bị kẹt
+            HandleBlocked();
             return;
         }
 
-        // Nếu không bị chặn, reset đếm kẹt và di chuyển
         stuckTicks = 0;
 
         NPCGridSystem.Instance.Release(currentCell.x, currentCell.y);
@@ -114,23 +113,33 @@ public class NPCController : MonoBehaviour
 
     void AnimateMove(Vector3 oldWorldPos, Vector3 newWorldPos, Vector2Int from, Vector2Int to)
     {
-        if (visual == null) return;
+        if (visual == null || sr == null) return;
 
         moveTween?.Kill();
-
         visual.position = oldWorldPos;
 
         Vector2Int dir = to - from;
 
-        if (dir.x != 0)
+        float screenX = dir.x - dir.y;
+        float screenY = dir.x + dir.y;
+
+        if (screenY > 0)
+        {
+            sr.sprite = backSprite;
+        }
+        else
+        {
+            sr.sprite = frontSprite;
+        }
+
+        if (screenX != 0)
         {
             Vector3 scale = visual.localScale;
-            scale.x = dir.x > 0 ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+            scale.x = screenX < 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
             visual.localScale = scale;
         }
 
-        moveTween = visual.DOMove(newWorldPos, moveDuration)
-            .SetEase(moveEase);
+        moveTween = visual.DOMove(newWorldPos, moveDuration).SetEase(moveEase);
     }
 
     void UpdateSorting()
@@ -146,18 +155,15 @@ public class NPCController : MonoBehaviour
     {
         stuckTicks++;
 
-        // Nếu bị kẹt quá lâu, thử lách sang các ô xung quanh (kể cả cỏ)
         if (stuckTicks >= STUCK_THRESHOLD)
         {
             Vector2Int sidestepCell = FindSidestepCell();
             if (sidestepCell != new Vector2Int(-1, -1))
             {
-                // Thực hiện lách
                 NPCGridSystem.Instance.Release(currentCell.x, currentCell.y);
                 Vector2Int prevCell = currentCell;
                 currentCell = sidestepCell;
 
-                // Xóa path cũ vì đã đi lệch hướng, buộc NPC tìm đường mới từ vị trí mới
                 path.Clear();
 
                 NPCGridSystem.Instance.Occupy(currentCell.x, currentCell.y, id);
@@ -175,7 +181,6 @@ public class NPCController : MonoBehaviour
 
     Vector2Int FindSidestepCell()
     {
-        // Kiểm tra 8 ô xung quanh
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -184,7 +189,6 @@ public class NPCController : MonoBehaviour
 
                 Vector2Int checkCell = new Vector2Int(currentCell.x + x, currentCell.y + y);
 
-                // Điều kiện để lách: Trong map + Không có vật cản + Không có NPC khác
                 if (checkCell.x >= 0 && checkCell.x < GroundManager.nodeWidth &&
                     checkCell.y >= 0 && checkCell.y < GroundManager.nodeHeight &&
                     GroundManager.instance.pathNodesWithoutWall[checkCell.x, checkCell.y] &&
@@ -194,7 +198,7 @@ public class NPCController : MonoBehaviour
                 }
             }
         }
-        return new Vector2Int(-1, -1); // Không tìm được ô nào trống để lách
+        return new Vector2Int(-1, -1);
     }
 
     Vector2Int WorldToCell(Vector3 pos)
@@ -209,18 +213,14 @@ public class NPCController : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        // Nếu game đang chạy, vẽ đích đến
         if (Application.isPlaying)
         {
-            // Vẽ một đường line từ vị trí hiện tại đến đích
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(transform.position + Vector3.up * 0.5f, CellToWorld(targetCell) + Vector3.up * 0.5f);
 
-            // Vẽ một khối lập phương tại điểm đích
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireCube(CellToWorld(targetCell) + Vector3.up * 0.5f, new Vector3(0.8f, 0.8f, 0.8f));
 
-            // Vẽ các bước tiếp theo trong Queue đường đi (nếu có)
             if (path != null && path.Count > 0)
             {
                 Gizmos.color = Color.red;
