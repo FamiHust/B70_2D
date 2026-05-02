@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - id: 3635
-    name: D4
+    name: "T\xF2a D4"
     description: 
     thumb: {fileID: 2800000, guid: 774b117468c22854a96a3d7c19834ac7, type: 3}
     gridWidth: 3
@@ -49,7 +49,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 3336
-    name: C7
+    name: "T\xF2a C7"
     description: 
     thumb: {fileID: 2800000, guid: dd45ad4b53a397b499e74b04ffbe8d73, type: 3}
     gridWidth: 9
@@ -84,11 +84,11 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 3265
-    name: C4
+    name: "T\xF2a C4"
     description: 
     thumb: {fileID: 2800000, guid: 246d36b63216d3a4487473cdeb3c7ff7, type: 3}
-    gridWidth: 4
-    gridHeight: 10
+    gridWidth: 5
+    gridHeight: 11
     arrowOffsetX: 1
     arrowOffsetZ: 1
     gridOffsetX: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 2
-      unlockItemAtSemester: 20
+      unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: 246d36b63216d3a4487473cdeb3c7ff7, type: 3}
     walkSpriteTextures:
@@ -120,10 +120,10 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 2496
-    name: C1
+    name: "T\xF2a C1"
     description: 
     thumb: {fileID: 2800000, guid: aea25fb5a58587e4381819efc975dba6, type: 3}
-    gridWidth: 7
+    gridWidth: 8
     gridHeight: 22
     arrowOffsetX: 1
     arrowOffsetZ: 1
@@ -156,7 +156,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 6677
-    name: Library
+    name: "Th\u01B0 vi\u1EC7n TQB"
     description: 
     thumb: {fileID: 2800000, guid: e6bfd97cb851a304b9380e9490bb6867, type: 3}
     gridWidth: 10
@@ -191,48 +191,12 @@ MonoBehaviour:
     - {fileID: 2800000, guid: 85beb8109f293fc46b532d5b289cede7, type: 3}
     attackSpriteTextures: []
     destroyedSpriteTextures: []
-  - id: 5342
-    name: B1
-    description: 
-    thumb: {fileID: 2800000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
-    gridWidth: 8
-    gridHeight: 8
-    arrowOffsetX: 1
-    arrowOffsetZ: 1
-    gridOffsetX: 0
-    gridOffsetZ: 0
-    uiOffsetX: 0
-    uiOffsetZ: 0
-    defaultPosX: 35
-    defaultPosZ: 36
-    configuration:
-      buildTime: 20
-      isCharacter: 0
-      speed: 0
-      attackRange: 0
-      defenceRange: 0
-      healthPoints: 0
-      hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
-      price: 100
-      resourceType: gold
-      studentCapacityIncrease: 0
-      levelMax: 99
-      unlockItemAtSemester: 0
-    idleSpriteTextures:
-    - {fileID: 2800000, guid: e3fdc212ae65b3046bdcefda1f7eb6d5, type: 3}
-    walkSpriteTextures:
-    - {fileID: 2800000, guid: 942a7277306944842b6c11a9ab5df4df, type: 3}
-    attackSpriteTextures: []
-    destroyedSpriteTextures: []
   - id: 8216
-    name: C2
+    name: "T\xF2a C2"
     description: 
     thumb: {fileID: 2800000, guid: 2939f2f7beed55c40affa9e8c54a51ea, type: 3}
     gridWidth: 12
-    gridHeight: 5
+    gridHeight: 7
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -263,11 +227,11 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 2454
-    name: C3
+    name: "T\xF2a C3"
     description: 
     thumb: {fileID: 2800000, guid: 813482aa3ebdd35478609a58e8b0e990, type: 3}
     gridWidth: 4
-    gridHeight: 10
+    gridHeight: 11
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -298,7 +262,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 5835
-    name: C3B
+    name: "T\xF2a C3B"
     description: 
     thumb: {fileID: 2800000, guid: 8d8eff9a0210b9f47b2625104aa3f9cf, type: 3}
     gridWidth: 4
@@ -333,11 +297,11 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 3504
-    name: C5
+    name: "T\xF2a C5"
     description: 
     thumb: {fileID: 2800000, guid: 47344db2c85660a4898eb643bbd3c85c, type: 3}
     gridWidth: 3
-    gridHeight: 10
+    gridHeight: 11
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -359,7 +323,7 @@ MonoBehaviour:
       productPrice: 100
       price: 100
       resourceType: gold
-      studentCapacityIncrease: 50
+      studentCapacityIncrease: 0
       levelMax: 2
       unlockItemAtSemester: 2
     idleSpriteTextures:
@@ -368,7 +332,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 2617
-    name: C6
+    name: "T\xF2a C6"
     description: 
     thumb: {fileID: 2800000, guid: 2253f03b93efe4b41baa97c261ac01c8, type: 3}
     gridWidth: 3
@@ -403,11 +367,11 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 9295
-    name: C9
+    name: "T\xF2a C9"
     description: 
     thumb: {fileID: 2800000, guid: 7ea65dba491b92b4fbdf6189b4d4abe5, type: 3}
-    gridWidth: 4
-    gridHeight: 11
+    gridWidth: 5
+    gridHeight: 10
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -438,11 +402,11 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 8385
-    name: C10
+    name: "T\xF2a C10"
     description: 
     thumb: {fileID: 2800000, guid: 6e9037d69118bcf439031e0cd35d3c00, type: 3}
     gridWidth: 4
-    gridHeight: 10
+    gridHeight: 7
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -473,7 +437,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 4407
-    name: D35
+    name: "T\xF2a D3-5"
     description: 
     thumb: {fileID: 2800000, guid: 3919e080dd1104a419fd6a3e74cd941c, type: 3}
     gridWidth: 9
@@ -508,7 +472,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 6330
-    name: D6
+    name: "T\xF2a D6"
     description: 
     thumb: {fileID: 2800000, guid: ac7397bac5f2bd445928cf235c3a8a90, type: 3}
     gridWidth: 3
@@ -543,7 +507,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 5134
-    name: D8
+    name: "T\xF2a D8"
     description: 
     thumb: {fileID: 2800000, guid: 52e4fdcbc4b6e1f4da8619fb4b91be80, type: 3}
     gridWidth: 6
@@ -578,7 +542,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 1399
-    name: Canteen
+    name: "C\u0103ng tin"
     description: 
     thumb: {fileID: 2800000, guid: eda7a9109f723ab4996cabe11c272d73, type: 3}
     gridWidth: 3
@@ -613,7 +577,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 4132
-    name: GaraD6
+    name: Gara D6
     description: 
     thumb: {fileID: 2800000, guid: cd0273c881d0cb247bc263936b1f2711, type: 3}
     gridWidth: 3
@@ -648,11 +612,11 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 3090
-    name: ITIMS
+    name: "T\xF2a ITIMS"
     description: 
     thumb: {fileID: 2800000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
     gridWidth: 4
-    gridHeight: 3
+    gridHeight: 4
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -683,7 +647,7 @@ MonoBehaviour:
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 1628
-    name: Security Room
+    name: "Ph\xF2ng b\u1EA3o v\u1EC7"
     description: 
     thumb: {fileID: 2800000, guid: 640bcd5fa567d8643ac1aebf927ff9e5, type: 3}
     gridWidth: 3

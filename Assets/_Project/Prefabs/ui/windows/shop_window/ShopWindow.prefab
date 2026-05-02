@@ -1333,6 +1333,7 @@ MonoBehaviour:
   hasMaxValue: 0
   isPercent: 0
   showAsCurrentMax: 0
+  tweenDuration: 0.75
 --- !u!1 &2159233945077092413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,6 +2801,7 @@ MonoBehaviour:
   hasMaxValue: 0
   isPercent: 0
   showAsCurrentMax: 1
+  tweenDuration: 0.75
 --- !u!1 &7377395098190659420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,6 +2944,7 @@ MonoBehaviour:
   hasMaxValue: 0
   isPercent: 0
   showAsCurrentMax: 0
+  tweenDuration: 0.75
 --- !u!1 &7881944574963848818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,6 +3282,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425483349962041861, guid: f7711017b29064c8789bab3dcafa7563,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4317,10 +4325,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubCategoryItem
       objectReference: {fileID: 0}
-    - target: {fileID: 1836328182501974, guid: 1b4ab808e55c8427bafcaa8c75671ff0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224542371961636930, guid: 1b4ab808e55c8427bafcaa8c75671ff0,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4419,11 +4423,6 @@ PrefabInstance:
     - target: {fileID: 224542371961636930, guid: 1b4ab808e55c8427bafcaa8c75671ff0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2658737479395028585, guid: 1b4ab808e55c8427bafcaa8c75671ff0,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

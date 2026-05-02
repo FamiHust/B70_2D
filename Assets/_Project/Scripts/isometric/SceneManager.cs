@@ -157,7 +157,7 @@ public class SceneManager : MonoBehaviour
 	/// </summary>
 	/// <returns>The item.</returns>
 	/// <param name="itemId">Item identifier.</param>
-	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0, bool isPreview = false)
+	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0, bool isPreview = false, List<Vector2Int> extraFootprint = null)
 	{
 		BaseItemScript builder = null;
 
@@ -183,6 +183,7 @@ public class SceneManager : MonoBehaviour
 		this._itemInstances.Add(instanceId, instance);
 
 		instance.SetItemData(itemId, posX, posZ, level, lastCollectedTime);
+		if (extraFootprint != null) instance.extraFootprint = new List<Vector2Int>(extraFootprint);
 		
 		if (isPreview)
 		{
@@ -244,12 +245,13 @@ public class SceneManager : MonoBehaviour
 	{
 		int posX = 0;
 		int posZ = 0;
+		ShopLayoutItem layoutItem = _shopLayout.items.Find(i => i.itemId == itemId);
+
 		if (!immediate)
 		{
 			ItemsCollection.ItemData itemData = Items.GetItem(itemId);
 
 			// Check Shop Layout first
-			ShopLayoutItem layoutItem = _shopLayout.items.Find(i => i.itemId == itemId);
 			if (layoutItem != null)
 			{
 				posX = layoutItem.posX;
@@ -267,7 +269,7 @@ public class SceneManager : MonoBehaviour
 				posZ = (int)freePosition.z;
 			}
 		}
-		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem, level, 0, isPreview);
+		return this.AddItem(itemId, -1, posX, posZ, immediate, ownedItem, level, 0, isPreview, layoutItem?.extraFootprint);
 	}
 
 	/// <summary>
@@ -616,7 +618,8 @@ public class SceneManager : MonoBehaviour
 			{
 				double lastTime = 0;
 				double.TryParse(itemData.lastCollectedTime, out lastTime);
-				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true, itemData.level, lastTime);
+				ShopLayoutItem layoutItem = this._shopLayout.items.Find(i => i.itemId == itemData.itemId);
+				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true, itemData.level, lastTime, false, layoutItem?.extraFootprint);
 			}
 		}
 
@@ -759,9 +762,6 @@ public class SceneManager : MonoBehaviour
 			this.gameMode = Common.GameMode.NORMAL;
 			LoadUserScene();
 		});
-
-		SoundManager.Instance.StopAllSounds();
-
 	}
 
 	public void EnterAttackMode()
@@ -776,8 +776,6 @@ public class SceneManager : MonoBehaviour
 			AttackOverlayWindowScript.instance.SwordManCounter.text = this._swordManCount.ToString() + "x";
 			AttackOverlayWindowScript.instance.ArcherCounter.text = this._archerCount.ToString() + "x";
 		});
-
-		SoundManager.Instance.StopAllSounds();
 	}
 
 	public List<BaseItemScript> GetAllItems()
@@ -989,12 +987,6 @@ public class SceneManager : MonoBehaviour
 
 	public void CompleteSemester()
 	{
-		// ── 0. Kích hoạt các sự kiện ngẫu nhiên trước khi tính điểm ───────────
-		if (UniversityEventManager.instance != null)
-		{
-			UniversityEventManager.instance.RollAndApplyRandomEvents();
-		}
-
 		// ── 1. Chạy công thức balance cho kỳ học vừa kết thúc ─────────────────
 		BalanceState state = UniversityBalanceFormulas.StateFromSceneManager();
 		SemesterBreakdown bd = UniversityBalanceFormulas.ApplySemesterTick(ref state, _balanceParams);
@@ -1109,6 +1101,10 @@ public class SceneManager : MonoBehaviour
 				GameOverlayWindowScript.instance.CollectResource("diamond", this.numberOfDiamondsInStorage);
 			else if (resourceType == "student")
 				GameOverlayWindowScript.instance.CollectResource("student", this.numberOfStudentInStorage);
+			else if (resourceType == "happy")
+				GameOverlayWindowScript.instance.CollectResource("happy", this.numberOfHappyInStorage);
+			else if (resourceType == "education")
+				GameOverlayWindowScript.instance.CollectResource("education", this.numberOfEducationInStorage);
 			else if (resourceType == "semester")
 				GameOverlayWindowScript.instance.RefreshSemesterUI();
 		}

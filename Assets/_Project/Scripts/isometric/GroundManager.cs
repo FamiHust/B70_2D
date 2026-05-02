@@ -39,8 +39,8 @@ public class GroundManager : MonoBehaviour
 	/* public variables */
 	public bool showNodes;
 
-	public const int nodeWidth = 80;
-	public const int nodeHeight = 80;
+	public const int nodeWidth = 81;
+	public const int nodeHeight = 81;
 
 	public int gridOriginX = -10;
 	public int gridOriginZ = -10;
@@ -48,6 +48,7 @@ public class GroundManager : MonoBehaviour
 	public int[,] instanceNodes;
 	public bool[,] pathNodesWithoutWall;
 	public bool[,] pathNodesWithWall;
+	public bool[,] pathNodesNPC;
 
     public bool[,] roadNodes;
 
@@ -84,56 +85,26 @@ public class GroundManager : MonoBehaviour
 
                 Gizmos.color = color;
                 Gizmos.DrawCube(
-                    new Vector3(x + 0.5f, 0, z + 0.5f),
+                    new Vector3(x + gridOriginX + 0.5f, 0, z + gridOriginZ + 0.5f),
                     new Vector3(0.4f, 0.4f, 0.4f)
                 );
             }
         }
     }
 
-    // public void UpdateAllNodes()
-	// {
-	// 	if (!showNodes)
-	// 	{
-	// 		return;
-	// 	}
-
-	// 	if (this.pathNodesWithoutWall == null)
-	// 	{
-	// 		return;
-	// 	}
-
-	// 	for (int x = 0; x < nodeWidth; x++)
-	// 	{
-	// 		for (int z = 0; z < nodeHeight; z++)
-	// 		{
-	// 			if (this.pathNodesWithoutWall[x, z] == true)
-	// 			{
-	// 				//walkable
-	// 				color = Color.green;
-	// 				color.a = 0.5f;
-	// 				Gizmos.color = color;
-	// 			}
-	// 			else
-	// 			{
-	// 				color = Color.red;
-	// 				color.a = 0.5f;
-	// 				Gizmos.color = color;
-	// 			}
-	// 			Gizmos.DrawCube(new Vector3(x + gridOriginX + 0.5f, 0, z + gridOriginZ + 0.5f), new Vector3(0.4f, 0.4f, 0.4f));
-	// 		}
-	// 	}
-
-
-	// }
-
 	public void UpdateAllNodes()
 	{
 		this.instanceNodes = new int[nodeWidth, nodeHeight];
-        this.instanceNodes = new int[nodeWidth, nodeHeight];
 		this.pathNodesWithoutWall = new bool[nodeWidth, nodeHeight];
 		this.pathNodesWithWall = new bool[nodeWidth, nodeHeight];
+		this.pathNodesNPC = new bool[nodeWidth, nodeHeight];
         this.roadNodes = new bool[nodeWidth, nodeHeight];
+
+        int oldWidth = 0;
+        if (serializedRoadData != null && serializedRoadData.Length > 0)
+        {
+            oldWidth = (int)Mathf.Sqrt(serializedRoadData.Length);
+        }
 
         for (int x = 0; x < nodeWidth; x++)
 		{
@@ -142,7 +113,16 @@ public class GroundManager : MonoBehaviour
 				this.instanceNodes[x, z] = -1;
 				this.pathNodesWithoutWall[x, z] = true;
 				this.pathNodesWithWall[x, z] = true;
-                roadNodes[x, z] = serializedRoadData[z * nodeWidth + x]; ;
+				this.pathNodesNPC[x, z] = true;
+                
+                if (serializedRoadData != null && oldWidth > 0 && x < oldWidth && z < oldWidth)
+                {
+                    roadNodes[x, z] = serializedRoadData[z * oldWidth + x];
+                }
+                else
+                {
+                    roadNodes[x, z] = false;
+                }
             }
 		}
 
@@ -180,6 +160,8 @@ public class GroundManager : MonoBehaviour
 		{
 			for (int indexZ = z; indexZ < z + sizeZ; indexZ++)
 			{
+				if (indexX < 0 || indexX >= nodeWidth || indexZ < 0 || indexZ >= nodeHeight) continue;
+
 				bool isCellWalkable = false;
 				if ((sizeX > 2 && indexX == x) || (sizeX > 2 && indexX == x + sizeX - 1) || (sizeZ > 2 && indexZ == z) || (sizeZ > 2 && indexZ == z + sizeZ - 1))
 				{
@@ -202,10 +184,12 @@ public class GroundManager : MonoBehaviour
 					{
 						this.pathNodesWithoutWall[indexX, indexZ] = true;
 						this.pathNodesWithWall[indexX, indexZ] = false;
+						this.pathNodesNPC[indexX, indexZ] = false;
 					}
 					else
 					{
 						this.pathNodesWithoutWall[indexX, indexZ] = isCellWalkable;
+						this.pathNodesNPC[indexX, indexZ] = false;
 					}
 
 				}
@@ -216,9 +200,41 @@ public class GroundManager : MonoBehaviour
 						this.instanceNodes[indexX, indexZ] = -1;
 						this.pathNodesWithoutWall[indexX, indexZ] = true;
 						this.pathNodesWithWall[indexX, indexZ] = true;
+						this.pathNodesNPC[indexX, indexZ] = true;
 					}
 				}
 
+			}
+		}
+
+		// Handle extra footprint nodes
+		if (item.extraFootprint != null)
+		{
+			foreach (var offset in item.extraFootprint)
+			{
+				int ex = x + offset.x;
+				int ez = z + offset.y;
+
+				if (ex >= 0 && ex < nodeWidth && ez >= 0 && ez < nodeHeight)
+				{
+					if (action == Action.ADD)
+					{
+						this.instanceNodes[ex, ez] = item.instanceId;
+						this.pathNodesWithoutWall[ex, ez] = false;
+						this.pathNodesWithWall[ex, ez] = false;
+						this.pathNodesNPC[ex, ez] = false;
+					}
+					else if (action == Action.REMOVE)
+					{
+						if (this.instanceNodes[ex, ez] == item.instanceId)
+						{
+							this.instanceNodes[ex, ez] = -1;
+							this.pathNodesWithoutWall[ex, ez] = true;
+							this.pathNodesWithWall[ex, ez] = true;
+							this.pathNodesNPC[ex, ez] = true;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -258,6 +274,34 @@ public class GroundManager : MonoBehaviour
 			//			if (index < points.Count-1 && index % 2 == 1) {
 			//				continue; //skip consecutive nodes
 			//			}
+			Vector3 pointInGround = new Vector3(point.x + gridOriginX, 0, point.y + gridOriginZ);
+			nodes.Add(pointInGround);
+		}
+		path.nodes = nodes.ToArray();
+
+		return path;
+	}
+
+	public Path GetPathNPC(Vector3 startPoint, Vector3 endPoint)
+	{
+		Path path = new Path();
+
+		if (endPoint.x < gridOriginX || endPoint.x >= nodeWidth + gridOriginX || endPoint.z < gridOriginZ || endPoint.z >= nodeHeight + gridOriginZ)
+		{
+			Debug.LogError("The target point is out of the grid!");
+			return path;
+		}
+
+		Vector2 startPointInMap = new Vector2(startPoint.x - gridOriginX, startPoint.z - gridOriginZ);
+		Vector2 endPointInMap = new Vector2(endPoint.x - gridOriginX, endPoint.z - gridOriginZ);
+		
+		SearchParameters searchParameter = new SearchParameters(startPointInMap, endPointInMap, pathNodesNPC);
+		PathFinder pathFinder = new PathFinder(searchParameter);
+		List<Vector2> points = pathFinder.FindPath();
+
+		List<Vector3> nodes = new List<Vector3>();
+		foreach (Vector2 point in points)
+		{
 			Vector3 pointInGround = new Vector3(point.x + gridOriginX, 0, point.y + gridOriginZ);
 			nodes.Add(pointInGround);
 		}
@@ -317,18 +361,18 @@ public class GroundManager : MonoBehaviour
 		return freePosition;
 	}
 
-	public bool IsPositionPlacable(Vector3 position, int sizeX, int sizeZ, int instanceId)
+	public bool IsPositionPlacable(Vector3 position, int sizeX, int sizeZ, int instanceId, List<Vector2Int> extraFootprint = null)
 	{
 		int posX = (int)position.x - gridOriginX;
 		int posZ = (int)position.z - gridOriginZ;
 
+		// Base rectangle footprint
 		for (int indexX = posX; indexX < posX + sizeX; indexX++)
 		{
 			for (int indexZ = posZ; indexZ < posZ + sizeZ; indexZ++)
 			{
 				if (indexX < 0 || indexX >= nodeWidth || indexZ < 0 || indexZ >= nodeHeight)
 				{
-					//outside grid
 					return false;
 				}
 
@@ -336,9 +380,29 @@ public class GroundManager : MonoBehaviour
 				{
 					return false;
 				}
-
 			}
 		}
+
+		// Extra footprint nodes
+		if (extraFootprint != null)
+		{
+			foreach (var offset in extraFootprint)
+			{
+				int ex = posX + offset.x;
+				int ez = posZ + offset.y;
+
+				if (ex < 0 || ex >= nodeWidth || ez < 0 || ez >= nodeHeight)
+				{
+					return false;
+				}
+
+				if (instanceNodes[ex, ez] != -1 && instanceNodes[ex, ez] != instanceId)
+				{
+					return false;
+				}
+			}
+		}
+
 		return true;
 	}
 

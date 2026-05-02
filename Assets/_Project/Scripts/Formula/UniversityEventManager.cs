@@ -3,29 +3,6 @@ using UnityEngine;
 
 namespace B70.Balance
 {
-    [System.Serializable]
-    public class RandomEventConfig
-    {
-        public string eventID;
-        public string eventName;
-        [TextArea(2, 4)]
-        public string description;
-        
-        [Range(0f, 1f)]
-        [Tooltip("Xác suất xảy ra event trong một học kỳ (Ví dụ: 0.35 = 35%)")]
-        public float triggerProbability = 0.35f; 
-        
-        [Header("Effects")]
-        [Tooltip("Số Gold bị trừ khi event xảy ra (nếu không đủ tiền, event sẽ bị bỏ qua)")]
-        public int goldCost = 0;
-        
-        [Tooltip("Sự thay đổi về Happiness (+ hoặc -)")]
-        public float happinessModifier = 0f;
-        
-        [Tooltip("Sự thay đổi về Education/Academic (+ hoặc -)")]
-        public float educationModifier = 0f;
-    }
-
     /// <summary>
     /// Quản lý việc roll ngẫu nhiên và áp dụng các Event trong game.
     /// Có thể đính kèm vào bất kỳ GameObject nào (như GameManager hoặc SceneManager object).
@@ -36,7 +13,12 @@ namespace B70.Balance
 
         [Header("Event Database")]
         [Tooltip("Danh sách các sự kiện ngẫu nhiên có thể xảy ra trong kỳ")]
-        public List<RandomEventConfig> availableEvents = new List<RandomEventConfig>();
+        public List<UniversityEventData> availableEvents = new List<UniversityEventData>();
+
+        [Header("Prefabs")]
+        public GameObject eventPrefab;
+        [Tooltip("Container (UI Panel hoặc Group) để chứa các prefab event được sinh ra")]
+        public Transform eventContainer;
 
         private void Awake()
         {
@@ -51,17 +33,94 @@ namespace B70.Balance
         }
 
         /// <summary>
+        /// Gọi thủ công một event cụ thể trong danh sách availableEvents.
+        /// </summary>
+        public void TriggerSpecificEvent(int index)
+        {
+            if (index < 0 || index >= availableEvents.Count) return;
+            
+            var evt = availableEvents[index];
+            SpawnEventPrefab(evt);
+                
+            Debug.Log($"[Specific Event Triggered] {evt.eventName}");
+        }
+
+        /// <summary>
+        /// Hàm bổ trợ để áp dụng các chỉ số của event vào SceneManager.
+        /// </summary>
+        public void ApplyEventEffects(UniversityEventData evt)
+        {
+            if (evt.goldCost > 0)
+            {
+                SceneManager.instance.numberOfGoldInStorage -= evt.goldCost;
+            }
+            
+            SceneManager.instance.numberOfHappyInStorage = Mathf.Clamp(
+                SceneManager.instance.numberOfHappyInStorage + Mathf.RoundToInt(evt.happinessModifier), 0, 100);
+                
+            SceneManager.instance.numberOfEducationInStorage = Mathf.Clamp(
+                SceneManager.instance.numberOfEducationInStorage + Mathf.RoundToInt(evt.educationModifier), 0, 100);
+        }
+
+        /// <summary>
+        /// Khởi tạo prefab cho event.
+        /// </summary>
+        private void SpawnEventPrefab(UniversityEventData evt)
+        {
+            if (eventPrefab != null)
+            {
+                if (UIManager.instance != null)
+                {
+                    // Show as a managed window via UIManager
+                    WindowScript window = UIManager.instance.ShowWindow(eventPrefab);
+                    UniversityEvent eventComponent = window.GetComponent<UniversityEvent>();
+                    if (eventComponent != null)
+                    {
+                        eventComponent.Setup(evt);
+                    }
+                }
+                else
+                {
+                    // Fallback to basic instantiation if UIManager is missing
+                    GameObject inst = Instantiate(eventPrefab, eventContainer != null ? eventContainer : this.transform);
+                    UniversityEvent eventComponent = inst.GetComponent<UniversityEvent>();
+                    if (eventComponent != null)
+                    {
+                        eventComponent.Setup(evt);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[UniversityEventManager] eventPrefab is not assigned! Cannot show event window.");
+            }
+        }
+
+        /// <summary>
         /// Gọi hàm này tại thời điểm cuối kỳ (vd: trong SceneManager.CompleteSemester).
         /// Trả về danh sách các event đã thực sự xảy ra để hiển thị lên Popup UI.
         /// </summary>
-        public List<RandomEventConfig> RollAndApplyRandomEvents()
+        public List<UniversityEventData> RollAndApplyRandomEvents()
         {
-            List<RandomEventConfig> triggeredEvents = new List<RandomEventConfig>();
+            List<UniversityEventData> triggeredEvents = new List<UniversityEventData>();
 
             if (SceneManager.instance == null) return triggeredEvents;
 
+            Debug.Log($"[UniversityEventManager] Rolling random events. Total available: {availableEvents.Count}");
+
+            // Xóa các event cũ trong container trước khi roll mới (nếu cần)
+            if (eventContainer != null)
+            {
+                foreach (Transform child in eventContainer)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
             foreach (var evt in availableEvents)
             {
+                if (evt == null) continue;
+
                 // Tung xúc xắc ngẫu nhiên từ 0.0 đến 1.0
                 float roll = Random.Range(0f, 1f);
 
@@ -72,36 +131,74 @@ namespace B70.Balance
                     {
                         if (SceneManager.instance.numberOfGoldInStorage < evt.goldCost)
                         {
-                            // Không đủ tiền -> bỏ qua event này
+                            Debug.Log($"[UniversityEventManager] Skipped {evt.eventName} - Not enough gold ({SceneManager.instance.numberOfGoldInStorage} < {evt.goldCost})");
                             continue;
                         }
-                        
-                        // Trừ tiền ngay lập tức
-                        SceneManager.instance.numberOfGoldInStorage -= evt.goldCost;
                     }
                     
-                    // Áp dụng thay đổi vào chỉ số H và A của trường
-                    SceneManager.instance.numberOfHappyInStorage = Mathf.Clamp(
-                        SceneManager.instance.numberOfHappyInStorage + Mathf.RoundToInt(evt.happinessModifier), 0, 100);
-                        
-                    SceneManager.instance.numberOfEducationInStorage = Mathf.Clamp(
-                        SceneManager.instance.numberOfEducationInStorage + Mathf.RoundToInt(evt.educationModifier), 0, 100);
-                    
+                    // Gọi prefab ra màn hình
+                    SpawnEventPrefab(evt);
+
                     triggeredEvents.Add(evt);
                     
                     Debug.Log($"[Event Triggered] {evt.eventName} | H: {(evt.happinessModifier >= 0 ? "+" : "")}{evt.happinessModifier}, E: {(evt.educationModifier >= 0 ? "+" : "")}{evt.educationModifier}, Gold: -{evt.goldCost}");
                 }
+                else
+                {
+                    // Debug.Log($"[UniversityEventManager] {evt.eventName} did not trigger (roll: {roll:F2} > prob: {evt.triggerProbability})");
+                }
             }
 
-            // Lưu và cập nhật lại giao diện ngay sau khi chạy event xong
-            if (triggeredEvents.Count > 0)
-            {
-                SceneManager.instance.SaveResources();
-                SceneManager.instance.RefreshResourceUIs("gold");
-                // Lưu ý: Nếu bạn có UI cho Happy/Education thì cần gọi RefreshResourceUIs cho chúng ở đây.
-            }
+            // Trả về danh sách các event (không lưu resources ở đây vì chờ người dùng accept từng cái)
 
             return triggeredEvents;
+        }
+        /// <summary>
+        /// Hàm dành cho Button UI: Kích hoạt ngay lập tức 1 event ngẫu nhiên từ danh sách (bỏ qua xác suất).
+        /// </summary>
+        public void OnClickTriggerRandomEvent()
+        {
+            if (availableEvents == null || availableEvents.Count == 0)
+            {
+                Debug.LogWarning("[UniversityEventManager] No events available to trigger!");
+                return;
+            }
+
+            // Chọn ngẫu nhiên 1 event
+            var evt = availableEvents[Random.Range(0, availableEvents.Count)];
+            if (evt == null) return;
+
+            // Kiểm tra điều kiện tiền tệ (giữ lại logic này để đảm bảo balance)
+            if (evt.goldCost > 0 && SceneManager.instance != null && SceneManager.instance.numberOfGoldInStorage < evt.goldCost)
+            {
+                Debug.Log($"[UniversityEventManager] Cannot trigger {evt.eventName} - Not enough gold.");
+                return;
+            }
+
+            Debug.Log($"[UniversityEventManager] Manually triggered event prefab: {evt.eventName}");
+            SpawnEventPrefab(evt);
+        }
+
+        /// <summary>
+        /// Thử kích hoạt duy nhất một event ngẫu nhiên từ danh sách (vẫn xét xác suất).
+        /// </summary>
+        public void RollOneRandomEvent()
+        {
+            if (availableEvents == null || availableEvents.Count == 0) return;
+
+            var evt = availableEvents[Random.Range(0, availableEvents.Count)];
+            if (evt == null) return;
+
+            float roll = Random.Range(0f, 1f);
+            if (roll <= evt.triggerProbability)
+            {
+                if (evt.goldCost > 0 && SceneManager.instance != null && SceneManager.instance.numberOfGoldInStorage < evt.goldCost)
+                {
+                    return;
+                }
+
+                SpawnEventPrefab(evt);
+            }
         }
     }
 }

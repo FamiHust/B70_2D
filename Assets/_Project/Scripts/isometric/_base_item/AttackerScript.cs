@@ -125,20 +125,7 @@ public class AttackerScript : MonoBehaviour
 		{
 			this._currentTarget.OnReceiveHit(this._baseItem);
 			this.AttackLoop();
-
-			this._PlayHitSound();
 		}
-	}
-
-	private void _PlayHitSound()
-	{
-		AudioClip clip = null;
-		if (this._baseItem.itemData.name == "SwordMan")
-			clip = SoundManager.Instance.Sword;
-		else if (this._baseItem.itemData.name == "Archer" || this._baseItem.itemData.name == "ArcherTower")
-			clip = SoundManager.Instance.Bow;
-
-
 	}
 
 	private BaseItemScript _GetNearestTargetItem()

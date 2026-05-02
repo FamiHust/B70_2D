@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
 	public GameObject TutorialWindow;
 	public GameObject NewSemesterWindow;
 	public GameObject MissionWindow;
+	public GameObject EventWindow;
 
 
 	/* object references */
@@ -58,7 +59,7 @@ public class UIManager : MonoBehaviour
 	{
 		// Automatically close other windows except the overlay before showing the new one
 		// but don't close windows if we are opening the overlay itself or an Info popup
-		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow)
+		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow && prefab != this.EventWindow)
 		{
 			this.CloseAllWindowsExceptOverlay();
 		}
@@ -68,7 +69,7 @@ public class UIManager : MonoBehaviour
 		this._windowInstances.Add(window);
 
 		// Hide GameOverlay when another window opens
-		if (prefab != this.GameOverlayWindow && GameOverlayWindowScript.instance != null)
+		if (prefab != this.GameOverlayWindow && prefab != this.EventWindow && GameOverlayWindowScript.instance != null)
 		{
 			GameOverlayWindowScript.instance.HideOverlay();
 		}
@@ -197,6 +198,11 @@ public class UIManager : MonoBehaviour
 	public WindowScript ShowMissionWindow()
 	{
 		return this.ShowWindow(this.MissionWindow);
+	}
+
+	public void ShowEventWindow()
+	{
+		this.ShowWindow(this.EventWindow);
 	}
 
 	public ItemWindowScript ShowMapShopWindow(string areaName, List<int> itemIds, MapShopAreaScript mapShopArea = null)

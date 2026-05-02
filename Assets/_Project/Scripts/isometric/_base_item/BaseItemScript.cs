@@ -29,6 +29,7 @@ public class BaseItemScript : MonoBehaviour
 	public float healthPoints = 0;
 	public int level = 1;
 
+	public List<Vector2Int> extraFootprint = new List<Vector2Int>();
 	public bool isDestroyed = false;
 	public bool ownedItem;
 
@@ -384,7 +385,7 @@ public class BaseItemScript : MonoBehaviour
 
 	private bool _IsInPlacablePosition()
 	{
-		bool isPlacable = GroundManager.instance.IsPositionPlacable(this.GetPosition(), this.itemData.gridWidth, this.itemData.gridHeight, this.instanceId);
+		bool isPlacable = GroundManager.instance.IsPositionPlacable(this.GetPosition(), this.itemData.gridWidth, this.itemData.gridHeight, this.instanceId, this.extraFootprint);
 		return isPlacable;
 	}
 

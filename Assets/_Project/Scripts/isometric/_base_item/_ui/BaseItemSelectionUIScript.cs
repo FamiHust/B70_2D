@@ -22,6 +22,8 @@ public class BaseItemSelectionUIScript : MonoBehaviour
 	public SpriteRenderer Grid;
 	public Sprite GridGreen;
 	public Sprite GridRed;
+	
+	private List<SpriteRenderer> _extraGrids = new List<SpriteRenderer>();
 
 	private Vector3 ExpandFromCenter(Vector3 localPos, float origWidth, float origHeight, float newWidth, float newHeight, float extraOffsetX = 0f, float extraOffsetZ = 0f)
 	{
@@ -69,6 +71,19 @@ public class BaseItemSelectionUIScript : MonoBehaviour
 		
 		this.Grid.size = new Vector2(gw, gh);
 
+		// Handle extra footprint nodes
+		if (baseItem.extraFootprint != null)
+		{
+			foreach (var offset in baseItem.extraFootprint)
+			{
+				SpriteRenderer extraGrid = Instantiate(this.Grid, this.Grid.transform.parent);
+				extraGrid.size = new Vector2(1, 1);
+				// The extra nodes are offsets from the anchor (0,0,0)
+				extraGrid.transform.localPosition = new Vector3(offset.x, 0.01f, offset.y); 
+				_extraGrids.Add(extraGrid);
+			}
+		}
+
 		/* update item info details */
 		this.NameLabel.text = this.NameLabelShadow.text = baseItem.itemData.name;
 		this.RefreshLevel(baseItem.level);
@@ -84,18 +99,28 @@ public class BaseItemSelectionUIScript : MonoBehaviour
 	public void ShowGrid(bool isTrue)
 	{
 		this.Grid.gameObject.SetActive(isTrue);
+		foreach (var eg in _extraGrids)
+		{
+			if (eg != null) eg.gameObject.SetActive(isTrue);
+		}
 	}
 
 	public void SetGridColor(Color color)
 	{
+		Sprite sprite = null;
 		if (color == Color.green)
 		{
-			this.Grid.sprite = this.GridGreen;
-
+			sprite = this.GridGreen;
 		}
 		else if (color == Color.red)
 		{
-			this.Grid.sprite = this.GridRed;
+			sprite = this.GridRed;
+		}
+
+		this.Grid.sprite = sprite;
+		foreach (var eg in _extraGrids)
+		{
+			if (eg != null) eg.sprite = sprite;
 		}
 	}
 }

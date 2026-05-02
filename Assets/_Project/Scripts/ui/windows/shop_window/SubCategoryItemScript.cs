@@ -64,7 +64,7 @@ public class SubCategoryItemScript : MonoBehaviour
 			
 			if (UnlockText != null)
 			{
-				UnlockText.text = "Semester " + itemData.configuration.unlockItemAtSemester;
+				UnlockText.text = "Kỳ " + itemData.configuration.unlockItemAtSemester + " mở";
 			}
 			
 			bool isUnlocked = SceneManager.instance.currentSemester >= itemData.configuration.unlockItemAtSemester;
@@ -93,56 +93,56 @@ public class SubCategoryItemScript : MonoBehaviour
 			// 	break;
 
 			case ShopWindowScript.SubCategory.D4:
-				this.Name.text = "D4";
+				this.Name.text = "Tòa D4";
 				this.Image.sprite = this.D4Sprite;
 				break;
 		case ShopWindowScript.SubCategory.C2:
-			this.Name.text = "C2";
+			this.Name.text = "Tòa C2";
 			this.Image.sprite = this.C2Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.C3:
-			this.Name.text = "C3";
+			this.Name.text = "Tòa C3";
 			this.Image.sprite = this.C3Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.C3B:
-			this.Name.text = "C3B";
+			this.Name.text = "Tòa C3B";
 			this.Image.sprite = this.C3BSprite;
 			break;
 
 		case ShopWindowScript.SubCategory.C5:
-			this.Name.text = "C5";
+			this.Name.text = "Tòa C5";
 			this.Image.sprite = this.C5Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.C6:
-			this.Name.text = "C6";
+			this.Name.text = "Tòa C6";
 			this.Image.sprite = this.C6Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.C9:
-			this.Name.text = "C9";
+			this.Name.text = "Tòa C9";
 			this.Image.sprite = this.C9Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.C10:
-			this.Name.text = "C10";
+			this.Name.text = "Tòa C10";
 			this.Image.sprite = this.C10Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.D35:
-			this.Name.text = "D35";
+			this.Name.text = "Tòa D3-5";
 			this.Image.sprite = this.D35Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.D6:
-			this.Name.text = "D6";
+			this.Name.text = "Tòa D6";
 			this.Image.sprite = this.D6Sprite;
 			break;
 
 		case ShopWindowScript.SubCategory.D8:
-			this.Name.text = "D8";
+			this.Name.text = "Tòa D8";
 			this.Image.sprite = this.D8Sprite;
 			break;
 			// case ShopWindowScript.SubCategory.CAMP:
@@ -166,7 +166,7 @@ public class SubCategoryItemScript : MonoBehaviour
 			// 	break;
 
 			case ShopWindowScript.SubCategory.C7:
-				this.Name.text = "C7";
+				this.Name.text = "Tòa C7";
 				this.Image.sprite = this.C7Sprite;
 				break;
 			// case ShopWindowScript.SubCategory.B8:
@@ -175,16 +175,16 @@ public class SubCategoryItemScript : MonoBehaviour
 			// 		break;
 
 			case ShopWindowScript.SubCategory.C4:
-				this.Name.text = "C4";
+				this.Name.text = "Tòa C4";
 				this.Image.sprite = this.C4Sprite;
 				break;
 		case ShopWindowScript.SubCategory.Canteen:
-			this.Name.text = "CANTEEN";
+			this.Name.text = "Căng tin";
 			this.Image.sprite = this.CanteenSprite;
 			break;
 
 		case ShopWindowScript.SubCategory.GaraD6:
-			this.Name.text = "GARA D6";
+			this.Name.text = "Gara D6";
 			this.Image.sprite = this.GaraD6Sprite;
 			break;
 			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
@@ -198,7 +198,7 @@ public class SubCategoryItemScript : MonoBehaviour
 			// 	break;
 
 			case ShopWindowScript.SubCategory.C1:
-				this.Name.text = "C1";
+				this.Name.text = "Tòa C1";
 				this.Image.sprite = this.C1Sprite;
 				break;
 
@@ -213,7 +213,7 @@ public class SubCategoryItemScript : MonoBehaviour
 			// 	break;
 
 			case ShopWindowScript.SubCategory.LIBRARY:
-				this.Name.text = "LIBRARY";
+				this.Name.text = "Thư viện TQB";
 				this.Image.sprite = this.LibSprite;
 				break;
 
@@ -227,11 +227,11 @@ public class SubCategoryItemScript : MonoBehaviour
 			// 	this.Image.sprite = this.Tree3Sprite;
 			// 	break;
 			case ShopWindowScript.SubCategory.ITIMS:
-				this.Name.text = "ITIMS";
+				this.Name.text = "Tòa ITIMS";
 				this.Image.sprite = this.ITIMSSprite;
 				break;
 			case ShopWindowScript.SubCategory.SECURITY_ROOM:
-				this.Name.text = "SECURITY ROOM";
+				this.Name.text = "Phòng bảo vệ";
 				this.Image.sprite = this.SecurityRoomSprite;
 				break;
 			case ShopWindowScript.SubCategory.PC_LAB:
@@ -252,7 +252,6 @@ public class SubCategoryItemScript : MonoBehaviour
 			bool isUnlocked = SceneManager.instance.currentSemester >= itemToBuyData.configuration.unlockItemAtSemester;
 			if (!isUnlocked)
 			{
-				Debug.Log("Item is locked! Requires Semester " + itemToBuyData.configuration.unlockItemAtSemester);
 				return;
 			}
 		}
@@ -262,12 +261,6 @@ public class SubCategoryItemScript : MonoBehaviour
 
 		switch (this._subCategory)
 		{
-			//case ShopWindowScript.SubCategory.BARRACK:
-			//	itemId = 8833;
-			//	break;
-			//case ShopWindowScript.SubCategory.BOAT:
-			//	itemId = 6871;
-			//	break;
 			case ShopWindowScript.SubCategory.D4:
 				itemId = 3635;
 				break;

@@ -25,6 +25,11 @@ public class NPCGridSystem : MonoBehaviour
         return occupancy[x, z] == -1;
     }
 
+    public int GetOccupant(int x, int z)
+    {
+        return occupancy[x, z];
+    }
+
     public void Occupy(int x, int z, int id)
     {
         occupancy[x, z] = id;

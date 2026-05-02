@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3803537925614745017}
   - component: {fileID: 3982536048617275047}
   - component: {fileID: 7346518326883998731}
+  - component: {fileID: 4743676155932802413}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -67,8 +68,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 08d0c6412719f4c46b00e69b6388e5f4, type: 3}
-    m_FontSize: 26
+    m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -79,7 +80,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Continue
+  m_Text: "TI\u1EBEP"
 --- !u!114 &7346518326883998731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +93,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5019608}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &4743676155932802413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240638908854665478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!1 &834751859832392973
@@ -295,8 +311,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 08d0c6412719f4c46b00e69b6388e5f4, type: 3}
-    m_FontSize: 28
+    m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -306,8 +322,9 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.4
-  m_Text: Now, open the Progression Board and collect your gold.
+    m_LineSpacing: 1
+  m_Text: "B\xE2y gi\u1EDD, h\xE3y m\u1EDF B\u1EA3ng Ti\u1EBFn Tr\xECnh \u0111\u1EC3
+    thu th\u1EADp ph\u1EA7n th\u01B0\u1EDFng."
 --- !u!1 &1461142707018689333
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,8 +543,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 08d0c6412719f4c46b00e69b6388e5f4, type: 3}
-    m_FontSize: 26
+    m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -537,8 +554,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.3
-  m_Text: All set! Keep going and good luck! ^.^
+    m_LineSpacing: 1
+  m_Text: "Xong r\u1ED3i ! Ti\u1EBFp t\u1EE5c ph\xE1t tri\u1EC3n nh\xE9!"
 --- !u!1 &2363834804650459789
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,13 +957,17 @@ MonoBehaviour:
   - {fileID: 5517229577656330576}
   - {fileID: 834751859832392973}
   TutorialSteps:
-  - text: Hi! Welcome to B70 - A beautiful island!
+  - text: "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi B70 - H\xE0nh tr\xECnh
+      c\u1EE7a b\u1EA1n b\u1EAFt \u0111\u1EA7u t\u1EEB \u0111\xE2y. "
     characterSprite: {fileID: 21300000, guid: 4b59c03a57461dc458da74f0e355db19, type: 3}
-  - text: I'm Giang - your guide on this journey.
+  - text: "M\xECnh l\xE0 Giang, ng\u01B0\u1EDDi s\u1EBD \u0111\u1ED3ng h\xE0nh c\xF9ng
+      b\u1EA1n trong chuy\u1EBFn \u0111i n\xE0y."
     characterSprite: {fileID: 21300000, guid: 829ce076cb87c30419e16865bffff283, type: 3}
-  - text: "Together, we\u2019ll rebuild the Hanoi University of Science and Technology."
+  - text: "Ch\xFAng ta s\u1EBD c\xF9ng nhau t\xE1i hi\u1EC7n l\u1EA1i \u0110\u1EA1i
+      h\u1ECDc B\xE1ch Khoa H\xE0 N\u1ED9i."
     characterSprite: {fileID: 21300000, guid: 6b889fc05a10c1741a361fa9e3466537, type: 3}
-  - text: "Let\u2019s get started by constructing our very first building!"
+  - text: "Gi\u1EDD th\xEC b\u1EAFt \u0111\u1EA7u th\xF4i \u2014 h\xE3y x\xE2y d\u1EF1ng
+      c\xF4ng tr\xECnh \u0111\u1EA7u ti\xEAn!"
     characterSprite: {fileID: 21300000, guid: 906e1beca630e574babc9af98912997e, type: 3}
 --- !u!95 &2937695438621150034
 Animator:
@@ -1776,8 +1797,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 08d0c6412719f4c46b00e69b6388e5f4, type: 3}
-    m_FontSize: 28
+    m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1787,8 +1808,9 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.4
-  m_Text: Great job! Your first building is complete!
+    m_LineSpacing: 1
+  m_Text: "Tuy\u1EC7t v\u1EDDi! B\u1EA1n \u0111\xE3 ho\xE0n th\xE0nh c\xF4ng tr\xECnh
+    \u0111\u1EA7u ti\xEAn!"
 --- !u!1 &6967826227594855259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,8 +1877,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 08d0c6412719f4c46b00e69b6388e5f4, type: 3}
-    m_FontSize: 28
+    m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1866,8 +1888,9 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.4
-  m_Text: Hi! Welcome to HUST!!!
+    m_LineSpacing: 1
+  m_Text: "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi \u0110\u1EA1i h\u1ECDc
+    B\xE1ch Khoa H\xE0 N\u1ED9i !"
 --- !u!1 &7477836292485376152
 GameObject:
   m_ObjectHideFlags: 0

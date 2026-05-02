@@ -10,14 +10,15 @@ public class MapEditorWindow : EditorWindow
     private ShopLayoutData _shopLayoutData;
     private Vector2 _scrollPos;
     private int _selectedItemIndex = 0;
+    private bool _isFootprintMode = false;
     private string[] _itemNames;
 
     private MapShopAreaScript[] _sceneAreas;
 
     private int _gridOriginX = -10;
     private int _gridOriginZ = -10;
-    private int _gridWidth = 60;
-    private int _gridHeight = 60;
+    private int _gridWidth = 70;
+    private int _gridHeight = 70;
     private const float CellSize = 30f;
 
     private int[,] _grid; // Stores index of ShopLayoutItem in _shopLayoutData.items, or -1
@@ -35,6 +36,8 @@ public class MapEditorWindow : EditorWindow
         RefreshSceneAreas();
         LoadData();
     }
+
+
 
     private void FetchGroundManagerSettings()
     {
@@ -108,12 +111,26 @@ public class MapEditorWindow : EditorWindow
             ItemsCollection.ItemData config = GetItemConfig(item.itemId);
             if (config != null)
             {
+                // Base footprint
                 for (int dx = 0; dx < config.gridWidth; dx++)
                 {
                     for (int dz = 0; dz < config.gridHeight; dz++)
                     {
                         int gx = item.posX - _gridOriginX + dx;
                         int gz = item.posZ - _gridOriginZ + dz;
+                        if (gx >= 0 && gx < _gridWidth && gz >= 0 && gz < _gridHeight)
+                        {
+                            _grid[gx, gz] = i;
+                        }
+                    }
+                }
+                // Extra footprint
+                if (item.extraFootprint != null)
+                {
+                    foreach (var offset in item.extraFootprint)
+                    {
+                        int gx = item.posX - _gridOriginX + offset.x;
+                        int gz = item.posZ - _gridOriginZ + offset.y;
                         if (gx >= 0 && gx < _gridWidth && gz >= 0 && gz < _gridHeight)
                         {
                             _grid[gx, gz] = i;
@@ -207,8 +224,8 @@ public class MapEditorWindow : EditorWindow
         }
 
         EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
-if (GUILayout.Button("Load", EditorStyles.toolbarButton)) LoadData();
-if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefaultPositions();
+        if (GUILayout.Button("Load", EditorStyles.toolbarButton)) LoadData();
+        if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefaultPositions();
         if (GUILayout.Button("Save", EditorStyles.toolbarButton)) SaveData();
         if (GUILayout.Button("Clear All", EditorStyles.toolbarButton)) {
             if (EditorUtility.DisplayDialog("Clear Layout", "Are you sure you want to delete all positions?", "Yes", "No")) {
@@ -223,13 +240,31 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
         
         // Left Panel: Selection
         EditorGUILayout.BeginVertical(GUILayout.Width(250));
+        
         EditorGUILayout.LabelField("Building Selection", EditorStyles.boldLabel);
         _selectedItemIndex = EditorGUILayout.Popup("Building", _selectedItemIndex, _itemNames);
+        
+        GUILayout.Space(5);
+        _isFootprintMode = GUILayout.Toggle(_isFootprintMode, "Edit Extra Footprint Mode", "Button");
+        if (_isFootprintMode)
+        {
+            EditorGUILayout.HelpBox("LEFT CLICK: Add extra blocked node\nRIGHT CLICK: Remove extra blocked node\n(Nodes are relative to building's anchor)", MessageType.Info);
+        }
+        GUILayout.Space(10);
         
         if (_selectedItemIndex >= 0 && _selectedItemIndex < _itemsCollection.list.Count)
         {
             var selectedItem = _itemsCollection.list[_selectedItemIndex];
-            EditorGUILayout.LabelField("Size: " + selectedItem.gridWidth + "x" + selectedItem.gridHeight);
+            
+            EditorGUI.BeginChangeCheck();
+            selectedItem.gridWidth = EditorGUILayout.IntField("Base Width", selectedItem.gridWidth);
+            selectedItem.gridHeight = EditorGUILayout.IntField("Base Height", selectedItem.gridHeight);
+            if (EditorGUI.EndChangeCheck())
+            {
+                EditorUtility.SetDirty(_itemsCollection);
+                UpdateGrid();
+            }
+
             if (selectedItem.thumb != null)
             {
                 GUILayout.Label(selectedItem.thumb, GUILayout.Width(100), GUILayout.Height(100));
@@ -337,6 +372,20 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
                     bool isAnchor = (item.posX == x + _gridOriginX && item.posZ == z + _gridOriginZ);
                     
                     Color cellColor = isAnchor ? new Color(0.2f, 0.8f, 0.8f, 0.8f) : new Color(0.2f, 0.6f, 0.6f, 0.4f); // Cyan for Layout
+                    
+                    if (_isFootprintMode)
+                    {
+                        // Custom logic for footprint editing
+                        var config = GetItemConfig(item.itemId);
+                        if (config != null && _selectedItemIndex >= 0 && _selectedItemIndex < _itemsCollection.list.Count && _itemsCollection.list[_selectedItemIndex].id == item.itemId)
+                        {
+                            Vector2Int offset = new Vector2Int(x + _gridOriginX - item.posX, z + _gridOriginZ - item.posZ);
+                            if (item.extraFootprint != null && item.extraFootprint.Contains(offset)) cellColor = Color.cyan;
+                            else if (x + _gridOriginX >= item.posX && x + _gridOriginX < item.posX + config.gridWidth &&
+                                     z + _gridOriginZ >= item.posZ && z + _gridOriginZ < item.posZ + config.gridHeight) cellColor = Color.blue;
+                        }
+                    }
+
                     EditorGUI.DrawRect(new Rect(cellRect.x + 1, cellRect.y + 1, cellRect.width - 1, cellRect.height - 1), cellColor);
                     
                     if (isAnchor)
@@ -353,15 +402,43 @@ if (GUILayout.Button("Import Defaults", EditorStyles.toolbarButton)) ImportDefau
 
                     if (e.type == EventType.MouseDown || e.type == EventType.MouseDrag)
                     {
-                        if (e.button == 0) // Left Click -> Set Position
+                        if (_isFootprintMode)
                         {
-                            SetItemPosition(x, z);
-                            e.Use();
+                            var selectedItem = _itemsCollection.list[_selectedItemIndex];
+                            var placedItem = _shopLayoutData.items.Find(i => i.itemId == selectedItem.id);
+                            if (placedItem != null)
+                            {
+                                Vector2Int offset = new Vector2Int(x + _gridOriginX - placedItem.posX, z + _gridOriginZ - placedItem.posZ);
+                                // Don't allow modifying base footprint
+                                if (!(x + _gridOriginX >= placedItem.posX && x + _gridOriginX < placedItem.posX + selectedItem.gridWidth &&
+                                      z + _gridOriginZ >= placedItem.posZ && z + _gridOriginZ < placedItem.posZ + selectedItem.gridHeight))
+                                {
+                                    if (e.button == 0) // Left click -> add
+                                    {
+                                        if (placedItem.extraFootprint == null) placedItem.extraFootprint = new List<Vector2Int>();
+                                        if (!placedItem.extraFootprint.Contains(offset)) placedItem.extraFootprint.Add(offset);
+                                    }
+                                    else if (e.button == 1) // Right click -> remove
+                                    {
+                                        if (placedItem.extraFootprint != null) placedItem.extraFootprint.Remove(offset);
+                                    }
+                                    UpdateGrid();
+                                    e.Use();
+                                }
+                            }
                         }
-                        else if (e.button == 1) // Right Click -> Remove
+                        else
                         {
-                            RemoveItemAt(x, z);
-                            e.Use();
+                            if (e.button == 0) // Left Click -> Set Position
+                            {
+                                SetItemPosition(x, z);
+                                e.Use();
+                            }
+                            else if (e.button == 1) // Right Click -> Remove
+                            {
+                                RemoveItemAt(x, z);
+                                e.Use();
+                            }
                         }
                     }
                 }

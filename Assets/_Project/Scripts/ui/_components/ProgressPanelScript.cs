@@ -36,28 +36,31 @@ public class ProgressPanelScript : MonoBehaviour
         }
     }
 
-    public void UpdateComponents()
-{
-    if (showAsCurrentMax && hasMaxValue)
-    {
-        // Hiển thị dạng "current/max" (e.g. 5/10)
-        ValueLabel.text = ((int)value) + "/" + ((int)maxValue);
-    }
-    else if (isPercent)
-    {
-        ValueLabel.text = ((int)value) + "%";
-    }
-    else
-    {
-        ValueLabel.text = ((int)value).ToString();
-    }
+    public float tweenDuration = 0.75f;
 
-    if (hasMaxValue && maxValue > 0)
+    private void UpdateComponents()
     {
-        float progress = value / maxValue;
-        SetProgress(progress);
+        if (ValueLabel == null || Filler == null) return;
+
+        if (isPercent)
+        {
+            ValueLabel.text = ((int)value).ToString() + "%";
+        }
+        else if (showAsCurrentMax && hasMaxValue)
+        {
+            ValueLabel.text = ((int)value).ToString() + "/" + ((int)maxValue).ToString();
+        }
+        else
+        {
+            ValueLabel.text = ((int)value).ToString();
+        }
+
+        if (hasMaxValue && maxValue > 0)
+        {
+            float progress = value / maxValue;
+            SetProgress(progress);
+        }
     }
-}
 
     public void SetProgress(float progress)
     {
@@ -68,6 +71,7 @@ public class ProgressPanelScript : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
+            StopAllCoroutines(); // Tránh xung đột nếu có tween cũ đang chạy
             StartCoroutine(_TweenValueChange(changedValue));
         }
         else
@@ -78,23 +82,19 @@ public class ProgressPanelScript : MonoBehaviour
 
     private IEnumerator _TweenValueChange(float changedValue)
     {
-        int oldValue = (int)value;
+        float startValue = value;
+        float elapsed = 0f;
 
-        if (changedValue > oldValue)
+        while (elapsed < tweenDuration)
         {
-            for (int i = oldValue; i < (int)changedValue; i++)
-            {
-                yield return null;
-                value++;
-            }
-        }
-        else
-        {
-            for (int i = oldValue; i > (int)changedValue; i--)
-            {
-                yield return null;
-                value--;
-            }
+            elapsed += Time.deltaTime;
+            float t = elapsed / tweenDuration;
+            
+            // SmoothStep: mượt mà hơn ở điểm đầu và cuối
+            t = t * t * (3f - 2f * t);
+            
+            value = Mathf.Lerp(startValue, changedValue, t);
+            yield return null;
         }
 
         value = changedValue;

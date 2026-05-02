@@ -20,6 +20,7 @@ public class ShopLayoutItem
 	public int itemId;
 	public int posX;
 	public int posZ;
+	public List<Vector2Int> extraFootprint = new List<Vector2Int>();
 }
 
 [System.Serializable]

@@ -38,18 +38,39 @@ public class NPCController : MonoBehaviour
         visual = sr.transform;
     }
 
-    void Start()
+    bool isSpawned = false;
+
+    public void Spawn(Vector3 startPos)
     {
-        currentCell = WorldToCell(cachedTransform.position);
+        cachedTransform.position = startPos;
+        currentCell = WorldToCell(startPos);
         NPCGridSystem.Instance.Occupy(currentCell.x, currentCell.y, id);
+        isSpawned = true;
+
+        path.Clear();
+        tickTimer = 0f;
+        stuckTicks = 0;
+
+        gameObject.SetActive(true);
 
         UpdateSorting();
         RequestNewPath();
+    }
 
+    void OnDisable()
+    {
+        if (isSpawned && NPCGridSystem.Instance != null)
+        {
+            NPCGridSystem.Instance.Release(currentCell.x, currentCell.y);
+            isSpawned = false;
+        }
+        moveTween?.Kill();
     }
 
     void Update()
     {
+        if (!isSpawned) return;
+
         tickTimer += Time.deltaTime;
 
         if (tickTimer >= tickRate)
@@ -62,9 +83,10 @@ public class NPCController : MonoBehaviour
     void RequestNewPath()
     {
         Vector3 target = GroundManager.instance.GetRandomFreePosition();
+        
         targetCell = WorldToCell(target);
 
-        var rawPath = GroundManager.instance.GetPath(cachedTransform.position, target, false);
+        var rawPath = GroundManager.instance.GetPathNPC(cachedTransform.position, target);
 
         path.Clear();
 
@@ -73,6 +95,7 @@ public class NPCController : MonoBehaviour
             path.Enqueue(WorldToCell(p));
         }
     }
+
     void TickMove()
     {
         if (path.Count == 0)
@@ -82,7 +105,7 @@ public class NPCController : MonoBehaviour
         }
 
         Vector2Int next = path.Peek();
-        if (!GroundManager.instance.pathNodesWithoutWall[next.x, next.y])
+        if (!GroundManager.instance.pathNodesNPC[next.x, next.y])
         {
             RequestNewPath();
             return;
@@ -90,6 +113,7 @@ public class NPCController : MonoBehaviour
 
         if (!NPCGridSystem.Instance.IsFree(next.x, next.y))
         {
+
             HandleBlocked();
             return;
         }
@@ -134,9 +158,7 @@ public class NPCController : MonoBehaviour
 
         if (screenX != 0)
         {
-            Vector3 scale = visual.localScale;
-            scale.x = screenX < 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
-            visual.localScale = scale;
+            sr.flipX = screenX < 0;
         }
 
         moveTween = visual.DOMove(newWorldPos, moveDuration).SetEase(moveEase);
@@ -144,11 +166,11 @@ public class NPCController : MonoBehaviour
 
     void UpdateSorting()
     {
-        if (sr == null) return;
+        // if (sr == null) return;
 
-        int z = currentCell.y;
+        // int z = currentCell.y;
 
-        sr.sortingOrder = -(z * 100) + sortingOffset;
+        // sr.sortingOrder = -(z * 100) + sortingOffset;
     }
 
     void HandleBlocked()
@@ -181,6 +203,7 @@ public class NPCController : MonoBehaviour
 
     Vector2Int FindSidestepCell()
     {
+        Vector2Int fallback = new Vector2Int(-1, -1);
         for (int x = -1; x <= 1; x++)
         {
             for (int y = -1; y <= 1; y++)
@@ -191,24 +214,24 @@ public class NPCController : MonoBehaviour
 
                 if (checkCell.x >= 0 && checkCell.x < GroundManager.nodeWidth &&
                     checkCell.y >= 0 && checkCell.y < GroundManager.nodeHeight &&
-                    GroundManager.instance.pathNodesWithoutWall[checkCell.x, checkCell.y] &&
+                    GroundManager.instance.pathNodesNPC[checkCell.x, checkCell.y] &&
                     NPCGridSystem.Instance.IsFree(checkCell.x, checkCell.y))
                 {
                     return checkCell;
                 }
             }
         }
-        return new Vector2Int(-1, -1);
+        return fallback;
     }
 
     Vector2Int WorldToCell(Vector3 pos)
     {
-        return new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z));
+        return new Vector2Int(Mathf.RoundToInt(pos.x) - GroundManager.instance.gridOriginX, Mathf.RoundToInt(pos.z) - GroundManager.instance.gridOriginZ);
     }
 
     Vector3 CellToWorld(Vector2Int cell)
     {
-        return new Vector3(cell.x, 0, cell.y);
+        return new Vector3(cell.x + GroundManager.instance.gridOriginX, 0, cell.y + GroundManager.instance.gridOriginZ);
     }
 
     void OnDrawGizmos()

@@ -33,19 +33,19 @@ public class CategoryItemScript : MonoBehaviour {
 		// 	this.Image.sprite = this.DefenceSprite;
 		// 	break;
 		case ShopWindowScript.Category.SERVICE:
-			this.Name.text = "SERVICE";
+			this.Name.text = "DỊCH VỤ";
 			this.Image.sprite = this.ServiceSprite;
 			break;
 		case ShopWindowScript.Category.RESOURCES:
-			this.Name.text = "UTILITY";
+			this.Name.text = "TIỆN ÍCH";
 			this.Image.sprite = this.ResourcesSprite;
 			break;
 		case ShopWindowScript.Category.STUDENT:
-			this.Name.text = "FACILITY";
+			this.Name.text = "CƠ SỞ";
 			this.Image.sprite = this.StudentSprite;
 			break;
 		case ShopWindowScript.Category.DECORATIONS:
-			this.Name.text = "DECORATIONS";
+			this.Name.text = "CẢNH QUAN";
 			this.Image.sprite = this.DecorationsSprite;
 			break;
 		}

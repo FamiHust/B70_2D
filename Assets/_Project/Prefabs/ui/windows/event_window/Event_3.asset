@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0c438d10472c74aae37202c2343315, type: 3}
+  m_Name: Event_3
+  m_EditorClassIdentifier: 
+  eventID: "\xC1p l\u1EF1c thi c\u1EED"
+  eventName: "\xC1p l\u1EF1c thi c\u1EED"
+  description: "Ng\xE0y mai thi r\u1ED3i, c\xF2n ch\u01B0a \xF4n g\xEC huhu"
+  triggerProbability: 0.35
+  goldCost: 20
+  happinessModifier: -14
+  educationModifier: 8
