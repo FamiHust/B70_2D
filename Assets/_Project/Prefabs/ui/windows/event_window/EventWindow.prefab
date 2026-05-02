@@ -1866,7 +1866,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
     m_FontSize: 35
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 50
     m_Alignment: 0
@@ -1874,7 +1874,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.4
+    m_LineSpacing: 1
   m_Text: "Mai thi r\u1ED3i ch\u01B0a \xF4n g\xEC c\u1EA3 huhu"
 --- !u!114 &3479832983746920334
 MonoBehaviour:

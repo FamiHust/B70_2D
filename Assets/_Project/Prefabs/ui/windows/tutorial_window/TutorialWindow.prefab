@@ -555,7 +555,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Xong r\u1ED3i ! Ti\u1EBFp t\u1EE5c ph\xE1t tri\u1EC3n nh\xE9!"
+  m_Text: "L\xE0m t\u1ED1t l\u1EAFm ! Ti\u1EBFp t\u1EE5c x\xE2y d\u1EF1ng nh\u1EEFng
+    c\xF4ng tr\xECnh m\u1EDBi nh\xE9 !"
 --- !u!1 &2363834804650459789
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +959,7 @@ MonoBehaviour:
   - {fileID: 834751859832392973}
   TutorialSteps:
   - text: "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi B70 - H\xE0nh tr\xECnh
-      c\u1EE7a b\u1EA1n b\u1EAFt \u0111\u1EA7u t\u1EEB \u0111\xE2y. "
+      c\u1EE7a b\u1EA1n s\u1EBD b\u1EAFt \u0111\u1EA7u t\u1EEB \u0111\xE2y. "
     characterSprite: {fileID: 21300000, guid: 4b59c03a57461dc458da74f0e355db19, type: 3}
   - text: "M\xECnh l\xE0 Giang, ng\u01B0\u1EDDi s\u1EBD \u0111\u1ED3ng h\xE0nh c\xF9ng
       b\u1EA1n trong chuy\u1EBFn \u0111i n\xE0y."
@@ -967,7 +968,7 @@ MonoBehaviour:
       h\u1ECDc B\xE1ch Khoa H\xE0 N\u1ED9i."
     characterSprite: {fileID: 21300000, guid: 6b889fc05a10c1741a361fa9e3466537, type: 3}
   - text: "Gi\u1EDD th\xEC b\u1EAFt \u0111\u1EA7u th\xF4i \u2014 h\xE3y x\xE2y d\u1EF1ng
-      c\xF4ng tr\xECnh \u0111\u1EA7u ti\xEAn!"
+      c\xF4ng tr\xECnh \u0111\u1EA7u ti\xEAn nh\xE9!"
     characterSprite: {fileID: 21300000, guid: 906e1beca630e574babc9af98912997e, type: 3}
 --- !u!95 &2937695438621150034
 Animator:

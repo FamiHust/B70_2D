@@ -12,6 +12,9 @@ public class SceneEnteringWindowScript : WindowScript {
 		if (OnIntermediate != null) {
 			OnIntermediate.Invoke ();
 		}
+		if (GameOverlayWindowScript.instance != null) {
+			GameOverlayWindowScript.instance.HideOverlay();
+		}
 	}
 
 	public void ZoomFrom15To10() {

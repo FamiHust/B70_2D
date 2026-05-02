@@ -39,7 +39,6 @@ public class UIManager : MonoBehaviour
 	void Awake()
 	{
 		instance = this;
-		this.Design.SetActive(false);
 		this._windowInstances = new List<WindowScript>();
 
 		// show menu window at start if assigned

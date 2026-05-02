@@ -49,6 +49,7 @@ public class SceneManager : MonoBehaviour
 	public float semesterProgress;
 
 	public bool isTutorialActive;
+	private bool _isCompletingSemester = false;
 
 	void Awake()
 	{
@@ -966,7 +967,7 @@ public class SceneManager : MonoBehaviour
 		}
 
 		// Check for semester completion (using a small epsilon for float precision)
-		if (this.semesterProgress >= 99.9f && totalRequired > 0)
+		if (this.semesterProgress >= 99.9f && totalRequired > 0 && !_isCompletingSemester)
 		{
 			this.CompleteSemester();
 		}
@@ -987,6 +988,20 @@ public class SceneManager : MonoBehaviour
 
 	public void CompleteSemester()
 	{
+		StartCoroutine(CompleteSemesterCoroutine());
+	}
+
+	private IEnumerator CompleteSemesterCoroutine()
+	{
+		this._isCompletingSemester = true;
+
+		// ── 0. Đảm bảo thanh tiến trình chạy tới 100% ──────────────────────────
+		this.semesterProgress = 100;
+		this.RefreshResourceUIs("semester");
+
+		// Đợi animation của thanh tiến trình (ProgressPanelScript.tweenDuration = 0.75s)
+		yield return new WaitForSeconds(0.8f);
+
 		// ── 1. Chạy công thức balance cho kỳ học vừa kết thúc ─────────────────
 		BalanceState state = UniversityBalanceFormulas.StateFromSceneManager();
 		SemesterBreakdown bd = UniversityBalanceFormulas.ApplySemesterTick(ref state, _balanceParams);
@@ -1010,6 +1025,8 @@ public class SceneManager : MonoBehaviour
 		{
 			UIManager.instance.ShowNewSemesterWindow();
 		}
+
+		this._isCompletingSemester = false;
 	}
 
 	//RESOURCE  COLLECTION
