@@ -194,8 +194,6 @@ public class SceneManager : MonoBehaviour
 		{
 			instance.SetState(Common.State.IDLE);
 		}
-
-		// Remove the map shop area if it exists for this item
 		if (_activeShopAreas.ContainsKey(itemId))
 		{
 			if (_activeShopAreas[itemId] != null)
@@ -210,7 +208,7 @@ public class SceneManager : MonoBehaviour
 
 		if (!immediate && !isPreview)
 		{
-			instance.UI.ShowProgressUI(true);
+			instance.StartConstruction(builder);
 			instance.OnConstructionComplete = (item) =>
 			{
 				this.UpdateStudentStorageCapacity();

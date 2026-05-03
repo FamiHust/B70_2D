@@ -81,7 +81,7 @@ public class BaseItemProgressUIScript : MonoBehaviour
 
 	public void OnFinishBuild()
 	{
-		this._baseItem.UI.ShowProgressUI(false);
+		this._baseItem.FinishConstruction();
 	}
 
 	public float GetProgress()

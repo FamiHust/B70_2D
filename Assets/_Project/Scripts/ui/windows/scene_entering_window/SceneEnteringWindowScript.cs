@@ -15,7 +15,6 @@ public class SceneEnteringWindowScript : WindowScript {
 		if (GameOverlayWindowScript.instance != null) {
 			GameOverlayWindowScript.instance.HideOverlay();
 		}
-		AudioManager.Instance.PlayMusic("Main_BGM");
 	}
 
 	public void Start()
@@ -29,6 +28,7 @@ public class SceneEnteringWindowScript : WindowScript {
 
 	private IEnumerator SmoothZoomRoutine(float startSize, float endSize, float duration) 
 	{
+
 		float t = 0;
 		if (CameraManager.instance != null) {
 			CameraManager.instance.MainCamera.orthographicSize = startSize;
@@ -83,6 +83,11 @@ public class SceneEnteringWindowScript : WindowScript {
 				}
 			}
 		}
+	}
+
+	public void PlayMainMusic()
+	{
+		AudioManager.Instance.PlayMusic("Main_BGM");
 	}
 
 	public override void Close()

@@ -247,7 +247,7 @@ public class ItemOptionsWindowScript : WindowScript
 			{
 				selectedItem.SetState(Common.State.IDLE);
 				// Show progress UI and start construction
-				selectedItem.UI.ShowProgressUI(true);
+				selectedItem.StartConstruction(null);
 
 				// Tutorial handling: close window after confirming the first building
 				if (SceneManager.instance != null && SceneManager.instance.isTutorialActive && SceneManager.instance.GetBuildingCount() == 1)

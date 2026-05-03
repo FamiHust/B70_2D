@@ -34,6 +34,7 @@ public class BaseItemScript : MonoBehaviour
 	public bool ownedItem;
 
 	public List<BaseItemScript> connectedItems;
+	public bool isUnderConstruction = false;
 
 	/* events */
 	public UnityAction<BaseItemScript> OnItemDestroy;
@@ -678,9 +679,17 @@ public class BaseItemScript : MonoBehaviour
 
 	public void FinishConstruction()
 	{
+		this.isUnderConstruction = false;
+
 		if (this.UI.progressUIInstance != null)
 		{
 			this.UI.ShowProgressUI(false);
+		}
+
+		foreach (RenderQuadScript quad in this.Renderer.GetRenderQuads())
+		{
+			quad.PlayBuildVFX(false);
+		}
 
 			// Find the builder working on this building and stop them
 			foreach (BaseItemScript item in SceneManager.instance.GetAllItems())
@@ -693,11 +702,17 @@ public class BaseItemScript : MonoBehaviour
 				}
 			}
 		}
-	}
 
 	public void StartConstruction(BaseItemScript builder)
 	{
 		this.UI.ShowProgressUI(true);
+		this.isUnderConstruction = true;
+
+		foreach (RenderQuadScript quad in this.Renderer.GetRenderQuads())
+		{
+			quad.PlayBuildVFX(true);
+		}
+
 		if (builder != null)
 		{
 			builder.BuilderAction(this);
