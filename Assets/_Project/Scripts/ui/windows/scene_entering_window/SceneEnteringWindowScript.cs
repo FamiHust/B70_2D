@@ -15,13 +15,20 @@ public class SceneEnteringWindowScript : WindowScript {
 		if (GameOverlayWindowScript.instance != null) {
 			GameOverlayWindowScript.instance.HideOverlay();
 		}
+		AudioManager.Instance.PlayMusic("Main_BGM");
+	}
+
+	public void Start()
+	{
+		AudioManager.Instance.PlaySFX(SoundData.SFX_Intro);
 	}
 
 	public void ZoomFrom15To10() {
 		StartCoroutine(SmoothZoomRoutine(15f, 10f, 1.2f));
 	}
 
-	private IEnumerator SmoothZoomRoutine(float startSize, float endSize, float duration) {
+	private IEnumerator SmoothZoomRoutine(float startSize, float endSize, float duration) 
+	{
 		float t = 0;
 		if (CameraManager.instance != null) {
 			CameraManager.instance.MainCamera.orthographicSize = startSize;

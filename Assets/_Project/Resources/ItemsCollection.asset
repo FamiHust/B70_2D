@@ -204,7 +204,7 @@ MonoBehaviour:
     uiOffsetX: 0
     uiOffsetZ: 0
     defaultPosX: 8
-    defaultPosZ: 7
+    defaultPosZ: 6
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
     uiOffsetX: 0
     uiOffsetZ: 0
     defaultPosX: 11
-    defaultPosZ: 24
+    defaultPosZ: 23
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
     uiOffsetX: 0
     uiOffsetZ: 0
     defaultPosX: 20
-    defaultPosZ: 24
+    defaultPosZ: 23
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
     uiOffsetX: 0
     uiOffsetZ: 0
     defaultPosX: 20
-    defaultPosZ: 1
+    defaultPosZ: 3
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -405,7 +405,7 @@ MonoBehaviour:
     name: "T\xF2a C10"
     description: 
     thumb: {fileID: 2800000, guid: 6e9037d69118bcf439031e0cd35d3c00, type: 3}
-    gridWidth: 4
+    gridWidth: 5
     gridHeight: 7
     arrowOffsetX: 0
     arrowOffsetZ: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
     uiOffsetX: 0
     uiOffsetZ: 0
     defaultPosX: 23
-    defaultPosZ: 24
+    defaultPosZ: 27
     configuration:
       buildTime: 20
       isCharacter: 0

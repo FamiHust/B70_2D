@@ -46,10 +46,11 @@ public class ButtonScaler2 : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             return;
         }
-        // if (isActiveSound)
-        // {
-        //     AudioManager.Instance.PlayOneShot(AUDIO_CLIP_NAME.SFX_UI_Button_Click);
-        // }
+        if (isActiveSound)
+        {
+            AudioManager.Instance.PlaySFX(SoundData.SFX_Button_Click);
+        }
+
         // if (!ignoreVib)
         // {
         //     AudioManager.Instance.PlayVibrate();
