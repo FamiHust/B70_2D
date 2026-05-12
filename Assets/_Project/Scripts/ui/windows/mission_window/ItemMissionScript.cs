@@ -53,7 +53,7 @@ public class ItemMissionScript : MonoBehaviour
 			ItemsCollection.ItemData itemData = Items.GetItem(_itemId);
 			if (itemData != null)
 			{
-				LockMission.SetActive(itemData.configuration.unlockItemAtSemester > SceneManager.instance.currentSemester);
+				LockMission.SetActive(itemData.configuration.unlockItemAtSemester > SceneManager.instance.currentLevel);
 			}
 		}
 

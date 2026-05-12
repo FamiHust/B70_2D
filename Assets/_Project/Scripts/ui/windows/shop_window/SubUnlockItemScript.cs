@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SubNewCategoryItemScript : MonoBehaviour
+public class SubUnlockItemScript : MonoBehaviour
 {
 	/* sprites (copy from SubCategoryItemScript for consistency) */
 	public Sprite D4Sprite;

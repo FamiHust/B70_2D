@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 	public GameObject UpgradeWindow;
 	public GameObject BoostWindow;
 	public GameObject TutorialWindow;
+	public GameObject UnlockItemWindow;
 	public GameObject NewSemesterWindow;
 	public GameObject MissionWindow;
 	public GameObject EventWindow;
@@ -71,6 +72,11 @@ public class UIManager : MonoBehaviour
 		if (prefab != this.GameOverlayWindow && prefab != this.EventWindow && GameOverlayWindowScript.instance != null)
 		{
 			GameOverlayWindowScript.instance.HideOverlay();
+		}
+
+		if (prefab != this.GameOverlayWindow && TimeManager.instance != null)
+		{
+			TimeManager.instance.SetPaused(true);
 		}
 
 		return window;
@@ -188,9 +194,18 @@ public class UIManager : MonoBehaviour
 		return this.ShowWindow(this.TutorialWindow);
 	}
 
-	public WindowScript ShowNewSemesterWindow()
+	public void ShowNewSemesterWindow(B70.Balance.SemesterBreakdown bd, int semesterNumber, float happiness, float education)
 	{
-		return this.ShowWindow(this.NewSemesterWindow);
+		NewSemesterWindowScript window = this.ShowWindow(this.NewSemesterWindow) as NewSemesterWindowScript;
+		if (window != null)
+		{
+			window.Setup(bd, semesterNumber, happiness, education);
+		}
+	}
+
+	public void ShowUnlockItemsWindow()
+	{
+		this.ShowWindow(this.UnlockItemWindow);
 	}
 
 
@@ -240,6 +255,11 @@ public class UIManager : MonoBehaviour
 				{
 					GameOverlayWindowScript.instance.ShowOverlay();
 				}
+			}
+
+			if (TimeManager.instance != null)
+			{
+				TimeManager.instance.SetPaused(hasOtherWindow);
 			}
 		}
 	}

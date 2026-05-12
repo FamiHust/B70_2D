@@ -13,6 +13,10 @@ public class ProductionScript : MonoBehaviour
     private float _productionRate = 0.0f;
     private string _productType;
     private int _productPrice;
+    
+    [Header("Construction")]
+    public float constructionTimeTotal;
+    public float constructionTimeRemaining;
 
     // ⚠️ Dùng Unix Time để lưu lâu dài (không bị reset khi restart game)
     private double _lastCollectedTime = 0;
@@ -23,6 +27,9 @@ public class ProductionScript : MonoBehaviour
         this._productionRate = baseItem.itemData.configuration.productionRate;
         this._productType = baseItem.itemData.configuration.product;
         this._productPrice = baseItem.itemData.configuration.productPrice;
+
+        this.constructionTimeTotal = baseItem.itemData.configuration.buildTime;
+        this.constructionTimeRemaining = this.constructionTimeTotal;
 
         this._lastCollectedTime = lastCollectedTime;
         // Nếu chưa có dữ liệu (spawn mới) hoặc không có dữ liệu cũ được truyền vào
@@ -67,17 +74,39 @@ public class ProductionScript : MonoBehaviour
             }
         }
 
-        // Cập nhật sức chứa sinh viên và tiến độ học kỳ ngay khi tòa hoàn thành xây dựng
         if (SceneManager.instance != null)
         {
             SceneManager.instance.UpdateStudentStorageCapacity();  // tăng cap AFTER xây xong
-            SceneManager.instance.UpdateSemesterProgress();
+            SceneManager.instance.UpdateLevelProgress();
+        }
+    }
+
+    private void Update()
+    {
+        if (TimeManager.instance != null && TimeManager.instance.isPaused)
+            return;
+
+        if (this.isUnderConstruction)
+        {
+            if (this.constructionTimeRemaining > 0)
+            {
+                this.constructionTimeRemaining -= Time.deltaTime;
+                if (this.constructionTimeRemaining <= 0)
+                {
+                    this.constructionTimeRemaining = 0;
+                    this.OnConstructionFinished();
+                }
+            }
+        }
+        else
+        {
+            this.UpdateProduction();
         }
     }
 
     public void UpdateProduction()
     {
-        if (this.isUnderConstruction)
+        if (this.isUnderConstruction || (TimeManager.instance != null && TimeManager.instance.isPaused))
             return;
 
         double time = GetCurrentTime() - this._lastCollectedTime;
@@ -127,5 +156,12 @@ public class ProductionScript : MonoBehaviour
     private double GetCurrentTime()
     {
         return DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+    }
+
+    public string GetFormattedConstructionTime()
+    {
+        int minutes = Mathf.FloorToInt(constructionTimeRemaining / 60);
+        int seconds = Mathf.FloorToInt(constructionTimeRemaining % 60);
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

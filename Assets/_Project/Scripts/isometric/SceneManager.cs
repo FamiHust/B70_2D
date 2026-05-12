@@ -46,8 +46,9 @@ public class SceneManager : MonoBehaviour
 	public int studentStorageCapacity;
 	public int educationStorageCapacity;
 	public int currentSemester;
-	public float semesterProgress;
-
+	public int currentLevel = 0;
+	public float levelProgress; 
+	private bool _hasShownUnlockThisLevel = false;
 	public bool isTutorialActive;
 	private bool _isCompletingSemester = false;
 
@@ -107,8 +108,9 @@ public class SceneManager : MonoBehaviour
 		this.numberOfStudentInStorage   = PlayerPrefs.GetInt("numberOfStudentInStorage",   0);
 		this.numberOfHappyInStorage     = PlayerPrefs.GetInt("numberOfHappyInStorage",     50);   // neutralH = 50
 		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 50);   // t1 = 30
-		this.currentSemester            = PlayerPrefs.GetInt("currentSemester",            0);   // bắt đầu từ kỳ 0
-		this.semesterProgress           = PlayerPrefs.GetFloat("semesterProgress",         0);
+		this.currentSemester            = PlayerPrefs.GetInt("currentSemester",            1);
+		this.currentLevel               = PlayerPrefs.GetInt("currentLevel",               1);
+		this.levelProgress              = PlayerPrefs.GetFloat("levelProgress",            0);
 	}
 
 	private void OnApplicationQuit()
@@ -146,7 +148,8 @@ public class SceneManager : MonoBehaviour
 		PlayerPrefs.SetInt("numberOfStudentInStorage", this.numberOfStudentInStorage);
 		PlayerPrefs.SetInt("numberOfEducationInStorage", this.numberOfEducationInStorage);
 		PlayerPrefs.SetInt("currentSemester", this.currentSemester);
-		PlayerPrefs.SetFloat("semesterProgress", this.semesterProgress);
+		PlayerPrefs.SetInt("currentLevel", this.currentLevel);
+		PlayerPrefs.SetFloat("levelProgress", this.levelProgress);
 		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
 
 		PlayerPrefs.Save();
@@ -212,7 +215,7 @@ public class SceneManager : MonoBehaviour
 			instance.OnConstructionComplete = (item) =>
 			{
 				this.UpdateStudentStorageCapacity();
-				this.UpdateSemesterProgress();
+						this.UpdateLevelProgress();
 			};
 
 			// if (!instance.itemData.configuration.isCharacter && instance.itemData.configuration.buildTime > 0)
@@ -623,7 +626,7 @@ public class SceneManager : MonoBehaviour
 		}
 
 		// Update semester progress after all buildings are loaded
-		this.UpdateSemesterProgress();
+				this.UpdateLevelProgress();
 
 		if (this._shopLayout != null && this._shopLayout.items != null && this.MapShopAreaPrefab != null)
 		{
@@ -721,10 +724,9 @@ public class SceneManager : MonoBehaviour
 	// 	{
 	// 		BaseItemScript baseItem = this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, false);
 	// 		baseItem.OnItemDestroy += this.OnEnemyItemDestroy;
+	//          SceneManager.instance.UpdateLevelProgress();
+	// 		this.UpdateWalls();
 	// 	}
-	// 	GroundManager.instance.UpdateAllNodes();
-	// 	this.UpdateWalls();
-	// }
 
 
 	public void ClearScene()
@@ -934,7 +936,7 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 
-	public void UpdateSemesterProgress()
+	public void UpdateLevelProgress()
 	{
 		List<int> requiredItemIds = ShopWindowScript.GetAllShopItemIds();
 		int totalRequired = 0;
@@ -943,7 +945,8 @@ public class SceneManager : MonoBehaviour
 		foreach (int itemId in requiredItemIds)
 		{
 			ItemsCollection.ItemData itemData = Items.GetItem(itemId);
-			if (itemData != null && itemData.configuration.unlockItemAtSemester == this.currentSemester)
+			// Kiểm tra yêu cầu theo currentLevel
+			if (itemData != null && itemData.configuration.unlockItemAtSemester == this.currentLevel)
 			{
 				totalRequired++;
 				if (this.IsItemConstructionFinished(itemId))
@@ -955,30 +958,51 @@ public class SceneManager : MonoBehaviour
 
 		if (totalRequired > 0)
 		{
-			this.semesterProgress = (float)builtCount / totalRequired * 100f;
+			this.levelProgress = (float)builtCount / totalRequired * 100f;
 		}
 		else
 		{
-			// If no buildings required for this semester, we can potentially advance or keep at 0
-			// Usually there should be at least one building.
-			this.semesterProgress = 0;
+			this.levelProgress = 0;
 		}
 
-		// Check for semester completion (using a small epsilon for float precision)
-		if (this.semesterProgress >= 99.9f && totalRequired > 0 && !_isCompletingSemester)
+		// LOGIC LÊN CẤP (LEVEL UP): Khi hoàn thành 100% nhiệm vụ
+		if (this.levelProgress >= 99.9f && totalRequired > 0 && !_hasShownUnlockThisLevel)
 		{
-			this.CompleteSemester();
+			StartCoroutine(HandleLevelUpCoroutine());
 		}
-		else
-		{
-			this.SaveResources();
-			this.RefreshResourceUIs("semester");
 
-			if (GameOverlayWindowScript.instance != null)
-			{
-				GameOverlayWindowScript.instance.RefreshHint();
-			}
+		this.SaveResources();
+		this.RefreshResourceUIs("level");
+
+		if (GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.RefreshHint();
 		}
+	}
+
+	private IEnumerator HandleLevelUpCoroutine()
+	{
+		_hasShownUnlockThisLevel = true; 
+		
+		// Đợi chính xác thời gian thanh Progress chạy hết (tweenDuration = 0.75s)
+		yield return new WaitForSeconds(0.8f);
+
+		if (UIManager.instance != null)
+		{
+			UIManager.instance.ShowUnlockItemsWindow();
+		}
+
+		this.currentLevel++; // Tăng level mới
+		this.levelProgress = 0; // Reset thanh tiến trình
+
+		// Kiểm tra nếu đạt level 2 lần đầu (Tutorial)
+		if (this.currentLevel == 2 && GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.OnReachLevel2();
+		}
+
+		this.SaveResources();
+		this.RefreshResourceUIs("level");
 	}
 
 	// Tham số cân bằng — có thể chuyển sang ScriptableObject để designer tinh chỉnh.
@@ -992,13 +1016,7 @@ public class SceneManager : MonoBehaviour
 	private IEnumerator CompleteSemesterCoroutine()
 	{
 		this._isCompletingSemester = true;
-
-		// ── 0. Đảm bảo thanh tiến trình chạy tới 100% ──────────────────────────
-		this.semesterProgress = 100;
-		this.RefreshResourceUIs("semester");
-
-		// Đợi animation của thanh tiến trình (ProgressPanelScript.tweenDuration = 0.75s)
-		yield return new WaitForSeconds(0.8f);
+		yield return null; // Thêm yield để giữ tính chất của Coroutine
 
 		// ── 1. Chạy công thức balance cho kỳ học vừa kết thúc ─────────────────
 		BalanceState state = UniversityBalanceFormulas.StateFromSceneManager();
@@ -1013,15 +1031,23 @@ public class SceneManager : MonoBehaviour
 			+ $"| ΔStudents={bd.deltaStudents:F0} | Gold+={bd.semesterGoldIncome:F0} "
 			+ $"| GradRate={bd.graduationRate:P1}");
 
-		// ── 4. Tăng kỳ học và reset tiến độ ─────────────────────────────
+		int finishedSemester = this.currentSemester;
+
+		// ── 4. Tăng kỳ học (Semester độc lập với Level) ─────────────────────────────
 		this.currentSemester++;
-		this.semesterProgress = 0;
 		this.SaveResources();
 		this.RefreshResourceUIs("semester");
 
+		// Reset TimeManager for the new semester
+		if (TimeManager.instance != null)
+		{
+			TimeManager.instance.ResetTimer();
+		}
+
 		if (UIManager.instance != null)
 		{
-			UIManager.instance.ShowNewSemesterWindow();
+			// Hiện bảng tổng kết học kỳ (Breakdown) khi hết thời gian
+			UIManager.instance.ShowNewSemesterWindow(bd, finishedSemester, this.numberOfHappyInStorage, this.numberOfEducationInStorage);
 		}
 
 		this._isCompletingSemester = false;
@@ -1122,6 +1148,8 @@ public class SceneManager : MonoBehaviour
 				GameOverlayWindowScript.instance.CollectResource("education", this.numberOfEducationInStorage);
 			else if (resourceType == "semester")
 				GameOverlayWindowScript.instance.RefreshSemesterUI();
+			else if (resourceType == "level")
+				GameOverlayWindowScript.instance.RefreshLevelUI();
 		}
 
 

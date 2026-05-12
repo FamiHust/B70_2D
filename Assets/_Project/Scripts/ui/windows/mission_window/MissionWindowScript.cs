@@ -155,15 +155,15 @@ public class MissionWindowScript : WindowScript
 
 			if (dataA == null || dataB == null) return 0;
 
-			bool unlockedA = SceneManager.instance.currentSemester >= dataA.configuration.unlockItemAtSemester;
-			bool unlockedB = SceneManager.instance.currentSemester >= dataB.configuration.unlockItemAtSemester;
+			bool unlockedA = SceneManager.instance.currentLevel >= dataA.configuration.unlockItemAtSemester;
+			bool unlockedB = SceneManager.instance.currentLevel >= dataB.configuration.unlockItemAtSemester;
 
 			if (unlockedA != unlockedB)
 			{
 				return unlockedA ? -1 : 1;
 			}
 
-			// Nếu cùng trạng thái (cùng khóa hoặc cùng mở), sắp xếp theo số kỳ yêu cầu
+			// Nếu cùng trạng thái (cùng khóa hoặc cùng mở), sắp xếp theo số level yêu cầu
 			int semesterCompare = dataA.configuration.unlockItemAtSemester.CompareTo(dataB.configuration.unlockItemAtSemester);
 			if (semesterCompare != 0)
 			{

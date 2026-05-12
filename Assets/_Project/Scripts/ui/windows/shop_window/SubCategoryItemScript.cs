@@ -64,10 +64,10 @@ public class SubCategoryItemScript : MonoBehaviour
 			
 			if (UnlockText != null)
 			{
-				UnlockText.text = "Kỳ " + itemData.configuration.unlockItemAtSemester + " mở";
+				UnlockText.text = "Level " + itemData.configuration.unlockItemAtSemester + " mở";
 			}
 			
-			bool isUnlocked = SceneManager.instance.currentSemester >= itemData.configuration.unlockItemAtSemester;
+			bool isUnlocked = SceneManager.instance.currentLevel >= itemData.configuration.unlockItemAtSemester;
 			if (LockImage != null)
 			{
 				LockImage.SetActive(!isUnlocked);
@@ -249,7 +249,7 @@ public class SubCategoryItemScript : MonoBehaviour
 		
 		if (itemToBuyData != null)
 		{
-			bool isUnlocked = SceneManager.instance.currentSemester >= itemToBuyData.configuration.unlockItemAtSemester;
+			bool isUnlocked = SceneManager.instance.currentLevel >= itemToBuyData.configuration.unlockItemAtSemester;
 			if (!isUnlocked)
 			{
 				return;

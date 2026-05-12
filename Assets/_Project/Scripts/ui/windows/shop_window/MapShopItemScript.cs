@@ -47,10 +47,10 @@ public class MapShopItemScript : MonoBehaviour
 
 			if (UnlockText != null)
 			{
-				UnlockText.text = "Semester " + _itemData.configuration.unlockItemAtSemester;
+				UnlockText.text = "Level " + _itemData.configuration.unlockItemAtSemester;
 			}
 
-			bool isUnlocked = SceneManager.instance.currentSemester >= _itemData.configuration.unlockItemAtSemester;
+			bool isUnlocked = SceneManager.instance.currentLevel >= _itemData.configuration.unlockItemAtSemester;
 			if (LockImage != null)
 			{
 				LockImage.SetActive(!isUnlocked);
@@ -155,10 +155,10 @@ public class MapShopItemScript : MonoBehaviour
 			return;
 		}
 
-		bool isUnlocked = SceneManager.instance.currentSemester >= _itemData.configuration.unlockItemAtSemester;
+		bool isUnlocked = SceneManager.instance.currentLevel >= _itemData.configuration.unlockItemAtSemester;
 		if (!isUnlocked)
 		{
-			Debug.Log("Item is locked! Requires Semester " + _itemData.configuration.unlockItemAtSemester);
+			Debug.Log("Item is locked! Requires Level " + _itemData.configuration.unlockItemAtSemester);
 			return;
 		}
 

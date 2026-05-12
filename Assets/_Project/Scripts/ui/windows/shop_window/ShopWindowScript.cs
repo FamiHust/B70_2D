@@ -197,8 +197,8 @@ public class ShopWindowScript : WindowScript
 			ItemsCollection.ItemData dataA = Items.GetItem(itemIdA);
 			ItemsCollection.ItemData dataB = Items.GetItem(itemIdB);
 
-			bool unlockedA = SceneManager.instance.currentSemester >= dataA.configuration.unlockItemAtSemester;
-			bool unlockedB = SceneManager.instance.currentSemester >= dataB.configuration.unlockItemAtSemester;
+			bool unlockedA = SceneManager.instance.currentLevel >= dataA.configuration.unlockItemAtSemester;
+			bool unlockedB = SceneManager.instance.currentLevel >= dataB.configuration.unlockItemAtSemester;
 
 			// Nếu trạng thái unlock khác nhau, cái nào unlock rồi thì lên trước (-1)
 			if (unlockedA != unlockedB)
@@ -339,8 +339,8 @@ public class ShopWindowScript : WindowScript
 			ItemsCollection.ItemData dataA = Items.GetItem(a);
 			ItemsCollection.ItemData dataB = Items.GetItem(b);
 
-			bool unlockedA = SceneManager.instance.currentSemester >= dataA.configuration.unlockItemAtSemester;
-			bool unlockedB = SceneManager.instance.currentSemester >= dataB.configuration.unlockItemAtSemester;
+			bool unlockedA = SceneManager.instance.currentLevel >= dataA.configuration.unlockItemAtSemester;
+			bool unlockedB = SceneManager.instance.currentLevel >= dataB.configuration.unlockItemAtSemester;
 
 			if (unlockedA != unlockedB)
 			{

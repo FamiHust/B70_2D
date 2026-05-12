@@ -1,73 +1,80 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using B70.Balance;
 
 public class NewSemesterWindowScript : WindowScript
 {
     public static NewSemesterWindowScript instance;
 
-    public GameObject SubNewCategoryItemPrefab;
-    public Transform ItemList;
-    public Text NextSemesterLabel;
-    public Animator anim;
+    [Header("UI References - Semester Info")]
+    public Text SemesterTitleText;
+    public Text FreshmenText;
+    public Text DropoutsText;
+    public Text GraduatedText;
+    public Text DeltaStudentsText;
+    public Text GoldIncomeText;
+    public Text GraduationRateText;
 
+    [Header("UI References - Stats")]
+    public Text HappinessText;
+    public Text EducationText;
+
+    [Header("Animations")]
+    public Animator anim;
 
     private void Awake()
     {
         instance = this;
     }
 
-    private void OnEnable()
+    public void Setup(SemesterBreakdown bd, int semesterNumber, float currentHappiness, float currentEducation)
     {
-        if (SceneManager.instance != null)
+        if (SemesterTitleText != null)
+            SemesterTitleText.text = $"Kết quả học kỳ {semesterNumber}";
+
+        if (FreshmenText != null)
+            FreshmenText.text = $"+{bd.freshmen:F0}";
+
+        if (DropoutsText != null)
+            DropoutsText.text = $"-{bd.dropouts:F0}";
+
+        if (GraduatedText != null)
+            GraduatedText.text = $"-{bd.graduated:F0}";
+
+        if (DeltaStudentsText != null)
         {
-            this.NextSemesterLabel.text = SceneManager.instance.currentSemester.ToString();
-            this.RefreshNewItemsList();
-            this.ShowWindow();
-        }
-    }
-
-    private void RefreshNewItemsList()
-    {
-        if (ItemList == null || SubNewCategoryItemPrefab == null) return;
-
-        // Clear existing items
-        foreach (Transform child in ItemList)
-        {
-            Destroy(child.gameObject);
+            string sign = bd.deltaStudents >= 0 ? "+" : "";
+            DeltaStudentsText.text = $"{sign}{bd.deltaStudents:F0}";
         }
 
-        // Get items unlocked in the current semester
-        int currentSemester = SceneManager.instance.currentSemester;
-        List<ItemsCollection.ItemData> newItems = Items.GetItemsBySemester(currentSemester);
+        if (GoldIncomeText != null)
+            GoldIncomeText.text = $"+{bd.semesterGoldIncome:F0}";
 
-        foreach (var item in newItems)
-        {
-            GameObject inst = Instantiate(SubNewCategoryItemPrefab, ItemList);
-            SubNewCategoryItemScript script = inst.GetComponent<SubNewCategoryItemScript>();
-            if (script != null)
-            {
-                script.SetItem(item.id);
-            }
-        }
+        if (GraduationRateText != null)
+            GraduationRateText.text = $"{bd.graduationRate:P1}";
+
+        if (HappinessText != null)
+            HappinessText.text = $"{currentHappiness:F0}/100";
+
+        if (EducationText != null)
+            EducationText.text = $"{currentEducation:F0}/100";
+
+        // ShowWindow();
     }
 
+    // public void OnClickContinue()
+    // {
+    //     HideWindow();
+    //     Invoke("Close", 0.5f); // Wait for animation
+    // }
 
-    public void OnClickClose()
-    {
-        this.HideWindow();
-        this.Close();
-    }
+    // public void HideWindow()
+    // {
+    //     if (anim != null) anim.Play("Hide");
+    // }
 
-    public void HideWindow()
-    {
-        if (anim != null) anim.Play("Hide");
-    }
-
-    public void ShowWindow()
-    {
-        if (anim != null) anim.Play("Show");
-    }
+    // public void ShowWindow()
+    // {
+    //     if (anim != null) anim.Play("Show");
+    // }
 }
-
