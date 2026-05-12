@@ -145,6 +145,9 @@ public class MapShopItemScript : MonoBehaviour
 			case 9138: // PC Lab
 				Image.sprite = subCategoryItemScript.PCLabSprite;
 				break;
+			case 9242: // MoneyLake
+				Image.sprite = subCategoryItemScript.MoneyLakeSprite;
+				break;
 		}
 	}
 

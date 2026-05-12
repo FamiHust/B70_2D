@@ -38,6 +38,7 @@ public class SubCategoryItemScript : MonoBehaviour
 	public Sprite ITIMSSprite;
 	public Sprite SecurityRoomSprite;
 	public Sprite PCLabSprite;
+	public Sprite MoneyLakeSprite;
 
 	/* references */
 	public Text Name;
@@ -238,6 +239,10 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "PC LAB";
 				this.Image.sprite = this.PCLabSprite;
 				break;
+			case ShopWindowScript.SubCategory.MONEY_LAKE:
+				this.Name.text = "Hồ Tiền";
+				this.Image.sprite = this.MoneyLakeSprite;
+				break;
 		}
 	}
 
@@ -321,6 +326,9 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.PC_LAB:
 				itemId = 9138;
 					break;
+			case ShopWindowScript.SubCategory.MONEY_LAKE:
+				itemId = 9242;
+				break;
 		}
 
 		// LẤY DATA ITEM
@@ -438,6 +446,9 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.PC_LAB:
 				itemId = 9138;
+				break;
+			case ShopWindowScript.SubCategory.MONEY_LAKE:
+				itemId = 9242;
 				break;
 		}
 		return itemId;

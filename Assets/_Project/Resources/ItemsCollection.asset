@@ -716,3 +716,38 @@ MonoBehaviour:
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
+  - id: 9242
+    name: "H\u1ED3 Ti\u1EC1n"
+    description: 
+    thumb: {fileID: 2800000, guid: e84da8edf47d11a4f979e15adc7f800f, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 0
+    defaultPosZ: 0
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 99
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: e84da8edf47d11a4f979e15adc7f800f, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []

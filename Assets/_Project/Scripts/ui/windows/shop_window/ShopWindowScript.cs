@@ -70,13 +70,14 @@ public class ShopWindowScript : WindowScript
 		TDN_GATE,
 		TREE3,
 		LIBRARY,
-		WALL
+		WALL,
+		MONEY_LAKE
 	}
 
 	public static SubCategory[] ServiceSubItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
 	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6, SubCategory.ITIMS, SubCategory.SECURITY_ROOM, SubCategory.PC_LAB };
 	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.C7};
-	public static SubCategory[] DecorationsSubItems = new SubCategory[] { };
+	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.MONEY_LAKE };
 
 
 
@@ -281,6 +282,7 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.ITIMS: return 3090;
 			case SubCategory.SECURITY_ROOM: return 1628;
 			case SubCategory.PC_LAB: return 9138;
+			case SubCategory.MONEY_LAKE: return 9242;
 			// case SubCategory.B8: return 5342;
 			default: return 0;
 		}
