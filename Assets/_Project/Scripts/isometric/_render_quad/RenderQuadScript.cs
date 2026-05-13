@@ -8,23 +8,8 @@ public class RenderQuadScript : MonoBehaviour
 	/* object refs */
 	public MeshFilter MeshFilter;
 	public MeshRenderer MeshRenderer;
-	public ParticleSystem VFX_Build;
 
 	/* private vars */
-
-	public void PlayBuildVFX(bool play)
-	{
-		if (VFX_Build == null) return;
-
-		if (play)
-		{
-			if (!VFX_Build.isPlaying) VFX_Build.Play();
-		}
-		else
-		{
-			if (VFX_Build.isPlaying) VFX_Build.Stop();
-		}
-	}
 
 	public void SetData(SpriteCollection.TextureData textureData, int layer)
 	{

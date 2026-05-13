@@ -83,7 +83,7 @@ public class SceneManager : MonoBehaviour
 		// instantiate MenuWindow into WindowsContainer if assigned
 		if (this.MenuWindow != null)
 		{
-			Utilities.CreateInstance(this.MenuWindow, UIManager.instance.WindowsContainer, true);
+			UIManager.instance.ShowWindow(this.MenuWindow);
 		}
 	}
 
@@ -1003,6 +1003,8 @@ public class SceneManager : MonoBehaviour
 
 		this.SaveResources();
 		this.RefreshResourceUIs("level");
+
+		_hasShownUnlockThisLevel = false; // Reset cờ để có thể lên level tiếp theo trong cùng session
 	}
 
 	// Tham số cân bằng — có thể chuyển sang ScriptableObject để designer tinh chỉnh.

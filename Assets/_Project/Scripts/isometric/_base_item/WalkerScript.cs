@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -23,6 +23,11 @@ public class WalkerScript : MonoBehaviour
 
 	void Update()
 	{
+		if (TimeManager.instance != null && TimeManager.instance.isPaused)
+		{
+			return;
+		}
+
 		if (!this._isWalking)
 		{
 			return;

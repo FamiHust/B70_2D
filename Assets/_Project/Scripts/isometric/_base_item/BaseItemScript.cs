@@ -686,10 +686,6 @@ public class BaseItemScript : MonoBehaviour
 			this.UI.ShowProgressUI(false);
 		}
 
-		foreach (RenderQuadScript quad in this.Renderer.GetRenderQuads())
-		{
-			quad.PlayBuildVFX(false);
-		}
 
 			// Find the builder working on this building and stop them
 			foreach (BaseItemScript item in SceneManager.instance.GetAllItems())
@@ -708,10 +704,6 @@ public class BaseItemScript : MonoBehaviour
 		this.UI.ShowProgressUI(true);
 		this.isUnderConstruction = true;
 
-		foreach (RenderQuadScript quad in this.Renderer.GetRenderQuads())
-		{
-			quad.PlayBuildVFX(true);
-		}
 
 		if (builder != null)
 		{

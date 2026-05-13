@@ -185,6 +185,7 @@ MonoBehaviour:
   ITIMSSprite: {fileID: 21300000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
   SecurityRoomSprite: {fileID: 21300000, guid: 640bcd5fa567d8643ac1aebf927ff9e5, type: 3}
   PCLabSprite: {fileID: 21300000, guid: 4dc9ce35610c82542bc82412b652142e, type: 3}
+  MoneyLakeSprite: {fileID: 21300000, guid: e84da8edf47d11a4f979e15adc7f800f, type: 3}
   Name: {fileID: 114733654531682908}
   PriceText: {fileID: 114073632159367454}
   Image: {fileID: 114645770851548556}

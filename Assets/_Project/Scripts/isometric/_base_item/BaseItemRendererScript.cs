@@ -72,11 +72,6 @@ public class BaseItemRendererScript : MonoBehaviour
 			this.SetAlpha(0.5f);
 		}
 
-		foreach (RenderQuadScript renderQuad in this._renderQuads)
-		{
-			// Debug.Log("Syncing VFX on quad " + renderQuad.gameObject.name + " with construction state: " + BaseItem.isUnderConstruction);
-			renderQuad.PlayBuildVFX(BaseItem.isUnderConstruction);
-		}
 
 		//flip renderer for topleft, bottomleft, left
 		if (BaseItem.itemData.configuration.isCharacter)

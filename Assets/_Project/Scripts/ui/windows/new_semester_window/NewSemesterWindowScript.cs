@@ -8,6 +8,7 @@ public class NewSemesterWindowScript : WindowScript
 
     [Header("UI References - Semester Info")]
     public Text SemesterTitleText;
+    public Text SemesterNextText;
     public Text FreshmenText;
     public Text DropoutsText;
     public Text GraduatedText;
@@ -30,7 +31,10 @@ public class NewSemesterWindowScript : WindowScript
     public void Setup(SemesterBreakdown bd, int semesterNumber, float currentHappiness, float currentEducation)
     {
         if (SemesterTitleText != null)
-            SemesterTitleText.text = $"Kết quả học kỳ {semesterNumber}";
+            SemesterTitleText.text = semesterNumber.ToString();
+
+        if (SemesterNextText != null)
+            SemesterNextText.text = (semesterNumber + 1).ToString();
 
         if (FreshmenText != null)
             FreshmenText.text = $"+{bd.freshmen:F0}";
