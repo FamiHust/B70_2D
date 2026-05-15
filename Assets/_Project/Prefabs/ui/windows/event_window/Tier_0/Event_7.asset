@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0c438d10472c74aae37202c2343315, type: 3}
+  m_Name: Event_7
+  m_EditorClassIdentifier: 
+  eventID: "\u0110\u1EA1i chi\u1EBFn Gi\u1EA3i t\xEDch t\u1EA1i h\xE0nh lang"
+  eventName: "\u0110\u1EA1i chi\u1EBFn Gi\u1EA3i t\xEDch t\u1EA1i h\xE0nh lang"
+  description: "Hai sinh vi\xEAn c\xE3i nhau v\xEC m\u1ED9t ng\u01B0\u1EDDi d\xF9ng
+    \u0111\u1ECBnh l\xFD Stolz, ng\u01B0\u1EDDi kia d\xF9ng quy t\u1EAFc L'H\xF4pital
+    \u0111\u1EC3 gi\u1EA3i b\xE0i c\u01A1 b\u1EA3n."
+  triggerProbability: 0.35
+  options:
+  - title: "M\u1EDDi gi\u1EA3ng vi\xEAn ra ph\xE2n x\u1EED"
+    description: 
+    goldModifier: -100
+    happinessModifier: 1
+    educationModifier: 2
+  - title: "T\u1ECBch thu gi\u1EA5y nh\xE1p c\u1EE7a c\u1EA3 hai"
+    description: 
+    goldModifier: 0
+    happinessModifier: -1
+    educationModifier: -1
+  - title: "\u0110\u01B0a \u0111\u1EC1 b\xE0i kh\xF3 h\u01A1n cho c\u1EA3 hai im
+      l\u1EB7ng"
+    description: 
+    goldModifier: 0
+    happinessModifier: -1
+    educationModifier: 2

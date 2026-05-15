@@ -46,20 +46,20 @@ namespace B70.Balance
         }
 
         /// <summary>
-        /// Hàm bổ trợ để áp dụng các chỉ số của event vào SceneManager.
+        /// Hàm bổ trợ để áp dụng các chỉ số của một Option trong event vào SceneManager.
         /// </summary>
-        public void ApplyEventEffects(UniversityEventData evt)
+        public void ApplyOptionEffects(EventOption option)
         {
-            if (evt.goldCost > 0)
+            if (SceneManager.instance != null)
             {
-                SceneManager.instance.numberOfGoldInStorage -= evt.goldCost;
-            }
-            
-            SceneManager.instance.numberOfHappyInStorage = Mathf.Clamp(
-                SceneManager.instance.numberOfHappyInStorage + Mathf.RoundToInt(evt.happinessModifier), 0, 100);
+                SceneManager.instance.numberOfGoldInStorage += option.goldModifier;
                 
-            SceneManager.instance.numberOfEducationInStorage = Mathf.Clamp(
-                SceneManager.instance.numberOfEducationInStorage + Mathf.RoundToInt(evt.educationModifier), 0, 100);
+                SceneManager.instance.numberOfHappyInStorage = Mathf.Clamp(
+                    SceneManager.instance.numberOfHappyInStorage + Mathf.RoundToInt(option.happinessModifier), 0, 100);
+                    
+                SceneManager.instance.numberOfEducationInStorage = Mathf.Clamp(
+                    SceneManager.instance.numberOfEducationInStorage + Mathf.RoundToInt(option.educationModifier), 0, 100);
+            }
         }
 
         /// <summary>
@@ -126,22 +126,12 @@ namespace B70.Balance
 
                 if (roll <= evt.triggerProbability)
                 {
-                    // Nếu event tốn tiền, kiểm tra xem người chơi có đủ Gold không
-                    if (evt.goldCost > 0)
-                    {
-                        if (SceneManager.instance.numberOfGoldInStorage < evt.goldCost)
-                        {
-                            Debug.Log($"[UniversityEventManager] Skipped {evt.eventName} - Not enough gold ({SceneManager.instance.numberOfGoldInStorage} < {evt.goldCost})");
-                            continue;
-                        }
-                    }
-                    
                     // Gọi prefab ra màn hình
                     SpawnEventPrefab(evt);
 
                     triggeredEvents.Add(evt);
                     
-                    Debug.Log($"[Event Triggered] {evt.eventName} | H: {(evt.happinessModifier >= 0 ? "+" : "")}{evt.happinessModifier}, E: {(evt.educationModifier >= 0 ? "+" : "")}{evt.educationModifier}, Gold: -{evt.goldCost}");
+                    Debug.Log($"[Event Triggered] {evt.eventName} (Has Options: {evt.options.Count})");
                 }
                 else
                 {
@@ -168,12 +158,6 @@ namespace B70.Balance
             var evt = availableEvents[Random.Range(0, availableEvents.Count)];
             if (evt == null) return;
 
-            // Kiểm tra điều kiện tiền tệ (giữ lại logic này để đảm bảo balance)
-            if (evt.goldCost > 0 && SceneManager.instance != null && SceneManager.instance.numberOfGoldInStorage < evt.goldCost)
-            {
-                Debug.Log($"[UniversityEventManager] Cannot trigger {evt.eventName} - Not enough gold.");
-                return;
-            }
 
             Debug.Log($"[UniversityEventManager] Manually triggered event prefab: {evt.eventName}");
             SpawnEventPrefab(evt);
@@ -192,11 +176,6 @@ namespace B70.Balance
             float roll = Random.Range(0f, 1f);
             if (roll <= evt.triggerProbability)
             {
-                if (evt.goldCost > 0 && SceneManager.instance != null && SceneManager.instance.numberOfGoldInStorage < evt.goldCost)
-                {
-                    return;
-                }
-
                 SpawnEventPrefab(evt);
             }
         }

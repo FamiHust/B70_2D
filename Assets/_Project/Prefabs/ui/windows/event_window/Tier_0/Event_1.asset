@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0c438d10472c74aae37202c2343315, type: 3}
+  m_Name: Event_1
+  m_EditorClassIdentifier: 
+  eventID: "Maid Cafe \u1EDF s\u1EA3nh C7"
+  eventName: "Maid Cafe \u1EDF s\u1EA3nh C7"
+  description: "M\u1ED9t nh\xF3m sinh vi\xEAn t\u1ED5 ch\u1EE9c m\u1EDF Maid Cafe
+    \u1EDF C7"
+  triggerProbability: 0.35
+  options:
+  - title: "H\u1EE3p t\xE1c"
+    description: 
+    goldModifier: -100
+    happinessModifier: 2
+    educationModifier: -2
+  - title: "C\u1EA3nh c\xE1o nh\u1EB9 nh\xE0ng"
+    description: 
+    goldModifier: 0
+    happinessModifier: 1
+    educationModifier: -2
+  - title: "T\u1EEB ch\u1ED1i v\xE0 d\u1EB9p"
+    description: 
+    goldModifier: 0
+    happinessModifier: -2
+    educationModifier: 2

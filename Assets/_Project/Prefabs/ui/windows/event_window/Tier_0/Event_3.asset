@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0c438d10472c74aae37202c2343315, type: 3}
+  m_Name: Event_3
+  m_EditorClassIdentifier: 
+  eventID: "B\u1ECB tr\u1ED9m m\u1EA5t m\u0169 b\u1EA3o hi\u1EC3m "
+  eventName: "B\u1ECB tr\u1ED9m m\u1EA5t m\u0169 b\u1EA3o hi\u1EC3m "
+  description: "M\u1ED9t \xF4ng ch\xFA \u0111eo kh\u1EA9u trang m\u1EB7c \xE1o HUST
+    v\u1EEBa \"nh\u1EA5c\" nh\u1EB9 chi\u1EBFc m\u0169 c\u1EE7a m\u1ED9t nam sinh
+    t\u1EA1i b\xE3i xe"
+  triggerProbability: 0.35
+  options:
+  - title: "Gi\xFAp sinh vi\xEAn t\xECm l\u1EA1i"
+    description: 
+    goldModifier: -200
+    happinessModifier: 2
+    educationModifier: 0
+  - title: "Nh\u1EAFc nh\u1EDF sinh vi\xEAn b\u1EA3o qu\u1EA3n k\u0129"
+    description: 
+    goldModifier: 0
+    happinessModifier: -2
+    educationModifier: -1
+  - title: "B\u1ECF qua"
+    description: 
+    goldModifier: 0
+    happinessModifier: -1
+    educationModifier: -1

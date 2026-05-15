@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0c438d10472c74aae37202c2343315, type: 3}
+  m_Name: Event_2
+  m_EditorClassIdentifier: 
+  eventID: "M\u1EA5t d\xE9p"
+  eventName: "M\u1EA5t d\xE9p"
+  description: "Sinh vi\xEAn m\u1EA5t d\xE9p \u1EDF th\u01B0 vi\u1EC7n"
+  triggerProbability: 0.35
+  options:
+  - title: "T\xECm th\u1EE7 ph\u1EA1m"
+    description: 
+    goldModifier: -36
+    happinessModifier: 1
+    educationModifier: 1
+  - title: "M\u1EB7c k\u1EC7"
+    description: 
+    goldModifier: -36
+    happinessModifier: -2
+    educationModifier: 0
+  - title: "T\u1EB7ng sinh vi\xEAn \u0111\xF4i d\xE9p m\u1EDBi "
+    description: 
+    goldModifier: -360
+    happinessModifier: 2
+    educationModifier: 1
