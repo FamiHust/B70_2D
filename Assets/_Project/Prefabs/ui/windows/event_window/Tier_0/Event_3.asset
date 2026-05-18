@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "M\u1ED9t \xF4ng ch\xFA \u0111eo kh\u1EA9u trang m\u1EB7c \xE1o HUST
     v\u1EEBa \"nh\u1EA5c\" nh\u1EB9 chi\u1EBFc m\u0169 c\u1EE7a m\u1ED9t nam sinh
     t\u1EA1i b\xE3i xe"
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "Gi\xFAp sinh vi\xEAn t\xECm l\u1EA1i"
     description: 

@@ -38,8 +38,18 @@ public class MapShopAreaScript : MonoBehaviour
 			return;
 		}
 
-		// hiển thị ItemWindow thông qua UIManager, truyền reference của shop area này
-		UIManager.instance.ShowMapShopWindow(areaName, itemIds, this);
+		// Thay vì hiển thị ItemWindow, hiển thị InfoWindow cho item đầu tiên
+		int itemId = itemIds[0];
+		ItemsCollection.ItemData itemData = Items.GetItem(itemId);
+		if (itemData != null)
+		{
+			InfoWindowScript infoWindow = UIManager.instance.ShowInfoWindow();
+			infoWindow.Init(itemData);
+		}
+		else
+		{
+			Debug.LogWarning($"ItemId {itemId} not found in Items database!");
+		}
 	}
 
 	public void AddItem(int itemId)

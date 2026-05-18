@@ -16,7 +16,7 @@ MonoBehaviour:
   eventName: "\" Ng\xF3n tay v\xE0ng \" trong th\u01B0 vi\u1EC7n "
   description: "M\u1ED9t sinh vi\xEAn b\u1ECB m\xF3c m\u1EA5t v\xED ngay trong th\u01B0
     vi\u1EC7n T\u1EA1 Quang B\u1EEDu."
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "H\u1ED7 tr\u1EE3 cho sinh vi\xEAn b\u1ECB m\u1EA5t v\xED"
     description: 

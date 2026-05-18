@@ -15,6 +15,9 @@ public class CategoryItemScript : MonoBehaviour {
 	/* references */
 	public Text Name;
 	public Image Image;
+	public Image BgImage;
+	public Color ActiveColor = Color.white;
+	public Color InactiveColor = Color.gray;
 
 
 	/* private variables */
@@ -33,21 +36,32 @@ public class CategoryItemScript : MonoBehaviour {
 		// 	this.Image.sprite = this.DefenceSprite;
 		// 	break;
 		case ShopWindowScript.Category.SERVICE:
-			this.Name.text = "DỊCH VỤ";
+			this.Name.text = "Dịch vụ";
 			this.Image.sprite = this.ServiceSprite;
 			break;
-		case ShopWindowScript.Category.RESOURCES:
-			this.Name.text = "TIỆN ÍCH";
-			this.Image.sprite = this.ResourcesSprite;
-			break;
+
 		case ShopWindowScript.Category.STUDENT:
-			this.Name.text = "CƠ SỞ";
+			this.Name.text = "Sinh viên";
 			this.Image.sprite = this.StudentSprite;
 			break;
+		case ShopWindowScript.Category.RESOURCES:
+			this.Name.text = "Thương mại";
+			this.Image.sprite = this.ResourcesSprite;
+			break;
 		case ShopWindowScript.Category.DECORATIONS:
-			this.Name.text = "CẢNH QUAN";
+			this.Name.text = "Trang trí";
 			this.Image.sprite = this.DecorationsSprite;
 			break;
+		}
+	}
+
+	public ShopWindowScript.Category GetCategory() {
+		return this._category;
+	}
+
+	public void SetActiveState(bool isActive) {
+		if (BgImage != null) {
+			BgImage.color = isActive ? ActiveColor : InactiveColor;
 		}
 	}
 

@@ -60,7 +60,7 @@ public class CameraManager : MonoBehaviour
 	private bool _isPanningScene;
 	private bool _isUIBlocked;
 	public bool canMoveBuildings = true;
-	public bool isCameraMovementLocked = false;
+	public bool isZoomLocked = false;
 
 
 	private BaseItemScript _selectedBaseItem;
@@ -101,9 +101,9 @@ public class CameraManager : MonoBehaviour
 		this.UpdateBaseItemMove();
 		this.UpdateGroundTap();
 
-		if (!this.isCameraMovementLocked)
+		this.UpdateScenePan();
+		if (!this.isZoomLocked)
 		{
-			this.UpdateScenePan();
 			this.UpdateSceneZoom();
 		}
 	}
@@ -734,7 +734,7 @@ public class CameraManager : MonoBehaviour
 
 	public void FocusAndZoom(Vector3 targetGroundPos, float targetSize, float duration = 0.5f)
 	{
-		this.isCameraMovementLocked = false;
+		this.isZoomLocked = false;
 		if (this._focusCoroutine != null) StopCoroutine(this._focusCoroutine);
 		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
 
@@ -831,14 +831,14 @@ public class CameraManager : MonoBehaviour
 
 	public void ZoomOutAndLock()
 	{
-		this.isCameraMovementLocked = true;
+		this.isZoomLocked = true;
 		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
 		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(this._maxZoomFactor));
 	}
 
 	public void ResetZoom(float zoomSize = 10f)
 	{
-		this.isCameraMovementLocked = false;
+		this.isZoomLocked = false;
 		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
 		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(zoomSize));
 	}

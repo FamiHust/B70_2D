@@ -88,12 +88,19 @@ public class BaseItemSelectionUIScript : MonoBehaviour
 		this.NameLabel.text = this.NameLabelShadow.text = baseItem.itemData.name;
 		this.RefreshLevel(baseItem.level);
 
+		/* ensure TextMesh labels render above RenderQuad */
+		int textSortingOrder = 9999;
+		if (this.NameLabel != null) this.NameLabel.GetComponent<Renderer>().sortingOrder = textSortingOrder;
+		if (this.NameLabelShadow != null) this.NameLabelShadow.GetComponent<Renderer>().sortingOrder = textSortingOrder - 1;
+		if (this.LevelLabel != null) this.LevelLabel.GetComponent<Renderer>().sortingOrder = textSortingOrder;
+		if (this.LevelLabelShadow != null) this.LevelLabelShadow.GetComponent<Renderer>().sortingOrder = textSortingOrder - 1;
+
 		this.ShowGrid(false);
 	}
 
 	public void RefreshLevel(int level)
 	{
-		this.LevelLabel.text = this.LevelLabelShadow.text = "Level " + level;
+		this.LevelLabel.text = this.LevelLabelShadow.text = "Cấp " + level;
 	}
 
 	public void ShowGrid(bool isTrue)

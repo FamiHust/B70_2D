@@ -16,7 +16,7 @@ MonoBehaviour:
   eventName: "Maid Cafe \u1EDF s\u1EA3nh C7"
   description: "M\u1ED9t nh\xF3m sinh vi\xEAn t\u1ED5 ch\u1EE9c m\u1EDF Maid Cafe
     \u1EDF C7"
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "H\u1EE3p t\xE1c"
     description: 

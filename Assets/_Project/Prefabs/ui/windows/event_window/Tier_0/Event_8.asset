@@ -16,7 +16,7 @@ MonoBehaviour:
   eventName: "H\u1EC7 th\u1ED1ng g\u1EEDi xe b\u1ECB l\u1ED7i"
   description: "M\xE1y qu\u1EB9t th\u1EBB b\u1ED7ng nhi\xEAn b\u1ECB h\u1ECFng t\u1EA5t
     c\u1EA3 sinh vi\xEAn kh\xF4ng ra kh\u1ECFi nh\xE0 xe \u0111\u01B0\u1EE3c."
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "X\u1EA3 tr\u1EA1m cho v\u1EC1 h\u1EBFt"
     description: 

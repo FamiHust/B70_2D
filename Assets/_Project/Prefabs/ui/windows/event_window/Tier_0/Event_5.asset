@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "Nh\xE0 tr\u01B0\u1EDDng y\xEAu c\u1EA7u quay video nh\u1EA3y theo
     nh\u1EA1c \"B\xE1ch Khoa trong t\xF4i\" \u0111\u1EC3 l\u1EA5y \u0111i\u1EC3m
     r\xE8n luy\u1EC7n."
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "Thu\xEA studio quay cho x\u1ECBn"
     description: 

@@ -115,31 +115,14 @@ public class GameOverlayWindowScript : WindowScript
 
 		if (TimeInfo != null && TimeManager.instance != null)
 		{
-			BaseItemScript selected = SceneManager.instance != null ? SceneManager.instance.selectedItem : null;
+			// Mặc định hiển thị đếm ngược học kỳ
+			TimeInfo.hasMaxValue = true;
+			TimeInfo.maxValue = TimeManager.instance.semesterDuration;
+			TimeInfo.value = TimeManager.instance.timeRemaining;
 			
-			// Nếu đang chọn một tòa nhà đang xây dựng, ưu tiên hiển thị tiến độ xây dựng
-			if (selected != null && selected.Production != null && selected.Production.isUnderConstruction)
+			if (TimeInfo.ValueLabel != null)
 			{
-				TimeInfo.hasMaxValue = true;
-				TimeInfo.maxValue = selected.Production.constructionTimeTotal;
-				TimeInfo.value = selected.Production.constructionTimeTotal - selected.Production.constructionTimeRemaining;
-				
-				if (TimeInfo.ValueLabel != null)
-				{
-					TimeInfo.ValueLabel.text = selected.Production.GetFormattedConstructionTime();
-				}
-			}
-			else
-			{
-				// Mặc định hiển thị đếm ngược học kỳ
-				TimeInfo.hasMaxValue = true;
-				TimeInfo.maxValue = TimeManager.instance.semesterDuration;
-				TimeInfo.value = TimeManager.instance.timeRemaining;
-				
-				if (TimeInfo.ValueLabel != null)
-				{
-					TimeInfo.ValueLabel.text = TimeManager.instance.GetFormattedTime();
-				}
+				TimeInfo.ValueLabel.text = TimeManager.instance.GetFormattedTime();
 			}
 		}
 	}

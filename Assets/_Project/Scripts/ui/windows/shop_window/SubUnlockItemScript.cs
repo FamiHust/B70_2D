@@ -31,10 +31,14 @@ public class SubUnlockItemScript : MonoBehaviour
 	public Sprite ITIMSSprite;
 	public Sprite SecurityRoomSprite;
 	public Sprite PCLabSprite;
+	public Sprite D9Sprite;
+	public Sprite TTVDSprite;
+	public Sprite AlumniSprite;
 
 	/* references */
 	public Text Name;
 	public Image Image;
+	public Text CategoryText;
 
 	private int _itemId;
 
@@ -47,6 +51,9 @@ public class SubUnlockItemScript : MonoBehaviour
 		{
 			if (this.Name != null)
 				this.Name.text = itemData.name;
+				
+			if (this.CategoryText != null)
+				this.CategoryText.text = ShopWindowScript.GetCategoryStringFromItemId(itemId);
 				
 			this.SetImageSprite(itemId);
 		}
@@ -83,6 +90,9 @@ public class SubUnlockItemScript : MonoBehaviour
 			case 3090: this.Image.sprite = this.ITIMSSprite; break;
 			case 1628: this.Image.sprite = this.SecurityRoomSprite; break;
 			case 9138: this.Image.sprite = this.PCLabSprite; break;
+			case 9818: this.Image.sprite = this.D9Sprite; break;
+			case 3702: this.Image.sprite = this.TTVDSprite; break;
+			case 8099: this.Image.sprite = this.AlumniSprite; break;
 		}
 	}
 	public void OnClickInfoButton()

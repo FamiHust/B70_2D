@@ -15,7 +15,7 @@ MonoBehaviour:
   eventID: "M\u1EA5t d\xE9p"
   eventName: "M\u1EA5t d\xE9p"
   description: "Sinh vi\xEAn m\u1EA5t d\xE9p \u1EDF th\u01B0 vi\u1EC7n"
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "T\xECm th\u1EE7 ph\u1EA1m"
     description: 

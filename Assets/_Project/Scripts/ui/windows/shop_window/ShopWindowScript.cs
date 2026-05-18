@@ -25,6 +25,7 @@ public class ShopWindowScript : WindowScript
 	/* Map Shop references */
 	private bool _isMapShopMode = false;
 	private string _currentMapShopName = "";
+	private Category _currentCategory = Category.SERVICE;
 
 	public enum Category
 	{
@@ -71,12 +72,15 @@ public class ShopWindowScript : WindowScript
 		TREE3,
 		LIBRARY,
 		WALL,
-		MONEY_LAKE
+		MONEY_LAKE,
+		D9,
+		TTVD,
+		Alumni
 	}
 
 	public static SubCategory[] ServiceSubItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
-	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6, SubCategory.ITIMS, SubCategory.SECURITY_ROOM, SubCategory.PC_LAB };
-	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.C7};
+	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6, SubCategory.ITIMS, SubCategory.SECURITY_ROOM, SubCategory.PC_LAB, SubCategory.TTVD, SubCategory.Alumni };
+	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.C7, SubCategory.D9 };
 	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.MONEY_LAKE };
 
 
@@ -116,6 +120,7 @@ public class ShopWindowScript : WindowScript
 	{
 		_isMapShopMode = false;
 		_currentMapShopName = "";
+		_currentCategory = Category.SERVICE;
 		this.RenderCategories();
 		this.RenderSubCategories(Category.SERVICE);
 	}
@@ -136,7 +141,9 @@ public class ShopWindowScript : WindowScript
 		for (int index = 0; index < categories.Length; index++)
 		{
 			GameObject inst = Utilities.CreateInstance(this.CategoryItem, this.CategoryList, true);
-			inst.GetComponent<CategoryItemScript>().SetCategory(categories[index]);
+			CategoryItemScript itemScript = inst.GetComponent<CategoryItemScript>();
+			itemScript.SetCategory(categories[index]);
+			itemScript.SetActiveState(categories[index] == _currentCategory);
 		}
 
 		RectTransform rt = this.CategoryList.GetComponent<RectTransform>();
@@ -253,6 +260,27 @@ public class ShopWindowScript : WindowScript
 		}
 	}
 
+	public static string GetCategoryStringFromItemId(int itemId)
+	{
+		foreach (var sub in ServiceSubItems)
+		{
+			if (GetItemIdFromSubCategory(sub) == itemId) return "Dịch vụ";
+		}
+		foreach (var sub in ResourcesSubItems)
+		{
+			if (GetItemIdFromSubCategory(sub) == itemId) return "Thương mại";
+		}
+		foreach (var sub in StudentSubItems)
+		{
+			if (GetItemIdFromSubCategory(sub) == itemId) return "Sinh viên";
+		}
+		foreach (var sub in DecorationsSubItems)
+		{
+			if (GetItemIdFromSubCategory(sub) == itemId) return "Trang trí";
+		}
+		return "";
+	}
+
 	public static int GetItemIdFromSubCategory(SubCategory subCategory)
 	{
 		switch (subCategory)
@@ -284,12 +312,26 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.PC_LAB: return 9138;
 			case SubCategory.MONEY_LAKE: return 9242;
 			// case SubCategory.B8: return 5342;
+			case SubCategory.D9: return 9818;
+			case SubCategory.TTVD: return 3702;
+			case SubCategory.Alumni: return 8099;
 			default: return 0;
 		}
 	}
 
 	public void OnClickCategory(Category category)
 	{
+		_currentCategory = category;
+
+		foreach (Transform child in CategoryList.transform)
+		{
+			CategoryItemScript item = child.GetComponent<CategoryItemScript>();
+			if (item != null)
+			{
+				item.SetActiveState(item.GetCategory() == _currentCategory);
+			}
+		}
+
 		this.RenderSubCategories(category);
 	}
 

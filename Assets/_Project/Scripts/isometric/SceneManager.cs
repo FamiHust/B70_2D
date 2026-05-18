@@ -987,22 +987,21 @@ public class SceneManager : MonoBehaviour
 		// Đợi chính xác thời gian thanh Progress chạy hết (tweenDuration = 0.75s)
 		yield return new WaitForSeconds(0.8f);
 
+		this.currentLevel++; // Tăng level mới
+		this.levelProgress = 0; // Reset thanh tiến trình
+		this.SaveResources();
+		this.RefreshResourceUIs("level");
+
 		if (UIManager.instance != null)
 		{
 			UIManager.instance.ShowUnlockItemsWindow();
 		}
-
-		this.currentLevel++; // Tăng level mới
-		this.levelProgress = 0; // Reset thanh tiến trình
 
 		// Kiểm tra nếu đạt level 2 lần đầu (Tutorial)
 		if (this.currentLevel == 2 && GameOverlayWindowScript.instance != null)
 		{
 			GameOverlayWindowScript.instance.OnReachLevel2();
 		}
-
-		this.SaveResources();
-		this.RefreshResourceUIs("level");
 
 		_hasShownUnlockThisLevel = false; // Reset cờ để có thể lên level tiếp theo trong cùng session
 	}

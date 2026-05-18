@@ -16,7 +16,7 @@ MonoBehaviour:
   eventName: "Sinh v\u1EADt l\u1EA1 trong b\xE1t canh"
   description: "Sinh vi\xEAn ph\xE1t hi\u1EC7n ti\u1EC3u c\u01B0\u1EDDng \u0111ang
     \"t\u1EADp b\u01A1i\" trong b\xE1t canh t\u1EA1i nh\xE0 \u0103n."
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "Mi\u1EC5n ph\xED b\u1EEFa \u0103n cho b\xE0n \u0111\xF3"
     description: 

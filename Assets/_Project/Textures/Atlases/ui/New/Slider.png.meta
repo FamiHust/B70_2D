@@ -1534,7 +1534,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1179
-        y: 1106
+        y: 1108
         width: 80
         height: 101
       alignment: 0
@@ -1659,13 +1659,13 @@ TextureImporter:
       name: Slider_73
       rect:
         serializedVersion: 2
-        x: 1193
-        y: 1007
-        width: 92
-        height: 95
+        x: 1196
+        y: 1010
+        width: 86
+        height: 89
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 41, y: 45, z: 45, w: 44}
       outline: []
       physicsShape: []
       tessellationDetail: 0

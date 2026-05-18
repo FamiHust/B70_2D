@@ -17,7 +17,7 @@ MonoBehaviour:
   description: "Hai sinh vi\xEAn c\xE3i nhau v\xEC m\u1ED9t ng\u01B0\u1EDDi d\xF9ng
     \u0111\u1ECBnh l\xFD Stolz, ng\u01B0\u1EDDi kia d\xF9ng quy t\u1EAFc L'H\xF4pital
     \u0111\u1EC3 gi\u1EA3i b\xE0i c\u01A1 b\u1EA3n."
-  triggerProbability: 0.35
+  triggerProbability: 0.2
   options:
   - title: "M\u1EDDi gi\u1EA3ng vi\xEAn ra ph\xE2n x\u1EED"
     description: 

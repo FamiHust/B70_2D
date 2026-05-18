@@ -39,6 +39,9 @@ public class SubCategoryItemScript : MonoBehaviour
 	public Sprite SecurityRoomSprite;
 	public Sprite PCLabSprite;
 	public Sprite MoneyLakeSprite;
+	public Sprite D9Sprite;
+	public Sprite TTVDSprite;
+	public Sprite AlumniSprite;
 
 	/* references */
 	public Text Name;
@@ -65,7 +68,7 @@ public class SubCategoryItemScript : MonoBehaviour
 			
 			if (UnlockText != null)
 			{
-				UnlockText.text = "Level " + itemData.configuration.unlockItemAtSemester + " mở";
+				UnlockText.text = "SV cấp " + itemData.configuration.unlockItemAtSemester + " mở";
 			}
 			
 			bool isUnlocked = SceneManager.instance.currentLevel >= itemData.configuration.unlockItemAtSemester;
@@ -243,6 +246,18 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "Hồ Tiền";
 				this.Image.sprite = this.MoneyLakeSprite;
 				break;
+			case ShopWindowScript.SubCategory.D9:
+				this.Name.text = "Tòa D9";
+				this.Image.sprite = this.D9Sprite;
+				break;
+			case ShopWindowScript.SubCategory.TTVD:
+				this.Name.text = "Tòa TTVD";
+				this.Image.sprite = this.TTVDSprite;
+				break;
+			case ShopWindowScript.SubCategory.Alumni:
+				this.Name.text = "Tòa Alumni";
+				this.Image.sprite = this.AlumniSprite;
+				break;
 		}
 	}
 
@@ -328,6 +343,15 @@ public class SubCategoryItemScript : MonoBehaviour
 					break;
 			case ShopWindowScript.SubCategory.MONEY_LAKE:
 				itemId = 9242;
+				break;
+			case ShopWindowScript.SubCategory.D9:
+				itemId = 9818;
+				break;
+			case ShopWindowScript.SubCategory.TTVD:
+				itemId = 3702;
+				break;
+			case ShopWindowScript.SubCategory.Alumni:
+				itemId = 8099;
 				break;
 		}
 
@@ -449,6 +473,15 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.MONEY_LAKE:
 				itemId = 9242;
+				break;
+			case ShopWindowScript.SubCategory.D9:
+				itemId = 9818;
+				break;
+			case ShopWindowScript.SubCategory.TTVD:
+				itemId = 3702;
+				break;
+			case ShopWindowScript.SubCategory.Alumni:
+				itemId = 8099;
 				break;
 		}
 		return itemId;

@@ -67,6 +67,11 @@ namespace B70.Balance
         /// </summary>
         private void SpawnEventPrefab(UniversityEventData evt)
         {
+            if (CameraManager.instance != null && CameraManager.instance.isZoomLocked)
+            {
+                return; // Bỏ qua hoàn toàn event này khi đang zoom out
+            }
+
             if (eventPrefab != null)
             {
                 if (UIManager.instance != null)
