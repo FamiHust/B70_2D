@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
 	public GameObject NewSemesterWindow;
 	public GameObject MissionWindow;
 	public GameObject EventWindow;
+	public GameObject EventResultOptionWindow;
 
 
 	/* object references */
@@ -217,6 +218,11 @@ public class UIManager : MonoBehaviour
 	public void ShowEventWindow()
 	{
 		this.ShowWindow(this.EventWindow);
+	}
+
+	public B70.Balance.EventResultOptionWindow ShowEventResultOptionWindow()
+	{
+		return this.ShowWindow(this.EventResultOptionWindow) as B70.Balance.EventResultOptionWindow;
 	}
 
 	public ItemWindowScript ShowMapShopWindow(string areaName, List<int> itemIds, MapShopAreaScript mapShopArea = null)

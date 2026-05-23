@@ -67,13 +67,13 @@ PrefabInstance:
         type: 3}
       propertyPath: backSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 28db61ca08d4b0c4fbad2b184cf4d348,
+      objectReference: {fileID: 21300000, guid: 73ef15c4f2206b742a1e4f1212c2568a,
         type: 3}
     - target: {fileID: 3516027638262887625, guid: db9a8737d93f00e45b68b4886217e28a,
         type: 3}
       propertyPath: frontSprite
       value: 
-      objectReference: {fileID: 21300000, guid: e859fd49a08253e4ba33fbdbcdafc9e3,
+      objectReference: {fileID: 21300000, guid: 542dfdcec217515479c42631d3e78278,
         type: 3}
     - target: {fileID: 6608005356190960893, guid: db9a8737d93f00e45b68b4886217e28a,
         type: 3}

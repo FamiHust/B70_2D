@@ -5,48 +5,11 @@ using UnityEngine.UI;
 
 public class SubCategoryItemScript : MonoBehaviour
 {
-	/* prefabs */
-	// public Sprite BarrackSprite;
-	// public Sprite BoatSprite;
-	public Sprite D4Sprite;
-	public Sprite C2Sprite;
-	public Sprite C3Sprite;
-	public Sprite C3BSprite;
-	public Sprite C5Sprite;
-	public Sprite C6Sprite;
-	public Sprite C9Sprite;
-	public Sprite C10Sprite;
-	public Sprite D35Sprite;
-	public Sprite D6Sprite;
-	public Sprite D8Sprite;
-	// public Sprite CampSprite;
-	// public Sprite CannonSprite;
-	// public Sprite ElixirCollectorSprite;
-	// public Sprite ElixirStorageSprite;
-	public Sprite C7Sprite;
-	public Sprite C4Sprite;
-	public Sprite CanteenSprite;
-	public Sprite GaraD6Sprite;
-	// public Sprite GoldStorageSprite;
-	// public Sprite TowerSprite;
-	public Sprite C1Sprite;
-	public Sprite GiaiPhongGateSprite;
-	public Sprite TDNGateSprite;
-	public Sprite LibSprite;
-	public Sprite WallSprite;
-	public Sprite Tree3Sprite;
-	public Sprite ITIMSSprite;
-	public Sprite SecurityRoomSprite;
-	public Sprite PCLabSprite;
-	public Sprite MoneyLakeSprite;
-	public Sprite D9Sprite;
-	public Sprite TTVDSprite;
-	public Sprite AlumniSprite;
-
 	/* references */
 	public Text Name;
 	public Text PriceText;
-	public Image Image;
+	public RawImage Image;
+	public RawImage ImageShadow;
 	public GameObject LockImage;
 	public Text UnlockText;
 	public GameObject InfoButton;
@@ -62,9 +25,12 @@ public class SubCategoryItemScript : MonoBehaviour
 
 		int itemId = GetItemId(subCategory);
 		ItemsCollection.ItemData itemData = Items.GetItem(itemId);
-		if (itemData != null && PriceText != null)
+		if (itemData != null)
 		{
-			PriceText.text = itemData.configuration.price.ToString();
+			if (PriceText != null)
+			{
+				PriceText.text = itemData.configuration.price.ToString();
+			}
 			
 			if (UnlockText != null)
 			{
@@ -81,182 +47,106 @@ public class SubCategoryItemScript : MonoBehaviour
 			{
 				InfoButton.SetActive(isUnlocked);
 			}
+
+			if (Image != null)
+			{
+				Image.texture = itemData.thumb;
+			}
+			if (ImageShadow != null)
+			{
+				ImageShadow.texture = itemData.thumb;
+			}
 		}
 
 
 		switch (this._subCategory)
 		{
-			// case ShopWindowScript.SubCategory.BARRACK:
-			// 	this.Name.text = "BARRACK";
-			// 	this.Image.sprite = this.BarrackSprite;
-			// 	break;
-
-			// case ShopWindowScript.SubCategory.BOAT:
-			// 	this.Name.text = "BOAT";
-			// 	this.Image.sprite = this.BoatSprite;
-			// 	break;
-
 			case ShopWindowScript.SubCategory.D4:
 				this.Name.text = "Tòa D4";
-				this.Image.sprite = this.D4Sprite;
 				break;
-		case ShopWindowScript.SubCategory.C2:
-			this.Name.text = "Tòa C2";
-			this.Image.sprite = this.C2Sprite;
-			break;
+			case ShopWindowScript.SubCategory.C2:
+				this.Name.text = "Tòa C2";
+				break;
 
-		case ShopWindowScript.SubCategory.C3:
-			this.Name.text = "Tòa C3";
-			this.Image.sprite = this.C3Sprite;
-			break;
+			case ShopWindowScript.SubCategory.C3:
+				this.Name.text = "Tòa C3";
+				break;
 
-		case ShopWindowScript.SubCategory.C3B:
-			this.Name.text = "Tòa C3B";
-			this.Image.sprite = this.C3BSprite;
-			break;
+			case ShopWindowScript.SubCategory.C3B:
+				this.Name.text = "Tòa C3B";
+				break;
 
-		case ShopWindowScript.SubCategory.C5:
-			this.Name.text = "Tòa C5";
-			this.Image.sprite = this.C5Sprite;
-			break;
+			case ShopWindowScript.SubCategory.C5:
+				this.Name.text = "Tòa C5";
+				break;
 
-		case ShopWindowScript.SubCategory.C6:
-			this.Name.text = "Tòa C6";
-			this.Image.sprite = this.C6Sprite;
-			break;
+			case ShopWindowScript.SubCategory.C6:
+				this.Name.text = "Tòa C6";
+				break;
 
-		case ShopWindowScript.SubCategory.C9:
-			this.Name.text = "Tòa C9";
-			this.Image.sprite = this.C9Sprite;
-			break;
+			case ShopWindowScript.SubCategory.C9:
+				this.Name.text = "Tòa C9";
+				break;
 
-		case ShopWindowScript.SubCategory.C10:
-			this.Name.text = "Tòa C10";
-			this.Image.sprite = this.C10Sprite;
-			break;
+			case ShopWindowScript.SubCategory.C10:
+				this.Name.text = "Tòa C10";
+				break;
 
-		case ShopWindowScript.SubCategory.D35:
-			this.Name.text = "Tòa D3-5";
-			this.Image.sprite = this.D35Sprite;
-			break;
+			case ShopWindowScript.SubCategory.D35:
+				this.Name.text = "Tòa D3-5";
+				break;
 
-		case ShopWindowScript.SubCategory.D6:
-			this.Name.text = "Tòa D6";
-			this.Image.sprite = this.D6Sprite;
-			break;
+			case ShopWindowScript.SubCategory.D6:
+				this.Name.text = "Tòa D6";
+				break;
 
-		case ShopWindowScript.SubCategory.D8:
-			this.Name.text = "Tòa D8";
-			this.Image.sprite = this.D8Sprite;
-			break;
-			// case ShopWindowScript.SubCategory.CAMP:
-			// 	this.Name.text = "CAMP";
-			// 	this.Image.sprite = this.CampSprite;
-			// 	break;
-
-			// case ShopWindowScript.SubCategory.CANNON:
-			// 	this.Name.text = "CANNON";
-			// 	this.Image.sprite = this.CannonSprite;
-			// 	break;
-
-			// case ShopWindowScript.SubCategory.ELIXIR_COLLECTOR:
-			// 	this.Name.text = "ELIXIR COLLECTOR";
-			// 	this.Image.sprite = this.ElixirCollectorSprite;
-			// 	break;
-
-			// case ShopWindowScript.SubCategory.ELIXIR_STORAGE:
-			// 	this.Name.text = "ELIXIR STORAGE";
-			// 	this.Image.sprite = this.ElixirStorageSprite;
-			// 	break;
+			case ShopWindowScript.SubCategory.D8:
+				this.Name.text = "Tòa D8";
+				break;
 
 			case ShopWindowScript.SubCategory.C7:
 				this.Name.text = "Tòa C7";
-				this.Image.sprite = this.C7Sprite;
 				break;
-			// case ShopWindowScript.SubCategory.B8:
-			// 		this.Name.text = "B8";
-			// 		this.Image.sprite = this.B8Sprite;
-			// 		break;
 
 			case ShopWindowScript.SubCategory.C4:
 				this.Name.text = "Tòa C4";
-				this.Image.sprite = this.C4Sprite;
 				break;
-		case ShopWindowScript.SubCategory.Canteen:
-			this.Name.text = "Căng tin";
-			this.Image.sprite = this.CanteenSprite;
-			break;
+			case ShopWindowScript.SubCategory.Canteen:
+				this.Name.text = "Căng tin";
+				break;
 
-		case ShopWindowScript.SubCategory.GaraD6:
-			this.Name.text = "Gara D6";
-			this.Image.sprite = this.GaraD6Sprite;
-			break;
-			// case ShopWindowScript.SubCategory.GOLD_STORAGE:
-			// 	this.Name.text = "GOLD STORAGE";
-			// 	this.Image.sprite = this.GoldStorageSprite;
-			// 	break;
-
-			// case ShopWindowScript.SubCategory.TOWER:
-			// 	this.Name.text = "TOWER";
-			// 	this.Image.sprite = this.TowerSprite;
-			// 	break;
+			case ShopWindowScript.SubCategory.GaraD6:
+				this.Name.text = "Gara D6";
+				break;
 
 			case ShopWindowScript.SubCategory.C1:
 				this.Name.text = "Tòa C1";
-				this.Image.sprite = this.C1Sprite;
 				break;
-
-			// case ShopWindowScript.SubCategory.GIAI_PHONG_GATE:
-			// 	this.Name.text = "GP GATE";
-			// 	this.Image.sprite = this.GiaiPhongGateSprite;
-			// 	break;
-
-			// case ShopWindowScript.SubCategory.TDN_GATE:
-			// 	this.Name.text = "TDN GATE";
-			// 	this.Image.sprite = this.TDNGateSprite;
-			// 	break;
 
 			case ShopWindowScript.SubCategory.LIBRARY:
 				this.Name.text = "Thư viện TQB";
-				this.Image.sprite = this.LibSprite;
 				break;
 
-			// case ShopWindowScript.SubCategory.WALL:
-			// 	this.Name.text = "WALL";
-			// 	this.Image.sprite = this.WallSprite;
-			// 	break;
-
-			// case ShopWindowScript.SubCategory.TREE3:
-			// 	this.Name.text = "TREE3";
-			// 	this.Image.sprite = this.Tree3Sprite;
-			// 	break;
 			case ShopWindowScript.SubCategory.ITIMS:
 				this.Name.text = "Tòa ITIMS";
-				this.Image.sprite = this.ITIMSSprite;
 				break;
 			case ShopWindowScript.SubCategory.SECURITY_ROOM:
 				this.Name.text = "Phòng bảo vệ";
-				this.Image.sprite = this.SecurityRoomSprite;
 				break;
 			case ShopWindowScript.SubCategory.PC_LAB:
 				this.Name.text = "PC LAB";
-				this.Image.sprite = this.PCLabSprite;
 				break;
 			case ShopWindowScript.SubCategory.MONEY_LAKE:
 				this.Name.text = "Hồ Tiền";
-				this.Image.sprite = this.MoneyLakeSprite;
 				break;
 			case ShopWindowScript.SubCategory.D9:
 				this.Name.text = "Tòa D9";
-				this.Image.sprite = this.D9Sprite;
 				break;
 			case ShopWindowScript.SubCategory.TTVD:
 				this.Name.text = "Tòa TTVD";
-				this.Image.sprite = this.TTVDSprite;
 				break;
 			case ShopWindowScript.SubCategory.Alumni:
 				this.Name.text = "Tòa Alumni";
-				this.Image.sprite = this.AlumniSprite;
 				break;
 		}
 	}

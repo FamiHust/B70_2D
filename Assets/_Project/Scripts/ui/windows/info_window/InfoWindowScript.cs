@@ -14,12 +14,19 @@ public class InfoWindowScript : WindowScript
 	public Text Title;
 	public Text LevelText;
 	public RawImage ThumbImage;
+	public RawImage ThumbImageShadow;
 	public GameObject InfoPanel;
 	public Animator anim;
 	public GameObject BuildButton;
 	public GameObject UpgradeButton;
 	public Text UnlockText;
 	public GameObject LockPanel;
+
+	[Header("Icons")]
+	public Sprite BuildTimeIcon;
+	public Sprite ProductionRateIcon;
+	public Sprite ProductIcon;
+	public Sprite DescriptionIcon;
 
 
 	/* private vars */
@@ -62,58 +69,61 @@ public class InfoWindowScript : WindowScript
 		}
 
 		this.ThumbImage.texture = this._itemData.thumb;
+		if (this.ThumbImageShadow != null) this.ThumbImageShadow.texture = this._itemData.thumb;
 
 		bool isCharacter = this._itemData.configuration.isCharacter;
 
-		if (!isCharacter)
-		{
-			//GRID SIZE
-			string gridSize = this._itemData.gridWidth.ToString() + "x" + this._itemData.gridHeight.ToString();
-			this._CreateInfoItem("Grid Size", gridSize);
-		}
+		// if (!isCharacter)
+		// {
+		// 	//GRID SIZE
+		// 	string gridSize = this._itemData.gridWidth.ToString() + "x" + this._itemData.gridHeight.ToString();
+		// 	this._CreateInfoItem("Kích cỡ : ", gridSize);
+		// }
 
-		string buildTime = this._itemData.configuration.buildTime.ToString() + "s";
-		this._CreateInfoItem("Build Time", buildTime);
+		string buildTime = "Thời gian xây : " + this._itemData.configuration.buildTime.ToString() + "s";
+		this._CreateInfoItem("Thời gian xây", buildTime, this.BuildTimeIcon);
 
-		if (this._itemData.configuration.speed > 0)
-		{
-			string speed = this._itemData.configuration.speed.ToString();
-			this._CreateInfoItem("Speed", speed);
-		}
+		// if (this._itemData.configuration.speed > 0)
+		// {
+		// 	string speed = this._itemData.configuration.speed.ToString();
+		// 	this._CreateInfoItem("Tốc độ : ", speed);
+		// }
 
-		if (this._itemData.configuration.attackRange > 0)
-		{
-			string attackRange = this._itemData.configuration.attackRange.ToString();
-			this._CreateInfoItem("Attack Range", attackRange);
-		}
+		// if (this._itemData.configuration.attackRange > 0)
+		// {
+		// 	string attackRange = this._itemData.configuration.attackRange.ToString();
+		// 	this._CreateInfoItem("Tầm xa", attackRange);
+		// }
 
-		if (this._itemData.configuration.defenceRange > 0)
-		{
-			string defenceRange = this._itemData.configuration.defenceRange.ToString();
-			this._CreateInfoItem("Defence Range", defenceRange);
-		}
+		// if (this._itemData.configuration.defenceRange > 0)
+		// {
+		// 	string defenceRange = this._itemData.configuration.defenceRange.ToString();
+		// 	this._CreateInfoItem("Defence Range", defenceRange);
+		// }
 
-		if (this._itemData.configuration.hitPoints > 0)
-		{
-			string hitPoints = this._itemData.configuration.hitPoints.ToString();
-			this._CreateInfoItem("Hit Points", hitPoints);
-		}
+		// if (this._itemData.configuration.hitPoints > 0)
+		// {
+		// 	string hitPoints = this._itemData.configuration.hitPoints.ToString();
+		// 	this._CreateInfoItem("Hit Points", hitPoints);
+		// }
 
 		if (this._itemData.configuration.productionRate > 0)
 		{
-			string productionRate = this._itemData.configuration.productionRate.ToString();
-			this._CreateInfoItem("Production Rate", productionRate);
+			string productionRate = ": " + this._itemData.configuration.productionRate.ToString();
+			this._CreateInfoItem("Sản lượng", productionRate, this.ProductionRateIcon);
 
-			string product = this._itemData.configuration.product;
-			this._CreateInfoItem("Product", product);
+			string product = ": " + this._itemData.configuration.product;
+			this._CreateInfoItem("Sản phẩm", product, this.ProductIcon);
 		}
+		// if (this._baseItem != null)
+		// {
+		// 	this._CreateInfoItem("Cấp độ hiện tại : ", this._baseItem.level.ToString());
+		// }
 
 		if (!string.IsNullOrEmpty(this._itemData.description))
-			this._CreateInfoItem("Description", this._itemData.description);
-
-		if (this._baseItem != null)
 		{
-			this._CreateInfoItem("Current Level", this._baseItem.level.ToString());
+			string description = this._itemData.description;
+			this._CreateInfoItem("", description, this.DescriptionIcon);
 		}
 
 		if (this.BuildButton != null && this.UpgradeButton != null)
@@ -158,10 +168,10 @@ public class InfoWindowScript : WindowScript
 	}
 
 
-	private void _CreateInfoItem(string property, string value)
+	private void _CreateInfoItem(string property, string value, Sprite icon = null)
 	{
 		InfoItemCtrl comp = Utilities.CreateInstance(this.InfoItem, this.InfoPanel, true).GetComponent<InfoItemCtrl>();
-		comp.SetData(property, value);
+		comp.SetData(property, value, icon);
 	}
 
 	public void HideWindow()

@@ -15,13 +15,22 @@ public class CategoryItemScript : MonoBehaviour {
 	/* references */
 	public Text Name;
 	public Image Image;
-	public Image BgImage;
-	public Color ActiveColor = Color.white;
-	public Color InactiveColor = Color.gray;
+	public GameObject SelectImage;
 
 
 	/* private variables */
 	private ShopWindowScript.Category _category;
+	private Vector3 _originalImagePos;
+	private bool _isInitialized = false;
+
+	private void Initialize() {
+		if (!_isInitialized) {
+			if (Image != null) {
+				_originalImagePos = Image.transform.localPosition;
+			}
+			_isInitialized = true;
+		}
+	}
 
 	public void SetCategory(ShopWindowScript.Category category){
 		this._category = category;
@@ -60,8 +69,22 @@ public class CategoryItemScript : MonoBehaviour {
 	}
 
 	public void SetActiveState(bool isActive) {
-		if (BgImage != null) {
-			BgImage.color = isActive ? ActiveColor : InactiveColor;
+		Initialize();
+
+		if (SelectImage != null) {
+			SelectImage.SetActive(isActive);
+		}
+		if (Name != null) {
+			Name.gameObject.SetActive(isActive);
+		}
+		if (Image != null) {
+			if (isActive) {
+				Image.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+				Image.transform.localPosition = _originalImagePos + new Vector3(0, 40f, 0);
+			} else {
+				Image.transform.localScale = Vector3.one;
+				Image.transform.localPosition = _originalImagePos;
+			}
 		}
 	}
 

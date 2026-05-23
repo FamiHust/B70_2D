@@ -10,7 +10,11 @@ public class ItemMissionScript : MonoBehaviour
 	public Button CompleteButton;
 	public Button UncompleteButton;
 	public GameObject LockMission;
+	public GameObject UnlockMission;
 	public Image ProcessImage;
+	public RawImage BuildingImage;
+	public RawImage BuildingImageShadow;
+	public Text ProgressText;
 
 	/* private variables */
 	private int _itemId;
@@ -27,7 +31,16 @@ public class ItemMissionScript : MonoBehaviour
 		ItemsCollection.ItemData itemData = Items.GetItem(_itemId);
 		if (itemData != null)
 		{
+			this._goldReward = itemData.missionReward;
 			this.MissionText.text = itemData.name.ToString();
+			if (this.BuildingImage != null)
+			{
+				this.BuildingImage.texture = itemData.thumb;
+			}
+			if (this.BuildingImageShadow != null)
+			{
+				this.BuildingImageShadow.texture = itemData.thumb;
+			}
 		}
 		else
 		{
@@ -48,17 +61,27 @@ public class ItemMissionScript : MonoBehaviour
 	{
 		if (_data == null || _data.isClaimed) return;
 
-		if (LockMission != null)
+		ItemsCollection.ItemData itemData = Items.GetItem(_itemId);
+		if (itemData != null)
 		{
-			ItemsCollection.ItemData itemData = Items.GetItem(_itemId);
-			if (itemData != null)
+			bool isLocked = itemData.configuration.unlockItemAtSemester > SceneManager.instance.currentLevel;
+			if (LockMission != null)
 			{
-				LockMission.SetActive(itemData.configuration.unlockItemAtSemester > SceneManager.instance.currentLevel);
+				LockMission.SetActive(isLocked);
+			}
+			if (UnlockMission != null)
+			{
+				UnlockMission.SetActive(!isLocked);
 			}
 		}
 
 		bool isFinished = SceneManager.instance.IsItemConstructionFinished(_itemId);
 		
+		if (ProgressText != null)
+		{
+			ProgressText.text = isFinished ? "1/1" : "0/1";
+		}
+
 		if (CompleteButton != null)
 			CompleteButton.gameObject.SetActive(isFinished);
 		

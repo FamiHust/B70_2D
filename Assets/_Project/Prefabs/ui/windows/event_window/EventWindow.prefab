@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 799508371, guid: cd089aba2dc7aa14b8e00865d3a3d0fa, type: 3}
+  m_Sprite: {fileID: -1715216770, guid: 836660665aaa29648b400835deae7259, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 8305250819931028320}
   - component: {fileID: 6296825913646312449}
   m_Layer: 0
-  m_Name: Event_Container
+  m_Name: Upgrade_Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 7273074704161664169}
   - component: {fileID: 5717159884496152978}
   - component: {fileID: 7831037244641540786}
+  - component: {fileID: 984774646546064834}
   m_Layer: 5
   m_Name: EventWindow
   m_TagString: Untagged
@@ -664,6 +665,28 @@ MonoBehaviour:
   optionContainer: {fileID: 5984175782042230804}
   optionItemPrefab: {fileID: 4417554521366180478, guid: aed9638ed655761418df83f347490f97,
     type: 3}
+  anim: {fileID: 984774646546064834}
+--- !u!95 &984774646546064834
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388939455488927863}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9108285d0e116874187965f77fd75ec7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4827212960289440801
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,9 +1605,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 30
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1

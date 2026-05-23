@@ -51,6 +51,8 @@ public class SceneManager : MonoBehaviour
 	private bool _hasShownUnlockThisLevel = false;
 	public bool isTutorialActive;
 	private bool _isCompletingSemester = false;
+	
+	public int totalSpawnedNPCs = 0;
 
 	void Awake()
 	{
@@ -111,6 +113,7 @@ public class SceneManager : MonoBehaviour
 		this.currentSemester            = PlayerPrefs.GetInt("currentSemester",            1);
 		this.currentLevel               = PlayerPrefs.GetInt("currentLevel",               1);
 		this.levelProgress              = PlayerPrefs.GetFloat("levelProgress",            0);
+		this.totalSpawnedNPCs           = PlayerPrefs.GetInt("totalSpawnedNPCs",           0);
 	}
 
 	private void OnApplicationQuit()
@@ -150,6 +153,7 @@ public class SceneManager : MonoBehaviour
 		PlayerPrefs.SetInt("currentSemester", this.currentSemester);
 		PlayerPrefs.SetInt("currentLevel", this.currentLevel);
 		PlayerPrefs.SetFloat("levelProgress", this.levelProgress);
+		PlayerPrefs.SetInt("totalSpawnedNPCs", this.totalSpawnedNPCs);
 		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
 
 		PlayerPrefs.Save();
@@ -698,6 +702,11 @@ public class SceneManager : MonoBehaviour
 		this.UpdateWalls();
 		this.UpdateStudentStorageCapacity();
 
+		if (NPCSpawner.instance != null && this.totalSpawnedNPCs > 0)
+		{
+			NPCSpawner.instance.SpawnNPCs(this.totalSpawnedNPCs);
+		}
+
 		UIManager.instance.ShowGameOverlayWindow();
 	}
 
@@ -989,6 +998,15 @@ public class SceneManager : MonoBehaviour
 
 		this.currentLevel++; // Tăng level mới
 		this.levelProgress = 0; // Reset thanh tiến trình
+
+		// Logic sinh NPC khi lên level 2
+		if (this.currentLevel == 2 && NPCSpawner.instance != null)
+		{
+			int amount = NPCSpawner.instance.npcSpawnedAtLevel2;
+			this.totalSpawnedNPCs += amount;
+			NPCSpawner.instance.SpawnNPCs(amount);
+		}
+
 		this.SaveResources();
 		this.RefreshResourceUIs("level");
 
@@ -1036,6 +1054,15 @@ public class SceneManager : MonoBehaviour
 
 		// ── 4. Tăng kỳ học (Semester độc lập với Level) ─────────────────────────────
 		this.currentSemester++;
+
+		// Logic sinh NPC mỗi kỳ sau khi mở khóa level 2
+		if (this.currentLevel >= 2 && NPCSpawner.instance != null)
+		{
+			int amount = NPCSpawner.instance.npcSpawnedPerSemester;
+			this.totalSpawnedNPCs += amount;
+			NPCSpawner.instance.SpawnNPCs(amount);
+		}
+
 		this.SaveResources();
 		this.RefreshResourceUIs("semester");
 

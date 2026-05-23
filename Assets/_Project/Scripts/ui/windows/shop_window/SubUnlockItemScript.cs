@@ -5,39 +5,10 @@ using UnityEngine.UI;
 
 public class SubUnlockItemScript : MonoBehaviour
 {
-	/* sprites (copy from SubCategoryItemScript for consistency) */
-	public Sprite D4Sprite;
-	public Sprite C2Sprite;
-	public Sprite C3Sprite;
-	public Sprite C3BSprite;
-	public Sprite C5Sprite;
-	public Sprite C6Sprite;
-	public Sprite C9Sprite;
-	public Sprite C10Sprite;
-	public Sprite D35Sprite;
-	public Sprite D6Sprite;
-	public Sprite D8Sprite;
-	public Sprite C7Sprite;
-	public Sprite B8Sprite;
-	public Sprite C4Sprite;
-	public Sprite CanteenSprite;
-	public Sprite GaraD6Sprite;
-	public Sprite C1Sprite;
-	public Sprite GiaiPhongGateSprite;
-	public Sprite TDNGateSprite;
-	public Sprite LibSprite;
-	public Sprite WallSprite;
-	public Sprite Tree3Sprite;
-	public Sprite ITIMSSprite;
-	public Sprite SecurityRoomSprite;
-	public Sprite PCLabSprite;
-	public Sprite D9Sprite;
-	public Sprite TTVDSprite;
-	public Sprite AlumniSprite;
-
 	/* references */
 	public Text Name;
-	public Image Image;
+	public RawImage Image;
+	public RawImage ImageShadow;
 	public Text CategoryText;
 
 	private int _itemId;
@@ -55,44 +26,14 @@ public class SubUnlockItemScript : MonoBehaviour
 			if (this.CategoryText != null)
 				this.CategoryText.text = ShopWindowScript.GetCategoryStringFromItemId(itemId);
 				
-			this.SetImageSprite(itemId);
-		}
-	}
-
-	private void SetImageSprite(int itemId)
-	{
-		if (this.Image == null) return;
-
-		switch (itemId)
-		{
-			case 3635: this.Image.sprite = this.D4Sprite; break;
-			case 8216: this.Image.sprite = this.C2Sprite; break;
-			case 2454: this.Image.sprite = this.C3Sprite; break;
-			case 5835: this.Image.sprite = this.C3BSprite; break;
-			case 3265: this.Image.sprite = this.C4Sprite; break;
-			case 3504: this.Image.sprite = this.C5Sprite; break;
-			case 2617: this.Image.sprite = this.C6Sprite; break;
-			case 3336: this.Image.sprite = this.C7Sprite; break;
-			case 9295: this.Image.sprite = this.C9Sprite; break;
-			case 8385: this.Image.sprite = this.C10Sprite; break;
-			case 4407: this.Image.sprite = this.D35Sprite; break;
-			case 6330: this.Image.sprite = this.D6Sprite; break;
-			case 5134: this.Image.sprite = this.D8Sprite; break;
-			case 5342: this.Image.sprite = this.B8Sprite; break;
-			case 1399: this.Image.sprite = this.CanteenSprite; break;
-			case 4132: this.Image.sprite = this.GaraD6Sprite; break;
-			case 2496: this.Image.sprite = this.C1Sprite; break;
-			case 2949: this.Image.sprite = this.GiaiPhongGateSprite; break;
-			case 1251: this.Image.sprite = this.TDNGateSprite; break;
-			case 6677: this.Image.sprite = this.LibSprite; break;
-			case 7666: this.Image.sprite = this.WallSprite; break;
-			case 5341: this.Image.sprite = this.Tree3Sprite; break;
-			case 3090: this.Image.sprite = this.ITIMSSprite; break;
-			case 1628: this.Image.sprite = this.SecurityRoomSprite; break;
-			case 9138: this.Image.sprite = this.PCLabSprite; break;
-			case 9818: this.Image.sprite = this.D9Sprite; break;
-			case 3702: this.Image.sprite = this.TTVDSprite; break;
-			case 8099: this.Image.sprite = this.AlumniSprite; break;
+			if (this.Image != null)
+			{
+				this.Image.texture = itemData.thumb;
+			}
+			if (this.ImageShadow != null)
+			{
+				this.ImageShadow.texture = itemData.thumb;
+			}
 		}
 	}
 	public void OnClickInfoButton()

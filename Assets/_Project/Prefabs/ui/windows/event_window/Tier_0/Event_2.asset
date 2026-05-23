@@ -14,21 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventID: "M\u1EA5t d\xE9p"
   eventName: "M\u1EA5t d\xE9p"
-  description: "Sinh vi\xEAn m\u1EA5t d\xE9p \u1EDF th\u01B0 vi\u1EC7n"
-  triggerProbability: 0.2
+  description: "M\u1ED9t sinh vi\xEAn l\xEAn th\u01B0 vi\u1EC7n \xF4n thi v\xE0 l\xFAc
+    v\u1EC1 ph\xE1t hi\u1EC7n \u0111\xF4i t\u1ED5 ong huy\u1EC1n tho\u1EA1i \u0111\xE3
+    \"kh\xF4ng c\xE1nh m\xE0 bay\"."
+  triggerProbability: 0.3
   options:
-  - title: "T\xECm th\u1EE7 ph\u1EA1m"
-    description: 
+  - title: "Tr\xEDch xu\u1EA5t camera"
+    description: "C\u1EED b\u1EA3o v\u1EC7 check l\u1EA1i to\xE0n b\u1ED9 camera
+      an ninh c\u1EE7a th\u01B0 vi\u1EC7n \u0111\u1EC3 t\xECm ra th\u1EE7 ph\u1EA1m."
     goldModifier: -36
     happinessModifier: 1
     educationModifier: 1
   - title: "M\u1EB7c k\u1EC7"
-    description: 
+    description: "Coi \u0111\xE2y l\xE0 chuy\u1EC7n c\xE1 nh\xE2n v\xE0 khuy\xEAn
+      sinh vi\xEAn t\u1EF1 r\xFAt kinh nghi\u1EC7m b\u1EA3o qu\u1EA3n \u0111\u1ED3
+      \u0111\u1EA1c."
     goldModifier: -36
     happinessModifier: -2
     educationModifier: 0
   - title: "T\u1EB7ng sinh vi\xEAn \u0111\xF4i d\xE9p m\u1EDBi "
-    description: 
+    description: "B\u1ECF ch\xFAt qu\u1EF9 l\u1EBB mua ngay m\u1ED9t \u0111\xF4i
+      t\u1ED5 ong m\u1EDBi tinh cho sinh vi\xEAn \u0111i t\u1EA1m v\u1EC1 nh\xE0."
     goldModifier: -360
     happinessModifier: 2
     educationModifier: 1

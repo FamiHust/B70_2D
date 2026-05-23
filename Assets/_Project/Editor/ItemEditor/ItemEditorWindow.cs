@@ -380,7 +380,9 @@ public class ItemEditorWindow : EditorWindow
             GUILayout.EndHorizontal();
 
             GUILayout.Label("Description");
-            description = EditorGUILayout.TextArea(description, GUILayout.MinHeight(50));
+            GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textArea);
+            textAreaStyle.wordWrap = true;
+            description = EditorGUILayout.TextArea(description, textAreaStyle, GUILayout.MinHeight(50));
 
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
@@ -498,6 +500,11 @@ public class ItemEditorWindow : EditorWindow
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(20);
                 itemData.defaultPosZ = EditorGUILayout.IntField("Default Pos Z", itemData.defaultPosZ);
+                GUILayout.EndHorizontal();
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Space(20);
+                itemData.missionReward = EditorGUILayout.IntField("Mission Reward", itemData.missionReward);
                 GUILayout.EndHorizontal();
 
                 GUILayout.BeginHorizontal();

@@ -17,20 +17,23 @@ MonoBehaviour:
   description: "Nh\xE0 tr\u01B0\u1EDDng y\xEAu c\u1EA7u quay video nh\u1EA3y theo
     nh\u1EA1c \"B\xE1ch Khoa trong t\xF4i\" \u0111\u1EC3 l\u1EA5y \u0111i\u1EC3m
     r\xE8n luy\u1EC7n."
-  triggerProbability: 0.2
+  triggerProbability: 0.3
   options:
   - title: "Thu\xEA studio quay cho x\u1ECBn"
-    description: 
+    description: "Tr\xEDch qu\u1EF9 thu\xEA h\u1EB3n \u0111\u1ED9i quay phim chuy\xEAn
+      nghi\u1EC7p \u0111\u1EC3 l\xE0m video viral m\u01B0\u1EE3t m\xE0 nh\u1EA5t."
     goldModifier: -200
     happinessModifier: 2
     educationModifier: -1
-  - title: "T\u1EF1 quay b\u1EB1ng \u0111i\u1EC7n tho\u1EA1i"
-    description: 
+  - title: "C\xE2y nh\xE0 l\xE1 v\u01B0\u1EDDn"
+    description: "Khuy\u1EBFn kh\xEDch sinh vi\xEAn t\u1EF1 d\xF9ng \u0111i\u1EC7n
+      tho\u1EA1i quay v\xE0 edit theo phong c\xE1ch h\xE0i h\u01B0\u1EDBc."
     goldModifier: 0
     happinessModifier: 1
     educationModifier: 0
-  - title: "B\u1ECF qua"
-    description: 
+  - title: "H\u1EE7y b\u1ECF"
+    description: "D\u1EB9p lu\xF4n \xFD t\u01B0\u1EDFng n\xE0y v\xEC th\u1EA5y qu\xE1
+      phi\u1EC1n ph\u1EE9c v\xE0 t\u1ED1n th\u1EDDi gian c\u1EE7a sinh vi\xEAn."
     goldModifier: 0
     happinessModifier: -1
     educationModifier: 1

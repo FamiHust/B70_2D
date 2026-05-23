@@ -17,20 +17,24 @@ MonoBehaviour:
   description: "M\u1ED9t \xF4ng ch\xFA \u0111eo kh\u1EA9u trang m\u1EB7c \xE1o HUST
     v\u1EEBa \"nh\u1EA5c\" nh\u1EB9 chi\u1EBFc m\u0169 c\u1EE7a m\u1ED9t nam sinh
     t\u1EA1i b\xE3i xe"
-  triggerProbability: 0.2
+  triggerProbability: 0.3
   options:
-  - title: "Gi\xFAp sinh vi\xEAn t\xECm l\u1EA1i"
-    description: 
+  - title: "H\u1ED7 tr\u1EE3 t\xECm ki\u1EBFm"
+    description: "In t\u1EDD r\u01A1i v\xE0 nh\u1EDD \u0111\u1ED9i an ninh r\xE0
+      so\xE1t quanh khu v\u1EF1c tr\u01B0\u1EDDng \u0111\u1EC3 t\xECm l\u1EA1i chi\u1EBFc
+      m\u0169."
     goldModifier: -200
     happinessModifier: 2
     educationModifier: 0
-  - title: "Nh\u1EAFc nh\u1EDF sinh vi\xEAn b\u1EA3o qu\u1EA3n k\u0129"
-    description: 
+  - title: "Nh\u1EAFc nh\u1EDF chung"
+    description: "Vi\u1EBFt b\xE0i tr\xEAn confession tr\u01B0\u1EDDng nh\u1EAFc
+      nh\u1EDF m\u1ECDi ng\u01B0\u1EDDi t\u1EF1 kh\xF3a m\u0169 c\u1EA9n th\u1EADn."
     goldModifier: 0
     happinessModifier: -2
     educationModifier: -1
   - title: "B\u1ECF qua"
-    description: 
+    description: "Kh\xF4ng can thi\u1EC7p v\xEC b\xE3i xe \u0111\xE3 c\xF3 bi\u1EC3n
+      c\u1EA3nh b\xE1o \"T\u1EF1 b\u1EA3o qu\u1EA3n t\xE0i s\u1EA3n c\xE1 nh\xE2n\"."
     goldModifier: 0
     happinessModifier: -1
     educationModifier: -1

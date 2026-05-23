@@ -15,21 +15,27 @@ MonoBehaviour:
   eventID: "Maid Cafe \u1EDF s\u1EA3nh C7"
   eventName: "Maid Cafe \u1EDF s\u1EA3nh C7"
   description: "M\u1ED9t nh\xF3m sinh vi\xEAn t\u1ED5 ch\u1EE9c m\u1EDF Maid Cafe
-    \u1EDF C7"
-  triggerProbability: 0.2
+    cosplay ngay t\u1EA1i s\u1EA3nh C7 thu h\xFAt qu\xE1 \u0111\xF4ng ng\u01B0\u1EDDi."
+  triggerProbability: 0.3
   options:
   - title: "H\u1EE3p t\xE1c"
-    description: 
+    description: "C\u1EA5p m\u1ED9t ph\u1EA7n ng\xE2n s\xE1ch nh\u1ECF v\xE0 kh\xF4ng
+      gian ch\xEDnh th\u1EE9c \u0111\u1EC3 nh\xF3m sinh vi\xEAn t\u1ED5 ch\u1EE9c
+      s\u1EF1 ki\u1EC7n b\xE0i b\u1EA3n."
     goldModifier: -100
     happinessModifier: 2
-    educationModifier: -2
+    educationModifier: 0
   - title: "C\u1EA3nh c\xE1o nh\u1EB9 nh\xE0ng"
-    description: 
+    description: "G\u1ECDi \u0111\u1EA1i di\u1EC7n nh\xF3m l\xEAn nh\u1EAFc nh\u1EDF
+      gi\u1EEF tr\u1EADt t\u1EF1 chung v\xE0 kh\xF4ng l\xE0m \u1EA3nh h\u01B0\u1EDFng
+      vi\u1EC7c h\u1ECDc c\u1EE7a c\xE1c l\u1EDBp."
     goldModifier: 0
-    happinessModifier: 1
-    educationModifier: -2
-  - title: "T\u1EEB ch\u1ED1i v\xE0 d\u1EB9p"
-    description: 
+    happinessModifier: -1
+    educationModifier: 0
+  - title: "D\u1EB9p b\u1ECF"
+    description: "C\u1EED \u0111\u1ED9i an ninh xu\u1ED1ng gi\u1EA3i t\xE1n ngay
+      l\u1EADp t\u1EE9c v\xEC vi ph\u1EA1m quy \u0111\u1ECBnh s\u1EED d\u1EE5ng s\u1EA3nh
+      chung."
     goldModifier: 0
     happinessModifier: -2
-    educationModifier: 2
+    educationModifier: 0

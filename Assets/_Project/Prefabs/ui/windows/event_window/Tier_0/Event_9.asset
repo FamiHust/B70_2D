@@ -14,23 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventID: "\" Ng\xF3n tay v\xE0ng \" trong th\u01B0 vi\u1EC7n "
   eventName: "\" Ng\xF3n tay v\xE0ng \" trong th\u01B0 vi\u1EC7n "
-  description: "M\u1ED9t sinh vi\xEAn b\u1ECB m\xF3c m\u1EA5t v\xED ngay trong th\u01B0
-    vi\u1EC7n T\u1EA1 Quang B\u1EEDu."
-  triggerProbability: 0.2
+  description: "M\u1ED9t sinh vi\xEAn s\u01A1 h\u1EDF ng\u1EE7 g\u1EE5c v\xE0 b\u1ECB
+    m\xF3c m\u1EA5t v\xED ngay trong khu v\u1EF1c t\u1EF1 h\u1ECDc th\u01B0 vi\u1EC7n
+    T\u1EA1 Quang B\u1EEDu."
+  triggerProbability: 0.3
   options:
-  - title: "H\u1ED7 tr\u1EE3 cho sinh vi\xEAn b\u1ECB m\u1EA5t v\xED"
-    description: 
+  - title: "H\u1ED7 tr\u1EE3 kh\u1EA9n c\u1EA5p"
+    description: "Tr\xEDch qu\u1EF9 nh\u1ECF h\u1ED7 tr\u1EE3 sinh vi\xEAn chi ph\xED
+      l\xE0m l\u1EA1i gi\u1EA5y t\u1EDD v\xE0 ti\u1EC1n sinh ho\u1EA1t t\u1EA1m th\u1EDDi."
     goldModifier: -18
     happinessModifier: 2
     educationModifier: 2
-  - title: "Ph\u1ED1i h\u1EE3p c\xF4ng an ph\u01B0\u1EDDng b\u1EAFt \"\u0111\u1ED1i
-      t\u01B0\u1EE3ng\""
-    description: 
+  - title: "B\xE1o c\xF4ng an"
+    description: "Chi ti\u1EC1n b\u1ED3i d\u01B0\u1EE1ng \u0111\u1ED9i b\u1EA3o v\u1EC7
+      ph\u1ED1i h\u1EE3p ch\u1EB7t ch\u1EBD v\u1EDBi c\xF4ng an ph\u01B0\u1EDDng
+      ph\u1EE5c k\xEDch b\u1EAFt k\u1EBB gian."
     goldModifier: -18
     happinessModifier: 1
     educationModifier: 1
-  - title: "Th\xF4ng b\xE1o nh\u1EAFc nh\u1EDF sinh vi\xEAn c\u1EA3nh gi\xE1c"
-    description: 
+  - title: "Ph\xE1t loa"
+    description: "Ch\u1EC9 b\u1EADt loa th\xF4ng b\xE1o nh\u1EAFc nh\u1EDF chung
+      sinh vi\xEAn t\u1EF1 c\u1EA3nh gi\xE1c \u0111\u1EC3 b\u1EA3o qu\u1EA3n \u0111\u1ED3."
     goldModifier: 0
     happinessModifier: -1
     educationModifier: -1

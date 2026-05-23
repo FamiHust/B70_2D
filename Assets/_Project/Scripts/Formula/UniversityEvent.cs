@@ -22,6 +22,8 @@ namespace B70.Balance
         [Tooltip("Prefab của mỗi option item (cần có OptionItemUI component)")]
         public GameObject optionItemPrefab;
 
+        public Animator anim;
+
         private readonly List<OptionItemUI> _spawnedOptionItems = new List<OptionItemUI>();
 
         /// <summary>
@@ -77,22 +79,29 @@ namespace B70.Balance
         /// </summary>
         public void OnClickOption(int optionIndex)
         {
-            if (eventData != null && UniversityEventManager.instance != null)
+            if (eventData != null && UIManager.instance != null)
             {
                 if (eventData.options != null && optionIndex >= 0 && optionIndex < eventData.options.Count)
                 {
-                    UniversityEventManager.instance.ApplyOptionEffects(eventData.options[optionIndex]);
-
-                    if (SceneManager.instance != null)
+                    EventOption selectedOption = eventData.options[optionIndex];
+                    EventResultOptionWindow resultWindow = UIManager.instance.ShowEventResultOptionWindow();
+                    if (resultWindow != null)
                     {
-                        SceneManager.instance.SaveResources();
-                        SceneManager.instance.RefreshResourceUIs("gold");
-                        SceneManager.instance.RefreshResourceUIs("happy");
-                        SceneManager.instance.RefreshResourceUIs("education");
+                        resultWindow.Setup(eventData.eventName, selectedOption, optionIndex + 1);
                     }
                 }
             }
             this.Close();
+        }
+
+        public void Show()
+        {
+            if (anim != null) anim.Play("Show");
+        }
+
+        public void Hide()
+        {
+            if (anim != null) anim.Play("Hide");
         }
     }
 }

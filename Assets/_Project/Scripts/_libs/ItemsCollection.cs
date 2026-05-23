@@ -44,6 +44,7 @@ public class ItemsCollection : ScriptableObject
         public float uiOffsetZ = 0f;
         public int defaultPosX = -999;
         public int defaultPosZ = -999;
+        public int missionReward = 100;
         public Configuration configuration = new Configuration();
 
         // store textures directly for each state

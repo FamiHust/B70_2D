@@ -15,7 +15,12 @@ MonoBehaviour:
   list:
   - id: 3635
     name: "T\xF2a D4"
-    description: 
+    description: "T\xF2a D4 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
+      l\xE0 tr\u1EE5 s\u1EDF ch\xEDnh c\u1EE7a Tr\u01B0\u1EDDng Ngo\u1EA1i ng\u1EEF
+      (tr\u01B0\u1EDBc \u0111\xE2y l\xE0 Khoa Ngo\u1EA1i ng\u1EEF). \u0110\xE2y l\xE0
+      \u0111\u1ECBa \u0111i\u1EC3m quen thu\u1ED9c v\u1EDBi sinh vi\xEAn B\xE1ch
+      khoa, \u0111\u1EB7c bi\u1EC7t l\xE0 trong c\xE1c k\u1EF3 thi ti\u1EBFng Anh
+      v\xE0 c\xE1c ho\u1EA1t \u0111\u1ED9ng h\u1ECDc t\u1EADp ng\xF4n ng\u1EEF. "
     thumb: {fileID: 2800000, guid: 774b117468c22854a96a3d7c19834ac7, type: 3}
     gridWidth: 3
     gridHeight: 4
@@ -27,6 +32,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 43
     defaultPosZ: 2
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -50,7 +56,13 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 3336
     name: "T\xF2a C7"
-    description: 
+    description: "T\xF2a nha\u0300 C7 l\xE0 m\u1ED9t trong nh\u1EEFng c\xF4ng tr\xECnh
+      hi\u1EC7n \u0111\u1EA1i v\xE0 quy m\xF4 nh\u1EA5t t\u1EA1i \u0110\u1EA1i h\u1ECDc
+      B\xE1ch khoa H\xE0 N\u1ED9i. C\xF3 t\u1ED5ng di\u1EC7n t\xEDch kho\u1EA3ng
+      40.000 m2, v\u1EDBi h\xECnh d\xE1ng ch\u1EEF E (Electrical- Electronic Engineering)
+      ho\u0103\u0323c ch\u1EEF M (Mechanical Engineering) l\xE0 n\u01A1i l\xE0m vi\u1EC7c
+      c\u1EE7a Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED v\xE0 Tr\u01B0\u1EDDng
+      C\u01A1 kh\xED. "
     thumb: {fileID: 2800000, guid: dd45ad4b53a397b499e74b04ffbe8d73, type: 3}
     gridWidth: 9
     gridHeight: 7
@@ -62,6 +74,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 20
     defaultPosZ: 36
+    missionReward: 100
     configuration:
       buildTime: 15
       isCharacter: 0
@@ -85,7 +98,14 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 3265
     name: "T\xF2a C4"
-    description: 
+    description: "T\xF2a C4 t\u1EA1i Tr\u01B0\u1EDDng \u0110\u1EA1i h\u1ECDc B\xE1ch
+      khoa H\xE0 N\u1ED9i l\xE0 tr\u1EE5 s\u1EDF c\u1EE7a Vi\u1EC7n C\xF4ng ngh\u1EC7
+      Sinh h\u1ECDc v\xE0 C\xF4ng ngh\u1EC7 Th\u1EF1c ph\u1EA9m (SBFT), n\u1EB1m
+      trong khu\xF4n vi\xEAn tr\u01B0\u1EDDng. \u0110\xE2y l\xE0 n\u01A1i l\xE0m
+      vi\u1EC7c, gi\u1EA3ng d\u1EA1y v\xE0 nghi\xEAn c\u1EE9u ch\xEDnh c\u1EE7a vi\u1EC7n,
+      th\u01B0\u1EDDng bao g\u1ED3m c\xE1c v\u0103n ph\xF2ng khoa, ph\xF2ng l\xE0m
+      vi\u1EC7c c\u1EE7a gi\u1EA3ng vi\xEAn v\xE0 c\xE1c ph\xF2ng th\xED nghi\u1EC7m
+      chuy\xEAn ng\xE0nh. "
     thumb: {fileID: 2800000, guid: 246d36b63216d3a4487473cdeb3c7ff7, type: 3}
     gridWidth: 5
     gridHeight: 11
@@ -97,6 +117,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 15
     defaultPosZ: 24
+    missionReward: 100
     configuration:
       buildTime: 15
       isCharacter: 0
@@ -121,7 +142,12 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 2496
     name: "T\xF2a C1"
-    description: 
+    description: "T\xF2a nh\xE0 C1 \u0111\u01B0\u1EE3c bi\u1EBFt \u0111\u1EBFn l\xE0
+      m\u1ED9t trong nh\u1EEFng c\xF4ng tr\xECnh ki\u1EBFn tr\xFAc tr\u1ECDng \u0111i\u1EC3m
+      c\u1EE7a tr\u01B0\u1EDDng, do c\xE1c k\u0129 s\u01B0 Li\xEAn X\xF4 qua Vi\u1EC7t
+      Nam h\u1ED7 tr\u1EE3 v\xE0 x\xE2y d\u1EF1ng. Hi\u1EC7n nay, t\xF2a C1 \u0111\u01B0\u1EE3c
+      s\u1EED d\u1EE5ng l\xE0m trung t\xE2m v\u0103n ph\xF2ng v\xE0 qu\u1EA3n tr\u1ECB
+      c\u1EE7a to\xE0n b\u1ED9 nh\xE0 tr\u01B0\u1EDDng. "
     thumb: {fileID: 2800000, guid: aea25fb5a58587e4381819efc975dba6, type: 3}
     gridWidth: 8
     gridHeight: 22
@@ -133,6 +159,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 0
     defaultPosZ: 6
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -157,7 +184,15 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 6677
     name: "Th\u01B0 vi\u1EC7n TQB"
-    description: 
+    description: "Th\u01B0 vi\u1EC7n \u0111i\u1EC7n t\u1EED T\u1EA1 Quang B\u1EEDu
+      c\u1EE7a tr\u01B0\u1EDDng r\u1ED9ng h\u01A1n 37.000 m\xB2, v\u1EDBi s\u1EE9c
+      ch\u1EE9a l\xEAn \u0111\u1EBFn 2.000 ng\u01B0\u1EDDi. Th\u01B0 vi\u1EC7n cung
+      c\u1EA5p h\u01A1n 600.000 cu\u1ED1n s\xE1ch v\xE0 130.000 \u0111\u1EA7u s\xE1ch
+      \u0111i\u1EC7n t\u1EED, \u0111\xE1p \u1EE9ng nhu c\u1EA7u h\u1ECDc t\u1EADp
+      v\xE0 nghi\xEAn c\u1EE9u c\u1EE7a sinh vi\xEAn. Ngo\xE0i ra, sinh vi\xEAn c\xF2n
+      \u0111\u01B0\u1EE3c truy c\u1EADp mi\u1EC5n ph\xED v\xE0o c\xE1c c\u01A1 s\u1EDF
+      d\u1EEF li\u1EC7u khoa h\u1ECDc qu\u1ED1c t\u1EBF, gi\xFAp n\xE2ng cao ch\u1EA5t
+      l\u01B0\u1EE3ng h\u1ECDc thu\u1EADt v\xE0 nghi\xEAn c\u1EE9u."
     thumb: {fileID: 2800000, guid: e6bfd97cb851a304b9380e9490bb6867, type: 3}
     gridWidth: 10
     gridHeight: 9
@@ -169,6 +204,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 34
     defaultPosZ: 25
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -193,7 +229,13 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 8216
     name: "T\xF2a C2"
-    description: 
+    description: "T\xF2a C2 (H\u1ED9i tr\u01B0\u1EDDng C2) t\u1EA1i \u0110\u1EA1i
+      h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i l\xE0 m\u1ED9t trong nh\u1EEFng h\u1ED9i
+      tr\u01B0\u1EDDng l\u1EDBn v\xE0 quan tr\u1ECDng trong khu\xF4n vi\xEAn tr\u01B0\u1EDDng.
+      \u0110\xE2y l\xE0 \u0111\u1ECBa \u0111i\u1EC3m th\u01B0\u1EDDng xuy\xEAn di\u1EC5n
+      ra c\xE1c s\u1EF1 ki\u1EC7n quan tr\u1ECDng nh\u01B0 L\u1EC5 t\u1ED1t nghi\u1EC7p,
+      l\u1EC5 khai m\u1EA1c, c\xE1c h\u1ED9i th\u1EA3o v\xE0 ho\u1EA1t \u0111\u1ED9ng
+      t\u1EADp th\u1EC3 l\u1EDBn c\u1EE7a sinh vi\xEAn."
     thumb: {fileID: 2800000, guid: 2939f2f7beed55c40affa9e8c54a51ea, type: 3}
     gridWidth: 12
     gridHeight: 7
@@ -205,6 +247,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 8
     defaultPosZ: 6
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -220,7 +263,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 2
-      unlockItemAtSemester: 2
+      unlockItemAtSemester: 1
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2939f2f7beed55c40affa9e8c54a51ea, type: 3}
     walkSpriteTextures: []
@@ -228,7 +271,11 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 2454
     name: "T\xF2a C3"
-    description: 
+    description: "T\xF2a C3 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
+      l\xE0 m\u1ED9t t\xF2a nh\xE0 gi\u1EA3ng \u0111\u01B0\u1EDDng, th\u01B0\u1EDDng
+      \u0111\u01B0\u1EE3c s\u1EED d\u1EE5ng cho c\xE1c l\u1EDBp h\u1ECDc, thi c\u1EED
+      v\xE0 l\xE0 n\u01A1i \u0111\u1EB7t v\u0103n ph\xF2ng c\u1EE7a m\u1ED9t s\u1ED1
+      \u0111\u01A1n v\u1ECB \u0111\xE0o t\u1EA1o."
     thumb: {fileID: 2800000, guid: 813482aa3ebdd35478609a58e8b0e990, type: 3}
     gridWidth: 4
     gridHeight: 11
@@ -240,6 +287,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 11
     defaultPosZ: 23
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -275,6 +323,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 11
     defaultPosZ: 36
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -298,7 +347,13 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 3504
     name: "T\xF2a C5"
-    description: 
+    description: "T\xF2a C5 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
+      l\xE0 n\u01A1i l\xE0m vi\u1EC7c v\xE0 gi\u1EA3ng d\u1EA1y c\u1EE7a nhi\u1EC1u
+      \u0111\u01A1n v\u1ECB chuy\xEAn m\xF4n, bao g\u1ED3m Khoa K\u1EF9 thu\u1EADt
+      V\u1EADt li\u1EC7u (Ph\xF2ng 316) v\xE0 Vi\u1EC7n D\u1EC7t may - Da gi\u1EA7y
+      v\xE0 Th\u1EDDi trang (Ph\xF2ng 216-217). T\xF2a nh\xE0 n\xE0y th\u01B0\u1EDDng
+      \u0111\u01B0\u1EE3c s\u1EED d\u1EE5ng cho c\xE1c vi\u1EC7n \u0111\xE0o t\u1EA1o
+      thu\u1ED9c l\u0129nh v\u1EF1c v\u1EADt li\u1EC7u v\xE0 k\u1EF9 thu\u1EADt."
     thumb: {fileID: 2800000, guid: 47344db2c85660a4898eb643bbd3c85c, type: 3}
     gridWidth: 3
     gridHeight: 11
@@ -310,6 +365,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 20
     defaultPosZ: 23
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -333,7 +389,12 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 2617
     name: "T\xF2a C6"
-    description: 
+    description: "T\xF2a C6 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
+      (HUST) l\xE0 khu nh\xE0 n\u1EB1m trong khu\xF4n vi\xEAn tr\u01B0\u1EDDng, t\u1EEBng
+      l\xE0 n\u01A1i ho\u1EA1t \u0111\u1ED9ng c\u1EE7a c\xE1c khoa k\u1EF9 thu\u1EADt.
+      Hi\u1EC7n nay, t\xF2a nh\xE0 n\xE0y g\u1EAFn li\u1EC1n v\u1EDBi c\xE1c b\u1ED9
+      ph\u1EADn c\u1EE7a Khoa C\u01A1 kh\xED \u0110\u1ED9ng l\u1EF1c, Tr\u01B0\u1EDDng
+      C\u01A1 kh\xED."
     thumb: {fileID: 2800000, guid: 2253f03b93efe4b41baa97c261ac01c8, type: 3}
     gridWidth: 3
     gridHeight: 6
@@ -345,6 +406,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 15
     defaultPosZ: 36
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -368,7 +430,8 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 9295
     name: "T\xF2a C9"
-    description: 
+    description: "T\xF2a C9 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
+      l\xE0 tr\u1EE5 s\u1EDF ch\xEDnh c\u1EE7a Tr\u01B0\u1EDDng Kinh t\u1EBF."
     thumb: {fileID: 2800000, guid: 7ea65dba491b92b4fbdf6189b4d4abe5, type: 3}
     gridWidth: 5
     gridHeight: 10
@@ -380,6 +443,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 20
     defaultPosZ: 3
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -403,7 +467,12 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 8385
     name: "T\xF2a C10"
-    description: 
+    description: "T\xF2a C10 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
+      l\xE0 \u0111\u1ECBa \u0111i\u1EC3m t\u1EADp trung c\xE1c \u0111\u01A1n v\u1ECB
+      \u0111\xE0o t\u1EA1o v\xE0 nghi\xEAn c\u1EE9u chuy\xEAn s\xE2u nh\u01B0: Tr\u01B0\u1EDDng
+      V\u1EADt li\u1EC7u, Vi\u1EC7n \u0110\xE0o t\u1EA1o Qu\u1ED1c t\u1EBF v\u1EC1
+      Khoa h\u1ECDc V\u1EADt li\u1EC7u (ITIMS), Vi\u1EC7n Khoa h\u1ECDc v\xE0 C\xF4ng
+      ngh\u1EC7 M\xF4i tr\u01B0\u1EDDng (INEST)."
     thumb: {fileID: 2800000, guid: 6e9037d69118bcf439031e0cd35d3c00, type: 3}
     gridWidth: 5
     gridHeight: 7
@@ -415,6 +484,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 23
     defaultPosZ: 27
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -450,6 +520,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 34
     defaultPosZ: 36
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -473,7 +544,15 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 6330
     name: "T\xF2a D6"
-    description: 
+    description: "D6 l\xE0 t\xF2a gi\u1EA3ng \u0111\u01B0\u1EDDng truy\u1EC1n th\u1ED1ng,
+      c\xF3 v\u1ECB tr\xED \u0111\u1ED1i di\u1EC7n v\u1EDBi t\xF2a D8. D6 ch\u1EE7
+      y\u1EBFu ph\u1EE5c v\u1EE5 c\xE1c l\u1EDBp h\u1ECDc l\xFD thuy\u1EBFt cho sinh
+      vi\xEAn \u0111\u1EA1i tr\xE0. T\xF2a nh\xE0 n\xE0y \u0111\xE3 t\u1EEBng tr\u1EA3i
+      qua c\xE1c d\u1EF1 \xE1n thi\u1EBFt k\u1EBF v\xE0 c\u1EA3i t\u1EA1o \u0111\u1EC3
+      n\xE2ng c\u1EA5p c\u01A1 s\u1EDF v\u1EADt ch\u1EA5t. N\u01A1i \u0111\xE2y c\u0169ng
+      th\u01B0\u1EDDng xuy\xEAn t\u1ED5 ch\u1EE9c c\xE1c l\u1EDBp h\u1ECDc b\u1ED5
+      tr\u1EE3 ho\u1EB7c b\u1ED3i d\u01B0\u1EE1ng k\u1EF9 n\u0103ng ngo\xE0i gi\u1EDD
+      ch\xEDnh kh\xF3a."
     thumb: {fileID: 2800000, guid: ac7397bac5f2bd445928cf235c3a8a90, type: 3}
     gridWidth: 3
     gridHeight: 8
@@ -485,6 +564,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 40
     defaultPosZ: 8
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -508,7 +588,13 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 5134
     name: "T\xF2a D8"
-    description: 
+    description: "T\xF2a D8 l\xE0 c\xF4ng tr\xECnh hi\u1EC7n \u0111\u1EA1i cao 11
+      t\u1EA7ng n\u1ED5i v\xE0 1 t\u1EA7ng h\u1EA7m. Trong \u0111\xF3 t\u1EA7ng 1
+      - 5 bao g\u1ED3m 30 ph\xF2ng h\u1ECDc hi\u1EC7n \u0111\u1EA1i ph\u1EE5c v\u1EE5
+      sinh vi\xEAn \u0111\u1EA1i h\u1ECDc v\xE0 sau \u0111\u1EA1i h\u1ECDc, t\u1EA7ng
+      6 - 11 l\xE0 c\xE1c ph\xF2ng \u0111a ch\u1EE9c n\u0103ng ph\u1EE5c v\u1EE5
+      c\xE1c d\u1EF1 \xE1n nghi\xEAn c\u1EE9u tr\u1ECDng \u0111i\u1EC3m c\u1EE7a
+      Tr\u01B0\u1EDDng"
     thumb: {fileID: 2800000, guid: 52e4fdcbc4b6e1f4da8619fb4b91be80, type: 3}
     gridWidth: 6
     gridHeight: 8
@@ -520,6 +606,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 46
     defaultPosZ: 8
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -555,6 +642,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 34
     defaultPosZ: 8
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -590,6 +678,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 37
     defaultPosZ: 8
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -625,6 +714,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 23
     defaultPosZ: 23
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -660,6 +750,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 34
     defaultPosZ: -1
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -695,6 +786,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 34
     defaultPosZ: 11
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -730,6 +822,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 43
     defaultPosZ: 17
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -765,6 +858,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 48
     defaultPosZ: 25
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -780,7 +874,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 99
-      unlockItemAtSemester: 0
+      unlockItemAtSemester: 8
     idleSpriteTextures:
     - {fileID: 2800000, guid: bd7fdc6a95e48534dbc5e82d63c5eff3, type: 3}
     walkSpriteTextures: []
@@ -800,6 +894,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 34
     defaultPosZ: 17
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -815,7 +910,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 99
-      unlockItemAtSemester: 0
+      unlockItemAtSemester: 8
     idleSpriteTextures:
     - {fileID: 2800000, guid: e09bdda50ffde0940b85c89af2d2b990, type: 3}
     walkSpriteTextures: []
@@ -835,6 +930,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: 34
     defaultPosZ: 19
+    missionReward: 100
     configuration:
       buildTime: 20
       isCharacter: 0
@@ -850,7 +946,7 @@ MonoBehaviour:
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 99
-      unlockItemAtSemester: 0
+      unlockItemAtSemester: 8
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2e752c7f02acbc4418c1e12abf8da592, type: 3}
     walkSpriteTextures: []

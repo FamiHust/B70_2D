@@ -82,7 +82,7 @@ public class NPCController : MonoBehaviour
 
     void RequestNewPath()
     {
-        Vector3 target = GroundManager.instance.GetRandomFreePosition();
+        Vector3 target = NPCSpawner.instance.GetRandomNPCPosition();
         
         targetCell = WorldToCell(target);
 

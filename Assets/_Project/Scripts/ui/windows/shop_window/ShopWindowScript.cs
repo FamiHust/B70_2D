@@ -16,6 +16,9 @@ public class ShopWindowScript : WindowScript
 	public GameObject ItemsList;
 	public GameObject CategoryList;
 	public GameObject BackButton;
+	
+	public Button FirstRollButton;
+	public Button LastRollButton;
 
 	public ProgressPanelScript GoldInfo;
 	public ProgressPanelScript DiamondInfo;
@@ -93,6 +96,15 @@ public class ShopWindowScript : WindowScript
 
 	void Start()
 	{
+		if (FirstRollButton != null)
+		{
+			FirstRollButton.onClick.AddListener(OnClickFirstRoll);
+		}
+		if (LastRollButton != null)
+		{
+			LastRollButton.onClick.AddListener(OnClickLastRoll);
+		}
+
 		if (this.GoldInfo != null && SceneManager.instance != null)
 		{
 			this.GoldInfo.hasMaxValue = true;
@@ -360,6 +372,52 @@ public class ShopWindowScript : WindowScript
 	public void ResetScrollPosition()
 	{
 		this.ScrollView.horizontalNormalizedPosition = 0.0f;
+	}
+
+	private Coroutine _scrollCoroutine;
+
+	private float EaseOutBack(float t)
+	{
+		float c1 = 1.70158f;
+		float c3 = c1 + 1f;
+		return 1f + c3 * Mathf.Pow(t - 1f, 3f) + c1 * Mathf.Pow(t - 1f, 2f);
+	}
+
+	private IEnumerator TweenScrollTo(float targetPosition, float duration = 0.3f)
+	{
+		if (this.ScrollView == null) yield break;
+
+		float startPosition = this.ScrollView.horizontalNormalizedPosition;
+		float timeElapsed = 0f;
+
+		while (timeElapsed < duration)
+		{
+			float t = timeElapsed / duration;
+			float easedT = EaseOutBack(t);
+			this.ScrollView.horizontalNormalizedPosition = Mathf.LerpUnclamped(startPosition, targetPosition, easedT);
+			timeElapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		this.ScrollView.horizontalNormalizedPosition = targetPosition;
+	}
+
+	public void OnClickFirstRoll()
+	{
+		if (this.ScrollView != null)
+		{
+			if (_scrollCoroutine != null) StopCoroutine(_scrollCoroutine);
+			_scrollCoroutine = StartCoroutine(TweenScrollTo(0.0f));
+		}
+	}
+
+	public void OnClickLastRoll()
+	{
+		if (this.ScrollView != null)
+		{
+			if (_scrollCoroutine != null) StopCoroutine(_scrollCoroutine);
+			_scrollCoroutine = StartCoroutine(TweenScrollTo(1.0f));
+		}
 	}
 
 	/// <summary>
