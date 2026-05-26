@@ -262,6 +262,24 @@ public class ItemOptionsWindowScript : WindowScript
 			}
 			else
 			{
+				string resourceType = selectedItem.itemData.configuration.resourceType;
+				int price = selectedItem.itemData.configuration.price;
+				int currentAmount = resourceType == "diamond" ? SceneManager.instance.numberOfDiamondsInStorage : SceneManager.instance.numberOfGoldInStorage;
+				int missingAmount = price - currentAmount;
+				
+				WarningWindow warningWindow = UIManager.instance.ShowWarningWindow();
+				if (warningWindow != null)
+				{
+					if (resourceType == "diamond")
+					{
+						warningWindow.SetupDiamondWarning(missingAmount, currentAmount);
+					}
+					else
+					{
+						warningWindow.SetupGoldWarning(missingAmount, currentAmount);
+					}
+				}
+				
 				// If somehow they don't have enough resources now, cancel the build
 				OnClickNoButton();
 			}

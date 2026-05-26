@@ -208,6 +208,22 @@ public class InfoWindowScript : WindowScript
 
 		if (!canBuild)
 		{
+			int currentAmount = resource == "diamond" ? SceneManager.instance.numberOfDiamondsInStorage : SceneManager.instance.numberOfGoldInStorage;
+			int missingAmount = price - currentAmount;
+			
+			WarningWindow warningWindow = UIManager.instance.ShowWarningWindow();
+			if (warningWindow != null)
+			{
+				if (resource == "diamond")
+				{
+					warningWindow.SetupDiamondWarning(missingAmount, currentAmount);
+				}
+				else
+				{
+					warningWindow.SetupGoldWarning(missingAmount, currentAmount);
+				}
+			}
+			
 			Debug.Log("Not enough resource: " + resource);
 			return;
 		}

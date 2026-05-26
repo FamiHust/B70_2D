@@ -51,6 +51,8 @@ namespace B70.Balance
         {
             if (SceneManager.instance == null || TimeManager.instance == null || TimeManager.instance.isPaused) return;
 
+            if (SceneManager.instance.currentLevel < 3) return;
+
             // Kiểm tra xem đã sang kỳ mới chưa
             if (SceneManager.instance.currentSemester != lastSemester)
             {
@@ -182,6 +184,8 @@ namespace B70.Balance
             List<UniversityEventData> triggeredEvents = new List<UniversityEventData>();
 
             if (SceneManager.instance == null) return triggeredEvents;
+
+            if (SceneManager.instance.currentLevel < 3) return triggeredEvents;
 
             Debug.Log($"[UniversityEventManager] Rolling random events. Total available: {availableEvents.Count}");
 

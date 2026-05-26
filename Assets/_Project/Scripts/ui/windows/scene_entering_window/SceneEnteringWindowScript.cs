@@ -93,6 +93,13 @@ public class SceneEnteringWindowScript : WindowScript {
 	public override void Close()
 	{
 		this.CheckTutorial();
+
+		// Khi SceneEnteringWindow đóng, nếu đã qua tutorial cuối thì bắt đầu đếm thời gian
+		if (TimeManager.instance != null && TimeManager.instance.hasFinishedFinalTutorial)
+		{
+			TimeManager.instance.SetPaused(false);
+		}
+
 		base.Close();
 	}
 }

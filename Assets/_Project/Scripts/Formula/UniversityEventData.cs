@@ -29,6 +29,9 @@ namespace B70.Balance
         [TextArea(2, 4)]
         public string description;
 
+        [Header("Visuals")]
+        public Sprite eventSprite;
+
         [Range(0f, 1f)]
         [Tooltip("Xác suất xảy ra event trong một học kỳ (Ví dụ: 0.35 = 35%)")]
         public float triggerProbability = 0.35f;

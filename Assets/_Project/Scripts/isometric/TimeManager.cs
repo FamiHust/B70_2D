@@ -12,6 +12,8 @@ public class TimeManager : MonoBehaviour
 
     public event Action OnSemesterEnd;
 
+    public bool hasFinishedFinalTutorial = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -46,6 +48,7 @@ public class TimeManager : MonoBehaviour
     public void SaveTimer()
     {
         PlayerPrefs.SetFloat("timeRemaining", timeRemaining);
+        PlayerPrefs.SetInt("hasFinishedFinalTutorial", hasFinishedFinalTutorial ? 1 : 0);
         PlayerPrefs.Save();
     }
 
@@ -60,8 +63,12 @@ public class TimeManager : MonoBehaviour
         {
             timeRemaining = semesterDuration;
         }
+
+        hasFinishedFinalTutorial = PlayerPrefs.GetInt("hasFinishedFinalTutorial", 0) == 1;
         
-        isPaused = false;
+        // Mặc định khởi tạo luôn pause (vì game sẽ bắt đầu ở Menu).
+        // Timer sẽ được unpause sau khi người chơi bấm Play và các màn hình chờ đóng lại (thông qua UIManager.CheckWindowsAfterClose).
+        isPaused = true;
     }
 
     private void Update()
@@ -82,7 +89,7 @@ public class TimeManager : MonoBehaviour
     public void ResetTimer()
     {
         timeRemaining = semesterDuration;
-        isPaused = false;
+        isPaused = !hasFinishedFinalTutorial;
         SaveTimer();
     }
 

@@ -3131,10 +3131,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 224207094445715116}
     m_Modifications:
+    - target: {fileID: 2952350791896487455, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.200012
+      objectReference: {fileID: 0}
     - target: {fileID: 5484177724990406995, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
       propertyPath: m_Name
       value: ItemMission (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388005815514435259, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.9000244
       objectReference: {fileID: 0}
     - target: {fileID: 6894729876833949991, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
@@ -3260,10 +3270,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 224207094445715116}
     m_Modifications:
+    - target: {fileID: 2952350791896487455, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.200012
+      objectReference: {fileID: 0}
     - target: {fileID: 5484177724990406995, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
       propertyPath: m_Name
       value: ItemMission (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388005815514435259, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.9000244
       objectReference: {fileID: 0}
     - target: {fileID: 6894729876833949991, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
@@ -3513,10 +3533,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 224207094445715116}
     m_Modifications:
+    - target: {fileID: 2952350791896487455, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.200012
+      objectReference: {fileID: 0}
     - target: {fileID: 5484177724990406995, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
       propertyPath: m_Name
       value: ItemMission (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388005815514435259, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.9000244
       objectReference: {fileID: 0}
     - target: {fileID: 6894729876833949991, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
@@ -3642,10 +3672,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 224207094445715116}
     m_Modifications:
+    - target: {fileID: 2952350791896487455, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.200012
+      objectReference: {fileID: 0}
     - target: {fileID: 5484177724990406995, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
       propertyPath: m_Name
       value: ItemMission (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388005815514435259, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.9000244
       objectReference: {fileID: 0}
     - target: {fileID: 6894729876833949991, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
@@ -3771,10 +3811,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 224207094445715116}
     m_Modifications:
+    - target: {fileID: 2952350791896487455, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.200012
+      objectReference: {fileID: 0}
     - target: {fileID: 5484177724990406995, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}
       propertyPath: m_Name
       value: ItemMission (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388005815514435259, guid: cc109a29e18f449499c6ac7c988069f7,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.9000244
       objectReference: {fileID: 0}
     - target: {fileID: 6894729876833949991, guid: cc109a29e18f449499c6ac7c988069f7,
         type: 3}

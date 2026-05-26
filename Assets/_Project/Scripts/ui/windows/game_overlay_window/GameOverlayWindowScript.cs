@@ -458,6 +458,8 @@ public class GameOverlayWindowScript : WindowScript
 		// Cuối cùng mới bật lại thời gian
 		if (TimeManager.instance != null)
 		{
+			TimeManager.instance.hasFinishedFinalTutorial = true;
+			TimeManager.instance.SaveTimer();
 			TimeManager.instance.SetPaused(false);
 		}
 	}

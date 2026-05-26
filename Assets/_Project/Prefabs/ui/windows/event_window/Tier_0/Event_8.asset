@@ -17,6 +17,7 @@ MonoBehaviour:
   description: "M\xE1y qu\u1EB9t th\u1EBB b\u1ED7ng nhi\xEAn b\u1ECB h\u1ECFng, barie
     kh\xF4ng m\u1EDF khi\u1EBFn t\u1EA5t c\u1EA3 sinh vi\xEAn b\u1ECB k\u1EB9t c\u1EE9ng
     \u1EDF nh\xE0 xe."
+  eventSprite: {fileID: 21300000, guid: eeb2cabd3f6795d4183fd632b65af965, type: 3}
   triggerProbability: 0.3
   options:
   - title: "X\u1EA3 tr\u1EA1m cho v\u1EC1 h\u1EBFt"

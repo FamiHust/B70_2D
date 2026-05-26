@@ -945,8 +945,18 @@ public class SceneManager : MonoBehaviour
 		}
 	}
 
+	public bool isLevelProgressUpdatePending = false;
+
 	public void UpdateLevelProgress()
 	{
+		if (UIManager.instance != null && UIManager.instance.HasEventWindowOpen())
+		{
+			isLevelProgressUpdatePending = true;
+			return;
+		}
+
+		isLevelProgressUpdatePending = false;
+
 		List<int> requiredItemIds = ShopWindowScript.GetAllShopItemIds();
 		int totalRequired = 0;
 		int builtCount = 0;
@@ -1074,8 +1084,8 @@ public class SceneManager : MonoBehaviour
 
 		if (UIManager.instance != null)
 		{
-			// Hiện bảng tổng kết học kỳ (Breakdown) khi hết thời gian
-			UIManager.instance.ShowNewSemesterWindow(bd, finishedSemester, this.numberOfHappyInStorage, this.numberOfEducationInStorage);
+			// Hiện bảng Income Result khi hết thời gian, confirm xong mới qua NewSemesterWindow
+			UIManager.instance.ShowIncomeResultWindow(bd, finishedSemester, this.numberOfHappyInStorage, this.numberOfEducationInStorage);
 		}
 
 		this._isCompletingSemester = false;

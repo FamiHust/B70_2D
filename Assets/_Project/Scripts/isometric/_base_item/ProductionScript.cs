@@ -83,9 +83,6 @@ public class ProductionScript : MonoBehaviour
 
     private void Update()
     {
-        if (TimeManager.instance != null && TimeManager.instance.isPaused)
-            return;
-
         if (this.isUnderConstruction)
         {
             if (this.constructionTimeRemaining > 0)

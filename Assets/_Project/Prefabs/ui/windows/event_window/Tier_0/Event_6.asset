@@ -16,6 +16,7 @@ MonoBehaviour:
   eventName: "nh\u1EA3y TikTok l\u1EA5y \u0110i\u1EC3m r\xE8n luy\u1EC7n"
   description: "M\u1ED9t sinh vi\xEAn cosplay nh\xE2n v\u1EADt anime n\u1ED5i b\u1EADt
     ng\u1ED3i ngay h\xE0ng gh\u1EBF \u0111\u1EA7u ph\xF2ng h\u1ECDc t\xF2a D8."
+  eventSprite: {fileID: 21300000, guid: 2f4610dfcd5b0f742afdee8fcc5180ab, type: 3}
   triggerProbability: 0.3
   options:
   - title: "Ch\u1EE5p \u1EA3nh PR"

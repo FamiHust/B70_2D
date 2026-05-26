@@ -26,10 +26,12 @@ public class UIManager : MonoBehaviour
 	public GameObject BoostWindow;
 	public GameObject TutorialWindow;
 	public GameObject UnlockItemWindow;
+	public GameObject IncomeResultWindow;
 	public GameObject NewSemesterWindow;
 	public GameObject MissionWindow;
 	public GameObject EventWindow;
 	public GameObject EventResultOptionWindow;
+	public GameObject WarningWindow;
 
 
 	/* object references */
@@ -60,7 +62,7 @@ public class UIManager : MonoBehaviour
 	{
 		// Automatically close other windows except the overlay before showing the new one
 		// but don't close windows if we are opening the overlay itself or an Info popup
-		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow && prefab != this.EventWindow)
+		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow)
 		{
 			this.CloseAllWindowsExceptOverlay();
 		}
@@ -75,9 +77,12 @@ public class UIManager : MonoBehaviour
 			GameOverlayWindowScript.instance.HideOverlay();
 		}
 
-		if (prefab != this.GameOverlayWindow && TimeManager.instance != null)
+		if (prefab == this.EventWindow || prefab == this.EventResultOptionWindow)
 		{
-			TimeManager.instance.SetPaused(true);
+			if (TimeManager.instance != null)
+			{
+				TimeManager.instance.SetPaused(true);
+			}
 		}
 
 		return window;
@@ -195,6 +200,15 @@ public class UIManager : MonoBehaviour
 		return this.ShowWindow(this.TutorialWindow);
 	}
 
+	public void ShowIncomeResultWindow(B70.Balance.SemesterBreakdown bd, int semesterNumber, float happiness, float education)
+	{
+		IncomeResultWindowScript window = this.ShowWindow(this.IncomeResultWindow) as IncomeResultWindowScript;
+		if (window != null)
+		{
+			window.Setup(bd, semesterNumber, happiness, education);
+		}
+	}
+
 	public void ShowNewSemesterWindow(B70.Balance.SemesterBreakdown bd, int semesterNumber, float happiness, float education)
 	{
 		NewSemesterWindowScript window = this.ShowWindow(this.NewSemesterWindow) as NewSemesterWindowScript;
@@ -223,6 +237,11 @@ public class UIManager : MonoBehaviour
 	public B70.Balance.EventResultOptionWindow ShowEventResultOptionWindow()
 	{
 		return this.ShowWindow(this.EventResultOptionWindow) as B70.Balance.EventResultOptionWindow;
+	}
+
+	public WarningWindow ShowWarningWindow()
+	{
+		return this.ShowWindow(this.WarningWindow) as WarningWindow;
 	}
 
 	public ItemWindowScript ShowMapShopWindow(string areaName, List<int> itemIds, MapShopAreaScript mapShopArea = null)
@@ -265,8 +284,44 @@ public class UIManager : MonoBehaviour
 
 			if (TimeManager.instance != null)
 			{
-				TimeManager.instance.SetPaused(hasOtherWindow);
+				bool shouldPause = this.HasEventWindowOpen();
+				if (!TimeManager.instance.hasFinishedFinalTutorial)
+				{
+					shouldPause = true;
+				}
+				if (this.IsMenuOrLoadingOpen())
+				{
+					shouldPause = true;
+				}
+				TimeManager.instance.SetPaused(shouldPause);
+			}
+
+			if (!this.HasEventWindowOpen() && SceneManager.instance != null && SceneManager.instance.isLevelProgressUpdatePending)
+			{
+				SceneManager.instance.UpdateLevelProgress();
 			}
 		}
+	}
+
+	public bool IsMenuOrLoadingOpen()
+	{
+		if (_windowInstances == null) return false;
+		foreach (var w in _windowInstances)
+		{
+			if (w is MenuWindowScript || w is SceneEnteringWindowScript)
+				return true;
+		}
+		return false;
+	}
+
+	public bool HasEventWindowOpen()
+	{
+		if (_windowInstances == null) return false;
+		foreach (var w in _windowInstances)
+		{
+			if (w is B70.Balance.UniversityEvent || w is B70.Balance.EventResultOptionWindow)
+				return true;
+		}
+		return false;
 	}
 }

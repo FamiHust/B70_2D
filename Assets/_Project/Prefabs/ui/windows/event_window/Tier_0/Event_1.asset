@@ -16,6 +16,7 @@ MonoBehaviour:
   eventName: "Maid Cafe \u1EDF s\u1EA3nh C7"
   description: "M\u1ED9t nh\xF3m sinh vi\xEAn t\u1ED5 ch\u1EE9c m\u1EDF Maid Cafe
     cosplay ngay t\u1EA1i s\u1EA3nh C7 thu h\xFAt qu\xE1 \u0111\xF4ng ng\u01B0\u1EDDi."
+  eventSprite: {fileID: 21300000, guid: 062d13d610659e8448d652df637240fd, type: 3}
   triggerProbability: 0.3
   options:
   - title: "H\u1EE3p t\xE1c"

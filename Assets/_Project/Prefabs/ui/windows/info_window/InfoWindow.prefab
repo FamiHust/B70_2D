@@ -88,7 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -404,7 +404,6 @@ GameObject:
   - component: {fileID: 224401303726103316}
   - component: {fileID: 222738923960147680}
   - component: {fileID: 114956448171984088}
-  - component: {fileID: 987906540114248846}
   m_Layer: 5
   m_Name: ThumbImage
   m_TagString: Untagged
@@ -466,29 +465,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &987906540114248846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627516859637838}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d58260a0825f1d4d90626068bb8448d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startScale: {x: 1, y: 1}
-  endScale: {x: 0.95, y: 0.95}
-  targetTF: {fileID: 224401303726103316}
-  eventOnPointDown:
-    m_PersistentCalls:
-      m_Calls: []
-  eventOnPointUp:
-    m_PersistentCalls:
-      m_Calls: []
-  isActiveSound: 1
-  ignoreVib: 0
 --- !u!1 &1760650030791742
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,7 +873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1819,7 +1795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1970,7 +1946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.16078432, g: 0.2901961, b: 0.60784316, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2072,7 +2048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.41960785}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2257,7 +2233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2588,7 +2564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2679,7 +2655,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3233,6 +3209,7 @@ GameObject:
   - component: {fileID: 4188113520053356044}
   - component: {fileID: 2893222635572570845}
   - component: {fileID: 2727704939619548618}
+  - component: {fileID: 7844695168544321797}
   m_Layer: 5
   m_Name: Mask
   m_TagString: Untagged
@@ -3283,7 +3260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.48235294}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3312,6 +3289,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &7844695168544321797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7834986938223193093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d58260a0825f1d4d90626068bb8448d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startScale: {x: 1, y: 1}
+  endScale: {x: 0.95, y: 0.95}
+  targetTF: {fileID: 5768331665775236639}
+  eventOnPointDown:
+    m_PersistentCalls:
+      m_Calls: []
+  eventOnPointUp:
+    m_PersistentCalls:
+      m_Calls: []
+  isActiveSound: 1
+  ignoreVib: 0
 --- !u!1 &7852859652755508671
 GameObject:
   m_ObjectHideFlags: 0
@@ -3574,6 +3574,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InfoItem (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114638504898419916, guid: 1d5ea933b88e947fe9be057044b7fd0d,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224242121409059776, guid: 1d5ea933b88e947fe9be057044b7fd0d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3672,6 +3677,11 @@ PrefabInstance:
     - target: {fileID: 224242121409059776, guid: 1d5ea933b88e947fe9be057044b7fd0d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933527257441980041, guid: 1d5ea933b88e947fe9be057044b7fd0d,
+        type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3697,6 +3707,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InfoItem
       objectReference: {fileID: 0}
+    - target: {fileID: 114638504898419916, guid: 1d5ea933b88e947fe9be057044b7fd0d,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224242121409059776, guid: 1d5ea933b88e947fe9be057044b7fd0d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3795,6 +3810,11 @@ PrefabInstance:
     - target: {fileID: 224242121409059776, guid: 1d5ea933b88e947fe9be057044b7fd0d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933527257441980041, guid: 1d5ea933b88e947fe9be057044b7fd0d,
+        type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

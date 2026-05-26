@@ -13,6 +13,7 @@ namespace B70.Balance
         public UniversityEventData eventData;
 
         [Header("UI References")]
+        public Image eventImage;
         public Text eventNameText;
         public Text descriptionText;
 
@@ -35,6 +36,7 @@ namespace B70.Balance
 
             if (eventNameText != null) eventNameText.text = data.eventName;
             if (descriptionText != null) descriptionText.text = data.description;
+            if (eventImage != null && data.eventSprite != null) eventImage.sprite = data.eventSprite;
 
             // Xóa option items cũ
             foreach (var old in _spawnedOptionItems)

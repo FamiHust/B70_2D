@@ -17,6 +17,7 @@ MonoBehaviour:
   description: "M\u1ED9t sinh vi\xEAn l\xEAn th\u01B0 vi\u1EC7n \xF4n thi v\xE0 l\xFAc
     v\u1EC1 ph\xE1t hi\u1EC7n \u0111\xF4i t\u1ED5 ong huy\u1EC1n tho\u1EA1i \u0111\xE3
     \"kh\xF4ng c\xE1nh m\xE0 bay\"."
+  eventSprite: {fileID: 21300000, guid: 5434de54145431a488614a54c69be453, type: 3}
   triggerProbability: 0.3
   options:
   - title: "Tr\xEDch xu\u1EA5t camera"

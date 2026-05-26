@@ -57,6 +57,7 @@ namespace B70.Balance
         public float graduated;           // Số sinh viên tốt nghiệp kỳ này.
         public float deltaStudents;       // Thay đổi net số sinh viên (freshmen - dropouts - graduated).
         public float semesterGoldIncome;  // Gold thu được từ học phí cuối kỳ.
+        public float diningIncome;        // Gold thu được từ nhà ăn.
         public float graduationRate;      // Tỉ lệ tốt nghiệp thực tế [0,1].
     }
 
@@ -345,6 +346,7 @@ namespace B70.Balance
                 graduated          = graduated,
                 deltaStudents      = deltaS,
                 semesterGoldIncome = semesterGold,
+                diningIncome       = 0f, // TODO: calculate dining income
                 graduationRate     = gradRate
             };
         }

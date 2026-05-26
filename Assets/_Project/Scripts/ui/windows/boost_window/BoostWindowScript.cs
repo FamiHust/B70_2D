@@ -46,8 +46,8 @@ public class BoostWindowScript : WindowScript
             return;
         }
 
-        // Consume diamonds (5 diamonds to boost)
-        if (SceneManager.instance.ConsumeResource("diamond", 5))
+        // Consume diamonds (1 diamond to boost)
+        if (SceneManager.instance.ConsumeResource("diamond", 1))
         {
             selectedItem.FinishConstruction();
 
@@ -57,6 +57,15 @@ public class BoostWindowScript : WindowScript
         }
         else
         {
+            int currentAmount = SceneManager.instance.numberOfDiamondsInStorage;
+            int missingAmount = 1 - currentAmount;
+            
+            WarningWindow warningWindow = UIManager.instance.ShowWarningWindow();
+            if (warningWindow != null)
+            {
+                warningWindow.SetupDiamondWarning(missingAmount, currentAmount);
+            }
+            
             Debug.Log("Not enough diamonds to boost!");
         }
     }

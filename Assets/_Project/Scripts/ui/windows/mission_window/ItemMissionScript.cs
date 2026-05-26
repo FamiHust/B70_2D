@@ -15,6 +15,7 @@ public class ItemMissionScript : MonoBehaviour
 	public RawImage BuildingImage;
 	public RawImage BuildingImageShadow;
 	public Text ProgressText;
+	public Text rewardText;
 
 	/* private variables */
 	private int _itemId;
@@ -40,6 +41,10 @@ public class ItemMissionScript : MonoBehaviour
 			if (this.BuildingImageShadow != null)
 			{
 				this.BuildingImageShadow.texture = itemData.thumb;
+			}
+			if (this.rewardText != null)
+			{
+				this.rewardText.text = this._goldReward.ToString();
 			}
 		}
 		else

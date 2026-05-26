@@ -17,6 +17,7 @@ MonoBehaviour:
   description: "Hai sinh vi\xEAn c\xE3i nhau n\u1EA3y l\u1EEDa v\xEC m\u1ED9t ng\u01B0\u1EDDi
     d\xF9ng \u0111\u1ECBnh l\xFD Stolz, ng\u01B0\u1EDDi kia d\xF9ng quy t\u1EAFc
     L'H\xF4pital."
+  eventSprite: {fileID: 21300000, guid: a904b1c047cd1884189a96544d17d278, type: 3}
   triggerProbability: 0.3
   options:
   - title: "M\u1EDDi gi\u1EA3ng vi\xEAn ra ph\xE2n x\u1EED"

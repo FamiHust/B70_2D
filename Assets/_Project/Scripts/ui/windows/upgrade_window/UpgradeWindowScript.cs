@@ -60,7 +60,7 @@ public class UpgradeWindowScript : WindowScript
         Title.text = _targetItem.itemData.name;
         LevelText.text = "Up To Level " + (_targetItem.level + 1);
         CostText.text = _targetItem.GetUpgradeCost().ToString();
-        DiamondCostText.text = "5";
+        DiamondCostText.text = "1";
 
         // Disable upgrade button if already at max level
         int nextLevel = _targetItem.level + 1;
@@ -113,6 +113,15 @@ public class UpgradeWindowScript : WindowScript
         }
         else
         {
+            int currentAmount = SceneManager.instance.numberOfGoldInStorage;
+            int missingAmount = cost - currentAmount;
+            
+            WarningWindow warningWindow = UIManager.instance.ShowWarningWindow();
+            if (warningWindow != null)
+            {
+                warningWindow.SetupGoldWarning(missingAmount, currentAmount);
+            }
+            
             Debug.Log("Not enough gold to upgrade!");
         }
     }
@@ -130,8 +139,8 @@ public class UpgradeWindowScript : WindowScript
             return;
         }
 
-        // Consume diamonds (5 diamonds to boost)
-        if (SceneManager.instance.ConsumeResource("diamond", 5))
+        // Consume diamonds (1 diamond to boost)
+        if (SceneManager.instance.ConsumeResource("diamond", 1))
         {
             // Instantly upgrade the item without waiting for construction
             _targetItem.level++;
@@ -152,6 +161,15 @@ public class UpgradeWindowScript : WindowScript
         }
         else
         {
+            int currentAmount = SceneManager.instance.numberOfDiamondsInStorage;
+            int missingAmount = 1 - currentAmount;
+            
+            WarningWindow warningWindow = UIManager.instance.ShowWarningWindow();
+            if (warningWindow != null)
+            {
+                warningWindow.SetupDiamondWarning(missingAmount, currentAmount);
+            }
+            
             Debug.Log("Not enough diamonds to boost!");
         }
     }

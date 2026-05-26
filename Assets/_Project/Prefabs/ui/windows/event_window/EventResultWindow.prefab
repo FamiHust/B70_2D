@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 1040, y: 240}
+  m_SizeDelta: {x: 1040, y: 230}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6489976722837975444
 CanvasRenderer:
@@ -1818,7 +1818,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -30}
-  m_SizeDelta: {x: 650, y: 100}
+  m_SizeDelta: {x: 650, y: 88.2831}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7187240853840739530
 CanvasRenderer:
@@ -1850,7 +1850,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0c37f9fbe9b8aea42a96180b44012528, type: 3}
-    m_FontSize: 42
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1861,7 +1861,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "K\u1EBET QU\u1EA2 L\u1EF0A CH\u1ECCN"
+  m_Text: "K\u1EBFt qu\u1EA3 l\u1EF1a ch\u1ECDn"
 --- !u!114 &692075380306050929
 MonoBehaviour:
   m_ObjectHideFlags: 0

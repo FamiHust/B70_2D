@@ -17,6 +17,7 @@ MonoBehaviour:
   description: "M\u1ED9t \xF4ng ch\xFA \u0111eo kh\u1EA9u trang m\u1EB7c \xE1o HUST
     v\u1EEBa \"nh\u1EA5c\" nh\u1EB9 chi\u1EBFc m\u0169 c\u1EE7a m\u1ED9t nam sinh
     t\u1EA1i b\xE3i xe"
+  eventSprite: {fileID: 294245566, guid: ab24962c74f262f4e802eea3165128e1, type: 3}
   triggerProbability: 0.3
   options:
   - title: "H\u1ED7 tr\u1EE3 t\xECm ki\u1EBFm"
