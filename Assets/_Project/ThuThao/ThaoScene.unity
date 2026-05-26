@@ -25200,6 +25200,7 @@ GameObject:
   - component: {fileID: 920092034}
   - component: {fileID: 920092033}
   - component: {fileID: 920092032}
+  - component: {fileID: 920092035}
   m_Layer: 0
   m_Name: NPCManager
   m_TagString: Untagged
@@ -25283,6 +25284,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!114 &920092035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920092031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cfaaa43fc7dc146928376f66139459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeechBubblePrefab: {fileID: 3347508356582741866, guid: 5b605e88ab15a9c40b170e3d16c43e79,
+    type: 3}
+  complaintIntervalMin: 30
+  complaintIntervalMax: 60
+  complaintDuration: 10
+  bubbleScaleMultiplier: 2.5
+  bubbleOffsetY: 3
+  eventIntervalMin: 60
+  eventIntervalMax: 120
 --- !u!43 &930149358
 Mesh:
   m_ObjectHideFlags: 0
