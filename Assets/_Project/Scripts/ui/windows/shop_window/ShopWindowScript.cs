@@ -78,13 +78,15 @@ public class ShopWindowScript : WindowScript
 		MONEY_LAKE,
 		D9,
 		TTVD,
-		Alumni
+		Alumni,
+		SAN_C2,
+		ICEA
 	}
 
 	public static SubCategory[] ServiceSubItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
-	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6, SubCategory.ITIMS, SubCategory.SECURITY_ROOM, SubCategory.PC_LAB, SubCategory.TTVD, SubCategory.Alumni };
+	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6, SubCategory.ITIMS, SubCategory.SECURITY_ROOM, SubCategory.PC_LAB, SubCategory.TTVD, SubCategory.Alumni, SubCategory.ICEA };
 	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.C7, SubCategory.D9 };
-	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.MONEY_LAKE };
+	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.MONEY_LAKE, SubCategory.SAN_C2 };
 
 
 
@@ -327,6 +329,8 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.D9: return 9818;
 			case SubCategory.TTVD: return 3702;
 			case SubCategory.Alumni: return 8099;
+			case SubCategory.SAN_C2: return 6437;
+			case SubCategory.ICEA: return 4073;
 			default: return 0;
 		}
 	}

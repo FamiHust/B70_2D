@@ -35,6 +35,9 @@ public class BaseItemScript : MonoBehaviour
 
 	public List<BaseItemScript> connectedItems;
 	public bool isUnderConstruction = false;
+	
+	[Header("Teacher Assignment")]
+	public TeacherData assignedTeacher;
 
 	/* events */
 	public UnityAction<BaseItemScript> OnItemDestroy;
@@ -94,6 +97,7 @@ public class BaseItemScript : MonoBehaviour
 		if (this.Production != null)
 			this.Production.SetData(this, lastCollectedTime);
 
+		this.LoadAssignedTeacher();
 
 		this.connectedItems = new List<BaseItemScript>();
 
@@ -112,6 +116,15 @@ public class BaseItemScript : MonoBehaviour
 		//{
 		//	this.ShowCollectNotificationUI(true, this.itemData.configuration.product);
 		//}
+	}
+
+	public void LoadAssignedTeacher()
+	{
+		int teacherId = PlayerPrefs.GetInt("BuildingTeacher_" + instanceId, -1);
+		if (teacherId != -1 && UIManager.instance != null && UIManager.instance.masterTeacherCollection != null)
+		{
+			assignedTeacher = UIManager.instance.masterTeacherCollection.list.Find(t => t.id == teacherId);
+		}
 	}
 
 	public void UpdateConnectedItems()

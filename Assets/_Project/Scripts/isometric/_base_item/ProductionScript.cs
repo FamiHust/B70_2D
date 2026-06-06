@@ -101,38 +101,113 @@ public class ProductionScript : MonoBehaviour
         }
     }
 
+    public float GetEffectiveProductionRate(string productType)
+    {
+        float rate = this._productionRate;
+        if (this._baseItem != null && this._baseItem.assignedTeacher != null)
+        {
+            if (productType == "gold")
+            {
+                rate *= this._baseItem.assignedTeacher.influenceGold;
+            }
+            else if (productType == "happy")
+            {
+                rate *= this._baseItem.assignedTeacher.influenceHappy;
+            }
+            else if (productType == "education")
+            {
+                rate *= this._baseItem.assignedTeacher.influenceEducation;
+            }
+        }
+        return rate;
+    }
+
+    public int GetEffectiveProductPrice(string productType)
+    {
+        float price = this._productPrice;
+        if (this._baseItem != null && this._baseItem.assignedTeacher != null)
+        {
+            if (productType == "gold")
+            {
+                price *= this._baseItem.assignedTeacher.influenceGold;
+            }
+            else if (productType == "happy")
+            {
+                price *= this._baseItem.assignedTeacher.influenceHappy;
+            }
+            else if (productType == "education")
+            {
+                price *= this._baseItem.assignedTeacher.influenceEducation;
+            }
+        }
+        return Mathf.RoundToInt(price);
+    }
+
     public void UpdateProduction()
     {
         if (this.isUnderConstruction || (TimeManager.instance != null && TimeManager.instance.isPaused))
             return;
 
         double time = GetCurrentTime() - this._lastCollectedTime;
-        int productAmount = (int)((time / 3600.0) * this._productionRate);
+        bool anyReady = false;
+        string firstReadyType = "";
 
-        if (productAmount >= 1 && !readyForCollection)
+        if (!string.IsNullOrEmpty(this._productType))
+        {
+            string[] products = this._productType.Split(',');
+            foreach (string p in products)
+            {
+                string pType = p.Trim();
+                if (string.IsNullOrEmpty(pType)) continue;
+
+                int productAmount = (int)((time / 3600.0) * GetEffectiveProductionRate(pType));
+                if (productAmount >= 1)
+                {
+                    anyReady = true;
+                    if (string.IsNullOrEmpty(firstReadyType)) firstReadyType = pType;
+                }
+            }
+        }
+
+        if (anyReady && !readyForCollection)
         {
             readyForCollection = true;
-            this._baseItem.UI.ShowCollectNotificationUI(true, this._productType);
+            this._baseItem.UI.ShowCollectNotificationUI(true, firstReadyType);
         }
     }
 
     public void Collect()
     {
         double time = GetCurrentTime() - this._lastCollectedTime;
-        int productAmount = (int)((time / 3600.0) * this._productionRate);
+        if (string.IsNullOrEmpty(this._productType)) return;
 
-        if (productAmount > 0)
+        string[] products = this._productType.Split(',');
+        bool collectedAnything = false;
+        string firstProduct = "";
+
+        foreach (string p in products)
         {
-            this._baseItem.Particles.ShowCollectionParticle(this._productType);
-            this._baseItem.UI.ShowCollectNotificationUI(false, this._productType);
+            string pType = p.Trim();
+            if (string.IsNullOrEmpty(pType)) continue;
+
+            int productAmount = (int)((time / 3600.0) * GetEffectiveProductionRate(pType));
+            if (productAmount > 0)
+            {
+                SceneManager.instance.CollectResource(pType, GetEffectiveProductPrice(pType));
+                collectedAnything = true;
+                if (string.IsNullOrEmpty(firstProduct)) firstProduct = pType;
+            }
+        }
+
+        if (collectedAnything)
+        {
+            this._baseItem.Particles.ShowCollectionParticle(firstProduct);
+            this._baseItem.UI.ShowCollectNotificationUI(false, firstProduct);
 
             this._lastCollectedTime = GetCurrentTime();
             this.readyForCollection = false;
 
             DataBaseManager.instance.UpdateItemData(this._baseItem);
-
-            SceneManager.instance.CollectResource(this._productType, this._productPrice);
-
         }
     }
 

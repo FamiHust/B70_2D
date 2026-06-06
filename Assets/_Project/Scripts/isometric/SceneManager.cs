@@ -97,7 +97,7 @@ public class SceneManager : MonoBehaviour
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
 		this.goldStorageCapacity = 10000;
 		this.diamondStorageCapacity = 20;
-		this.studentStorageCapacity = 500;    // Base capacity — tăng thêm khi xây công trình.
+		this.studentStorageCapacity = 850;    // Base capacity — tăng thêm khi xây công trình.
 		this.happyStorageCapacity = 100;       // Happiness [0, 100]
 		this.educationStorageCapacity = 100;   // Education [0, 100]
 		// this.elixirStorageCapacity = 500;
@@ -107,7 +107,7 @@ public class SceneManager : MonoBehaviour
 		// Education  = 50 : t1 = 50 → bắt đầu có freshmen nhập học.
 		this.numberOfGoldInStorage      = PlayerPrefs.GetInt("numberOfGoldInStorage",      200);
 		this.numberOfDiamondsInStorage  = PlayerPrefs.GetInt("numberOfDiamondsInStorage",  20);
-		this.numberOfStudentInStorage   = PlayerPrefs.GetInt("numberOfStudentInStorage",   0);
+		this.numberOfStudentInStorage   = PlayerPrefs.GetInt("numberOfStudentInStorage",   850);
 		this.numberOfHappyInStorage     = PlayerPrefs.GetInt("numberOfHappyInStorage",     50);   // neutralH = 50
 		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 50);   // t1 = 30
 		this.currentSemester            = PlayerPrefs.GetInt("currentSemester",            1);

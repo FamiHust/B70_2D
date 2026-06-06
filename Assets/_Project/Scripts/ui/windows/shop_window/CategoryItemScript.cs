@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class CategoryItemScript : MonoBehaviour {
 	/* prefabs */
@@ -73,14 +74,20 @@ public class CategoryItemScript : MonoBehaviour {
 
 		if (SelectImage != null) {
 			SelectImage.SetActive(isActive);
+			if (isActive) {
+				SelectImage.transform.DOKill(true);
+				SelectImage.transform.localScale = Vector3.one;
+				SelectImage.transform.DOPunchScale(new Vector3(0.15f, 0.15f, 0f), 0.3f, 10, 1f);
+			}
 		}
 		if (Name != null) {
 			Name.gameObject.SetActive(isActive);
 		}
 		if (Image != null) {
+			Image.transform.DOKill(true);
 			if (isActive) {
-				Image.transform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
-				Image.transform.localPosition = _originalImagePos + new Vector3(0, 40f, 0);
+				Image.transform.DOScale(new Vector3(1.3f, 1.3f, 1.3f), 0.3f).SetEase(Ease.OutBack);
+				Image.transform.DOLocalMove(_originalImagePos + new Vector3(0, 40f, 0), 0.3f).SetEase(Ease.OutBack);
 			} else {
 				Image.transform.localScale = Vector3.one;
 				Image.transform.localPosition = _originalImagePos;

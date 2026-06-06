@@ -28,12 +28,18 @@ public class NPCSpeechBubbleScript : MonoBehaviour
     [HideInInspector] public BubbleType bubbleType;
 
     private Coroutine _autoHideCoroutine;
+    private Coroutine _spriteScaleCoroutine;
+    private Vector3 _spriteInitialScale = Vector3.one;
     private bool _isShown = false;
 
     public System.Action OnEllipsisTapped;
 
     void Awake()
     {
+        if (spriteRenderer != null)
+        {
+            _spriteInitialScale = spriteRenderer.transform.localScale;
+        }
         
         if (BubbleRoot == null) BubbleRoot = this.gameObject;
         
@@ -126,8 +132,17 @@ public class NPCSpeechBubbleScript : MonoBehaviour
             StopCoroutine(_autoHideCoroutine);
             _autoHideCoroutine = null;
         }
-        _isShown = false;
-        if (BubbleRoot != null) BubbleRoot.SetActive(false);
+
+        if (gameObject.activeInHierarchy && spriteRenderer != null)
+        {
+            if (_spriteScaleCoroutine != null) StopCoroutine(_spriteScaleCoroutine);
+            _spriteScaleCoroutine = StartCoroutine(_SpriteScaleOutAndHide());
+        }
+        else
+        {
+            _isShown = false;
+            if (BubbleRoot != null) BubbleRoot.SetActive(false);
+        }
     }
 
     private void _SetupVisuals(string message, bool isEllipsis)
@@ -182,22 +197,22 @@ public class NPCSpeechBubbleScript : MonoBehaviour
                 textMeshPro.text = message;
                 textMeshPro.enableAutoSizing = true;
                 textMeshPro.fontSizeMin = 1.5f;
-                textMeshPro.fontSizeMax = 10.0f;
+                textMeshPro.fontSizeMax = 5.0f;
             }
         }
 
         if (spriteRenderer != null)
         {
             spriteRenderer.gameObject.SetActive(true);
-            spriteRenderer.sortingOrder = 32000; 
+            if (_spriteScaleCoroutine != null) StopCoroutine(_spriteScaleCoroutine);
+            _spriteScaleCoroutine = StartCoroutine(_SpriteScaleIn());
         }
 
         if (BubbleRoot != null)
         {
             _initialScale = BubbleRoot.transform.localScale;
             if (_initialScale == Vector3.zero) _initialScale = Vector3.one;
-            _currentAnimationScale = 0f;
-            StartCoroutine(_ScaleIn());
+            _currentAnimationScale = 1f;
         }
     }
 
@@ -249,17 +264,49 @@ public class NPCSpeechBubbleScript : MonoBehaviour
         }
     }
 
-    private IEnumerator _ScaleIn()
+    private float EaseOutBack(float x)
+    {
+        float c1 = 1.70158f;
+        float c3 = c1 + 1f;
+        return 1f + c3 * Mathf.Pow(x - 1f, 3f) + c1 * Mathf.Pow(x - 1f, 2f);
+    }
+
+    private float EaseInBack(float x)
+    {
+        float c1 = 1.70158f;
+        float c3 = c1 + 1f;
+        return c3 * x * x * x - c1 * x * x;
+    }
+
+    private IEnumerator _SpriteScaleIn()
+    {
+        float t = 0f;
+        float duration = 0.3f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float progress = Mathf.Clamp01(t / duration);
+            spriteRenderer.transform.localScale = _spriteInitialScale * EaseOutBack(progress);
+            yield return null;
+        }
+        spriteRenderer.transform.localScale = _spriteInitialScale;
+    }
+
+    private IEnumerator _SpriteScaleOutAndHide()
     {
         float t = 0f;
         float duration = 0.2f;
         while (t < duration)
         {
             t += Time.deltaTime;
-            _currentAnimationScale = Mathf.Lerp(0f, 1f, t / duration);
+            float progress = Mathf.Clamp01(t / duration);
+            spriteRenderer.transform.localScale = _spriteInitialScale * (1f - EaseInBack(progress));
             yield return null;
         }
-        _currentAnimationScale = 1f;
+        spriteRenderer.transform.localScale = Vector3.zero;
+
+        _isShown = false;
+        if (BubbleRoot != null) BubbleRoot.SetActive(false);
     }
 
     private IEnumerator _AutoHide(float duration)

@@ -32,7 +32,12 @@ public class UIManager : MonoBehaviour
 	public GameObject EventWindow;
 	public GameObject EventResultOptionWindow;
 	public GameObject WarningWindow;
-
+	
+	[Header("Teacher Collection")]
+	public TeacherCollection masterTeacherCollection;
+	public GameObject CardSelectionWindow;
+	public GameObject CollectionWindow;
+	public List<TeacherData> playerTeachers = new List<TeacherData>();
 
 	/* object references */
 	public GameObject WindowsContainer;
@@ -44,6 +49,13 @@ public class UIManager : MonoBehaviour
 	{
 		instance = this;
 		this._windowInstances = new List<WindowScript>();
+		
+		// Clear inventory at start so it doesn't carry over serialized test data
+		if (playerTeachers != null)
+		{
+			playerTeachers.Clear();
+		}
+		LoadTeacherInventory();
 
 		// show menu window at start if assigned
 		if (this.SceneEnteringWindow == null)
@@ -77,7 +89,9 @@ public class UIManager : MonoBehaviour
 			GameOverlayWindowScript.instance.HideOverlay();
 		}
 
-		if (prefab == this.EventWindow || prefab == this.EventResultOptionWindow)
+		if (prefab == this.EventWindow || prefab == this.EventResultOptionWindow || 
+		    prefab == this.UnlockItemWindow || prefab == this.NewSemesterWindow || prefab == this.IncomeResultWindow ||
+			prefab == this.CardSelectionWindow)
 		{
 			if (TimeManager.instance != null)
 			{
@@ -251,6 +265,101 @@ public class UIManager : MonoBehaviour
 		return window;
 	}
 
+	// ================= Teacher Collection =================
+	public void AddTeacherToInventory(TeacherData data)
+	{
+		if (data != null && !playerTeachers.Contains(data))
+		{
+			playerTeachers.Add(data);
+			SaveTeacherInventory();
+			if (GameOverlayWindowScript.instance != null)
+			{
+				GameOverlayWindowScript.instance.ShowCollectionHint();
+			}
+		}
+	}
+
+	public void SaveTeacherInventory()
+	{
+		string ids = "";
+		for (int i = 0; i < playerTeachers.Count; i++)
+		{
+			ids += playerTeachers[i].id.ToString();
+			if (i < playerTeachers.Count - 1) ids += ",";
+		}
+		PlayerPrefs.SetString("playerTeacherInventory", ids);
+		PlayerPrefs.Save();
+	}
+
+	public void LoadTeacherInventory()
+	{
+		if (playerTeachers == null) playerTeachers = new List<TeacherData>();
+		playerTeachers.Clear();
+		if (masterTeacherCollection == null) return;
+		
+		string idsStr = PlayerPrefs.GetString("playerTeacherInventory", "");
+		if (!string.IsNullOrEmpty(idsStr))
+		{
+			string[] split = idsStr.Split(',');
+			foreach (string idStr in split)
+			{
+				if (int.TryParse(idStr, out int id))
+				{
+					TeacherData data = masterTeacherCollection.list.Find(t => t.id == id);
+					if (data != null)
+					{
+						playerTeachers.Add(data);
+					}
+				}
+			}
+		}
+	}
+
+	public void ShowCardSelectionWindow(UnityEngine.Object collectionObj)
+	{
+		TeacherCollection collection = collectionObj as TeacherCollection;
+		if (collection == null)
+		{
+			Debug.LogError("ShowCardSelectionWindow: The provided object is not a TeacherCollection!");
+			return;
+		}
+
+		CardSelectionWindowScript window = this.ShowWindow(this.CardSelectionWindow) as CardSelectionWindowScript;
+		if (window != null)
+		{
+			window.Setup(collection);
+		}
+	}
+
+	public void ShowCollectionWindowForAssign(BaseItemScript building)
+	{
+		CollectionWindowScript window = this.ShowWindow(this.CollectionWindow) as CollectionWindowScript;
+		if (window != null)
+		{
+			window.Setup(playerTeachers, true, building);
+		}
+		
+		if (GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.HideCollectionHint();
+		}
+	}
+
+	public void ShowCollectionWindowViewOnly()
+	{
+		CollectionWindowScript window = this.ShowWindow(this.CollectionWindow) as CollectionWindowScript;
+		if (window != null)
+		{
+			window.Setup(playerTeachers, false, null);
+		}
+		
+		if (GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.HideCollectionHint();
+		}
+	}
+	// =======================================================
+
 	public IEnumerator CheckWindowsAfterClose()
 	{
 		yield return new WaitForEndOfFrame();
@@ -284,8 +393,8 @@ public class UIManager : MonoBehaviour
 
 			if (TimeManager.instance != null)
 			{
-				bool shouldPause = this.HasEventWindowOpen();
-				if (!TimeManager.instance.hasFinishedFinalTutorial)
+				bool shouldPause = this.HasPauseRequiringWindowOpen();
+				if (!TimeManager.instance.hasFinishedFinalTutorial && !TimeManager.instance.isTutorialTimeRunning)
 				{
 					shouldPause = true;
 				}
@@ -320,6 +429,19 @@ public class UIManager : MonoBehaviour
 		foreach (var w in _windowInstances)
 		{
 			if (w is B70.Balance.UniversityEvent || w is B70.Balance.EventResultOptionWindow)
+				return true;
+		}
+		return false;
+	}
+
+	public bool HasPauseRequiringWindowOpen()
+	{
+		if (_windowInstances == null) return false;
+		foreach (var w in _windowInstances)
+		{
+			if (w is B70.Balance.UniversityEvent || w is B70.Balance.EventResultOptionWindow ||
+			    w is UnlockItemsWindowScript || w is NewSemesterWindowScript || w is IncomeResultWindowScript ||
+			    w is CardSelectionWindowScript)
 				return true;
 		}
 		return false;

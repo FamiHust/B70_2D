@@ -952,3 +952,75 @@ MonoBehaviour:
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
+  - id: 6437
+    name: "S\xE2n C2"
+    description: 
+    thumb: {fileID: 2800000, guid: f2c1fe9f9b5ce0d45857af5d6069aea5, type: 3}
+    gridWidth: 13
+    gridHeight: 6
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 7
+    defaultPosZ: 0
+    missionReward: 0
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 99
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: f2c1fe9f9b5ce0d45857af5d6069aea5, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 4073
+    name: "T\xF2a ICEA"
+    description: 
+    thumb: {fileID: 2800000, guid: 8859ab5bc5d6e2c468f83578aa6e5f20, type: 3}
+    gridWidth: 5
+    gridHeight: 5
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 2
+    defaultPosZ: 28
+    missionReward: 100
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 99
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 8859ab5bc5d6e2c468f83578aa6e5f20, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []

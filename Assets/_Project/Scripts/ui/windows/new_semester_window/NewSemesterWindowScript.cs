@@ -52,4 +52,19 @@ public class NewSemesterWindowScript : WindowScript
     // {
     //     if (anim != null) anim.Play("Show");
     // }
+
+    private bool isClosing = false;
+
+    public override void Close()
+    {
+        if (isClosing) return;
+        isClosing = true;
+
+        base.Close();
+        
+        if (UIManager.instance != null && UIManager.instance.masterTeacherCollection != null)
+        {
+            UIManager.instance.ShowCardSelectionWindow(UIManager.instance.masterTeacherCollection);
+        }
+    }
 }

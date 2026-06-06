@@ -13,6 +13,7 @@ public class TimeManager : MonoBehaviour
     public event Action OnSemesterEnd;
 
     public bool hasFinishedFinalTutorial = false;
+    public bool isTutorialTimeRunning = false;
 
     private void Awake()
     {

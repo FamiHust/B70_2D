@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,8 @@ public class ParticlesScript : MonoBehaviour {
 	/* prefabs */
 	public GameObject GoldCollectionParticle;
 	public GameObject ElixirCollectionParticle;
+	public GameObject HappyCollectionParticle;
+	public GameObject EducationCollectionParticle;
 	public GameObject DestructionParticle;
 
 	private BaseItemScript _baseItem;
@@ -24,6 +26,10 @@ public class ParticlesScript : MonoBehaviour {
 			SceneManager.instance.ShowParticle(this.GoldCollectionParticle, position);
 		else if (type == "elixir")
 			SceneManager.instance.ShowParticle(this.ElixirCollectionParticle, position);
+		else if (type == "happy")
+			SceneManager.instance.ShowParticle(this.HappyCollectionParticle, position);
+		else if (type == "education" || type == "edu" || type == "academic")
+			SceneManager.instance.ShowParticle(this.EducationCollectionParticle, position);
     }
 
 	public void ShowDestructionParticle()

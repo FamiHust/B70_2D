@@ -16,6 +16,7 @@ public class ItemOptionsWindowScript : WindowScript
 	public GameObject RemoveButton;
 	public GameObject YesButton;
 	public GameObject NoButton;
+	public GameObject TeacherButton;
 	public Text goldPriceText;
 
 	private void Awake()
@@ -42,6 +43,7 @@ public class ItemOptionsWindowScript : WindowScript
 	bool haveRemoveButton = true;
 	bool haveYesButton = false;
 	bool haveNoButton = false;
+	bool haveTeacherButton = false;
 
 	private IEnumerator _ShowOptions()
 	{
@@ -72,6 +74,7 @@ public class ItemOptionsWindowScript : WindowScript
 			haveTrainButton = false;
 			haveBoostButton = false;
 			haveRemoveButton = false;
+			haveTeacherButton = false;
 		}
 		else if (isBuilding)
 		{
@@ -80,6 +83,7 @@ public class ItemOptionsWindowScript : WindowScript
 			haveTrainButton = false;
 			haveYesButton = false;
 			haveNoButton = false;
+			haveTeacherButton = false;
 		}
 		else
 		{
@@ -87,6 +91,7 @@ public class ItemOptionsWindowScript : WindowScript
 			haveUpgradeButton = true;
 			haveYesButton = false;
 			haveNoButton = false;
+			haveTeacherButton = true;
 			
 			// Check if already at max level - disable upgrade button
 			int nextLevel = selectedItem.level + 1;
@@ -109,16 +114,11 @@ public class ItemOptionsWindowScript : WindowScript
 		RemoveButton.SetActive(haveRemoveButton);
 		YesButton.SetActive(haveYesButton);
 		NoButton.SetActive(haveNoButton);
+		if (TeacherButton != null) TeacherButton.SetActive(haveTeacherButton);
 
 		if (haveInfoButton)
 		{
-			RemoveButton.GetComponent<Animator>().SetTrigger("show");
-			yield return new WaitForSeconds(_waitTime);
-		}
-
-		if (haveTrainButton)
-		{
-			TrainButton.GetComponent<Animator>().SetTrigger("show");
+			InfoButton.GetComponent<Animator>().SetTrigger("show");
 			yield return new WaitForSeconds(_waitTime);
 		}
 
@@ -128,15 +128,27 @@ public class ItemOptionsWindowScript : WindowScript
 			yield return new WaitForSeconds(_waitTime);
 		}
 
+		if (haveTrainButton)
+		{
+			TrainButton.GetComponent<Animator>().SetTrigger("show");
+			yield return new WaitForSeconds(_waitTime);
+		}
+
 		if (haveBoostButton)
 		{
 			BoostButton.GetComponent<Animator>().SetTrigger("show");
 			yield return new WaitForSeconds(_waitTime);
 		}
+		
+		if (haveTeacherButton && TeacherButton != null)
+		{
+			TeacherButton.GetComponent<Animator>().SetTrigger("show");
+			yield return new WaitForSeconds(_waitTime);
+		}
 
 		if (haveRemoveButton)
 		{
-			InfoButton.GetComponent<Animator>().SetTrigger("show");
+			RemoveButton.GetComponent<Animator>().SetTrigger("show");
 		}
 
 		if (haveYesButton)
@@ -180,6 +192,12 @@ public class ItemOptionsWindowScript : WindowScript
 		if (haveBoostButton)
 		{
 			BoostButton.GetComponent<Animator>().SetTrigger("hide");
+			yield return new WaitForSeconds(_waitTime);
+		}
+		
+		if (haveTeacherButton && TeacherButton != null)
+		{
+			TeacherButton.GetComponent<Animator>().SetTrigger("hide");
 			yield return new WaitForSeconds(_waitTime);
 		}
 
@@ -228,9 +246,19 @@ public class ItemOptionsWindowScript : WindowScript
 		UIManager.instance.ShowBoostWindow();
 	}
 
+	public void OnClickTeacherButton()
+	{
+		UIManager.instance.ShowCollectionWindowForAssign(SceneManager.instance.selectedItem);
+	}
+
 	public void OnClickRemoveButton()
 	{
 		UIManager.instance.HideItemOptions();
+		if (SceneManager.instance.selectedItem != null)
+		{
+			PlayerPrefs.DeleteKey("BuildingTeacher_" + SceneManager.instance.selectedItem.instanceId);
+			PlayerPrefs.Save();
+		}
 		DataBaseManager.instance.RemoveItem(SceneManager.instance.selectedItem);
 		SceneManager.instance.RemoveItem(SceneManager.instance.selectedItem);
 	}

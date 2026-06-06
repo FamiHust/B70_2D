@@ -24,13 +24,18 @@ public class GameOverlayWindowScript : WindowScript
 	public GameObject ZoomOutButton;
 	public GameObject ShopButton;
 	public GameObject MissionButton;
+	public GameObject CollectionButton;
 	public GameObject HandTutorial;
 	public GameObject HandTutMission;
 	public GameObject TutorialSemester;
 	public GameObject ContinueButton;
 	public GameObject Hint;
+	public GameObject CollectionHint;
 	public Animator anim;
 	public GameObject TutorialTime;
+	public GameObject TutorialCollection;
+	public GameObject HappyWarning;
+	public GameObject EduWarning;
 
 	private float _nextHintCheckTime;
 
@@ -65,6 +70,7 @@ public class GameOverlayWindowScript : WindowScript
 		this.HappyInfo.maxValue = SceneManager.instance.happyStorageCapacity;
 		this.HappyInfo.value = SceneManager.instance.numberOfHappyInStorage;
 		this.HappyInfo.isPercent = true;
+		if (this.HappyWarning != null) this.HappyWarning.SetActive(SceneManager.instance.numberOfHappyInStorage <= 15);
 
 		this.StudentInfo.hasMaxValue = true;
 		this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
@@ -75,6 +81,7 @@ public class GameOverlayWindowScript : WindowScript
 		this.EducationInfo.maxValue = SceneManager.instance.educationStorageCapacity;
 		this.EducationInfo.value = SceneManager.instance.numberOfEducationInStorage;
 		this.EducationInfo.isPercent = true;
+		if (this.EduWarning != null) this.EduWarning.SetActive(SceneManager.instance.numberOfEducationInStorage <= 15);
 
 		this.LevelInfo.hasMaxValue = true;
 		this.LevelInfo.maxValue = 100;
@@ -138,6 +145,22 @@ public class GameOverlayWindowScript : WindowScript
 		}
 	}
 
+	public void ShowCollectionHint()
+	{
+		if (CollectionHint != null)
+		{
+			CollectionHint.SetActive(true);
+		}
+	}
+
+	public void HideCollectionHint()
+	{
+		if (CollectionHint != null)
+		{
+			CollectionHint.SetActive(false);
+		}
+	}
+
 
 	public void OnClickShopButton()
 	{
@@ -163,6 +186,39 @@ public class GameOverlayWindowScript : WindowScript
 	public void OnClickMissionButton()
 	{
 		UIManager.instance.ShowMissionWindow();
+	}
+
+	public void OnClickCollectionButton()
+	{
+		UIManager.instance.ShowCollectionWindowViewOnly();
+
+		// Nếu đang trong TutorialCollection thì tắt nó và khôi phục giao diện
+		if (TutorialCollection != null && TutorialCollection.activeSelf)
+		{
+			TutorialCollection.SetActive(false);
+			
+			if (TutorialWindowScript.instance != null)
+			{
+				TutorialWindowScript.instance.Close();
+			}
+
+			// Bật lại các Object bình thường
+			if (GoldInfo != null) GoldInfo.gameObject.SetActive(true);
+			if (DiamondInfo != null) DiamondInfo.gameObject.SetActive(true);
+			if (StudentInfo != null) StudentInfo.gameObject.SetActive(true);
+			if (TimeInfo != null) TimeInfo.gameObject.SetActive(true);
+			
+			if (ShopButton != null) ShopButton.SetActive(true);
+			if (MissionButton != null) MissionButton.SetActive(true);
+			
+			// Zoom button (theo logic bình thường là bật ZoomOut)
+			if (ZoomOutButton != null) ZoomOutButton.SetActive(true);
+			if (ZoomInButton != null) ZoomInButton.SetActive(false);
+
+			bool isLevel2 = SceneManager.instance != null && SceneManager.instance.currentLevel >= 2;
+			if (HappyInfo != null) HappyInfo.gameObject.SetActive(isLevel2);
+			if (EducationInfo != null) EducationInfo.gameObject.SetActive(isLevel2);
+		}
 	}
 
 	public void OnClickIncreaseStudent()
@@ -224,6 +280,7 @@ public class GameOverlayWindowScript : WindowScript
 		else if (resourceType == "happy")
 		{
 			HappyInfo.TweenValueChange(value);
+			if (HappyWarning != null) HappyWarning.SetActive(value <= 15);
 		}
 		else if (resourceType == "student")
 		{
@@ -232,6 +289,7 @@ public class GameOverlayWindowScript : WindowScript
 		else if (resourceType == "education")
 		{
 			EducationInfo.TweenValueChange(value);
+			if (EduWarning != null) EduWarning.SetActive(value <= 15);
 		}
 	}
 
@@ -304,6 +362,7 @@ public class GameOverlayWindowScript : WindowScript
 		if (ZoomInButton != null) ZoomInButton.SetActive(!active);
 		if (ZoomOutButton != null) ZoomOutButton.SetActive(!active);
 		if (MissionButton != null) MissionButton.SetActive(!active);
+		if (CollectionButton != null) CollectionButton.SetActive(!active);
 		
 		// Let RefreshHint handle the hint visibility based on mission status
 		RefreshHint();
@@ -356,6 +415,7 @@ public class GameOverlayWindowScript : WindowScript
 		if (ZoomInButton != null) ZoomInButton.SetActive(!active);
 		if (ZoomOutButton != null) ZoomOutButton.SetActive(!active);
 		if (ShopButton != null) ShopButton.SetActive(!active);
+		if (CollectionButton != null) CollectionButton.SetActive(!active);
 		
 		// Let RefreshHint handle the hint visibility based on mission status
 		RefreshHint();
@@ -410,6 +470,7 @@ public class GameOverlayWindowScript : WindowScript
 		if (StudentInfo != null) StudentInfo.gameObject.SetActive(false);
 		if (ShopButton != null) ShopButton.SetActive(false);
 		if (MissionButton != null) MissionButton.SetActive(false);
+		if (CollectionButton != null) CollectionButton.SetActive(false);
 		if (ZoomInButton != null) ZoomInButton.SetActive(false);
 		if (ZoomOutButton != null) ZoomOutButton.SetActive(false);
 
@@ -426,6 +487,93 @@ public class GameOverlayWindowScript : WindowScript
 
 		// Một lần nữa đảm bảo Overlay ở trên cùng sau khi Tutorial Window được tạo
 		this.transform.SetAsLastSibling();
+	}
+
+	public void TriggerTutorialCollection()
+	{
+		// Dừng thời gian khi vào tutorial này
+		if (TimeManager.instance != null)
+		{
+			TimeManager.instance.isTutorialTimeRunning = false;
+			TimeManager.instance.SetPaused(true);
+		}
+
+		// Hiện lại Overlay và đưa lên trên cùng
+		this.ShowOverlay();
+		this.transform.SetAsLastSibling();
+
+		// Bật hướng dẫn về Collection
+		if (TutorialCollection != null) TutorialCollection.SetActive(true);
+
+		// Tắt các Info khác và Button trong lúc hiện TutorialCollection
+		if (GoldInfo != null) GoldInfo.gameObject.SetActive(false);
+		if (DiamondInfo != null) DiamondInfo.gameObject.SetActive(false);
+		if (HappyInfo != null) HappyInfo.gameObject.SetActive(false);
+		if (EducationInfo != null) EducationInfo.gameObject.SetActive(false);
+		if (StudentInfo != null) StudentInfo.gameObject.SetActive(false);
+		if (ShopButton != null) ShopButton.SetActive(false);
+		if (MissionButton != null) MissionButton.SetActive(false);
+		if (ZoomInButton != null) ZoomInButton.SetActive(false);
+		if (ZoomOutButton != null) ZoomOutButton.SetActive(false);
+		if (TimeInfo != null) TimeInfo.gameObject.SetActive(false);
+
+		// Đảm bảo CollectionButton vẫn hiển thị để có thể click
+		if (CollectionButton != null) CollectionButton.SetActive(true);
+
+		// Gọi Tutorial Window nhưng đảm bảo Overlay nằm trên nó
+		if (UIManager.instance != null)
+		{
+			UIManager.instance.ShowTutorialWindow();
+			if (TutorialWindowScript.instance != null)
+			{
+				TutorialWindowScript.instance.ShowCharacter(false);
+				TutorialWindowScript.instance.ShowBoxchat(false); 
+				TutorialWindowScript.instance.SwitchTutorialObject(-1);
+				if (TutorialWindowScript.instance.ContinueButton != null)
+				{
+					TutorialWindowScript.instance.ContinueButton.gameObject.SetActive(false);
+				}
+			}
+		}
+
+		// Một lần nữa đảm bảo Overlay ở trên cùng sau khi Tutorial Window được tạo
+		this.transform.SetAsLastSibling();
+	}
+
+	public void OnClickContinueTutorialTime()
+	{
+		if (TutorialWindowScript.instance != null)
+		{
+			TutorialWindowScript.instance.Close();
+		}
+
+		// Tắt TutorialTime
+		if (TutorialTime != null) TutorialTime.SetActive(false);
+
+		// Bật lại các Object bình thường (trừ Happy và Education)
+		if (GoldInfo != null) GoldInfo.gameObject.SetActive(true);
+		if (DiamondInfo != null) DiamondInfo.gameObject.SetActive(true);
+		if (StudentInfo != null) StudentInfo.gameObject.SetActive(true);
+		if (TimeInfo != null) TimeInfo.gameObject.SetActive(true);
+		
+		if (ShopButton != null) ShopButton.SetActive(true);
+		if (MissionButton != null) MissionButton.SetActive(true);
+		if (CollectionButton != null) CollectionButton.SetActive(true);
+		
+		// Zoom button (theo logic bình thường là bật ZoomOut)
+		if (ZoomOutButton != null) ZoomOutButton.SetActive(true);
+		if (ZoomInButton != null) ZoomInButton.SetActive(false);
+
+		// Happy và Education vẫn tắt theo yêu cầu (nếu cần thiết)
+		if (HappyInfo != null) HappyInfo.gameObject.SetActive(false);
+		if (EducationInfo != null) EducationInfo.gameObject.SetActive(false);
+
+		// Tiếp tục thời gian nhưng chưa kết thúc tutorial
+		if (TimeManager.instance != null)
+		{
+			TimeManager.instance.isTutorialTimeRunning = true;
+			TimeManager.instance.SetPaused(false);
+		}
 	}
 
 	public void OnClickCloseTutorialWindow()
@@ -446,6 +594,7 @@ public class GameOverlayWindowScript : WindowScript
 		
 		if (ShopButton != null) ShopButton.SetActive(true);
 		if (MissionButton != null) MissionButton.SetActive(true);
+		if (CollectionButton != null) CollectionButton.SetActive(true);
 		
 		// Zoom button (theo logic bình thường là bật ZoomOut)
 		if (ZoomOutButton != null) ZoomOutButton.SetActive(true);
@@ -458,6 +607,7 @@ public class GameOverlayWindowScript : WindowScript
 		// Cuối cùng mới bật lại thời gian
 		if (TimeManager.instance != null)
 		{
+			TimeManager.instance.isTutorialTimeRunning = false;
 			TimeManager.instance.hasFinishedFinalTutorial = true;
 			TimeManager.instance.SaveTimer();
 			TimeManager.instance.SetPaused(false);

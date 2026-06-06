@@ -148,6 +148,12 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.Alumni:
 				this.Name.text = "Tòa Alumni";
 				break;
+			case ShopWindowScript.SubCategory.SAN_C2:
+				this.Name.text = "Sân C2";
+				break;
+			case ShopWindowScript.SubCategory.ICEA:
+				this.Name.text = "Tòa ICEA";
+				break;
 		}
 	}
 
@@ -242,6 +248,12 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.Alumni:
 				itemId = 8099;
+				break;
+			case ShopWindowScript.SubCategory.SAN_C2:
+				itemId = 6437;
+				break;
+			case ShopWindowScript.SubCategory.ICEA:
+				itemId = 4073;
 				break;
 		}
 
@@ -372,6 +384,12 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.Alumni:
 				itemId = 8099;
+				break;
+			case ShopWindowScript.SubCategory.SAN_C2:
+				itemId = 6437;
+				break;
+			case ShopWindowScript.SubCategory.ICEA:
+				itemId = 4073;
 				break;
 		}
 		return itemId;
