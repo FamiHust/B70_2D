@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 795640006857618497}
   m_Layer: 5
-  m_Name: CardSelection_Container
+  m_Name: Upgrade_Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,6 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6744187640355468072}
   - component: {fileID: 7700997567836312858}
+  - component: {fileID: 6986890194100490833}
   m_Layer: 5
   m_Name: CardSelectionWindow
   m_TagString: Untagged
@@ -321,6 +322,28 @@ MonoBehaviour:
   cardsContainer: {fileID: 5766381336107962235}
   teacherCardPrefab: {fileID: 7271073209172209527, guid: b4a09553f5f0dce439983edea909a75f,
     type: 3}
+  anim: {fileID: 6986890194100490833}
+--- !u!95 &6986890194100490833
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863933700713985480}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9108285d0e116874187965f77fd75ec7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7157441732122957540
 GameObject:
   m_ObjectHideFlags: 0

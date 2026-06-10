@@ -47,7 +47,7 @@ MonoBehaviour:
       price: 300
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 5
     idleSpriteTextures:
     - {fileID: 2800000, guid: 774b117468c22854a96a3d7c19834ac7, type: 3}
@@ -89,7 +89,7 @@ MonoBehaviour:
       price: 50
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 4
     idleSpriteTextures:
     - {fileID: 2800000, guid: b374b40666afa0f41b15a68e239f35e2, type: 3}
@@ -132,7 +132,7 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 2
     idleSpriteTextures:
     - {fileID: 2800000, guid: 246d36b63216d3a4487473cdeb3c7ff7, type: 3}
@@ -168,9 +168,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 600
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 100
+      product: education
+      productPrice: 1
       price: 0
       resourceType: gold
       studentCapacityIncrease: 0
@@ -213,13 +213,13 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 300
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 100
+      product: happy
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 1
     idleSpriteTextures:
     - {fileID: 2800000, guid: e6bfd97cb851a304b9380e9490bb6867, type: 3}
@@ -262,7 +262,7 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 2
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2939f2f7beed55c40affa9e8c54a51ea, type: 3}
@@ -302,7 +302,7 @@ MonoBehaviour:
       price: 80
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 2
     idleSpriteTextures:
     - {fileID: 2800000, guid: 813482aa3ebdd35478609a58e8b0e990, type: 3}
@@ -338,7 +338,7 @@ MonoBehaviour:
       price: 150
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: 8d8eff9a0210b9f47b2625104aa3f9cf, type: 3}
@@ -380,7 +380,7 @@ MonoBehaviour:
       price: 150
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 3
     idleSpriteTextures:
     - {fileID: 2800000, guid: 47344db2c85660a4898eb643bbd3c85c, type: 3}
@@ -421,7 +421,7 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 3
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2253f03b93efe4b41baa97c261ac01c8, type: 3}
@@ -458,7 +458,7 @@ MonoBehaviour:
       price: 350
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 4
     idleSpriteTextures:
     - {fileID: 2800000, guid: 7ea65dba491b92b4fbdf6189b4d4abe5, type: 3}
@@ -499,7 +499,7 @@ MonoBehaviour:
       price: 200
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 4
     idleSpriteTextures:
     - {fileID: 2800000, guid: 6e9037d69118bcf439031e0cd35d3c00, type: 3}
@@ -535,7 +535,7 @@ MonoBehaviour:
       price: 500
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: 3919e080dd1104a419fd6a3e74cd941c, type: 3}
@@ -579,7 +579,7 @@ MonoBehaviour:
       price: 250
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: ac7397bac5f2bd445928cf235c3a8a90, type: 3}
@@ -621,7 +621,7 @@ MonoBehaviour:
       price: 350
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 6
     idleSpriteTextures:
     - {fileID: 2800000, guid: 52e4fdcbc4b6e1f4da8619fb4b91be80, type: 3}
@@ -657,7 +657,7 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 3
     idleSpriteTextures:
     - {fileID: 2800000, guid: eda7a9109f723ab4996cabe11c272d73, type: 3}
@@ -693,7 +693,7 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 5
     idleSpriteTextures:
     - {fileID: 2800000, guid: cd0273c881d0cb247bc263936b1f2711, type: 3}
@@ -729,7 +729,7 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 7
     idleSpriteTextures:
     - {fileID: 2800000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
@@ -765,7 +765,7 @@ MonoBehaviour:
       price: 250
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 7
     idleSpriteTextures:
     - {fileID: 2800000, guid: 640bcd5fa567d8643ac1aebf927ff9e5, type: 3}
@@ -801,7 +801,7 @@ MonoBehaviour:
       price: 200
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 2
+      levelMax: 1
       unlockItemAtSemester: 7
     idleSpriteTextures:
     - {fileID: 2800000, guid: 4dc9ce35610c82542bc82412b652142e, type: 3}
@@ -873,7 +873,7 @@ MonoBehaviour:
       price: 250
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 99
+      levelMax: 1
       unlockItemAtSemester: 8
     idleSpriteTextures:
     - {fileID: 2800000, guid: bd7fdc6a95e48534dbc5e82d63c5eff3, type: 3}
@@ -909,7 +909,7 @@ MonoBehaviour:
       price: 200
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 99
+      levelMax: 1
       unlockItemAtSemester: 8
     idleSpriteTextures:
     - {fileID: 2800000, guid: e09bdda50ffde0940b85c89af2d2b990, type: 3}
@@ -945,7 +945,7 @@ MonoBehaviour:
       price: 450
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 99
+      levelMax: 1
       unlockItemAtSemester: 8
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2e752c7f02acbc4418c1e12abf8da592, type: 3}
@@ -981,7 +981,7 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 99
+      levelMax: 1
       unlockItemAtSemester: 1
     idleSpriteTextures:
     - {fileID: 2800000, guid: f2c1fe9f9b5ce0d45857af5d6069aea5, type: 3}
@@ -1017,10 +1017,82 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 99
+      levelMax: 1
       unlockItemAtSemester: 1
     idleSpriteTextures:
     - {fileID: 2800000, guid: 8859ab5bc5d6e2c468f83578aa6e5f20, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 4563
+    name: "Khu\xF4n vi\xEAn C1"
+    description: 
+    thumb: {fileID: 2800000, guid: 9da6887ff453bf749aaeb0c4faa494f8, type: 3}
+    gridWidth: 15
+    gridHeight: 8
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 0
+    defaultPosZ: 0
+    missionReward: 100
+    configuration:
+      buildTime: 20
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 1
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 9da6887ff453bf749aaeb0c4faa494f8, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 8344
+    name: "T\xF2a D7"
+    description: 
+    thumb: {fileID: 2800000, guid: ccf91442c88101a4bbe1b65760d4fbca, type: 3}
+    gridWidth: 4
+    gridHeight: 4
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 0
+    defaultPosZ: 0
+    missionReward: 100
+    configuration:
+      buildTime: 0
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 99
+      unlockItemAtSemester: 1
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: ccf91442c88101a4bbe1b65760d4fbca, type: 3}
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []

@@ -74,7 +74,7 @@ public class UIManager : MonoBehaviour
 	{
 		// Automatically close other windows except the overlay before showing the new one
 		// but don't close windows if we are opening the overlay itself or an Info popup
-		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow)
+		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow && prefab != this.CollectionWindow)
 		{
 			this.CloseAllWindowsExceptOverlay();
 		}
@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
 		this._windowInstances.Add(window);
 
 		// Hide GameOverlay when another window opens
-		if (prefab != this.GameOverlayWindow && prefab != this.EventWindow && GameOverlayWindowScript.instance != null)
+		if (prefab != this.GameOverlayWindow && prefab != this.EventWindow && prefab != this.CollectionWindow && GameOverlayWindowScript.instance != null)
 		{
 			GameOverlayWindowScript.instance.HideOverlay();
 		}
@@ -336,7 +336,21 @@ public class UIManager : MonoBehaviour
 		CollectionWindowScript window = this.ShowWindow(this.CollectionWindow) as CollectionWindowScript;
 		if (window != null)
 		{
-			window.Setup(playerTeachers, true, building);
+			window.Setup(playerTeachers, true, building, false);
+		}
+		
+		if (GameOverlayWindowScript.instance != null)
+		{
+			GameOverlayWindowScript.instance.HideCollectionHint();
+		}
+	}
+
+	public void ShowCollectionWindowForSwitch(BaseItemScript building)
+	{
+		CollectionWindowScript window = this.ShowWindow(this.CollectionWindow) as CollectionWindowScript;
+		if (window != null)
+		{
+			window.Setup(playerTeachers, true, building, true);
 		}
 		
 		if (GameOverlayWindowScript.instance != null)

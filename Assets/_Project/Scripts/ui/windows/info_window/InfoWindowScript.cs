@@ -28,14 +28,66 @@ public class InfoWindowScript : WindowScript
 	public Sprite ProductIcon;
 	public Sprite DescriptionIcon;
 
+	[Header("Tab Settings")]
+	public Button InfoButton;
+	public Button TeacherButton;
+	public GameObject InfoTab;
+	public GameObject TeacherTab;
+
+	[Header("Teacher Tab References")]
+	public Text TeacherName;
+	public Text TeacherDescription;
+	public Image TeacherImage;
+	public GameObject RentButton;
+	public GameObject SwitchTeacherButton;
 
 	/* private vars */
 	private BaseItemScript _baseItem;
 	private ItemsCollection.ItemData _itemData;
+	private Color _originalInfoColor = Color.white;
+	private Color _originalTeacherColor = Color.white;
 
 	void Awake()
 	{
 		instance = this;
+
+		if (InfoButton != null && InfoButton.image != null)
+		{
+			_originalInfoColor = InfoButton.image.color;
+		}
+
+		if (TeacherButton != null && TeacherButton.image != null)
+		{
+			_originalTeacherColor = TeacherButton.image.color;
+		}
+
+		if (InfoButton != null)
+		{
+			InfoButton.onClick.AddListener(SelectInfoTab);
+		}
+
+		if (TeacherButton != null)
+		{
+			TeacherButton.onClick.AddListener(SelectTeacherTab);
+		}
+
+		if (RentButton != null)
+		{
+			Button btn = RentButton.GetComponent<Button>();
+			if (btn != null)
+			{
+				btn.onClick.AddListener(OnClickRent);
+			}
+		}
+
+		if (SwitchTeacherButton != null)
+		{
+			Button btn = SwitchTeacherButton.GetComponent<Button>();
+			if (btn != null)
+			{
+				btn.onClick.AddListener(OnClickSwitchTeacher);
+			}
+		}
 	}
 
 	private void OnDestroy()
@@ -47,7 +99,16 @@ public class InfoWindowScript : WindowScript
 	{
 		this._itemData = itemData;
 		this._baseItem = baseItem;
+
+		if (TeacherButton != null)
+		{
+			bool isDecoration = itemData != null && ShopWindowScript.GetCategoryStringFromItemId(itemData.id) == "Trang trí";
+			bool isNotBuiltYet = baseItem == null || baseItem.isUnderConstruction || baseItem.state == Common.State.PREVIEW;
+			TeacherButton.gameObject.SetActive(!isDecoration && !isNotBuiltYet);
+		}
+
 		this.RenderInfo();
+		this.SelectInfoTab();
 	}
 
 	public void RenderInfo()
@@ -106,14 +167,23 @@ public class InfoWindowScript : WindowScript
 		// 	string hitPoints = this._itemData.configuration.hitPoints.ToString();
 		// 	this._CreateInfoItem("Hit Points", hitPoints);
 		// }
-
+  
 		if (this._itemData.configuration.productionRate > 0)
 		{
-			string productionRate = ": " + this._itemData.configuration.productionRate.ToString();
-			this._CreateInfoItem("Sản lượng", productionRate, this.ProductionRateIcon);
+			// string productionRate = ": " + this._itemData.configuration.productionRate.ToString();
+			// this._CreateInfoItem("Sản lượng", productionRate, this.ProductionRateIcon);
 
 			string product = ": " + this._itemData.configuration.product;
 			this._CreateInfoItem("Sản phẩm", product, this.ProductIcon);
+
+			int baseProductPrice = this._itemData.configuration.productPrice;
+			int effectiveProductPrice = baseProductPrice;
+			if (this._baseItem != null && this._baseItem.Production != null)
+			{
+				effectiveProductPrice = this._baseItem.Production.GetEffectiveProductPrice(this._itemData.configuration.product);
+			}
+			string productPrice = ": " + effectiveProductPrice.ToString();
+			this._CreateInfoItem("Giá sản phẩm", productPrice, this.ProductIcon);
 		}
 		// if (this._baseItem != null)
 		// {
@@ -164,6 +234,38 @@ public class InfoWindowScript : WindowScript
 					}
 				}
 			}
+		}
+
+		this.RenderTeacherInfo();
+	}
+
+	private void RenderTeacherInfo()
+	{
+		if (this._baseItem != null && this._baseItem.assignedTeacher != null)
+		{
+			if (this.TeacherName != null) this.TeacherName.text = this._baseItem.assignedTeacher.teacherName;
+			if (this.TeacherDescription != null) this.TeacherDescription.text = this._baseItem.assignedTeacher.skillDescription;
+			if (this.TeacherImage != null)
+			{
+				this.TeacherImage.gameObject.SetActive(true);
+				this.TeacherImage.sprite = this._baseItem.assignedTeacher.avatar;
+			}
+			if (this.RentButton != null) this.RentButton.SetActive(false);
+			if (this.SwitchTeacherButton != null) this.SwitchTeacherButton.SetActive(true);
+		}
+		else
+		{
+			if (this.TeacherName != null) this.TeacherName.text = "Chưa có Giảng viên";
+			if (this.TeacherDescription != null) this.TeacherDescription.text = "Tòa nhà này hiện chưa có giảng viên nào giảng dạy. Hãy thuê một giảng viên để nhận thêm các chỉ số buff.";
+			if (this.TeacherImage != null)
+			{
+				this.TeacherImage.gameObject.SetActive(false);
+			}
+			if (this.RentButton != null)
+			{
+				this.RentButton.SetActive(this._baseItem != null);
+			}
+			if (this.SwitchTeacherButton != null) this.SwitchTeacherButton.SetActive(false);
 		}
 	}
 
@@ -250,6 +352,54 @@ public class InfoWindowScript : WindowScript
 			SceneManager.instance.selectedItem = _baseItem;
 			UIManager.instance.ShowUpgradeWindow();
 			this.Close();
+		}
+	}
+
+	public void SelectInfoTab()
+	{
+		if (InfoTab != null) InfoTab.SetActive(true);
+		if (TeacherTab != null) TeacherTab.SetActive(false);
+
+		if (InfoButton != null && InfoButton.image != null)
+		{
+			InfoButton.image.color = _originalInfoColor;
+		}
+
+		if (TeacherButton != null && TeacherButton.image != null)
+		{
+			TeacherButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f); // Grey
+		}
+	}
+
+	public void SelectTeacherTab()
+	{
+		if (InfoTab != null) InfoTab.SetActive(false);
+		if (TeacherTab != null) TeacherTab.SetActive(true);
+
+		if (InfoButton != null && InfoButton.image != null)
+		{
+			InfoButton.image.color = new Color(0.5f, 0.5f, 0.5f, 1f); // Grey
+		}
+
+		if (TeacherButton != null && TeacherButton.image != null)
+		{
+			TeacherButton.image.color = _originalTeacherColor;
+		}
+	}
+
+	public void OnClickRent()
+	{
+		if (this._baseItem != null)
+		{
+			UIManager.instance.ShowCollectionWindowForAssign(this._baseItem);
+		}
+	}
+
+	public void OnClickSwitchTeacher()
+	{
+		if (this._baseItem != null)
+		{
+			UIManager.instance.ShowCollectionWindowForSwitch(this._baseItem);
 		}
 	}
 }

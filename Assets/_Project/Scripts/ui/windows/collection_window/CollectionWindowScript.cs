@@ -12,9 +12,12 @@ public class CollectionWindowScript : WindowScript
     [Header("Preview Settings")]
     public TeacherCardCtrl previewCard;
     public Button confirmButton;
+    public Button switchButton;
+    public Animator anim;
 
     private List<TeacherCardCtrl> _instantiatedCards = new List<TeacherCardCtrl>();
     private bool _isAssignMode = false;
+    private bool _isSwitchMode = false;
     private BaseItemScript _targetBuilding;
     private TeacherData _selectedData;
 
@@ -24,11 +27,52 @@ public class CollectionWindowScript : WindowScript
         {
             confirmButton.onClick.AddListener(OnConfirmSelection);
         }
+        if (switchButton != null)
+        {
+            switchButton.onClick.AddListener(OnConfirmSwitch);
+        }
     }
 
-    public void Setup(List<TeacherData> playerInventory, bool isAssignMode = false, BaseItemScript targetBuilding = null)
+    private void FindPreviewCardIfNull()
     {
+        if (previewCard == null)
+        {
+            foreach (var card in GetComponentsInChildren<TeacherCardCtrl>(true))
+            {
+                if (cardZone == null || !card.transform.IsChildOf(cardZone))
+                {
+                    previewCard = card;
+                    Debug.LogWarning("[CollectionWindow] previewCard was null, auto-found: " + card.name);
+                    break;
+                }
+            }
+        }
+    }
+
+    private bool IsTeacherAssignedToAnyBuilding(TeacherData teacher)
+    {
+        if (teacher == null) return false;
+        if (SceneManager.instance == null) return false;
+
+        var items = SceneManager.instance.GetItemInstances();
+        if (items != null)
+        {
+            foreach (var item in items.Values)
+            {
+                if (item != null && item.assignedTeacher != null && item.assignedTeacher.id == teacher.id)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void Setup(List<TeacherData> playerInventory, bool isAssignMode = false, BaseItemScript targetBuilding = null, bool isSwitchMode = false)
+    {
+        FindPreviewCardIfNull();
         this._isAssignMode = isAssignMode;
+        this._isSwitchMode = isSwitchMode;
         this._targetBuilding = targetBuilding;
         this._selectedData = null;
 
@@ -41,8 +85,14 @@ public class CollectionWindowScript : WindowScript
 
         if (confirmButton != null)
         {
-            confirmButton.gameObject.SetActive(isAssignMode);
+            confirmButton.gameObject.SetActive(isAssignMode && !isSwitchMode);
             confirmButton.interactable = false;
+        }
+
+        if (switchButton != null)
+        {
+            switchButton.gameObject.SetActive(isSwitchMode);
+            switchButton.interactable = false;
         }
 
         TeacherCardCtrl[] existingCards = cardZone.GetComponentsInChildren<TeacherCardCtrl>(true);
@@ -58,8 +108,16 @@ public class CollectionWindowScript : WindowScript
         {
             if (i < inventoryCount)
             {
-                // Always pass callback to show preview
-                existingCards[i].SetData(playerInventory[i], OnCardClicked);
+                TeacherData teacher = playerInventory[i];
+                existingCards[i].SetData(teacher, OnCardClicked);
+
+                if (IsTeacherAssignedToAnyBuilding(teacher))
+                {
+                    if (existingCards[i].nameText != null)
+                    {
+                        existingCards[i].nameText.text = teacher.teacherName + " (Đã thuê)";
+                    }
+                }
             }
             else
             {
@@ -70,19 +128,51 @@ public class CollectionWindowScript : WindowScript
 
     private void OnCardClicked(TeacherCardCtrl clickedCard)
     {
+        FindPreviewCardIfNull();
         _selectedData = clickedCard.currentData;
+        Debug.Log($"[CollectionWindow] OnCardClicked: card={clickedCard.name}, data={(_selectedData != null ? _selectedData.teacherName : "null")}, previewCard={(previewCard != null ? previewCard.name : "null")}");
 
         // Show preview
         if (previewCard != null)
         {
             previewCard.gameObject.SetActive(true);
             previewCard.SetData(_selectedData);
+
+            if (IsTeacherAssignedToAnyBuilding(_selectedData))
+            {
+                if (previewCard.nameText != null)
+                {
+                    previewCard.nameText.text = _selectedData.teacherName + " (Đã thuê)";
+                }
+            }
         }
 
-        // Enable confirm button if in assign mode
-        if (_isAssignMode && confirmButton != null)
+        // Enable confirm button if in assign mode and teacher is not assigned to any building
+        if (_isAssignMode && !_isSwitchMode && confirmButton != null)
         {
-            confirmButton.interactable = true;
+            if (IsTeacherAssignedToAnyBuilding(_selectedData))
+            {
+                confirmButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                confirmButton.gameObject.SetActive(true);
+                confirmButton.interactable = true;
+            }
+        }
+
+        // Enable switch button if in switch mode and teacher is not assigned to any building
+        if (_isSwitchMode && switchButton != null)
+        {
+            if (IsTeacherAssignedToAnyBuilding(_selectedData))
+            {
+                switchButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                switchButton.gameObject.SetActive(true);
+                switchButton.interactable = true;
+            }
         }
     }
 
@@ -90,15 +180,71 @@ public class CollectionWindowScript : WindowScript
     {
         if (_isAssignMode && _targetBuilding != null && _selectedData != null)
         {
+            if (confirmButton != null)
+            {
+                confirmButton.gameObject.SetActive(false);
+            }
+
             // Assign the teacher to the building
             _targetBuilding.assignedTeacher = _selectedData;
             
             // Save assignment to PlayerPrefs
             PlayerPrefs.SetInt("BuildingTeacher_" + _targetBuilding.instanceId, _selectedData.id);
             PlayerPrefs.Save();
+
+            // Refresh InfoWindow if open to display the newly hired teacher and update stats
+            if (InfoWindowScript.instance != null)
+            {
+                InfoWindowScript.instance.RenderInfo();
+            }
             
             // Close the window after assigning
             Close();
+        }
+    }
+
+    private void OnConfirmSwitch()
+    {
+        if (_isSwitchMode && _targetBuilding != null && _selectedData != null)
+        {
+            if (switchButton != null)
+            {
+                switchButton.gameObject.SetActive(false);
+            }
+
+            // Assign the teacher to the building
+            _targetBuilding.assignedTeacher = _selectedData;
+            
+            // Save assignment to PlayerPrefs
+            PlayerPrefs.SetInt("BuildingTeacher_" + _targetBuilding.instanceId, _selectedData.id);
+            PlayerPrefs.Save();
+
+            // Refresh InfoWindow if open to display the newly hired teacher and update stats
+            if (InfoWindowScript.instance != null)
+            {
+                InfoWindowScript.instance.RenderInfo();
+            }
+            
+            // Close the window after assigning
+            Close();
+        }
+    }
+
+    public void HideWindow()
+    {
+        if (anim != null) anim.Play("Hide");
+    }
+
+    public void ShowWindow()
+    {
+        if (anim != null) anim.Play("Show");
+    }
+
+    public void ToggleGameObject(GameObject target)
+    {
+        if (target != null)
+        {
+            target.SetActive(!target.activeSelf);
         }
     }
 }

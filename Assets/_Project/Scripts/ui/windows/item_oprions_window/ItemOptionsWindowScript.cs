@@ -92,6 +92,11 @@ public class ItemOptionsWindowScript : WindowScript
 			haveYesButton = false;
 			haveNoButton = false;
 			haveTeacherButton = true;
+
+			if (selectedItem != null && selectedItem.itemData != null && ShopWindowScript.GetCategoryStringFromItemId(selectedItem.itemData.id) == "Trang trí")
+			{
+				haveTeacherButton = false;
+			}
 			
 			// Check if already at max level - disable upgrade button
 			int nextLevel = selectedItem.level + 1;

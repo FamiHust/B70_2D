@@ -81,6 +81,11 @@ public class SceneEnteringWindowScript : WindowScript {
 				{
 					GameOverlayWindowScript.instance.SetTutorialState(false);
 				}
+				if (TimeManager.instance != null)
+				{
+					TimeManager.instance.hasFinishedFinalTutorial = true;
+					TimeManager.instance.SaveTimer();
+				}
 			}
 		}
 	}

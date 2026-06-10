@@ -23,6 +23,8 @@ public class TeacherData : ScriptableObject
     public Sprite sexIcon;
     
     [Header("Descriptions")]
+    [TextArea(2, 5)]
+    public string skillDescription = "Mô tả kỹ năng giảng viên.";
     [TextArea(1, 3)]
     public string descGold = "Tăng sản lượng Vàng thu được";
     [TextArea(1, 3)]

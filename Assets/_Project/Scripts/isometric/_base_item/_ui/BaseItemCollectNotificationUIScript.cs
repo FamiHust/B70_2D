@@ -34,7 +34,7 @@ public class BaseItemCollectNotificationUIScript : MonoBehaviour
 		this.GoldIcon.SetActive(type == "gold");
 		this.ElixirIcon.SetActive(type == "elixir");
 		if (this.HappyIcon != null) this.HappyIcon.SetActive(type == "happy");
-		if (this.EduIcon != null) this.EduIcon.SetActive(type == "academic");
+		if (this.EduIcon != null) this.EduIcon.SetActive(type == "education" || type == "academic" || type == "edu");
 	}
     
 }

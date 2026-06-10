@@ -36,6 +36,8 @@ public class GameOverlayWindowScript : WindowScript
 	public GameObject TutorialCollection;
 	public GameObject HappyWarning;
 	public GameObject EduWarning;
+	public Text HappyHintText;
+	public Text EduHintText;
 
 	private float _nextHintCheckTime;
 
@@ -82,6 +84,15 @@ public class GameOverlayWindowScript : WindowScript
 		this.EducationInfo.value = SceneManager.instance.numberOfEducationInStorage;
 		this.EducationInfo.isPercent = true;
 		if (this.EduWarning != null) this.EduWarning.SetActive(SceneManager.instance.numberOfEducationInStorage <= 15);
+
+		if (this.HappyHintText != null && SceneManager.instance != null)
+		{
+			this.HappyHintText.text = $"Độ hạnh phúc: {(int)this.HappyInfo.value}/{SceneManager.instance.happyStorageCapacity}";
+		}
+		if (this.EduHintText != null && SceneManager.instance != null)
+		{
+			this.EduHintText.text = $"Độ học vấn: {(int)this.EducationInfo.value}/{SceneManager.instance.educationStorageCapacity}";
+		}
 
 		this.LevelInfo.hasMaxValue = true;
 		this.LevelInfo.maxValue = 100;
@@ -131,6 +142,16 @@ public class GameOverlayWindowScript : WindowScript
 			{
 				TimeInfo.ValueLabel.text = TimeManager.instance.GetFormattedTime();
 			}
+		}
+
+		if (this.HappyHintText != null && this.HappyInfo != null && SceneManager.instance != null)
+		{
+			this.HappyHintText.text = $"Độ hạnh phúc: {(int)this.HappyInfo.value}/{SceneManager.instance.happyStorageCapacity}";
+		}
+
+		if (this.EduHintText != null && this.EducationInfo != null && SceneManager.instance != null)
+		{
+			this.EduHintText.text = $"Độ học vấn: {(int)this.EducationInfo.value}/{SceneManager.instance.educationStorageCapacity}";
 		}
 	}
 
@@ -345,16 +366,18 @@ public class GameOverlayWindowScript : WindowScript
 	public void SetTutorialState(bool active)
 	{
 		bool isLevel2 = SceneManager.instance.currentLevel >= 2;
+		bool hasFinishedTutorial = TimeManager.instance != null && TimeManager.instance.hasFinishedFinalTutorial;
 
 		// Hide/Show info panels
 		if (GoldInfo != null) GoldInfo.gameObject.SetActive(!active);
 		if (DiamondInfo != null) DiamondInfo.gameObject.SetActive(!active);
 		
-		// Các thông số này chỉ hiện khi đạt level 2 và không trong mode tutorial ban đầu
-		if (HappyInfo != null) HappyInfo.gameObject.SetActive(!active && isLevel2);
-		if (StudentInfo != null) StudentInfo.gameObject.SetActive(!active && isLevel2);
-		if (EducationInfo != null) EducationInfo.gameObject.SetActive(!active && isLevel2);
-		if (TimeInfo != null) TimeInfo.gameObject.SetActive(!active && isLevel2);
+		// Các thông số này chỉ hiện khi đạt level 2 hoặc đã qua tutorial và không trong mode tutorial ban đầu
+		bool showLevel2Panels = !active && (isLevel2 || hasFinishedTutorial);
+		if (HappyInfo != null) HappyInfo.gameObject.SetActive(showLevel2Panels);
+		if (StudentInfo != null) StudentInfo.gameObject.SetActive(showLevel2Panels);
+		if (EducationInfo != null) EducationInfo.gameObject.SetActive(showLevel2Panels);
+		if (TimeInfo != null) TimeInfo.gameObject.SetActive(showLevel2Panels);
 		
 		if (LevelInfo != null) LevelInfo.gameObject.SetActive(!active);
 
@@ -564,9 +587,9 @@ public class GameOverlayWindowScript : WindowScript
 		if (ZoomOutButton != null) ZoomOutButton.SetActive(true);
 		if (ZoomInButton != null) ZoomInButton.SetActive(false);
 
-		// Happy và Education vẫn tắt theo yêu cầu (nếu cần thiết)
-		if (HappyInfo != null) HappyInfo.gameObject.SetActive(false);
-		if (EducationInfo != null) EducationInfo.gameObject.SetActive(false);
+		// Happy và Education bật lên luôn khi đã hết TutorialTime
+		if (HappyInfo != null) HappyInfo.gameObject.SetActive(true);
+		if (EducationInfo != null) EducationInfo.gameObject.SetActive(true);
 
 		// Tiếp tục thời gian nhưng chưa kết thúc tutorial
 		if (TimeManager.instance != null)
@@ -600,9 +623,9 @@ public class GameOverlayWindowScript : WindowScript
 		if (ZoomOutButton != null) ZoomOutButton.SetActive(true);
 		if (ZoomInButton != null) ZoomInButton.SetActive(false);
 
-		// Happy và Education vẫn tắt theo yêu cầu
-		if (HappyInfo != null) HappyInfo.gameObject.SetActive(false);
-		if (EducationInfo != null) EducationInfo.gameObject.SetActive(false);
+		// Happy và Education bật lên luôn khi đã hết tutorial
+		if (HappyInfo != null) HappyInfo.gameObject.SetActive(true);
+		if (EducationInfo != null) EducationInfo.gameObject.SetActive(true);
 
 		// Cuối cùng mới bật lại thời gian
 		if (TimeManager.instance != null)
@@ -611,6 +634,14 @@ public class GameOverlayWindowScript : WindowScript
 			TimeManager.instance.hasFinishedFinalTutorial = true;
 			TimeManager.instance.SaveTimer();
 			TimeManager.instance.SetPaused(false);
+		}
+	}
+
+	public void ToggleGameObject(GameObject target)
+	{
+		if (target != null)
+		{
+			target.SetActive(!target.activeSelf);
 		}
 	}
 }

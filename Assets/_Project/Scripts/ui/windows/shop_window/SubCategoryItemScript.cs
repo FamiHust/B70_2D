@@ -154,6 +154,9 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.ICEA:
 				this.Name.text = "Tòa ICEA";
 				break;
+			case ShopWindowScript.SubCategory.KHUON_VIEN_C1:
+				this.Name.text = "Khuôn viên C1";
+				break;
 		}
 	}
 
@@ -254,6 +257,9 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.ICEA:
 				itemId = 4073;
+				break;
+			case ShopWindowScript.SubCategory.KHUON_VIEN_C1:
+				itemId = 4563;
 				break;
 		}
 
@@ -390,6 +396,9 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.ICEA:
 				itemId = 4073;
+				break;
+			case ShopWindowScript.SubCategory.KHUON_VIEN_C1:
+				itemId = 4563;
 				break;
 		}
 		return itemId;

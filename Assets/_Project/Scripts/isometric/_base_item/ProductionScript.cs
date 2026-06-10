@@ -114,7 +114,7 @@ public class ProductionScript : MonoBehaviour
             {
                 rate *= this._baseItem.assignedTeacher.influenceHappy;
             }
-            else if (productType == "education")
+            else if (productType == "education" || productType == "academic" || productType == "edu")
             {
                 rate *= this._baseItem.assignedTeacher.influenceEducation;
             }
@@ -129,15 +129,15 @@ public class ProductionScript : MonoBehaviour
         {
             if (productType == "gold")
             {
-                price *= this._baseItem.assignedTeacher.influenceGold;
+                price += this._baseItem.assignedTeacher.influenceGold;
             }
             else if (productType == "happy")
             {
-                price *= this._baseItem.assignedTeacher.influenceHappy;
+                price += this._baseItem.assignedTeacher.influenceHappy;
             }
-            else if (productType == "education")
+            else if (productType == "education" || productType == "academic" || productType == "edu")
             {
-                price *= this._baseItem.assignedTeacher.influenceEducation;
+                price += this._baseItem.assignedTeacher.influenceEducation;
             }
         }
         return Mathf.RoundToInt(price);
@@ -193,7 +193,7 @@ public class ProductionScript : MonoBehaviour
             int productAmount = (int)((time / 3600.0) * GetEffectiveProductionRate(pType));
             if (productAmount > 0)
             {
-                SceneManager.instance.CollectResource(pType, GetEffectiveProductPrice(pType));
+                SceneManager.instance.CollectResource(pType, productAmount);
                 collectedAnything = true;
                 if (string.IsNullOrEmpty(firstProduct)) firstProduct = pType;
             }

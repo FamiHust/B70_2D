@@ -17,10 +17,21 @@ MonoBehaviour:
   level: 1
   seniority: 5
   influenceGold: 50
-  influenceEducation: 0.5
-  influenceHappy: 0.2
+  influenceEducation: 1
+  influenceHappy: 1
   avatar: {fileID: -369064136, guid: 69b3c142b17f5d941a52bad207791925, type: 3}
   sexIcon: {fileID: 21300000, guid: 33ab055220cdb0e4ab338d8ca6bb65bb, type: 2}
+  skillDescription: "TS. Ph\u1EA1m V\u0103n Ti\u1EBFn t\u1ED1t nghi\u1EC7p k\u1EF9
+    s\u01B0 \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i n\u0103m 1997, nh\u1EADn
+    b\u1EB1ng Th\u1EA1c s\u0129 t\u1EA1i \u0110\u1EA1i h\u1ECDc Waseda (Nh\u1EADt
+    B\u1EA3n) v\xE0 Ti\u1EBFn s\u0129 Khoa h\u1ECDc Th\xF4ng tin t\u1EA1i \u0110\u1EA1i
+    h\u1ECDc Paderborn (\u0110\u1EE9c) n\u0103m 2007. \xD4ng t\u1EEBng nghi\xEAn
+    c\u1EE9u t\u1EA1i \xC1o v\xE0 Italy, tham gia 9 d\u1EF1 \xE1n v\u1EDBi Samsung
+    Electronics trong c\xE1c l\u0129nh v\u1EF1c th\xF4ng tin di \u0111\u1ED9ng, h\u1EC7
+    \u0111i\u1EC1u h\xE0nh nh\xFAng v\xE0 \u0111a ph\u01B0\u01A1ng ti\u1EC7n. Hi\u1EC7n
+    \xF4ng l\xE0 gi\u1EA3ng vi\xEAn Khoa K\u1EF9 thu\u1EADt Truy\u1EC1n th\xF4ng,
+    Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED, \u0110\u1EA1i h\u1ECDc
+    B\xE1ch khoa H\xE0 N\u1ED9i.\r\n"
   descGold: "T\u0103ng s\u1EA3n l\u01B0\u1EE3ng V\xE0ng thu \u0111\u01B0\u1EE3c"
   descEducation: "T\u0103ng ch\u1EA5t l\u01B0\u1EE3ng \u0111\xE0o t\u1EA1o"
   descHappy: "T\u0103ng m\u1EE9c \u0111\u1ED9 H\u1EA1nh ph\xFAc"

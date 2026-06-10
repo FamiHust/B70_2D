@@ -1107,10 +1107,11 @@ public class SceneManager : MonoBehaviour
 			// Happiness là điểm [0,100] — tòa sản xuất "happy" sẽ tăng chỉ số này khi người chơi thu thập.
 			this.numberOfHappyInStorage = Mathf.Clamp(this.numberOfHappyInStorage + amount, 0, happyStorageCapacity);
 		}
-		else if (resourceType == "education")
+		else if (resourceType == "education" || resourceType == "academic" || resourceType == "edu")
 		{
 			// Education là điểm [0,100] — tòa sản xuất "education" sẽ tăng chỉ số này khi người chơi thu thập.
 			this.numberOfEducationInStorage = Mathf.Clamp(this.numberOfEducationInStorage + amount, 0, educationStorageCapacity);
+			resourceType = "education";
 		}
 
 		this.SaveResources();
@@ -1237,7 +1238,7 @@ public class SceneManager : MonoBehaviour
 
 	public void UpdateStudentStorageCapacity()
 	{
-		int baseCapacity = 500; // Sức chứa cơ bản (không cần công trình nào).
+		int baseCapacity = 850; // Sức chứa cơ bản (không cần công trình nào).
 		int totalIncrease = 0;
 		foreach (var item in GetAllItems())
 		{

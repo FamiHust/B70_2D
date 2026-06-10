@@ -10,6 +10,7 @@ public class CardSelectionWindowScript : WindowScript
     [Header("References")]
     public Transform cardsContainer;
     public GameObject teacherCardPrefab;
+    public Animator anim;
     
     private List<TeacherCardCtrl> _instantiatedCards = new List<TeacherCardCtrl>();
 
@@ -90,5 +91,15 @@ public class CardSelectionWindowScript : WindowScript
             }
         }
         _instantiatedCards.Clear();
+    }
+
+    public void HideWindow()
+    {
+        if (anim != null) anim.Play("Hide");
+    }
+
+    public void ShowWindow()
+    {
+        if (anim != null) anim.Play("Show");
     }
 }

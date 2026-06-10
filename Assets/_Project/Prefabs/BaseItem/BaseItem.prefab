@@ -130,7 +130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754020250206956}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -180,6 +180,7 @@ MonoBehaviour:
     uiOffsetZ: 0
     defaultPosX: -1
     defaultPosZ: -1
+    missionReward: 100
     configuration:
       buildTime: 0
       isCharacter: 0
@@ -194,16 +195,21 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
+      levelMax: 99
+      unlockItemAtSemester: 1
     idleSpriteTextures: []
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   healthPoints: 0
   level: 1
+  extraFootprint: []
   isDestroyed: 0
   ownedItem: 0
   connectedItems: []
-  buildingItem: {fileID: 0}
+  isUnderConstruction: 0
+  assignedTeacher: {fileID: 0}
+  buildingItem: {fileID: 114342505833736544}
 --- !u!114 &114277448647710250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +275,8 @@ MonoBehaviour:
   readyForCollection: 0
   collectedAmount: 0
   isUnderConstruction: 0
+  constructionTimeTotal: 0
+  constructionTimeRemaining: 0
 --- !u!114 &114404037210957756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +316,10 @@ MonoBehaviour:
   GoldCollectionParticle: {fileID: 1380970709928756, guid: a54e44df4da864e63b1fb66c692f0e22,
     type: 3}
   ElixirCollectionParticle: {fileID: 1519389715942742, guid: 7716a062842e94fafba4f7cadc150d4c,
+    type: 3}
+  HappyCollectionParticle: {fileID: 8004782732032182987, guid: 9c7a40428327195418e01b7e9613f9ae,
+    type: 3}
+  EducationCollectionParticle: {fileID: 6902761036315859730, guid: 4c062b776f7bb4d4aa571314af5a1138,
     type: 3}
   DestructionParticle: {fileID: 1942708161559300, guid: 8e01017461275462884578baad1fdb94,
     type: 3}
