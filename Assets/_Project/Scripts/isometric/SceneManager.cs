@@ -1,8 +1,9 @@
+using B70.Balance;
+using B70.Leaderboard;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using B70.Balance;
 
 public class SceneManager : MonoBehaviour
 {
@@ -771,7 +772,10 @@ public class SceneManager : MonoBehaviour
 		{
 			this.gameMode = Common.GameMode.NORMAL;
 			LoadUserScene();
-		});
+            // Leaderboard
+            if (LeaderboardManager.instance != null)
+                LeaderboardManager.instance.StartSession();
+        });
 	}
 
 	public void EnterAttackMode()
@@ -1044,7 +1048,10 @@ public class SceneManager : MonoBehaviour
 
 	private IEnumerator CompleteSemesterCoroutine()
 	{
-		this._isCompletingSemester = true;
+        // Leaderboard
+        if (LeaderboardManager.instance != null)
+            LeaderboardManager.instance.OnSemesterCompleted();
+        this._isCompletingSemester = true;
 		yield return null; // Thêm yield để giữ tính chất của Coroutine
 
 		// ── 1. Chạy công thức balance cho kỳ học vừa kết thúc ─────────────────
