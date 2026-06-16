@@ -368,13 +368,19 @@ namespace B70.Balance
         public static BalanceState StateFromSceneManager()
         {
             var sm = SceneManager.instance;
+            float happyPct = sm.happyStorageCapacity > 0 
+                ? Mathf.Clamp((float)sm.numberOfHappyInStorage / sm.happyStorageCapacity * 100f, 0f, 100f) 
+                : 0f;
+            float eduPct = sm.educationStorageCapacity > 0 
+                ? Mathf.Clamp((float)sm.numberOfEducationInStorage / sm.educationStorageCapacity * 100f, 0f, 100f) 
+                : 0f;
             return new BalanceState
             {
                 gold       = sm.numberOfGoldInStorage,
                 students   = sm.numberOfStudentInStorage,
                 studentCap = sm.studentStorageCapacity,
-                happiness  = Mathf.Clamp(sm.numberOfHappyInStorage,    0f, 100f),
-                education  = Mathf.Clamp(sm.numberOfEducationInStorage, 0f, 100f)
+                happiness  = happyPct,
+                education  = eduPct
             };
         }
 
@@ -387,12 +393,17 @@ namespace B70.Balance
             var sm = SceneManager.instance;
             sm.numberOfGoldInStorage      = Mathf.RoundToInt(s.gold);
             sm.numberOfStudentInStorage   = Mathf.RoundToInt(s.students);
-            sm.numberOfHappyInStorage     = Mathf.RoundToInt(s.happiness);
-            sm.numberOfEducationInStorage = Mathf.RoundToInt(s.education);
+            
+            float happyValue = s.happiness / 100f * sm.happyStorageCapacity;
+            float eduValue = s.education / 100f * sm.educationStorageCapacity;
+            sm.numberOfHappyInStorage     = Mathf.Clamp(Mathf.RoundToInt(happyValue), 0, sm.happyStorageCapacity);
+            sm.numberOfEducationInStorage = Mathf.Clamp(Mathf.RoundToInt(eduValue), 0, sm.educationStorageCapacity);
 
             sm.SaveResources();
             sm.RefreshResourceUIs("gold");
             sm.RefreshResourceUIs("student");
+            sm.RefreshResourceUIs("happy");
+            sm.RefreshResourceUIs("education");
         }
     }
 }

@@ -86,6 +86,23 @@ public class NPCSpawner : MonoBehaviour
         npcToSpawn.Spawn(spawnPos);
     }
 
+    public bool IsCellInNPCSpawnArea(int x, int z)
+    {
+        if (GroundManager.instance == null) return false;
+
+        int minX = Mathf.RoundToInt(areaCenter.x - areaSize.x / 2f) - GroundManager.instance.gridOriginX;
+        int maxX = Mathf.RoundToInt(areaCenter.x + areaSize.x / 2f) - GroundManager.instance.gridOriginX;
+        int minZ = Mathf.RoundToInt(areaCenter.y - areaSize.y / 2f) - GroundManager.instance.gridOriginZ;
+        int maxZ = Mathf.RoundToInt(areaCenter.y + areaSize.y / 2f) - GroundManager.instance.gridOriginZ;
+
+        minX = Mathf.Clamp(minX, 0, GroundManager.nodeWidth - 1);
+        maxX = Mathf.Clamp(maxX, 0, GroundManager.nodeWidth - 1);
+        minZ = Mathf.Clamp(minZ, 0, GroundManager.nodeHeight - 1);
+        maxZ = Mathf.Clamp(maxZ, 0, GroundManager.nodeHeight - 1);
+
+        return x >= minX && x <= maxX && z >= minZ && z <= maxZ;
+    }
+
     public Vector3 GetRandomNPCPosition()
     {
         if (GroundManager.instance == null || NPCGridSystem.Instance == null) return Vector3.zero;
@@ -100,6 +117,7 @@ public class NPCSpawner : MonoBehaviour
         minZ = Mathf.Clamp(minZ, 0, GroundManager.nodeHeight - 1);
         maxZ = Mathf.Clamp(maxZ, 0, GroundManager.nodeHeight - 1);
 
+        // First attempt: try to find a completely free node (no buildings, walkable by NPC, and no other NPC)
         for (int i = 0; i < 100; i++)
         {
             int x = Random.Range(minX, maxX);
@@ -110,6 +128,32 @@ public class NPCSpawner : MonoBehaviour
                 NPCGridSystem.Instance.IsFree(x, z))
             {
                 return new Vector3(x + GroundManager.instance.gridOriginX, 0, z + GroundManager.instance.gridOriginZ);
+            }
+        }
+        
+        // Second attempt: try to find a walkable node (no buildings, walkable by NPC) even if occupied by another NPC
+        for (int i = 0; i < 100; i++)
+        {
+            int x = Random.Range(minX, maxX);
+            int z = Random.Range(minZ, maxZ);
+
+            if (GroundManager.instance.instanceNodes[x, z] == -1 && 
+                GroundManager.instance.pathNodesNPC[x, z])
+            {
+                return new Vector3(x + GroundManager.instance.gridOriginX, 0, z + GroundManager.instance.gridOriginZ);
+            }
+        }
+
+        // Third attempt: linear search for any walkable node in the area
+        for (int x = minX; x <= maxX; x++)
+        {
+            for (int z = minZ; z <= maxZ; z++)
+            {
+                if (GroundManager.instance.instanceNodes[x, z] == -1 && 
+                    GroundManager.instance.pathNodesNPC[x, z])
+                {
+                    return new Vector3(x + GroundManager.instance.gridOriginX, 0, z + GroundManager.instance.gridOriginZ);
+                }
             }
         }
         

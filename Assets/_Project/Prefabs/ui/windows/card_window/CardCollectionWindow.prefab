@@ -5596,7 +5596,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2552611432226552186}
   - component: {fileID: 1510657148306214352}
-  - component: {fileID: 5856925245327949403}
   m_Layer: 5
   m_Name: CardCollectionWindow
   m_TagString: Untagged
@@ -5644,28 +5643,7 @@ MonoBehaviour:
   previewCard: {fileID: 3336560518560900053}
   confirmButton: {fileID: 42159365637081736}
   switchButton: {fileID: 2273537335331029280}
-  anim: {fileID: 5856925245327949403}
---- !u!95 &5856925245327949403
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8148375534918149933}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  anim: {fileID: 0}
 --- !u!1 &8371453297232106683
 GameObject:
   m_ObjectHideFlags: 0

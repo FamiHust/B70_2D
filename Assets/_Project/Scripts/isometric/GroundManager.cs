@@ -294,8 +294,30 @@ public class GroundManager : MonoBehaviour
 
 		Vector2 startPointInMap = new Vector2(startPoint.x - gridOriginX, startPoint.z - gridOriginZ);
 		Vector2 endPointInMap = new Vector2(endPoint.x - gridOriginX, endPoint.z - gridOriginZ);
+
+		// Restrict the pathfinding map to nodes within the NPC spawn area
+		bool[,] npcRestrictedMap = new bool[nodeWidth, nodeHeight];
+		for (int x = 0; x < nodeWidth; x++)
+		{
+			for (int z = 0; z < nodeHeight; z++)
+			{
+				if (NPCSpawner.instance != null && !NPCSpawner.instance.IsCellInNPCSpawnArea(x, z))
+				{
+					npcRestrictedMap[x, z] = false;
+				}
+				else
+				{
+					npcRestrictedMap[x, z] = pathNodesNPC[x, z];
+				}
+			}
+		}
+
+		// Always ensure the start cell is walkable so pathfinding can start even if NPC is slightly outside or blocked
+		int startX = Mathf.Clamp((int)startPointInMap.x, 0, nodeWidth - 1);
+		int startZ = Mathf.Clamp((int)startPointInMap.y, 0, nodeHeight - 1);
+		npcRestrictedMap[startX, startZ] = true;
 		
-		SearchParameters searchParameter = new SearchParameters(startPointInMap, endPointInMap, pathNodesNPC);
+		SearchParameters searchParameter = new SearchParameters(startPointInMap, endPointInMap, npcRestrictedMap);
 		PathFinder pathFinder = new PathFinder(searchParameter);
 		List<Vector2> points = pathFinder.FindPath();
 

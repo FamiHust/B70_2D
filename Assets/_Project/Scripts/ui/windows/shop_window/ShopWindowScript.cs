@@ -57,6 +57,7 @@ public class ShopWindowScript : WindowScript
 		D4,
 		D35,
 		D6,
+		D7,
 		D8,
 		// CAMP,
 		// CANNON,
@@ -81,13 +82,17 @@ public class ShopWindowScript : WindowScript
 		Alumni,
 		SAN_C2,
 		ICEA,
-		KHUON_VIEN_C1
+		KHUON_VIEN_C1,
+		PARABOL_GATE,
+		TDN_GATE_3776,
+		DCV_GATE_1,
+		DCV_GATE_2
 	}
 
-	public static SubCategory[] ServiceSubItems = new SubCategory[] { SubCategory.C1, SubCategory.C2, SubCategory.C3, SubCategory.C3B, SubCategory.C5, SubCategory.C6, SubCategory.C9, SubCategory.C10, SubCategory.D4, SubCategory.D35, SubCategory.D6, SubCategory.D8 };
-	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.C4, SubCategory.LIBRARY, SubCategory.Canteen, SubCategory.GaraD6, SubCategory.ITIMS, SubCategory.SECURITY_ROOM, SubCategory.PC_LAB, SubCategory.TTVD, SubCategory.Alumni, SubCategory.ICEA };
-	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.C7, SubCategory.D9 };
-	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.MONEY_LAKE, SubCategory.SAN_C2, SubCategory.KHUON_VIEN_C1 };
+	public static SubCategory[] ServiceSubItems = new SubCategory[] {SubCategory.C9, SubCategory.C10, SubCategory.C4, SubCategory.C5, SubCategory.C6, SubCategory.ICEA, SubCategory.ITIMS, SubCategory.PC_LAB, SubCategory.C3, SubCategory.C2, SubCategory.C1 };
+	public static SubCategory[] ResourcesSubItems = new SubCategory[] { SubCategory.Canteen, SubCategory.Alumni, SubCategory.TTVD, SubCategory.GaraD6, SubCategory.C3B , SubCategory.SECURITY_ROOM};
+	public static SubCategory[] StudentSubItems = new SubCategory[] { SubCategory.D35, SubCategory.D6, SubCategory.D7, SubCategory.D8, SubCategory.D9, SubCategory.LIBRARY, SubCategory.D4, SubCategory.C7};
+	public static SubCategory[] DecorationsSubItems = new SubCategory[] { SubCategory.MONEY_LAKE, SubCategory.SAN_C2, SubCategory.KHUON_VIEN_C1, SubCategory.PARABOL_GATE, SubCategory.TDN_GATE_3776, SubCategory.DCV_GATE_1, SubCategory.DCV_GATE_2};
 
 
 
@@ -147,8 +152,8 @@ public class ShopWindowScript : WindowScript
 		Category[] categories = new Category[] {
 			// Category.ARMY,
 			Category.SERVICE,
-			Category.RESOURCES,
 			Category.STUDENT,
+			Category.RESOURCES,
 			Category.DECORATIONS
 			// Category.DEFENCE,
 		};
@@ -313,6 +318,7 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.C10: return 8385;
 			case SubCategory.D35: return 4407;
 			case SubCategory.D6: return 6330;
+			case SubCategory.D7: return 8344;
 			case SubCategory.D8: return 5134;
 			case SubCategory.Canteen: return 1399;
 			case SubCategory.GaraD6: return 4132;
@@ -333,6 +339,10 @@ public class ShopWindowScript : WindowScript
 			case SubCategory.SAN_C2: return 6437;
 			case SubCategory.ICEA: return 4073;
 			case SubCategory.KHUON_VIEN_C1: return 4563;
+			case SubCategory.PARABOL_GATE: return 2403;
+			case SubCategory.TDN_GATE_3776: return 3776;
+			case SubCategory.DCV_GATE_1: return 1640;
+			case SubCategory.DCV_GATE_2: return 9518;
 			default: return 0;
 		}
 	}

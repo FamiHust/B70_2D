@@ -7,6 +7,7 @@ public class BaseItemCollectNotificationUIScript : MonoBehaviour
    
 	/* object references */
 	public Transform Container;
+	public GameObject EventIcon;
 	public GameObject GoldIcon;
 	public GameObject ElixirIcon;
 	public GameObject HappyIcon;
@@ -31,10 +32,15 @@ public class BaseItemCollectNotificationUIScript : MonoBehaviour
 
     public void SetIcon(string type)
 	{
-		this.GoldIcon.SetActive(type == "gold");
-		this.ElixirIcon.SetActive(type == "elixir");
-		if (this.HappyIcon != null) this.HappyIcon.SetActive(type == "happy");
-		if (this.EduIcon != null) this.EduIcon.SetActive(type == "education" || type == "academic" || type == "edu");
+		bool isEvent = (type == "event");
+
+		// EventIcon ưu tiên cao nhất — khi là event, ẩn tất cả icon khác
+		if (this.EventIcon != null) this.EventIcon.SetActive(isEvent);
+
+		this.GoldIcon.SetActive(!isEvent && type == "gold");
+		this.ElixirIcon.SetActive(!isEvent && type == "elixir");
+		if (this.HappyIcon != null) this.HappyIcon.SetActive(!isEvent && type == "happy");
+		if (this.EduIcon != null) this.EduIcon.SetActive(!isEvent && (type == "education" || type == "academic" || type == "edu"));
 	}
     
 }

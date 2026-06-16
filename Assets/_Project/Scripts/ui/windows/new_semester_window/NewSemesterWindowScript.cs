@@ -11,6 +11,7 @@ public class NewSemesterWindowScript : WindowScript
     public Text SemesterNextText;
     public Text DropoutsText;
     public Text GraduatedText;
+    public Text StudentDeltaText;
 
     [Header("Animations")]
     public Animator anim;
@@ -33,6 +34,14 @@ public class NewSemesterWindowScript : WindowScript
 
         if (GraduatedText != null)
             GraduatedText.text = $"-{bd.graduated:F0}";
+
+        if (StudentDeltaText != null)
+        {
+            if (bd.deltaStudents >= 0f)
+                StudentDeltaText.text = $"+{bd.deltaStudents:F0} sinh viên";
+            else
+                StudentDeltaText.text = $"+0 sinh viên";
+        }
 
         // ShowWindow();
     }

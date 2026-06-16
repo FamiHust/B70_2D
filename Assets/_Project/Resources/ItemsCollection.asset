@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   list:
   - id: 3635
-    name: "T\xF2a D4"
+    name: "T\xF2a D4 - VNN"
     description: "T\xF2a D4 t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i
       l\xE0 tr\u1EE5 s\u1EDF ch\xEDnh c\u1EE7a Tr\u01B0\u1EDDng Ngo\u1EA1i ng\u1EEF
       (tr\u01B0\u1EDBc \u0111\xE2y l\xE0 Khoa Ngo\u1EA1i ng\u1EEF). \u0110\xE2y l\xE0
@@ -34,21 +34,22 @@ MonoBehaviour:
     defaultPosZ: 2
     missionReward: 80
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 400
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 250
+      product: education
+      productPrice: 1
       price: 300
       resourceType: gold
-      studentCapacityIncrease: 0
+      studentCapacityIncrease: 120
       levelMax: 1
       unlockItemAtSemester: 5
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 774b117468c22854a96a3d7c19834ac7, type: 3}
     walkSpriteTextures: []
@@ -63,7 +64,7 @@ MonoBehaviour:
       ho\u0103\u0323c ch\u1EEF M (Mechanical Engineering) l\xE0 n\u01A1i l\xE0m vi\u1EC7c
       c\u1EE7a Tr\u01B0\u1EDDng \u0110i\u1EC7n - \u0110i\u1EC7n t\u1EED v\xE0 Tr\u01B0\u1EDDng
       C\u01A1 kh\xED. "
-    thumb: {fileID: 2800000, guid: dd45ad4b53a397b499e74b04ffbe8d73, type: 3}
+    thumb: {fileID: 2800000, guid: b374b40666afa0f41b15a68e239f35e2, type: 3}
     gridWidth: 9
     gridHeight: 7
     arrowOffsetX: 1
@@ -76,21 +77,24 @@ MonoBehaviour:
     defaultPosZ: 36
     missionReward: 150
     configuration:
-      buildTime: 15
+      buildTime: 90
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 100
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 500
+      productionRate: 100
+      product: education
+      productPrice: 3
       price: 50
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 4
+    events:
+    - {fileID: 11400000, guid: 4602fe10b6df46849b7e518310454f25, type: 2}
+    - {fileID: 11400000, guid: 9cc7b393a16f3b1498131253dd90c3c5, type: 2}
     idleSpriteTextures:
     - {fileID: 2800000, guid: b374b40666afa0f41b15a68e239f35e2, type: 3}
     walkSpriteTextures: []
@@ -119,21 +123,22 @@ MonoBehaviour:
     defaultPosZ: 23
     missionReward: 100
     configuration:
-      buildTime: 15
+      buildTime: 60
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 100
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 180
+      product: education
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 2
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 246d36b63216d3a4487473cdeb3c7ff7, type: 3}
     walkSpriteTextures:
@@ -161,7 +166,7 @@ MonoBehaviour:
     defaultPosZ: 6
     missionReward: 80
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -176,6 +181,7 @@ MonoBehaviour:
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 1
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: aea25fb5a58587e4381819efc975dba6, type: 3}
     walkSpriteTextures:
@@ -206,7 +212,7 @@ MonoBehaviour:
     defaultPosZ: 25
     missionReward: 120
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -214,13 +220,16 @@ MonoBehaviour:
       healthPoints: 300
       hitPoints: 0
       productionRate: 100
-      product: happy
-      productPrice: 1
+      product: education
+      productPrice: 5
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 1
+    events:
+    - {fileID: 11400000, guid: a8901c41e6d36f4478ea3a830ba373af, type: 2}
+    - {fileID: 11400000, guid: db09b5f275343eb4d96b65499245eecb, type: 2}
     idleSpriteTextures:
     - {fileID: 2800000, guid: e6bfd97cb851a304b9380e9490bb6867, type: 3}
     walkSpriteTextures:
@@ -249,21 +258,23 @@ MonoBehaviour:
     defaultPosZ: 6
     missionReward: 80
     configuration:
-      buildTime: 20
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 150
+      product: education
+      productPrice: 2
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 2
+    events:
+    - {fileID: 11400000, guid: 5394d832fe2fd4d47b886fb9251b8ae8, type: 2}
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2939f2f7beed55c40affa9e8c54a51ea, type: 3}
     walkSpriteTextures: []
@@ -289,21 +300,22 @@ MonoBehaviour:
     defaultPosZ: 23
     missionReward: 50
     configuration:
-      buildTime: 20
+      buildTime: 60
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 200
+      product: education
+      productPrice: 1
       price: 80
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 2
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 813482aa3ebdd35478609a58e8b0e990, type: 3}
     walkSpriteTextures: []
@@ -311,7 +323,14 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 5835
     name: "T\xF2a C3B"
-    description: 
+    description: "T\xF2a C3B l\xE0 m\u1ED9t trong hai t\xF2a nh\xE0 thu\u1ED9c Trung
+      t\xE2m Kh\u1EA3o th\xED Ngo\u1EA1i ng\u1EEF v\xE0 Trao \u0111\u1ED5i v\u0103n
+      h\xF3a (CLC) - \u0111\u01A1n v\u1ECB d\u1ECBch v\u1EE5 tr\u1EF1c thu\u1ED9c
+      \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i. \u0110\xE2y l\xE0 \u0111\u1ECBa
+      \u0111i\u1EC3m th\u01B0\u1EDDng xuy\xEAn t\u1ED5 ch\u1EE9c c\xE1c k\u1EF3 thi
+      ngo\u1EA1i ng\u1EEF qu\u1ED1c t\u1EBF (TOEIC, VSTEP...) v\xE0 c\xE1c l\u1EDBp
+      h\u1ECDc ti\u1EBFng Anh, ti\u1EBFng Trung, ti\u1EBFng H\xE0n, ti\u1EBFng \u0110\u1EE9c
+      cho sinh vi\xEAn v\xE0 ng\u01B0\u1EDDi h\u1ECDc b\xEAn ngo\xE0i."
     thumb: {fileID: 2800000, guid: 8d8eff9a0210b9f47b2625104aa3f9cf, type: 3}
     gridWidth: 5
     gridHeight: 5
@@ -325,21 +344,22 @@ MonoBehaviour:
     defaultPosZ: 36
     missionReward: 20
     configuration:
-      buildTime: 20
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 80
+      product: gold
+      productPrice: 25
       price: 150
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 6
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 8d8eff9a0210b9f47b2625104aa3f9cf, type: 3}
     walkSpriteTextures: []
@@ -367,21 +387,22 @@ MonoBehaviour:
     defaultPosZ: 23
     missionReward: 50
     configuration:
-      buildTime: 20
+      buildTime: 60
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 180
+      product: education
+      productPrice: 1
       price: 150
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 3
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 47344db2c85660a4898eb643bbd3c85c, type: 3}
     walkSpriteTextures: []
@@ -408,21 +429,22 @@ MonoBehaviour:
     defaultPosZ: 36
     missionReward: 30
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 160
+      product: education
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 3
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2253f03b93efe4b41baa97c261ac01c8, type: 3}
     walkSpriteTextures: []
@@ -445,21 +467,22 @@ MonoBehaviour:
     defaultPosZ: 3
     missionReward: 80
     configuration:
-      buildTime: 20
+      buildTime: 60
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 220
+      product: education
+      productPrice: 4
       price: 350
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 4
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 7ea65dba491b92b4fbdf6189b4d4abe5, type: 3}
     walkSpriteTextures: []
@@ -486,29 +509,46 @@ MonoBehaviour:
     defaultPosZ: 27
     missionReward: 30
     configuration:
-      buildTime: 20
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 80
+      productionRate: 150
+      product: education
+      productPrice: 1
       price: 200
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 4
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 6e9037d69118bcf439031e0cd35d3c00, type: 3}
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 4407
-    name: "T\xF2a D3-5"
-    description: 
+    name: "T\xF2a D3,D3-D5,D5"
+    description: "C\u1EE5m t\xF2a nh\xE0 D3, D3-5 v\xE0 D5 n\u1EB1m d\u1ECDc theo
+      tr\u1EE5c ph\xEDa \u0111\u01B0\u1EDDng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a,
+      t\u1EA1o th\xE0nh m\u1ED9t khu v\u1EF1c gi\u1EA3ng \u0111\u01B0\u1EDDng v\xE0
+      th\u1EF1c h\xE0nh t\u1EADp trung c\u1EE7a \u0110\u1EA1i h\u1ECDc B\xE1ch khoa
+      H\xE0 N\u1ED9i. \u0110\xE2y l\xE0 n\u01A1i \u0111\u1EB7t c\xE1c ph\xF2ng th\xED
+      nghi\u1EC7m v\xE0 x\u01B0\u1EDFng th\u1EF1c h\xE0nh, \u0111\u1ED3ng th\u1EDDi
+      c\u0169ng l\xE0 c\xE1c gi\u1EA3ng \u0111\u01B0\u1EDDng ph\u1EE5c v\u1EE5 l\u1EDBp
+      h\u1ECDc l\xFD thuy\u1EBFt quy m\xF4 l\u1EDBn v\u1EDBi h\u1EC7 th\u1ED1ng ph\xF2ng
+      h\u1ECDc \u0111\u01B0\u1EE3c trang b\u1ECB \u0111\u1EA7y \u0111\u1EE7 m\xE1y
+      chi\u1EBFu, \xE2m thanh v\xE0 \u0111i\u1EC1u h\xF2a. Trong \u0111\xF3, nh\xE0
+      D3 c\xF3 c\xE1c ph\xF2ng h\u1ECDc l\u1EDBn v\u1EDBi s\u1EE9c ch\u1EE9a l\xEAn
+      \u0111\u1EBFn 234 ch\u1ED7 ng\u1ED3i m\u1ED7i ph\xF2ng. Ngo\xE0i ch\u1EE9c
+      n\u0103ng gi\u1EA3ng d\u1EA1y, nh\xE0 D3 c\xF2n l\xE0 n\u01A1i \u0111\u1EB7t
+      v\u0103n ph\xF2ng c\u1EE7a Vi\u1EC7n To\xE1n \u1EE9ng d\u1EE5ng v\xE0 Tin h\u1ECDc.
+      C\u1EE5m nh\xE0 n\xE0y \u0111\xE3 nhi\u1EC1u l\u1EA7n \u0111\u01B0\u1EE3c tu
+      s\u1EEDa, n\xE2ng c\u1EA5p b\xE0n gh\u1EBF v\xE0 trang thi\u1EBFt b\u1ECB nh\u1EB1m
+      c\u1EA3i thi\u1EC7n \u0111i\u1EC1u ki\u1EC7n h\u1ECDc t\u1EADp cho sinh vi\xEAn."
     thumb: {fileID: 2800000, guid: 3919e080dd1104a419fd6a3e74cd941c, type: 3}
     gridWidth: 9
     gridHeight: 7
@@ -522,21 +562,23 @@ MonoBehaviour:
     defaultPosZ: 36
     missionReward: 100
     configuration:
-      buildTime: 20
+      buildTime: 90
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 200
+      product: education
+      productPrice: 6
       price: 500
       resourceType: gold
-      studentCapacityIncrease: 0
+      studentCapacityIncrease: 280
       levelMax: 1
       unlockItemAtSemester: 6
+    events:
+    - {fileID: 11400000, guid: 9305664570e473f4fb3cd51270c638aa, type: 2}
     idleSpriteTextures:
     - {fileID: 2800000, guid: 3919e080dd1104a419fd6a3e74cd941c, type: 3}
     walkSpriteTextures: []
@@ -566,7 +608,7 @@ MonoBehaviour:
     defaultPosZ: 8
     missionReward: 80
     configuration:
-      buildTime: 20
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -578,9 +620,10 @@ MonoBehaviour:
       productPrice: 100
       price: 250
       resourceType: gold
-      studentCapacityIncrease: 0
+      studentCapacityIncrease: 225
       levelMax: 1
       unlockItemAtSemester: 6
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: ac7397bac5f2bd445928cf235c3a8a90, type: 3}
     walkSpriteTextures: []
@@ -608,7 +651,7 @@ MonoBehaviour:
     defaultPosZ: 8
     missionReward: 100
     configuration:
-      buildTime: 20
+      buildTime: 60
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -620,17 +663,28 @@ MonoBehaviour:
       productPrice: 100
       price: 350
       resourceType: gold
-      studentCapacityIncrease: 0
+      studentCapacityIncrease: 300
       levelMax: 1
       unlockItemAtSemester: 6
+    events:
+    - {fileID: 11400000, guid: 06b000c562c0914419afe7961060a368, type: 2}
     idleSpriteTextures:
     - {fileID: 2800000, guid: 52e4fdcbc4b6e1f4da8619fb4b91be80, type: 3}
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
   - id: 1399
-    name: "C\u0103ng tin"
-    description: 
+    name: "C\u0103ng tin D2A"
+    description: "T\xF2a nh\xE0 D2A t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch khoa
+      H\xE0 N\u1ED9i l\xE0 n\u01A1i \u0111\u1EB7t tr\u1EE5 s\u1EDF c\u1EE7a Trung
+      t\xE2m Khoa h\u1ECDc & C\xF4ng ngh\u1EC7 Cao su (CEBER). Ngo\xE0i ch\u1EE9c
+      n\u0103ng nghi\xEAn c\u1EE9u chuy\xEAn ng\xE0nh, t\xF2a nh\xE0 c\xF2n l\xE0
+      \u0111\u1ECBa \u0111i\u1EC3m ph\u1EE5c v\u1EE5 \u0111\u1EDDi s\u1ED1ng c\xE1n
+      b\u1ED9 v\xE0 sinh vi\xEAn v\u1EDBi canteen ho\u1EA1t \u0111\u1ED9ng t\u1EEB
+      7h \u0111\u1EBFn 20h h\xE0ng ng\xE0y, v\xE0 nh\xE0 \u0103n d\xE0nh ri\xEAng
+      cho c\xE1n b\u1ED9 vi\xEAn ch\u1EE9c \u0111\u01B0\u1EE3c khai tr\u01B0\u01A1ng
+      v\xE0o th\xE1ng 9/2016 t\u1EA1i t\u1EA7ng 3, ph\u1EE5c v\u1EE5 \u0103n s\xE1ng,
+      tr\u01B0a v\xE0 t\u1ED1i."
     thumb: {fileID: 2800000, guid: eda7a9109f723ab4996cabe11c272d73, type: 3}
     gridWidth: 3
     gridHeight: 3
@@ -644,7 +698,7 @@ MonoBehaviour:
     defaultPosZ: 8
     missionReward: 40
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -659,6 +713,8 @@ MonoBehaviour:
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 3
+    events:
+    - {fileID: 11400000, guid: 4bf993a730e97fa4fa30a92c6be55f3b, type: 2}
     idleSpriteTextures:
     - {fileID: 2800000, guid: eda7a9109f723ab4996cabe11c272d73, type: 3}
     walkSpriteTextures: []
@@ -689,12 +745,14 @@ MonoBehaviour:
       hitPoints: 0
       productionRate: 80
       product: gold
-      productPrice: 10
+      productPrice: 15
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 5
+    events:
+    - {fileID: 11400000, guid: 795e5184fa2a85342a877b1ca42de0de, type: 2}
     idleSpriteTextures:
     - {fileID: 2800000, guid: cd0273c881d0cb247bc263936b1f2711, type: 3}
     walkSpriteTextures: []
@@ -702,7 +760,16 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 3090
     name: "T\xF2a ITIMS"
-    description: 
+    description: "ITIMS l\xE0 vi\u1EC7n \u0111\xE0o t\u1EA1o qu\u1ED1c t\u1EBF chuy\xEAn
+      v\u1EC1 l\u0129nh v\u1EF1c khoa h\u1ECDc v\u1EADt li\u1EC7u, c\u1EE5 th\u1EC3
+      l\xE0 V\u1EADt li\u1EC7u \u0110i\u1EC7n t\u1EED v\xE0 Linh ki\u1EC7n. Vi\u1EC7n
+      \u0111\u1EA3m nhi\u1EC7m c\xE1c ch\u1EE9c n\u0103ng ch\xEDnh g\u1ED3m \u0111\xE0o
+      t\u1EA1o sau \u0111\u1EA1i h\u1ECDc, nghi\xEAn c\u1EE9u khoa h\u1ECDc v\xE0
+      chuy\u1EC3n giao c\xF4ng ngh\u1EC7 trong l\u0129nh v\u1EF1c n\xE0y. \u0110\xE2y
+      l\xE0 m\u1ED9t trong nh\u1EEFng \u0111\u01A1n v\u1ECB c\xF3 \u0111\u1ECBnh
+      h\u01B0\u1EDBng h\u1EE3p t\xE1c qu\u1ED1c t\u1EBF r\xF5 n\xE9t, ph\u1EA3n \xE1nh
+      qua ch\xEDnh t\xEAn g\u1ECDi \"\u0111\xE0o t\u1EA1o qu\u1ED1c t\u1EBF\" c\u1EE7a
+      vi\u1EC7n."
     thumb: {fileID: 2800000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
     gridWidth: 4
     gridHeight: 4
@@ -716,7 +783,7 @@ MonoBehaviour:
     defaultPosZ: 23
     missionReward: 20
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -731,6 +798,7 @@ MonoBehaviour:
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 7
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 40d1bc7f0269bc34bb9ac5ac96fa7019, type: 3}
     walkSpriteTextures: []
@@ -752,7 +820,7 @@ MonoBehaviour:
     defaultPosZ: -1
     missionReward: 50
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -767,6 +835,7 @@ MonoBehaviour:
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 7
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 640bcd5fa567d8643ac1aebf927ff9e5, type: 3}
     walkSpriteTextures: []
@@ -774,7 +843,15 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 9138
     name: PTN Polime
-    description: 
+    description: "Ph\xF2ng th\xED nghi\u1EC7m Tr\u1ECDng \u0111i\u1EC3m Qu\u1ED1c
+      gia v\u1EC1 V\u1EADt li\u1EC7u Polyme v\xE0 Compozit thu\u1ED9c \u0110\u1EA1i
+      h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i, g\u1EAFn v\u1EDBi chuy\xEAn ng\xE0nh
+      C\xF4ng ngh\u1EC7 V\u1EADt li\u1EC7u Polyme v\xE0 Compozit (Tr\u01B0\u1EDDng
+      V\u1EADt li\u1EC7u). 100% sinh vi\xEAn ng\xE0nh n\xE0y \u0111\u01B0\u1EE3c
+      s\u1EED d\u1EE5ng trang thi\u1EBFt b\u1ECB c\u1EE7a Ph\xF2ng th\xED nghi\u1EC7m
+      Tr\u1ECDng \u0111i\u1EC3m qu\u1ED1c gia v\u1EC1 V\u1EADt li\u1EC7u Polyme v\xE0
+      Compozit, c\u0169ng nh\u01B0 c\xE1c ph\xF2ng th\xED nghi\u1EC7m hi\u1EC7n \u0111\u1EA1i
+      v\u1EC1 v\u1EADt li\u1EC7u c\u1EE7a \u0110HBK H\xE0 N\u1ED9i."
     thumb: {fileID: 2800000, guid: 4dc9ce35610c82542bc82412b652142e, type: 3}
     gridWidth: 4
     gridHeight: 4
@@ -788,21 +865,22 @@ MonoBehaviour:
     defaultPosZ: 11
     missionReward: 80
     configuration:
-      buildTime: 20
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 120
+      product: education
+      productPrice: 1
       price: 200
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 7
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 4dc9ce35610c82542bc82412b652142e, type: 3}
     walkSpriteTextures: []
@@ -810,7 +888,14 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 9242
     name: "H\u1ED3 Ti\u1EC1n"
-    description: 
+    description: "H\u1ED3 Ti\u1EC1n l\xE0 h\u1ED3 n\u01B0\u1EDBc duy nh\u1EA5t trong
+      khu\xF4n vi\xEAn \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i, n\u1EB1m
+      s\xE1t c\u1EA1nh Th\u01B0 vi\u1EC7n T\u1EA1 Quang B\u1EEDu v\xE0 t\xF2a nh\xE0
+      Alumni. V\u1EC1 t\xEAn g\u1ECDi, c\xF3 th\xF4ng tin cho r\u1EB1ng h\u1ED3 c\xF3
+      t\xEAn \"Ti\u1EC1n\" v\xEC n\xF3 n\u1EB1m \u1EDF ph\xEDa tr\u01B0\u1EDBc m\u1ED9t
+      h\u1ED3 kh\xE1c g\u1ECDi l\xE0 H\u1ED3 H\u1EADu - tuy nhi\xEAn H\u1ED3 H\u1EADu
+      v\u1EC1 sau \u0111\xE3 b\u1ECB l\u1EA5p \u0111i, ch\u1EC9 c\xF2n l\u1EA1i H\u1ED3
+      Ti\u1EC1n t\u1ED3n t\u1EA1i \u0111\u1EBFn ng\xE0y nay."
     thumb: {fileID: 2800000, guid: e84da8edf47d11a4f979e15adc7f800f, type: 3}
     gridWidth: 8
     gridHeight: 6
@@ -824,21 +909,22 @@ MonoBehaviour:
     defaultPosZ: 17
     missionReward: 100
     configuration:
-      buildTime: 20
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 200
+      product: happy
+      productPrice: 5
       price: 600
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 1
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: e84da8edf47d11a4f979e15adc7f800f, type: 3}
     walkSpriteTextures: []
@@ -846,10 +932,15 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 9818
     name: "T\xF2a D9"
-    description: 
+    description: "T\xF2a nh\xE0 D9 thu\u1ED9c h\u1EC7 th\u1ED1ng d\xE3y nh\xE0 D
+      c\u1EE7a \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i, n\u1EB1m d\u1ECDc
+      theo tr\u1EE5c ph\xEDa \u0111\u01B0\u1EDDng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a.
+      C\xF9ng v\u1EDBi c\xE1c t\xF2a kh\xE1c trong d\xE3y, D9 ch\u1EE7 y\u1EBFu ph\u1EE5c
+      v\u1EE5 ho\u1EA1t \u0111\u1ED9ng gi\u1EA3ng d\u1EA1y v\xE0 h\u1ECDc t\u1EADp
+      cho sinh vi\xEAn \u0111\u1EA1i tr\xE0 c\u1EE7a tr\u01B0\u1EDDng."
     thumb: {fileID: 2800000, guid: bd7fdc6a95e48534dbc5e82d63c5eff3, type: 3}
     gridWidth: 3
-    gridHeight: 9
+    gridHeight: 11
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
@@ -860,21 +951,22 @@ MonoBehaviour:
     defaultPosZ: 25
     missionReward: 100
     configuration:
-      buildTime: 20
+      buildTime: 60
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 160
+      product: education
+      productPrice: 2
       price: 250
       resourceType: gold
-      studentCapacityIncrease: 0
+      studentCapacityIncrease: 120
       levelMax: 1
-      unlockItemAtSemester: 8
+      unlockItemAtSemester: 3
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: bd7fdc6a95e48534dbc5e82d63c5eff3, type: 3}
     walkSpriteTextures: []
@@ -882,7 +974,20 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 3702
     name: TTVD
-    description: 
+    description: "T\xF2a nh\xE0 VDZ (D2C) l\xE0 tr\u1EE5 s\u1EDF c\u1EE7a Trung t\xE2m
+      Vi\u1EC7t-\u0110\u1EE9c, \u0111\u01A1n v\u1ECB h\u1ED7 tr\u1EE3 trao \u0111\u1ED5i,
+      h\u1EE3p t\xE1c \u0111\xE0o t\u1EA1o v\xE0 nghi\xEAn c\u1EE9u khoa h\u1ECDc
+      song ph\u01B0\u01A1ng gi\u1EEFa Vi\u1EC7t Nam v\xE0 CHLB \u0110\u1EE9c. Trung
+      t\xE2m c\u0169ng l\xE0 tr\u1EE5 s\u1EDF c\u1EE7a V\u0103n ph\xF2ng \u0111\u1EA1i
+      di\u1EC7n C\u01A1 quan trao \u0111\u1ED5i h\xE0n l\xE2m \u0110\u1EE9c t\u1EA1i
+      Vi\u1EC7t Nam, L\xE0o, Campuchia v\xE0 Myanmar, th\u01B0\u1EDDng xuy\xEAn t\u1ED5
+      ch\u1EE9c c\xE1c kh\xF3a h\u1ECDc ti\u1EBFng \u0110\u1EE9c t\u1EEB A1 \u0111\u1EBFn
+      B2 cho sinh vi\xEAn v\xE0 ng\u01B0\u1EDDi h\u1ECDc b\xEAn ngo\xE0i. C\u01A1
+      s\u1EDF v\u1EADt ch\u1EA5t g\u1ED3m c\xE1c ph\xF2ng l\xE0m vi\u1EC7c, ph\xF2ng
+      h\u1ECDp, ph\xF2ng h\u1ED9i th\u1EA3o s\u1EE9c ch\u1EE9a t\u1EEB 50 \u0111\u1EBFn
+      200 ng\u01B0\u1EDDi, \u0111\u01B0\u1EE3c trang b\u1ECB \u0111\u1EA7y \u0111\u1EE7
+      thi\u1EBFt b\u1ECB ph\u1EE5c v\u1EE5 h\u1ED9i ngh\u1ECB, h\u1ED9i th\u1EA3o
+      trong n\u01B0\u1EDBc v\xE0 qu\u1ED1c t\u1EBF."
     thumb: {fileID: 2800000, guid: e09bdda50ffde0940b85c89af2d2b990, type: 3}
     gridWidth: 8
     gridHeight: 2
@@ -896,7 +1001,7 @@ MonoBehaviour:
     defaultPosZ: 17
     missionReward: 60
     configuration:
-      buildTime: 20
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -911,6 +1016,7 @@ MonoBehaviour:
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 8
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: e09bdda50ffde0940b85c89af2d2b990, type: 3}
     walkSpriteTextures: []
@@ -918,7 +1024,17 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 8099
     name: "T\xF2a Alumni"
-    description: 
+    description: "T\xF2a nh\xE0 C\u1EF1u sinh vi\xEAn \u0111\u01B0\u1EE3c \u0111\u1EB7t
+      \u1EDF v\u1ECB tr\xED trung t\xE2m trong khu\xF4n vi\xEAn \u0110\u1EA1i h\u1ECDc
+      B\xE1ch khoa H\xE0 N\u1ED9i, n\u1EB1m tr\xEAn tuy\u1EBFn \u0111\u01B0\u1EDDng
+      \u0111\xF4i n\u1ED1i C\u1ED5ng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a \u0111\u1EBFn
+      C\u1ED5ng Parabol, k\u1EC1 b\xEAn H\u1ED3 Ti\u1EC1n v\xE0 Th\u01B0 vi\u1EC7n
+      T\u1EA1 Quang B\u1EEDu, v\u1EDBi 4 m\u1EB7t ti\u1EC1n tho\xE1ng m\xE1t. T\xF2a
+      nh\xE0 \u0111\u01B0\u1EE3c x\xE2y d\u1EF1ng v\u1EDBi s\u1EE9 m\u1EC7nh t\u1EADp
+      h\u1EE3p c\xE1c th\u1EBF h\u1EC7 c\u1EF1u sinh vi\xEAn, g\u1EAFn k\u1EBFt c\u1EF1u
+      sinh vi\xEAn v\u1EDBi sinh vi\xEAn hi\u1EC7n t\u1EA1i v\xE0 nh\xE0 tr\u01B0\u1EDDng,
+      th\xFAc \u0111\u1EA9y \u0111\u1ED5i m\u1EDBi, s\xE1ng t\u1EA1o v\xE0 kh\u1EDFi
+      nghi\u1EC7p."
     thumb: {fileID: 2800000, guid: 2e752c7f02acbc4418c1e12abf8da592, type: 3}
     gridWidth: 8
     gridHeight: 4
@@ -932,21 +1048,22 @@ MonoBehaviour:
     defaultPosZ: 19
     missionReward: 60
     configuration:
-      buildTime: 20
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 50
-      product: gold
-      productPrice: 80
+      productionRate: 100
+      product: happy
+      productPrice: 1
       price: 450
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 8
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 2e752c7f02acbc4418c1e12abf8da592, type: 3}
     walkSpriteTextures: []
@@ -968,21 +1085,22 @@ MonoBehaviour:
     defaultPosZ: 0
     missionReward: 0
     configuration:
-      buildTime: 0
+      buildTime: 20
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 120
+      product: happy
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 1
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: f2c1fe9f9b5ce0d45857af5d6069aea5, type: 3}
     walkSpriteTextures: []
@@ -990,7 +1108,15 @@ MonoBehaviour:
     destroyedSpriteTextures: []
   - id: 4073
     name: "T\xF2a ICEA"
-    description: 
+    description: "T\xF2a nh\xE0 ICEA l\xE0 tr\u1EE5 s\u1EDF c\u1EE7a Vi\u1EC7n C\xF4ng
+      ngh\u1EC7 \u0110i\u1EC1u khi\u1EC3n v\xE0 T\u1EF1 \u0111\u1ED9ng h\xF3a. Vi\u1EC7n
+      \u0111\u01B0\u1EE3c h\xECnh th\xE0nh tr\xEAn c\u01A1 s\u1EDF \u0111i\u1EC1u
+      ch\u1EC9nh t\xEAn g\u1ECDi v\xE0 t\xE1i c\u01A1 c\u1EA5u t\u1EEB Vi\u1EC7n
+      K\u1EF9 thu\u1EADt \u0110i\u1EC1u khi\u1EC3n v\xE0 T\u1EF1 \u0111\u1ED9ng h\xF3a
+      trong qu\xE1 tr\xECnh chuy\u1EC3n \u0111\u1ED5i m\xF4 h\xECnh c\u1EE7a nh\xE0
+      tr\u01B0\u1EDDng. T\xF2a nh\xE0 bao g\u1ED3m c\xE1c ph\xF2ng th\xED nghi\u1EC7m
+      nghi\xEAn c\u1EE9u chuy\xEAn s\xE2u, v\u0103n ph\xF2ng vi\u1EC7n, trung t\xE2m
+      m\xE1y t\xEDnh v\xE0 x\u01B0\u1EDFng th\u1EED nghi\u1EC7m - s\u1EA3n xu\u1EA5t."
     thumb: {fileID: 2800000, guid: 8859ab5bc5d6e2c468f83578aa6e5f20, type: 3}
     gridWidth: 5
     gridHeight: 5
@@ -1004,21 +1130,22 @@ MonoBehaviour:
     defaultPosZ: 28
     missionReward: 100
     configuration:
-      buildTime: 0
+      buildTime: 40
       isCharacter: 0
       speed: 0
       attackRange: 0
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 
-      productPrice: 100
+      productionRate: 250
+      product: education
+      productPrice: 2
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
-      unlockItemAtSemester: 1
+      unlockItemAtSemester: 5
+    events: []
     idleSpriteTextures:
     - {fileID: 2800000, guid: 8859ab5bc5d6e2c468f83578aa6e5f20, type: 3}
     walkSpriteTextures: []
@@ -1036,11 +1163,99 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: 0
-    defaultPosZ: 0
+    defaultPosX: 8
+    defaultPosZ: 14
     missionReward: 100
     configuration:
-      buildTime: 20
+      buildTime: 30
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 150
+      product: happy
+      productPrice: 2
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 1
+      unlockItemAtSemester: 1
+    events:
+    - {fileID: 11400000, guid: 5394d832fe2fd4d47b886fb9251b8ae8, type: 2}
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 9da6887ff453bf749aaeb0c4faa494f8, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 8344
+    name: "T\xF2a D7"
+    description: "T\xF2a nh\xE0 D7 tr\u1EA3i d\xE0i d\u1ECDc theo tr\u1EE5c ph\xEDa
+      \u0111\u01B0\u1EDDng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a. \u0110\xE2y l\xE0
+      khu v\u1EF1c t\u1EADp trung c\xE1c gi\u1EA3ng \u0111\u01B0\u1EDDng ph\u1EE5c
+      v\u1EE5 sinh vi\xEAn \u0111\u1EA1i tr\xE0, ch\u1EE7 y\u1EBFu d\xE0nh cho c\xE1c
+      l\u1EDBp h\u1ECDc l\xFD thuy\u1EBFt quy m\xF4 l\u1EDBn. T\xF2a D7 \u0111\xF3ng
+      vai tr\xF2 quan tr\u1ECDng trong h\u1EC7 th\u1ED1ng gi\u1EA3ng \u0111\u01B0\u1EDDng
+      c\u1EE7a tr\u01B0\u1EDDng, h\u1ED7 tr\u1EE3 ho\u1EA1t \u0111\u1ED9ng \u0111\xE0o
+      t\u1EA1o cho h\xE0ng ch\u1EE5c ngh\xECn sinh vi\xEAn m\u1ED7i n\u0103m."
+    thumb: {fileID: 2800000, guid: ccf91442c88101a4bbe1b65760d4fbca, type: 3}
+    gridWidth: 8
+    gridHeight: 8
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 43
+    defaultPosZ: 36
+    missionReward: 100
+    configuration:
+      buildTime: 60
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 220
+      product: education
+      productPrice: 3
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 160
+      levelMax: 1
+      unlockItemAtSemester: 3
+    events: []
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: ccf91442c88101a4bbe1b65760d4fbca, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 2403
+    name: "C\u1ED5ng Parabol"
+    description: "C\u1ED5ng Parabol l\xE0 m\u1ED9t c\xF4ng tr\xECnh n\u1ED5i ti\u1EBFng
+      t\u1EA1i tr\u01B0\u1EDDng \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i,
+      \u0111\u01B0\u1EE3c x\xE2y d\u1EF1ng c\xE1ch \u0111\xE2y kho\u1EA3ng 50 n\u0103m.
+      V\u1EDBi thi\u1EBFt k\u1EBF \u0111\u1ED9c \u0111\xE1o v\xE0 mang \xFD ngh\u0129a
+      l\u1ECBch s\u1EED, c\u1ED5ng n\xE0y \u0111\xE3 tr\u1EDF th\xE0nh bi\u1EC3u
+      t\u01B0\u1EE3ng c\u1EE7a tri th\u1EE9c v\xE0 s\u1EF1 ki\xEAn c\u01B0\u1EDDng
+      c\u1EE7a c\xE1c th\u1EBF h\u1EC7 sinh vi\xEAn."
+    thumb: {fileID: 2800000, guid: 4d574d2527650c641a20460f43a9953d, type: 3}
+    gridWidth: 5
+    gridHeight: 3
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: 29
+    defaultPosZ: -4
+    missionReward: 100
+    configuration:
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -1055,28 +1270,36 @@ MonoBehaviour:
       studentCapacityIncrease: 0
       levelMax: 1
       unlockItemAtSemester: 1
+    events: []
     idleSpriteTextures:
-    - {fileID: 2800000, guid: 9da6887ff453bf749aaeb0c4faa494f8, type: 3}
+    - {fileID: 2800000, guid: 4d574d2527650c641a20460f43a9953d, type: 3}
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []
-  - id: 8344
-    name: "T\xF2a D7"
-    description: 
-    thumb: {fileID: 2800000, guid: ccf91442c88101a4bbe1b65760d4fbca, type: 3}
-    gridWidth: 4
-    gridHeight: 4
+  - id: 3776
+    name: "C\u1ED5ng T\u0110N"
+    description: "C\u1ED5ng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a t\u1ECDa l\u1EA1c
+      t\u1EA1i s\u1ED1 2 \u0111\u01B0\u1EDDng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a,
+      ph\u01B0\u1EDDng \u0110\u1ED3ng T\xE2m, qu\u1EADn Hai B\xE0 Tr\u01B0ng, H\xE0
+      N\u1ED9i. \u0110\xE2y l\xE0 c\u1ED5ng th\u01B0\u1EDDng xuy\xEAn \u0111\u01B0\u1EE3c
+      sinh vi\xEAn s\u1EED d\u1EE5ng nh\u1EA5t trong sinh ho\u1EA1t h\xE0ng ng\xE0y,
+      \u0111\xF3ng vai tr\xF2 c\u1EEDa ng\xF5 k\u1EBFt n\u1ED1i khu v\u1EF1c gi\u1EA3ng
+      \u0111\u01B0\u1EDDng d\xE3y D v\xE0 c\xE1c khu k\xFD t\xFAc x\xE1 v\u1EDBi
+      \u0111\u01B0\u1EDDng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a."
+    thumb: {fileID: 2800000, guid: 884d8d13069484e4c87d628344e6c4f4, type: 3}
+    gridWidth: 8
+    gridHeight: 2
     arrowOffsetX: 0
     arrowOffsetZ: 0
     gridOffsetX: 0
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: 0
-    defaultPosZ: 0
+    defaultPosX: 27
+    defaultPosZ: 45
     missionReward: 100
     configuration:
-      buildTime: 0
+      buildTime: 30
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -1089,10 +1312,99 @@ MonoBehaviour:
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
-      levelMax: 99
+      levelMax: 1
       unlockItemAtSemester: 1
+    events: []
     idleSpriteTextures:
-    - {fileID: 2800000, guid: ccf91442c88101a4bbe1b65760d4fbca, type: 3}
+    - {fileID: 2800000, guid: 884d8d13069484e4c87d628344e6c4f4, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 1640
+    name: "C\u1ED5ng \u0110CV 1"
+    description: "C\u1ED5ng \u0110\u1EA1i C\u1ED3 Vi\u1EC7t l\xE0 m\u1ED9t trong
+      ba c\u1ED5ng v\xE0o c\u1EE7a \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i,
+      b\xEAn c\u1EA1nh c\u1ED5ng Parabol tr\xEAn \u0111\u01B0\u1EDDng Gi\u1EA3i Ph\xF3ng
+      v\xE0 c\u1ED5ng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a. C\u1ED5ng n\u1EB1m tr\xEAn
+      tr\u1EE5c \u0111\u01B0\u1EDDng \u0110\u1EA1i C\u1ED3 Vi\u1EC7t - m\u1EB7t ti\u1EC1n
+      ph\xEDa \u0110\xF4ng c\u1EE7a khu\xF4n vi\xEAn tr\u01B0\u1EDDng, h\u01B0\u1EDBng
+      th\u1EB3ng v\xE0o t\xF2a C1 l\xE0 trung t\xE2m h\xE0nh ch\xEDnh c\u1EE7a nh\xE0
+      tr\u01B0\u1EDDng."
+    thumb: {fileID: 2800000, guid: 467ee3a57b0605f4f9e15440e7955286, type: 3}
+    gridWidth: 2
+    gridHeight: 7
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -7
+    defaultPosZ: 20
+    missionReward: 100
+    configuration:
+      buildTime: 30
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 1
+      unlockItemAtSemester: 1
+    events: []
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: 467ee3a57b0605f4f9e15440e7955286, type: 3}
+    walkSpriteTextures: []
+    attackSpriteTextures: []
+    destroyedSpriteTextures: []
+  - id: 9518
+    name: "C\u1ED5ng \u0110CV 2"
+    description: "C\u1ED5ng \u0110\u1EA1i C\u1ED3 Vi\u1EC7t l\xE0 m\u1ED9t trong
+      ba c\u1ED5ng v\xE0o c\u1EE7a \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i,
+      b\xEAn c\u1EA1nh c\u1ED5ng Parabol tr\xEAn \u0111\u01B0\u1EDDng Gi\u1EA3i Ph\xF3ng
+      v\xE0 c\u1ED5ng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a. C\u1ED5ng n\u1EB1m tr\xEAn
+      tr\u1EE5c \u0111\u01B0\u1EDDng \u0110\u1EA1i C\u1ED3 Vi\u1EC7t - m\u1EB7t ti\u1EC1n
+      ph\xEDa \u0110\xF4ng c\u1EE7a khu\xF4n vi\xEAn tr\u01B0\u1EDDng, h\u01B0\u1EDBng
+      th\u1EB3ng v\xE0o t\xF2a C1 l\xE0 trung t\xE2m h\xE0nh ch\xEDnh c\u1EE7a nh\xE0
+      tr\u01B0\u1EDDng."
+    thumb: {fileID: 2800000, guid: a80e03f97b9dc4a4ca15513e3977722f, type: 3}
+    gridWidth: 2
+    gridHeight: 7
+    arrowOffsetX: 0
+    arrowOffsetZ: 0
+    gridOffsetX: 0
+    gridOffsetZ: 0
+    uiOffsetX: 0
+    uiOffsetZ: 0
+    defaultPosX: -7
+    defaultPosZ: 6
+    missionReward: 100
+    configuration:
+      buildTime: 30
+      isCharacter: 0
+      speed: 0
+      attackRange: 0
+      defenceRange: 0
+      healthPoints: 0
+      hitPoints: 0
+      productionRate: 0
+      product: 
+      productPrice: 100
+      price: 100
+      resourceType: gold
+      studentCapacityIncrease: 0
+      levelMax: 1
+      unlockItemAtSemester: 1
+    events: []
+    idleSpriteTextures:
+    - {fileID: 2800000, guid: a80e03f97b9dc4a4ca15513e3977722f, type: 3}
     walkSpriteTextures: []
     attackSpriteTextures: []
     destroyedSpriteTextures: []

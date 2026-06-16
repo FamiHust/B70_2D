@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using B70.Balance;
 
 public class ItemsCollection : ScriptableObject
 {
@@ -46,6 +47,10 @@ public class ItemsCollection : ScriptableObject
         public int defaultPosZ = -999;
         public int missionReward = 100;
         public Configuration configuration = new Configuration();
+
+        [Header("Events")]
+        [Tooltip("Danh sách event ngẫu nhiên có thể xảy ra tại tòa nhà này trong một kỳ")]
+        public List<UniversityEventData> events = new List<UniversityEventData>();
 
         // store textures directly for each state
         public List<Texture2D> idleSpriteTextures;

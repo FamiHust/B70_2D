@@ -44,7 +44,15 @@ public class ProgressPanelScript : MonoBehaviour
 
         if (isPercent)
         {
-            ValueLabel.text = ((int)value).ToString() + "%";
+            if (hasMaxValue && maxValue > 0)
+            {
+                int percent = Mathf.RoundToInt(value / maxValue * 100f);
+                ValueLabel.text = percent.ToString() + "%";
+            }
+            else
+            {
+                ValueLabel.text = ((int)value).ToString() + "%";
+            }
         }
         else if (showAsCurrentMax && hasMaxValue)
         {

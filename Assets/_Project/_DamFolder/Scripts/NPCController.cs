@@ -215,7 +215,8 @@ public class NPCController : MonoBehaviour
                 if (checkCell.x >= 0 && checkCell.x < GroundManager.nodeWidth &&
                     checkCell.y >= 0 && checkCell.y < GroundManager.nodeHeight &&
                     GroundManager.instance.pathNodesNPC[checkCell.x, checkCell.y] &&
-                    NPCGridSystem.Instance.IsFree(checkCell.x, checkCell.y))
+                    NPCGridSystem.Instance.IsFree(checkCell.x, checkCell.y) &&
+                    (NPCSpawner.instance == null || NPCSpawner.instance.IsCellInNPCSpawnArea(checkCell.x, checkCell.y)))
                 {
                     return checkCell;
                 }

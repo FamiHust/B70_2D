@@ -36,6 +36,7 @@ public class GameOverlayWindowScript : WindowScript
 	public GameObject TutorialCollection;
 	public GameObject HappyWarning;
 	public GameObject EduWarning;
+	public GameObject WarningTime;
 	public Text HappyHintText;
 	public Text EduHintText;
 
@@ -72,7 +73,8 @@ public class GameOverlayWindowScript : WindowScript
 		this.HappyInfo.maxValue = SceneManager.instance.happyStorageCapacity;
 		this.HappyInfo.value = SceneManager.instance.numberOfHappyInStorage;
 		this.HappyInfo.isPercent = true;
-		if (this.HappyWarning != null) this.HappyWarning.SetActive(SceneManager.instance.numberOfHappyInStorage <= 15);
+		if (this.HappyWarning != null && SceneManager.instance.happyStorageCapacity > 0)
+			this.HappyWarning.SetActive((float)SceneManager.instance.numberOfHappyInStorage / SceneManager.instance.happyStorageCapacity < 0.1f);
 
 		this.StudentInfo.hasMaxValue = true;
 		this.StudentInfo.maxValue = SceneManager.instance.studentStorageCapacity;
@@ -83,15 +85,16 @@ public class GameOverlayWindowScript : WindowScript
 		this.EducationInfo.maxValue = SceneManager.instance.educationStorageCapacity;
 		this.EducationInfo.value = SceneManager.instance.numberOfEducationInStorage;
 		this.EducationInfo.isPercent = true;
-		if (this.EduWarning != null) this.EduWarning.SetActive(SceneManager.instance.numberOfEducationInStorage <= 15);
+		if (this.EduWarning != null && SceneManager.instance.educationStorageCapacity > 0)
+			this.EduWarning.SetActive((float)SceneManager.instance.numberOfEducationInStorage / SceneManager.instance.educationStorageCapacity < 0.1f);
 
 		if (this.HappyHintText != null && SceneManager.instance != null)
 		{
-			this.HappyHintText.text = $"Độ hạnh phúc: {(int)this.HappyInfo.value}/{SceneManager.instance.happyStorageCapacity}";
+			this.HappyHintText.text = $"Độ hạnh phúc: {SceneManager.instance.numberOfHappyInStorage}/{SceneManager.instance.happyStorageCapacity}";
 		}
 		if (this.EduHintText != null && SceneManager.instance != null)
 		{
-			this.EduHintText.text = $"Độ học vấn: {(int)this.EducationInfo.value}/{SceneManager.instance.educationStorageCapacity}";
+			this.EduHintText.text = $"Độ học vấn: {SceneManager.instance.numberOfEducationInStorage}/{SceneManager.instance.educationStorageCapacity}";
 		}
 
 		this.LevelInfo.hasMaxValue = true;
@@ -101,6 +104,9 @@ public class GameOverlayWindowScript : WindowScript
 
 		this.RefreshLevelUI();
 		this.RefreshSemesterUI();
+
+		if (this.WarningTime != null && TimeManager.instance != null)
+			this.WarningTime.SetActive(TimeManager.instance.timeRemaining <= 20f);
 
 		// Logic Tutorial: Nếu level < 2, tắt các thông số và dừng thời gian
 		if (SceneManager.instance.currentLevel < 2)
@@ -144,14 +150,19 @@ public class GameOverlayWindowScript : WindowScript
 			}
 		}
 
+		if (this.WarningTime != null && TimeManager.instance != null)
+		{
+			this.WarningTime.SetActive(TimeManager.instance.timeRemaining <= 20f);
+		}
+
 		if (this.HappyHintText != null && this.HappyInfo != null && SceneManager.instance != null)
 		{
-			this.HappyHintText.text = $"Độ hạnh phúc: {(int)this.HappyInfo.value}/{SceneManager.instance.happyStorageCapacity}";
+			this.HappyHintText.text = $"Độ hạnh phúc: {SceneManager.instance.numberOfHappyInStorage}/{SceneManager.instance.happyStorageCapacity}";
 		}
 
 		if (this.EduHintText != null && this.EducationInfo != null && SceneManager.instance != null)
 		{
-			this.EduHintText.text = $"Độ học vấn: {(int)this.EducationInfo.value}/{SceneManager.instance.educationStorageCapacity}";
+			this.EduHintText.text = $"Độ học vấn: {SceneManager.instance.numberOfEducationInStorage}/{SceneManager.instance.educationStorageCapacity}";
 		}
 	}
 
@@ -300,8 +311,10 @@ public class GameOverlayWindowScript : WindowScript
 		}
 		else if (resourceType == "happy")
 		{
+			HappyInfo.maxValue = SceneManager.instance.happyStorageCapacity;
 			HappyInfo.TweenValueChange(value);
-			if (HappyWarning != null) HappyWarning.SetActive(value <= 15);
+			if (HappyWarning != null && SceneManager.instance.happyStorageCapacity > 0)
+				HappyWarning.SetActive((float)value / SceneManager.instance.happyStorageCapacity < 0.1f);
 		}
 		else if (resourceType == "student")
 		{
@@ -309,8 +322,10 @@ public class GameOverlayWindowScript : WindowScript
 		}
 		else if (resourceType == "education")
 		{
+			EducationInfo.maxValue = SceneManager.instance.educationStorageCapacity;
 			EducationInfo.TweenValueChange(value);
-			if (EduWarning != null) EduWarning.SetActive(value <= 15);
+			if (EduWarning != null && SceneManager.instance.educationStorageCapacity > 0)
+				EduWarning.SetActive((float)value / SceneManager.instance.educationStorageCapacity < 0.1f);
 		}
 	}
 

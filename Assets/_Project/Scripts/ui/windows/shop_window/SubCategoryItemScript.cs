@@ -100,6 +100,10 @@ public class SubCategoryItemScript : MonoBehaviour
 				this.Name.text = "Tòa D6";
 				break;
 
+			case ShopWindowScript.SubCategory.D7:
+				this.Name.text = "Tòa D7";
+				break;
+
 			case ShopWindowScript.SubCategory.D8:
 				this.Name.text = "Tòa D8";
 				break;
@@ -116,7 +120,7 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 
 			case ShopWindowScript.SubCategory.GaraD6:
-				this.Name.text = "Gara D6";
+				this.Name.text = "Nhà xe D6";
 				break;
 
 			case ShopWindowScript.SubCategory.C1:
@@ -128,13 +132,13 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 
 			case ShopWindowScript.SubCategory.ITIMS:
-				this.Name.text = "Tòa ITIMS";
+				this.Name.text = "ITMS (C10B)";
 				break;
 			case ShopWindowScript.SubCategory.SECURITY_ROOM:
-				this.Name.text = "Phòng bảo vệ";
+				this.Name.text = "Khu bảo vệ";
 				break;
 			case ShopWindowScript.SubCategory.PC_LAB:
-				this.Name.text = "PC LAB";
+				this.Name.text = "PTN Polime Compozit";
 				break;
 			case ShopWindowScript.SubCategory.MONEY_LAKE:
 				this.Name.text = "Hồ Tiền";
@@ -156,6 +160,18 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.KHUON_VIEN_C1:
 				this.Name.text = "Khuôn viên C1";
+				break;
+			case ShopWindowScript.SubCategory.PARABOL_GATE:
+				this.Name.text = "Cổng Parabol";
+				break;
+			case ShopWindowScript.SubCategory.TDN_GATE_3776:
+				this.Name.text = "Cổng TĐN";
+				break;
+			case ShopWindowScript.SubCategory.DCV_GATE_1:
+				this.Name.text = "Cổng ĐCV 1";
+				break;
+			case ShopWindowScript.SubCategory.DCV_GATE_2:
+				this.Name.text = "Cổng ĐCV 2";
 				break;
 		}
 	}
@@ -210,6 +226,9 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.D6:
 				itemId = 6330;
 				break;
+			case ShopWindowScript.SubCategory.D7:
+				itemId = 8344;
+				break;
 			case ShopWindowScript.SubCategory.D8:
 				itemId = 5134;
 				break;
@@ -260,6 +279,18 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.KHUON_VIEN_C1:
 				itemId = 4563;
+				break;
+			case ShopWindowScript.SubCategory.PARABOL_GATE:
+				itemId = 2403;
+				break;
+			case ShopWindowScript.SubCategory.TDN_GATE_3776:
+				itemId = 3776;
+				break;
+			case ShopWindowScript.SubCategory.DCV_GATE_1:
+				itemId = 1640;
+				break;
+			case ShopWindowScript.SubCategory.DCV_GATE_2:
+				itemId = 9518;
 				break;
 		}
 
@@ -349,6 +380,9 @@ public class SubCategoryItemScript : MonoBehaviour
 			case ShopWindowScript.SubCategory.D6:
 				itemId = 6330;
 				break;
+			case ShopWindowScript.SubCategory.D7:
+				itemId = 8344;
+				break;
 			case ShopWindowScript.SubCategory.D8:
 				itemId = 5134;
 				break;
@@ -399,6 +433,18 @@ public class SubCategoryItemScript : MonoBehaviour
 				break;
 			case ShopWindowScript.SubCategory.KHUON_VIEN_C1:
 				itemId = 4563;
+				break;
+			case ShopWindowScript.SubCategory.PARABOL_GATE:
+				itemId = 2403;
+				break;
+			case ShopWindowScript.SubCategory.TDN_GATE_3776:
+				itemId = 3776;
+				break;
+			case ShopWindowScript.SubCategory.DCV_GATE_1:
+				itemId = 1640;
+				break;
+			case ShopWindowScript.SubCategory.DCV_GATE_2:
+				itemId = 9518;
 				break;
 		}
 		return itemId;

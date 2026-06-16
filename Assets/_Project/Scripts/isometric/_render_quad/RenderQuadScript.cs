@@ -14,6 +14,7 @@ public class RenderQuadScript : MonoBehaviour
 	public void SetData(SpriteCollection.TextureData textureData, int layer)
 	{
 		this.MeshRenderer.material = Sprites.GetTextureMaterial(textureData.texture, textureData.parent.renderingLayer, textureData.parent.renderingOrder);
+		this.MeshRenderer.sortingOrder = textureData.parent.renderingOrder;
 	}
 
 	public void SetAlpha(float alpha)

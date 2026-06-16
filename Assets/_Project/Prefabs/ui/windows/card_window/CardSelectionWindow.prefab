@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0890e84acfc3c74a8f8618cdd1b33fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsToShow: 2
+  cardsToShow: 3
   cardsContainer: {fileID: 5766381336107962235}
   teacherCardPrefab: {fileID: 7271073209172209527, guid: b4a09553f5f0dce439983edea909a75f,
     type: 3}

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using B70.Balance;
 
 public class ProductionScript : MonoBehaviour
 {
@@ -7,6 +8,13 @@ public class ProductionScript : MonoBehaviour
     public bool readyForCollection = false;
     public int collectedAmount = 0;
     public bool isUnderConstruction = false;
+
+    /* event vars */
+    public bool readyForEvent = false;
+    private B70.Balance.UniversityEventData _pendingEvent = null;
+    private int _lastEventSemester = -1;
+    private float _nextEventTime = -1f;
+    private string _currentResourceType = ""; // icon resource đang hiển khi không có event
 
     /* private vars */
     private BaseItemScript _baseItem;
@@ -98,6 +106,7 @@ public class ProductionScript : MonoBehaviour
         else
         {
             this.UpdateProduction();
+            this.UpdateEventTiming();
         }
     }
 
@@ -112,11 +121,11 @@ public class ProductionScript : MonoBehaviour
             }
             else if (productType == "happy")
             {
-                rate *= this._baseItem.assignedTeacher.influenceHappy;
+                rate *= (1f + this._baseItem.assignedTeacher.influenceHappy);
             }
             else if (productType == "education" || productType == "academic" || productType == "edu")
             {
-                rate *= this._baseItem.assignedTeacher.influenceEducation;
+                rate *= (1f + this._baseItem.assignedTeacher.influenceEducation);
             }
         }
         return rate;
@@ -133,11 +142,11 @@ public class ProductionScript : MonoBehaviour
             }
             else if (productType == "happy")
             {
-                price += this._baseItem.assignedTeacher.influenceHappy;
+                price *= (1f + this._baseItem.assignedTeacher.influenceHappy);
             }
             else if (productType == "education" || productType == "academic" || productType == "edu")
             {
-                price += this._baseItem.assignedTeacher.influenceEducation;
+                price *= (1f + this._baseItem.assignedTeacher.influenceEducation);
             }
         }
         return Mathf.RoundToInt(price);
@@ -172,7 +181,12 @@ public class ProductionScript : MonoBehaviour
         if (anyReady && !readyForCollection)
         {
             readyForCollection = true;
-            this._baseItem.UI.ShowCollectNotificationUI(true, firstReadyType);
+            _currentResourceType = firstReadyType;
+            // Chỉ hiển icon resource nếu không có event đang chờ
+            if (!readyForEvent)
+            {
+                this._baseItem.UI.ShowCollectNotificationUI(true, firstReadyType);
+            }
         }
     }
 
@@ -206,8 +220,123 @@ public class ProductionScript : MonoBehaviour
 
             this._lastCollectedTime = GetCurrentTime();
             this.readyForCollection = false;
+            _currentResourceType = "";
 
             DataBaseManager.instance.UpdateItemData(this._baseItem);
+        }
+    }
+
+    // ========================
+    // EVENT LOGIC
+    // ========================
+
+    /// <summary>
+    /// Tính toán xem kỳ này tòa nhà có xảy ra event không và lúc nào.
+    /// Gọi một lần mỗi kỳ khi kỳ mới bắt đầu.
+    /// </summary>
+    private void CalculateNextEventForBuilding()
+    {
+        _nextEventTime = -1f;
+        _pendingEvent = null;
+
+        if (_baseItem == null || _baseItem.itemData == null)
+        {
+            Debug.Log($"[EventTiming] {name}: _baseItem hoặc itemData là null");
+            return;
+        }
+        if (_baseItem.itemData.events == null || _baseItem.itemData.events.Count == 0)
+        {
+            Debug.Log($"[EventTiming] {_baseItem.itemData.name}: không có event nào được gán trong ItemData");
+            return;
+        }
+        if (SceneManager.instance == null) return;
+        if (TimeManager.instance == null) return;
+
+        // Chọn ngẫu nhiên 1 event từ danh sách của tòa nhà
+        var evt = _baseItem.itemData.events[UnityEngine.Random.Range(0, _baseItem.itemData.events.Count)];
+        if (evt == null) return;
+
+        // Tung xúc xắc
+        float roll = UnityEngine.Random.Range(0f, 1f);
+        Debug.Log($"[EventTiming] {_baseItem.itemData.name}: rolling event '{evt.eventName}' | roll={roll:F2} | prob={evt.triggerProbability:F2} | kết quả={(roll <= evt.triggerProbability ? "Sẽ xảy ra" : "Không xảy ra")}");
+
+        if (roll <= evt.triggerProbability)
+        {
+            _pendingEvent = evt;
+            float timeRemaining = TimeManager.instance.timeRemaining;
+            float maxTriggerTime = timeRemaining - 10f; // cooldown 10s trước cuối kỳ
+            if (maxTriggerTime > 0)
+            {
+                _nextEventTime = UnityEngine.Random.Range(0f, maxTriggerTime);
+                Debug.Log($"[EventTiming] {_baseItem.itemData.name}: event sẽ hiện khi timeRemaining <= {_nextEventTime:F1} (hiện tại={timeRemaining:F1})");
+            }
+            else
+            {
+                Debug.Log($"[EventTiming] {_baseItem.itemData.name}: timeRemaining ({timeRemaining:F1}) quá ngắn, không đủ thời gian spawn event");
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gọi mỗi frame để theo dõi thời điểm xảy ra event và kiểm tra kỳ mới.
+    /// </summary>
+    private void UpdateEventTiming()
+    {
+        if (SceneManager.instance == null || TimeManager.instance == null || TimeManager.instance.isPaused) return;
+        if (_baseItem == null || _baseItem.itemData == null) return;
+        if (_baseItem.itemData.events == null || _baseItem.itemData.events.Count == 0) return;
+
+        // Kiểm tra kỳ mới
+        int currentSemester = SceneManager.instance.currentSemester;
+        if (currentSemester != _lastEventSemester)
+        {
+            Debug.Log($"[EventTiming] {_baseItem.itemData.name}: kỳ mới bắt đầu (kỳ {currentSemester}), bắt đầu roll event...");
+            _lastEventSemester = currentSemester;
+            if (!readyForEvent)
+                CalculateNextEventForBuilding();
+        }
+
+        // Kiểm tra thời điểm kích hoạt event
+        if (_nextEventTime >= 0 && !readyForEvent && TimeManager.instance.timeRemaining <= _nextEventTime)
+        {
+            _nextEventTime = -1f;
+            readyForEvent = true;
+            Debug.Log($"[EventTiming] {_baseItem.itemData.name}: HIỆN EventIcon! event='{_pendingEvent?.eventName}'");
+            // Hiển EventIcon, ghi đè lên icon resource nếu đang có
+            _baseItem.UI.ShowCollectNotificationUI(true, "event");
+        }
+    }
+
+    /// <summary>
+    /// Gọi khi người chơi tap vào tòa nhà có EventIcon.
+    /// Mở cửa sổ UniversityEvent.
+    /// </summary>
+    public void TriggerEvent()
+    {
+        if (_pendingEvent == null) return;
+        if (UniversityEventManager.instance == null) return;
+        UniversityEventManager.instance.ShowEventForBuilding(_pendingEvent, _baseItem);
+    }
+
+    /// <summary>
+    /// Gọi sau khi người chơi chọn option trong EventResultOptionWindow.
+    /// Xóa event, tắt EventIcon, hiển lại icon resource nếu có.
+    /// </summary>
+    public void ResolveEvent()
+    {
+        readyForEvent = false;
+        _pendingEvent = null;
+        _nextEventTime = -1f;
+
+        if (readyForCollection && !string.IsNullOrEmpty(_currentResourceType))
+        {
+            // Tài nguyên đã ready nhưng bị EventIcon che — hiển lại icon resource
+            _baseItem.UI.ShowCollectNotificationUI(true, _currentResourceType);
+        }
+        else
+        {
+            // Không có tài nguyên sẵn sàng — ẩn notification
+            _baseItem.UI.ShowCollectNotificationUI(false, "");
         }
     }
 

@@ -21,6 +21,7 @@ namespace B70.Balance
         public Animator anim;
 
         private EventOption _currentOption;
+        private BaseItemScript _sourceBuilding; // Tòa nhà đã kích hoạt event
 
         private Color _defaultGoldColor = Color.white;
         private Color _defaultHappinessColor = Color.white;
@@ -35,8 +36,9 @@ namespace B70.Balance
             else textComponent.color = defaultColor;
         }
 
-        public void Setup(string eventName, EventOption option, int optionIndex)
+        public void Setup(string eventName, EventOption option, int optionIndex, BaseItemScript sourceBuilding = null)
         {
+            _sourceBuilding = sourceBuilding;
             if (!_colorsInitialized)
             {
                 if (goldText != null) _defaultGoldColor = goldText.color;
@@ -100,6 +102,14 @@ namespace B70.Balance
                     SceneManager.instance.RefreshResourceUIs("education");
                 }
             }
+
+            // Thông báo tòa nhà rằng event đã được giải quyết
+            // → tắt EventIcon, hiển lại icon thu thập bình thường nếu có
+            if (_sourceBuilding != null && _sourceBuilding.Production != null)
+            {
+                _sourceBuilding.Production.ResolveEvent();
+            }
+
             this.Close();
         }
 

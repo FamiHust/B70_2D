@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: TeacherCollection
   m_EditorClassIdentifier: 
   list:
+  - {fileID: 11400000, guid: 825ae853dfe355144b0786c2d1d4a5f4, type: 2}
+  - {fileID: 11400000, guid: 2d57ed045e3d51e4dbd4b122c572352d, type: 2}
   - {fileID: 11400000, guid: 539b32bcba55e164393347c2f86724c1, type: 2}
   - {fileID: 11400000, guid: 7edbb7ffd47fa1a40b57d8ddc8326ebe, type: 2}
-  - {fileID: 11400000, guid: 825ae853dfe355144b0786c2d1d4a5f4, type: 2}
+  - {fileID: 11400000, guid: 125b5a96209773940a722cd4823e96cf, type: 2}
+  - {fileID: 11400000, guid: 0bd53e1ced1c99d43bb33c7839ec019c, type: 2}
+  - {fileID: 11400000, guid: 1af2c02686df3024eb0a6fe696c023e8, type: 2}

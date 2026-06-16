@@ -21,6 +21,7 @@ public class CardSelectionWindowScript : WindowScript
         if (teacherCollection == null || teacherCollection.list.Count == 0)
         {
             Debug.LogWarning("TeacherCollection is empty or null!");
+            Close();
             return;
         }
 
@@ -37,7 +38,7 @@ public class CardSelectionWindowScript : WindowScript
         if (availableData.Count == 0)
         {
             Debug.Log("No more new cards available to collect!");
-            // Optional: Close or show a message
+            Close();
             return;
         }
         

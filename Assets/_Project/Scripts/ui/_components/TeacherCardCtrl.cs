@@ -81,8 +81,8 @@ public class TeacherCardCtrl : MonoBehaviour
         if (seniorityText != null) seniorityText.text = data.seniority.ToString() + " năm";
         
         if (buffGoldText != null) buffGoldText.text = "Vàng +" + data.influenceGold.ToString();
-        if (buffEducationText != null) buffEducationText.text = "Học vấn +" + data.influenceEducation.ToString() + "%";
-        if (buffHappyText != null) buffHappyText.text = "Hạnh phúc +" + data.influenceHappy.ToString() + "%";
+        if (buffEducationText != null) buffEducationText.text = "Học vấn +" + (data.influenceEducation * 100f).ToString() + "%";
+        if (buffHappyText != null) buffHappyText.text = "Hạnh phúc +" + (data.influenceHappy * 100f).ToString() + "%";
         
         if (descGoldText != null) descGoldText.text = data.descGold;
         if (descEducationText != null) descEducationText.text = data.descEducation;

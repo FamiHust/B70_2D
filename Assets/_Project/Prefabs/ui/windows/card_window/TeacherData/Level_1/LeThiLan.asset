@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56bebce2f5b85745888beaf6cd8f2d1, type: 3}
+  m_Name: LeThiLan
+  m_EditorClassIdentifier: 
+  id: 5
+  teacherName: "PGS.TS. L\xEA Th\u1ECB Lan"
+  level: 1
+  seniority: 5
+  influenceGold: 50
+  influenceEducation: 1
+  influenceHappy: 1
+  avatar: {fileID: 1883130361, guid: d85c254c1c955454b931e323c582c733, type: 3}
+  sexIcon: {fileID: 21300000, guid: d60b9ebb32241484ba4c50ce6ad3208b, type: 2}
+  skillDescription: "C\xF4 L\xEA Th\u1ECB Lan nh\u1EADn b\u1EB1ng Ti\u1EBFn s\u1EF9
+    chuy\xEAn ng\xE0nh T\xEDn hi\u1EC7u, \u1EA3nh v\xE0 truy\u1EC1n th\xF4ng t\u1EA1i
+    H\u1ECDc vi\u1EC7n nghi\xEAn c\u1EE9u v\u1EC1 c\xF4ng ngh\u1EC7 th\xF4ng tin
+    v\xE0 t\u1EF1 \u0111\u1ED9ng h\xF3a (INRIA) Sophia Antipolis, \u0110\u1EA1i h\u1ECDc
+    Nice, C\u1ED9ng h\xF2a Ph\xE1p n\u0103m 2009. \u0110\u01B0\u1EE3c phong Ph\xF3
+    gi\xE1o s\u01B0 n\u0103m 2016. Hi\u1EC7n l\xE0 gi\u1EA3ng vi\xEAn Khoa K\u1EF9
+    thu\u1EADt truy\u1EC1n th\xF4ng, Tr\u01B0\u1EDDng \u0110i\u1EC7n-\u0110i\u1EC7n
+    t\u1EED, \u0110\u1EA1i h\u1ECDc B\xE1ch Khoa H\xE0 N\u1ED9i. C\xE1c l\u0129nh
+    v\u1EF1c nghi\xEAn c\u1EE9u: th\u1ECB gi\xE1c m\xE1y t\xEDnh, h\u1ECDc m\xE1y,
+    t\u01B0\u01A1ng t\xE1c ng\u01B0\u1EDDi - m\xE1y. "
+  descGold: "T\u0103ng s\u1EA3n l\u01B0\u1EE3ng V\xE0ng thu \u0111\u01B0\u1EE3c"
+  descEducation: "T\u0103ng ch\u1EA5t l\u01B0\u1EE3ng \u0111\xE0o t\u1EA1o"
+  descHappy: "T\u0103ng m\u1EE9c \u0111\u1ED9 H\u1EA1nh ph\xFAc"

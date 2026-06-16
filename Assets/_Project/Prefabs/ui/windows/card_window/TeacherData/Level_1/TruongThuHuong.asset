@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56bebce2f5b85745888beaf6cd8f2d1, type: 3}
+  m_Name: TruongThuHuong
+  m_EditorClassIdentifier: 
+  id: 4
+  teacherName: "PGS.TS. Tr\u01B0\u01A1ng Thu H\u01B0\u01A1ng"
+  level: 1
+  seniority: 5
+  influenceGold: 50
+  influenceEducation: 1
+  influenceHappy: 1
+  avatar: {fileID: 1392832083, guid: 3fcc7a6877c1f3f4cb2329c10707754a, type: 3}
+  sexIcon: {fileID: 21300000, guid: d60b9ebb32241484ba4c50ce6ad3208b, type: 2}
+  skillDescription: "C\xF4 Tr\u01B0\u01A1ng Thu H\u01B0\u01A1ng nh\u1EADn h\u1ECDc
+    v\u1ECB Ti\u1EBFn s\u0129 v\u1EC1 K\u1EF9 thu\u1EADt Vi\u1EC5n th\xF4ng t\u1EA1i
+    tr\u01B0\u1EDDng \u0110\u1EA1i h\u1ECDc Trento, Italia n\u0103m 2007. B\u1EB1ng
+    Th\u1EA1c s\u1EF9 khoa h\u1ECDc v\u1EC1 H\u1EC7 th\u1ED1ng truy\u1EC1n th\xF4ng
+    v\xE0 th\xF4ng tin c\u1EE7a \u0110\u1EA1i h\u1ECDc k\u1EF9 thu\u1EADt Hamburg-Harburg
+    (nay l\xE0 \u0110\u1EA1i h\u1ECDc c\xF4ng ngh\u1EC7 Hamburg), CHLB \u0110\u1EE9c
+    n\u0103m 2004, v\xE0 b\u1EB1ng K\u1EF9 s\u01B0 \u0110i\u1EC7n t\u1EED Vi\u1EC5n
+    th\xF4ng t\u1EA1i \u0110\u1EA1i h\u1ECDc B\xE1ch Khoa H\xE0 n\u1ED9i n\u0103m
+    2001. C\xE1c h\u01B0\u1EDBng nghi\xEAn c\u1EE9u quan t\xE2m hi\u1EC7n t\u1EA1i
+    bao g\u1ED3m: An ninh m\u1EA1ng, tr\xED tu\u1EC7 nh\xE2n t\u1EA1o, k\u1EF9 thu\u1EADt
+    m\u1EA1ng cho c\xE1c m\u1EA1ng th\u1EBF h\u1EC7 m\u1EDBi, k\u1EF9 thu\u1EADt
+    m\u1EA1ng xanh, b\u1EA3o \u0111\u1EA3m ch\u1EA5t l\u01B0\u1EE3ng QoE/QoS cho
+    c\xE1c d\u1ECBch v\u1EE5 m\u1EA1ng, Th\u1EF1c t\u1EBF m\u1EDF r\u1ED9ng/th\u1EF1c
+    t\u1EBF \u1EA3o, truy\u1EC1n d\u1EABn video/video 360 \u0111\u1ED9, \u0111i\u1EC1u
+    khi\u1EC3n v\xE0 gi\xE1m s\xE1t nh\xE0 m\xE1y th\xF4ng minh"
+  descGold: "T\u0103ng s\u1EA3n l\u01B0\u1EE3ng V\xE0ng thu \u0111\u01B0\u1EE3c"
+  descEducation: "T\u0103ng ch\u1EA5t l\u01B0\u1EE3ng \u0111\xE0o t\u1EA1o"
+  descHappy: "T\u0103ng m\u1EE9c \u0111\u1ED9 H\u1EA1nh ph\xFAc"

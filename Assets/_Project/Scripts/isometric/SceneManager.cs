@@ -98,8 +98,8 @@ public class SceneManager : MonoBehaviour
 		this.goldStorageCapacity = 10000;
 		this.diamondStorageCapacity = 20;
 		this.studentStorageCapacity = 850;    // Base capacity — tăng thêm khi xây công trình.
-		this.happyStorageCapacity = 100;       // Happiness [0, 100]
-		this.educationStorageCapacity = 100;   // Education [0, 100]
+		this.happyStorageCapacity = PlayerPrefs.GetInt("happyStorageCapacity", 100);
+		this.educationStorageCapacity = PlayerPrefs.GetInt("educationStorageCapacity", 100);
 		// this.elixirStorageCapacity = 500;
 
 		// ── Giá trị mặc định lần đầu chơi ────────────────────────────────
@@ -156,6 +156,8 @@ public class SceneManager : MonoBehaviour
 		PlayerPrefs.SetInt("totalSpawnedNPCs", this.totalSpawnedNPCs);
 		// PlayerPrefs.SetInt("numberOfElixirInStorage", this.numberOfElixirInStorage);
 
+		PlayerPrefs.SetInt("happyStorageCapacity", this.happyStorageCapacity);
+		PlayerPrefs.SetInt("educationStorageCapacity", this.educationStorageCapacity);
 		PlayerPrefs.Save();
 	}
 
@@ -423,6 +425,14 @@ public class SceneManager : MonoBehaviour
 		}
 
 		BaseItemScript tappedItem = evt.baseItem;
+
+		// Ưu tiên EventIcon cao hơn icon thu thập tài nguyên
+		if (tappedItem.Production != null && tappedItem.Production.readyForEvent)
+		{
+			tappedItem.Production.TriggerEvent();
+			return;
+		}
+
 		if (tappedItem.Production.readyForCollection)
 		{
 			tappedItem.Production.Collect();
@@ -1054,6 +1064,10 @@ public class SceneManager : MonoBehaviour
 		// ── 3. Ghi kết quả ngược lại vào SceneManager + lưu + refresh UI ─────────
 		UniversityBalanceFormulas.ApplyStateToSceneManager(state);
 
+		// Tăng dung lượng lưu trữ tối đa sau mỗi kỳ
+		this.happyStorageCapacity += 50;
+		this.educationStorageCapacity += 50;
+
 		Debug.Log($"[Semester {this.currentSemester} → {this.currentSemester + 1}] "
 			+ $"Education={this.numberOfEducationInStorage} | Happiness={this.numberOfHappyInStorage} "
 			+ $"| Freshmen={bd.freshmen:F0} | Dropouts={bd.dropouts:F0} | Graduated={bd.graduated:F0} "
@@ -1075,6 +1089,8 @@ public class SceneManager : MonoBehaviour
 
 		this.SaveResources();
 		this.RefreshResourceUIs("semester");
+		this.RefreshResourceUIs("happy");
+		this.RefreshResourceUIs("education");
 
 		// Reset TimeManager for the new semester
 		if (TimeManager.instance != null)

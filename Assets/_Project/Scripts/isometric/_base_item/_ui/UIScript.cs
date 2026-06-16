@@ -105,8 +105,10 @@ public class UIScript : MonoBehaviour {
             if (this.collectNotificationUIInstance == null)
             {
 				this.collectNotificationUIInstance = this.ShowUI(this.BaseItemCollectNotificationUI).GetComponent<BaseItemCollectNotificationUIScript>();
-                this.collectNotificationUIInstance.SetIcon(type);
             }
+            // Luôn cập nhật icon dù instance đã tồn tại (để switch giữa event/resource icon)
+            if (this.collectNotificationUIInstance != null)
+                this.collectNotificationUIInstance.SetIcon(type);
         }
         else
         {

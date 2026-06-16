@@ -168,23 +168,23 @@ public class InfoWindowScript : WindowScript
 		// 	this._CreateInfoItem("Hit Points", hitPoints);
 		// }
   
-		if (this._itemData.configuration.productionRate > 0)
-		{
-			// string productionRate = ": " + this._itemData.configuration.productionRate.ToString();
-			// this._CreateInfoItem("Sản lượng", productionRate, this.ProductionRateIcon);
+		// if (this._itemData.configuration.productionRate > 0)
+		// {
+		// 	// string productionRate = ": " + this._itemData.configuration.productionRate.ToString();
+		// 	// this._CreateInfoItem("Sản lượng", productionRate, this.ProductionRateIcon);
 
-			string product = ": " + this._itemData.configuration.product;
-			this._CreateInfoItem("Sản phẩm", product, this.ProductIcon);
+		// 	string product = ": " + this._itemData.configuration.product;
+		// 	this._CreateInfoItem("Sản phẩm", product, this.ProductIcon);
 
-			int baseProductPrice = this._itemData.configuration.productPrice;
-			int effectiveProductPrice = baseProductPrice;
-			if (this._baseItem != null && this._baseItem.Production != null)
-			{
-				effectiveProductPrice = this._baseItem.Production.GetEffectiveProductPrice(this._itemData.configuration.product);
-			}
-			string productPrice = ": " + effectiveProductPrice.ToString();
-			this._CreateInfoItem("Giá sản phẩm", productPrice, this.ProductIcon);
-		}
+		// 	int baseProductPrice = this._itemData.configuration.productPrice;
+		// 	int effectiveProductPrice = baseProductPrice;
+		// 	if (this._baseItem != null && this._baseItem.Production != null)
+		// 	{
+		// 		effectiveProductPrice = this._baseItem.Production.GetEffectiveProductPrice(this._itemData.configuration.product);
+		// 	}
+		// 	string productPrice = ": " + effectiveProductPrice.ToString();
+		// 	this._CreateInfoItem("Giá sản phẩm", productPrice, this.ProductIcon);
+		// }
 		// if (this._baseItem != null)
 		// {
 		// 	this._CreateInfoItem("Cấp độ hiện tại : ", this._baseItem.level.ToString());

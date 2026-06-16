@@ -26,13 +26,15 @@ namespace B70.Balance
         public Animator anim;
 
         private readonly List<OptionItemUI> _spawnedOptionItems = new List<OptionItemUI>();
+        private BaseItemScript _sourceBuilding; // Tòa nhà nào đã kích hoạt event này
 
         /// <summary>
         /// Thiết lập dữ liệu cho Event instance này.
         /// </summary>
-        public void Setup(UniversityEventData data)
+        public void Setup(UniversityEventData data, BaseItemScript sourceBuilding = null)
         {
             this.eventData = data;
+            this._sourceBuilding = sourceBuilding;
 
             if (eventNameText != null) eventNameText.text = data.eventName;
             if (descriptionText != null) descriptionText.text = data.description;
@@ -89,7 +91,7 @@ namespace B70.Balance
                     EventResultOptionWindow resultWindow = UIManager.instance.ShowEventResultOptionWindow();
                     if (resultWindow != null)
                     {
-                        resultWindow.Setup(eventData.eventName, selectedOption, optionIndex + 1);
+                        resultWindow.Setup(eventData.eventName, selectedOption, optionIndex + 1, _sourceBuilding);
                     }
                 }
             }

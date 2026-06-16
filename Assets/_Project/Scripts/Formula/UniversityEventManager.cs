@@ -49,29 +49,9 @@ namespace B70.Balance
 
         private void Update()
         {
-            if (SceneManager.instance == null || TimeManager.instance == null || TimeManager.instance.isPaused) return;
-
-            if (SceneManager.instance.currentLevel < 3) return;
-
-            // Kiểm tra xem đã sang kỳ mới chưa
-            if (SceneManager.instance.currentSemester != lastSemester)
-            {
-                lastSemester = SceneManager.instance.currentSemester;
-                currentSemesterEventsSpawned = 0;
-                CalculateNextEvent();
-            }
-
-            // Nếu đến thời điểm xuất hiện event
-            if (nextEventTime > 0 && TimeManager.instance.timeRemaining <= nextEventTime)
-            {
-                nextEventTime = -1f;
-                currentSemesterEventsSpawned++;
-                
-                ForceSpawnOneRandomEvent();
-                
-                // Tính toán thời điểm cho event tiếp theo (nếu còn quota)
-                CalculateNextEvent();
-            }
+            // Logic này đã được thay thế bằng hệ thống per-building trong ProductionScript.
+            // Mỗi tòa nhà tự theo dõi và roll event thông qua UpdateEventTiming().
+            // Để giữ backward compat, có thể dùng lại nếu cần global event (không gắn vào tòa nào).
         }
 
         private void CalculateNextEvent()
@@ -129,15 +109,54 @@ namespace B70.Balance
                 SceneManager.instance.numberOfGoldInStorage += option.goldModifier;
                 
                 SceneManager.instance.numberOfHappyInStorage = Mathf.Clamp(
-                    SceneManager.instance.numberOfHappyInStorage + Mathf.RoundToInt(option.happinessModifier), 0, 100);
+                    SceneManager.instance.numberOfHappyInStorage + Mathf.RoundToInt(option.happinessModifier), 
+                    0, 
+                    SceneManager.instance.happyStorageCapacity);
                     
                 SceneManager.instance.numberOfEducationInStorage = Mathf.Clamp(
-                    SceneManager.instance.numberOfEducationInStorage + Mathf.RoundToInt(option.educationModifier), 0, 100);
+                    SceneManager.instance.numberOfEducationInStorage + Mathf.RoundToInt(option.educationModifier), 
+                    0, 
+                    SceneManager.instance.educationStorageCapacity);
             }
         }
 
         /// <summary>
-        /// Khởi tạo prefab cho event.
+        /// [Mới] Mở Event Window gắn với một tòa nhà cụ thể.
+        /// Được gọi bởi ProductionScript.TriggerEvent().
+        /// </summary>
+        public void ShowEventForBuilding(UniversityEventData evt, BaseItemScript sourceBuilding)
+        {
+            if (evt == null) return;
+            if (CameraManager.instance != null && CameraManager.instance.isZoomLocked) return;
+
+            if (eventPrefab == null)
+            {
+                Debug.LogWarning("[UniversityEventManager] eventPrefab is not assigned!");
+                return;
+            }
+
+            if (UIManager.instance != null)
+            {
+                WindowScript window = UIManager.instance.ShowWindow(eventPrefab);
+                UniversityEvent eventComponent = window.GetComponent<UniversityEvent>();
+                if (eventComponent != null)
+                {
+                    eventComponent.Setup(evt, sourceBuilding);
+                }
+            }
+            else
+            {
+                GameObject inst = Instantiate(eventPrefab, eventContainer != null ? eventContainer : this.transform);
+                UniversityEvent eventComponent = inst.GetComponent<UniversityEvent>();
+                if (eventComponent != null)
+                {
+                    eventComponent.Setup(evt, sourceBuilding);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Khởi tạo prefab cho event (legacy — dùng cho global events).
         /// </summary>
         private void SpawnEventPrefab(UniversityEventData evt)
         {

@@ -19,7 +19,7 @@ MonoBehaviour:
   influenceGold: 60
   influenceEducation: 1
   influenceHappy: 1
-  avatar: {fileID: -369064136, guid: 69b3c142b17f5d941a52bad207791925, type: 3}
+  avatar: {fileID: -1018216636, guid: 780fd5e623b07af4b9708046be10ac78, type: 3}
   sexIcon: {fileID: 21300000, guid: 33ab055220cdb0e4ab338d8ca6bb65bb, type: 2}
   skillDescription: "Th\u1EA7y Nguy\u1EC5n \u0110\xECnh V\u0103n nh\u1EADn h\u1ECDc
     v\u1ECB Ti\u1EBFn s\u0129 Khoa h\u1ECDc M\xE1y tinh n\u0103m 2019 c\u1EE7a tr\u01B0\u1EDDng

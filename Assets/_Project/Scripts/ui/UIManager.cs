@@ -324,6 +324,26 @@ public class UIManager : MonoBehaviour
 			return;
 		}
 
+		// Check if there are any cards left that the player hasn't collected yet
+		bool hasAvailableCards = false;
+		if (collection.list != null)
+		{
+			foreach (var data in collection.list)
+			{
+				if (data != null && !playerTeachers.Contains(data))
+				{
+					hasAvailableCards = true;
+					break;
+				}
+			}
+		}
+
+		if (!hasAvailableCards)
+		{
+			Debug.Log("No more new cards available to collect. Skipping showing CardSelectionWindow.");
+			return;
+		}
+
 		CardSelectionWindowScript window = this.ShowWindow(this.CardSelectionWindow) as CardSelectionWindowScript;
 		if (window != null)
 		{

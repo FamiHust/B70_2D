@@ -19,7 +19,7 @@ MonoBehaviour:
   influenceGold: 50
   influenceEducation: 1
   influenceHappy: 1
-  avatar: {fileID: -369064136, guid: 69b3c142b17f5d941a52bad207791925, type: 3}
+  avatar: {fileID: 1870897855, guid: 1eb9d89f7ce767e408891aa5589c539d, type: 3}
   sexIcon: {fileID: 21300000, guid: 33ab055220cdb0e4ab338d8ca6bb65bb, type: 2}
   skillDescription: "TS. Ph\u1EA1m V\u0103n Ti\u1EBFn t\u1ED1t nghi\u1EC7p k\u1EF9
     s\u01B0 \u0110\u1EA1i h\u1ECDc B\xE1ch khoa H\xE0 N\u1ED9i n\u0103m 1997, nh\u1EADn
