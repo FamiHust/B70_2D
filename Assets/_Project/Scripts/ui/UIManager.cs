@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
 	public GameObject UnlockItemWindow;
 	public GameObject IncomeResultWindow;
 	public GameObject NewSemesterWindow;
+	public GameObject LoseWindow;
 	public GameObject MissionWindow;
 	public GameObject EventWindow;
 	public GameObject EventResultOptionWindow;
@@ -56,13 +57,14 @@ public class UIManager : MonoBehaviour
 			playerTeachers.Clear();
 		}
 		LoadTeacherInventory();
+	}
 
-		// show menu window at start if assigned
-		if (this.SceneEnteringWindow == null)
+	private void OnDestroy()
+	{
+		if (instance == this)
 		{
-			// no scene entering window assigned - still allow showing menu
+			instance = null;
 		}
-		// MenuWindow prefab is in SceneManager; UIManager will not create it here directly
 	}
 
 	/// <summary>
@@ -72,6 +74,23 @@ public class UIManager : MonoBehaviour
 	/// <param name="prefab">Prefab.</param>
 	public WindowScript ShowWindow(GameObject prefab)
 	{
+		if (prefab == this.IncomeResultWindow)
+		{
+			if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(SoundData.SFX_Report_Income);
+		}
+		else if (prefab == this.UnlockItemWindow)
+		{
+			if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(SoundData.SFX_Unlock_Building);
+		}
+		else if (prefab == this.LoseWindow)
+		{
+			if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(SoundData.SFX_Lose);
+		}
+		else if (prefab == this.NewSemesterWindow)
+		{
+			if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(SoundData.SFX_Start_New_Semester);
+		}
+
 		// Automatically close other windows except the overlay before showing the new one
 		// but don't close windows if we are opening the overlay itself or an Info popup
 		if (prefab != this.GameOverlayWindow && prefab != this.InfoWindow && prefab != this.UpgradeWindow && prefab != this.BoostWindow && prefab != this.TutorialWindow && prefab != this.CollectionWindow)
@@ -90,7 +109,7 @@ public class UIManager : MonoBehaviour
 		}
 
 		if (prefab == this.EventWindow || prefab == this.EventResultOptionWindow || 
-		    prefab == this.UnlockItemWindow || prefab == this.NewSemesterWindow || prefab == this.IncomeResultWindow ||
+		    prefab == this.UnlockItemWindow || prefab == this.LoseWindow || prefab == this.NewSemesterWindow || prefab == this.IncomeResultWindow ||
 			prefab == this.CardSelectionWindow)
 		{
 			if (TimeManager.instance != null)
@@ -221,6 +240,16 @@ public class UIManager : MonoBehaviour
 		{
 			window.Setup(bd, semesterNumber, happiness, education);
 		}
+	}
+
+	public LoseWindowScript ShowLoseWindow()
+	{
+		LoseWindowScript window = this.ShowWindow(this.LoseWindow) as LoseWindowScript;
+		if (window != null)
+		{
+			window.Setup();
+		}
+		return window;
 	}
 
 	public void ShowNewSemesterWindow(B70.Balance.SemesterBreakdown bd, int semesterNumber, float happiness, float education)

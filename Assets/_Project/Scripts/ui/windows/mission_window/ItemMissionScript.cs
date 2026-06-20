@@ -291,7 +291,10 @@ public class ItemMissionScript : MonoBehaviour
 		}
 
 		// Play sound
-
+		if (AudioManager.Instance != null)
+		{
+			AudioManager.Instance.PlaySFX(SoundData.SFX_Collect_Product);
+		}
 
 		// Remove from UI
 		Destroy(this.gameObject);

@@ -52,6 +52,11 @@ public class ProductionScript : MonoBehaviour
         if (this._baseItem != null)
             DataBaseManager.instance.UpdateItemData(this._baseItem);
 
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SoundData.SFX_Complete_Build);
+        }
+
         // Tutorial handling: when the first building is finished
         if (SceneManager.instance != null && SceneManager.instance.isTutorialActive)
         {
@@ -215,6 +220,10 @@ public class ProductionScript : MonoBehaviour
 
         if (collectedAnything)
         {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX(SoundData.SFX_Collect_Product);
+            }
             this._baseItem.Particles.ShowCollectionParticle(firstProduct);
             this._baseItem.UI.ShowCollectNotificationUI(false, firstProduct);
 

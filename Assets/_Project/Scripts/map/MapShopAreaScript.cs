@@ -12,6 +12,10 @@ public class MapShopAreaScript : MonoBehaviour
 	public string areaName = "Map Shop";
 	public List<int> itemIds = new List<int>();
 	public GameObject Arrow;
+	public GameObject LockIcon;
+
+	private ItemsCollection.ItemData _cachedItemData = null;
+	private bool _hasCached = false;
 
 	private Collider _collider;
 
@@ -25,8 +29,48 @@ public class MapShopAreaScript : MonoBehaviour
 		}
 	}
 
+	void Start()
+	{
+		UpdateLockStatus();
+	}
+
+	void Update()
+	{
+		UpdateLockStatus();
+	}
+
+	public void UpdateLockStatus()
+	{
+		if (LockIcon == null) return;
+
+		if (itemIds.Count > 0)
+		{
+			if (!_hasCached)
+			{
+				int itemId = itemIds[0];
+				_cachedItemData = Items.GetItem(itemId);
+				_hasCached = true;
+			}
+
+			if (_cachedItemData != null && SceneManager.instance != null)
+			{
+				bool isUnlocked = SceneManager.instance.currentLevel >= _cachedItemData.configuration.unlockItemAtSemester;
+				LockIcon.SetActive(!isUnlocked);
+			}
+		}
+		else
+		{
+			LockIcon.SetActive(false);
+		}
+	}
+
 	public void OnMapShopClicked()
 	{
+		if (AudioManager.Instance != null)
+		{
+			AudioManager.Instance.PlaySFX(SoundData.SFX_Button_Click);
+		}
+
 		if (SceneManager.instance != null)
 		{
 			SceneManager.instance.HideAllShopAreaArrows();
@@ -57,17 +101,22 @@ public class MapShopAreaScript : MonoBehaviour
 		if (!itemIds.Contains(itemId))
 		{
 			itemIds.Add(itemId);
+			_hasCached = false;
 		}
 	}
 
 	public void RemoveItem(int itemId)
 	{
-		itemIds.Remove(itemId);
+		if (itemIds.Remove(itemId))
+		{
+			_hasCached = false;
+		}
 	}
 
 	public void ClearItems()
 	{
 		itemIds.Clear();
+		_hasCached = false;
 	}
 
 	public List<int> GetItemIds()

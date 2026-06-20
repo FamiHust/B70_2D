@@ -87,6 +87,22 @@ public class MapShopItemScript : MonoBehaviour
 
 		if (!canBuild)
 		{
+			int currentAmount = resource == "diamond" ? SceneManager.instance.numberOfDiamondsInStorage : SceneManager.instance.numberOfGoldInStorage;
+			int missingAmount = price - currentAmount;
+			
+			WarningWindow warningWindow = UIManager.instance.ShowWarningWindow();
+			if (warningWindow != null)
+			{
+				if (resource == "diamond")
+				{
+					warningWindow.SetupDiamondWarning(missingAmount, currentAmount);
+				}
+				else
+				{
+					warningWindow.SetupGoldWarning(missingAmount, currentAmount);
+				}
+			}
+
 			Debug.Log("Not enough resource: " + resource);
 			return;
 		}
@@ -99,7 +115,7 @@ public class MapShopItemScript : MonoBehaviour
 			DataBaseManager.instance.UpdateItemData(item);
 			
 			// Focus and select the item to show Yes/No buttons
-			SceneManager.instance.OnItemTap(new CameraManager.CameraEvent { baseItem = item });
+			SceneManager.instance.OnItemTap(new CameraManager.CameraEvent { baseItem = item, isProgrammatic = true });
 			
 			if (CameraManager.instance != null)
 			{

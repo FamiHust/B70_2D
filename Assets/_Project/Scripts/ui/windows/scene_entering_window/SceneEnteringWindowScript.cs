@@ -53,6 +53,20 @@ public class SceneEnteringWindowScript : WindowScript {
 
 	public void CheckTutorial()
 	{
+		// Skip tutorial if player has already completed it (e.g., replaying after reset)
+		if (TimeManager.instance != null && TimeManager.instance.hasFinishedFinalTutorial)
+		{
+			if (SceneManager.instance != null)
+			{
+				SceneManager.instance.isTutorialActive = false;
+			}
+			if (GameOverlayWindowScript.instance != null)
+			{
+				GameOverlayWindowScript.instance.SetTutorialState(false);
+			}
+			return;
+		}
+
 		if (SceneManager.instance != null && DataBaseManager.instance != null)
 		{
 			int savedBuildingCount = DataBaseManager.instance.GetSavedBuildingCount();

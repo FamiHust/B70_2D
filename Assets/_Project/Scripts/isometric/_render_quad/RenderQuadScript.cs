@@ -27,4 +27,21 @@ public class RenderQuadScript : MonoBehaviour
 		}
 	}
 
+	private void Update()
+	{
+		BaseItemScript baseItem = GetComponentInParent<BaseItemScript>();
+		if (baseItem != null && baseItem.state == Common.State.PREVIEW)
+		{
+			if (this.MeshRenderer != null && this.MeshRenderer.material != null && this.MeshRenderer.material.HasProperty("_Color"))
+			{
+				float lerp = Mathf.PingPong(Time.time * 4f, 1f);
+				Color baseColor = Color.white;
+				Color targetColor = Color.red;
+				
+				Color c = Color.Lerp(baseColor, targetColor, lerp);
+				c.a = 0.5f;
+				this.MeshRenderer.material.color = c;
+			}
+		}
+	}
 }

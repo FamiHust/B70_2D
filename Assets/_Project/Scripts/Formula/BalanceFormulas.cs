@@ -329,9 +329,12 @@ namespace B70.Balance
         public static SemesterBreakdown ApplySemesterTick(ref BalanceState s, BalanceParameters p, bool useParameterized = false)
         {
             float freshmen  = TotalFreshmen(s.education, s.happiness, p, useParameterized);
-            float dropouts  = TotalDropouts(s.education, s.happiness, p);
+            float rawDropouts = TotalDropouts(s.education, s.happiness, p);
             float gradRate  = GraduationRate(s.education, s.happiness, p);
             float graduated = GraduatedStudents(s.students, gradRate);
+
+            // Capping dropouts to not exceed the current students minus graduated students
+            float dropouts  = Mathf.Clamp(rawDropouts, 0f, Mathf.Max(0f, s.students - graduated));
 
             float deltaS = NetStudentDelta(freshmen, dropouts, graduated);
             s.students = Mathf.Clamp(s.students + deltaS, 0f, s.studentCap);

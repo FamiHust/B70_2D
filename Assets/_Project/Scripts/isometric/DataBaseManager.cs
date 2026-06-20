@@ -292,6 +292,14 @@ public class DataBaseManager : MonoBehaviour
 		this.EnsureGameDataFileExists();
 	}
 
+	private void OnDestroy()
+	{
+		if (instance == this)
+		{
+			instance = null;
+		}
+	}
+
 	public void EnsureGameDataFileExists()
 	{
 		this._gameData = new GameData();

@@ -57,6 +57,14 @@ public class GroundManager : MonoBehaviour
 		instance = this;
 	}
 
+	private void OnDestroy()
+	{
+		if (instance == this)
+		{
+			instance = null;
+		}
+	}
+
 	Color color = Color.green;
     void OnDrawGizmos()
     {

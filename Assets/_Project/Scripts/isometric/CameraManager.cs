@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
 	{
 		public Vector3 point;
 		public BaseItemScript baseItem;
+		public bool isProgrammatic;
 	}
 
 	public enum RaycastTarget
@@ -48,7 +49,7 @@ public class CameraManager : MonoBehaviour
 	private float screenRatio => (float)Screen.width / Screen.height;
 	private Vector2 _defaultTouchPos = new Vector2(9999, 9999);
 	private float _minimumMoveDistanceForItemMove = 0.2f;
-	private float _maxZoomFactor = 20;
+	private float _maxZoomFactor = 15;
 	private float _minZoomFactor = 4;
 	private float _clampZoomOffset = 2.0f;
 
@@ -72,8 +73,21 @@ public class CameraManager : MonoBehaviour
 		this._layerMaskGroundCollider = LayerMask.GetMask("GroundCollider");
 	}
 
+	private void OnDestroy()
+	{
+		if (instance == this)
+		{
+			instance = null;
+		}
+	}
+
 	void Update()
 	{
+		if (SceneManager.instance == null)
+		{
+			return;
+		}
+
 		// Capture UI state on press
 		if (Input.GetMouseButtonDown(0))
 		{
@@ -833,7 +847,7 @@ public class CameraManager : MonoBehaviour
 	{
 		this.isZoomLocked = true;
 		if (this._zoomCoroutine != null) StopCoroutine(this._zoomCoroutine);
-		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(this._maxZoomFactor));
+		this._zoomCoroutine = StartCoroutine(this._SmoothZoom(20f));
 	}
 
 	public void ResetZoom(float zoomSize = 10f)

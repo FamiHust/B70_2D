@@ -61,16 +61,38 @@ public class SceneManager : MonoBehaviour
 
 		this._itemInstances = new Dictionary<int, BaseItemScript>();
 
-		/* registering events */
-		CameraManager.instance.OnItemTap += this.OnItemTap;
-		CameraManager.instance.OnItemDragStart += this.OnItemDragStart;
-		CameraManager.instance.OnItemDrag += this.OnItemDrag;
-		CameraManager.instance.OnItemDragStop += this.OnItemDragStop;
-		CameraManager.instance.OnTapGround += this.OnTapGround;
+		// Ensure all manager instances are correctly referenced (especially during scene reloads)
+		if (CameraManager.instance == null) CameraManager.instance = FindObjectOfType<CameraManager>();
+		if (GroundManager.instance == null) GroundManager.instance = FindObjectOfType<GroundManager>();
+		if (DataBaseManager.instance == null) DataBaseManager.instance = FindObjectOfType<DataBaseManager>();
 
-		GroundManager.instance.UpdateAllNodes();
-		this._shopLayout = DataBaseManager.instance.GetShopLayout();
+		/* registering events */
+		if (CameraManager.instance != null)
+		{
+			CameraManager.instance.OnItemTap += this.OnItemTap;
+			CameraManager.instance.OnItemDragStart += this.OnItemDragStart;
+			CameraManager.instance.OnItemDrag += this.OnItemDrag;
+			CameraManager.instance.OnItemDragStop += this.OnItemDragStop;
+			CameraManager.instance.OnTapGround += this.OnTapGround;
+		}
+
+		if (GroundManager.instance != null)
+		{
+			GroundManager.instance.UpdateAllNodes();
+		}
+		if (DataBaseManager.instance != null)
+		{
+			this._shopLayout = DataBaseManager.instance.GetShopLayout();
+		}
 		this.Init();
+	}
+
+	private void OnDestroy()
+	{
+		if (instance == this)
+		{
+			instance = null;
+		}
 	}
 
 	// Start is a coroutine to ensure UIManager is initialized before showing MenuWindow
@@ -82,10 +104,23 @@ public class SceneManager : MonoBehaviour
 			yield return null;
 		}
 
-		// instantiate MenuWindow into WindowsContainer if assigned
+		// Show MenuWindow on scene load (both initial and after reset)
 		if (this.MenuWindow != null)
 		{
 			UIManager.instance.ShowWindow(this.MenuWindow);
+		}
+
+		// After reset from LoseWindow, ensure time is paused for menu
+		if (LoseWindowScript.showMenuAfterReset)
+		{
+			LoseWindowScript.showMenuAfterReset = false;
+
+			if (TimeManager.instance != null)
+			{
+				TimeManager.instance.SetPaused(true);
+			}
+
+			Debug.Log("[SceneManager] Showing MenuWindow after reset");
 		}
 	}
 
@@ -96,20 +131,20 @@ public class SceneManager : MonoBehaviour
 	{
 		// Do not enter normal mode automatically. Show MenuWindow first and wait for user Play.
 		this.goldStorageCapacity = 10000;
-		this.diamondStorageCapacity = 20;
+		this.diamondStorageCapacity = 10;
 		this.studentStorageCapacity = 850;    // Base capacity — tăng thêm khi xây công trình.
-		this.happyStorageCapacity = PlayerPrefs.GetInt("happyStorageCapacity", 100);
-		this.educationStorageCapacity = PlayerPrefs.GetInt("educationStorageCapacity", 100);
+		this.happyStorageCapacity = PlayerPrefs.GetInt("happyStorageCapacity", 200);
+		this.educationStorageCapacity = PlayerPrefs.GetInt("educationStorageCapacity", 200);
 		// this.elixirStorageCapacity = 500;
 
 		// ── Giá trị mặc định lần đầu chơi ────────────────────────────────
 		// Happiness = 50 : ngưỡng trung lập → không bị phạt dropout, không thưởng.
 		// Education  = 50 : t1 = 50 → bắt đầu có freshmen nhập học.
 		this.numberOfGoldInStorage      = PlayerPrefs.GetInt("numberOfGoldInStorage",      200);
-		this.numberOfDiamondsInStorage  = PlayerPrefs.GetInt("numberOfDiamondsInStorage",  20);
+		this.numberOfDiamondsInStorage  = PlayerPrefs.GetInt("numberOfDiamondsInStorage",  10);
 		this.numberOfStudentInStorage   = PlayerPrefs.GetInt("numberOfStudentInStorage",   850);
-		this.numberOfHappyInStorage     = PlayerPrefs.GetInt("numberOfHappyInStorage",     50);   // neutralH = 50
-		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 50);   // t1 = 30
+		this.numberOfHappyInStorage     = PlayerPrefs.GetInt("numberOfHappyInStorage",     100);   // neutralH = 50
+		this.numberOfEducationInStorage = PlayerPrefs.GetInt("numberOfEducationInStorage", 100);   // t1 = 30
 		this.currentSemester            = PlayerPrefs.GetInt("currentSemester",            1);
 		this.currentLevel               = PlayerPrefs.GetInt("currentLevel",               1);
 		this.levelProgress              = PlayerPrefs.GetFloat("levelProgress",            0);
@@ -439,6 +474,14 @@ public class SceneManager : MonoBehaviour
 			return;
 		}
 
+		if (tappedItem != null && tappedItem.itemData != null && tappedItem.itemData.configuration != null && !tappedItem.itemData.configuration.isCharacter)
+		{
+			if (!evt.isProgrammatic && AudioManager.Instance != null)
+			{
+				AudioManager.Instance.PlaySFX(SoundData.SFX_Button_Click);
+			}
+		}
+
 		if (this.selectedItem != null)
 		{
 			// If the currently selected item is in PREVIEW state, cancel it entirely
@@ -458,6 +501,14 @@ public class SceneManager : MonoBehaviour
 		this.selectedItem = tappedItem;
 		tappedItem.SetSelected(true);
 		// this.ShowGrid();
+
+		if (tappedItem != null && tappedItem.itemData != null && tappedItem.itemData.configuration != null && !tappedItem.itemData.configuration.isCharacter)
+		{
+			if (CameraManager.instance != null)
+			{
+				CameraManager.instance.FocusOnItem(tappedItem, 10f);
+			}
+		}
 	}
 
 
@@ -668,7 +719,8 @@ public class SceneManager : MonoBehaviour
 						_activeShopAreas[layoutItem.itemId] = shopAreaScript;
 
 						// Hide immediately if starting fresh tutorial
-						if (this.GetBuildingCount() == 0)
+						bool isTutorial = PlayerPrefs.GetInt("hasFinishedFinalTutorial", 0) == 0;
+						if (this.GetBuildingCount() == 0 && isTutorial)
 						{
 							shopAreaObj.SetActive(false);
 						}
@@ -677,7 +729,8 @@ public class SceneManager : MonoBehaviour
 			}
 		}
 
-		if (this.GetBuildingCount() == 0)
+		bool isTutorialActive = PlayerPrefs.GetInt("hasFinishedFinalTutorial", 0) == 0;
+		if (this.GetBuildingCount() == 0 && isTutorialActive)
 		{
 			this.SetMapShopAreasVisible(false);
 		}
@@ -1064,10 +1117,6 @@ public class SceneManager : MonoBehaviour
 		// ── 3. Ghi kết quả ngược lại vào SceneManager + lưu + refresh UI ─────────
 		UniversityBalanceFormulas.ApplyStateToSceneManager(state);
 
-		// Tăng dung lượng lưu trữ tối đa sau mỗi kỳ
-		this.happyStorageCapacity += 50;
-		this.educationStorageCapacity += 50;
-
 		Debug.Log($"[Semester {this.currentSemester} → {this.currentSemester + 1}] "
 			+ $"Education={this.numberOfEducationInStorage} | Happiness={this.numberOfHappyInStorage} "
 			+ $"| Freshmen={bd.freshmen:F0} | Dropouts={bd.dropouts:F0} | Graduated={bd.graduated:F0} "
@@ -1076,7 +1125,17 @@ public class SceneManager : MonoBehaviour
 
 		int finishedSemester = this.currentSemester;
 
-		// ── 4. Tăng kỳ học (Semester độc lập với Level) ─────────────────────────────
+		// ── Check lose condition BEFORE increasing capacity ─────────────────────────────
+		bool hasLostByStudents = this.numberOfStudentInStorage <= 0;
+		bool hasLostByHappy = this.happyStorageCapacity > 0 && this.numberOfHappyInStorage <= this.happyStorageCapacity * 0.1f;
+		bool hasLostByEducation = this.educationStorageCapacity > 0 && this.numberOfEducationInStorage <= this.educationStorageCapacity * 0.1f;
+		bool isLose = hasLostByStudents || hasLostByHappy || hasLostByEducation;
+
+		// ── 4. Tăng dung lượng lưu trữ tối đa sau mỗi kỳ (AFTER lose check) ─────────────────
+		this.happyStorageCapacity += 50;
+		this.educationStorageCapacity += 50;
+
+		// ── 5. Tăng kỳ học (Semester độc lập với Level) ─────────────────────────────
 		this.currentSemester++;
 
 		// Logic sinh NPC mỗi kỳ sau khi mở khóa level 2
@@ -1092,16 +1151,48 @@ public class SceneManager : MonoBehaviour
 		this.RefreshResourceUIs("happy");
 		this.RefreshResourceUIs("education");
 
-		// Reset TimeManager for the new semester
-		if (TimeManager.instance != null)
+		if (isLose)
 		{
-			TimeManager.instance.ResetTimer();
-		}
+			if (TimeManager.instance != null)
+			{
+				TimeManager.instance.SetPaused(true);
+			}
 
-		if (UIManager.instance != null)
+			if (UIManager.instance != null)
+			{
+				UIManager.instance.ShowLoseWindow();
+			}
+		}
+		else
 		{
-			// Hiện bảng Income Result khi hết thời gian, confirm xong mới qua NewSemesterWindow
-			UIManager.instance.ShowIncomeResultWindow(bd, finishedSemester, this.numberOfHappyInStorage, this.numberOfEducationInStorage);
+			// Reset TimeManager for the new semester only if the player does not lose
+			if (!isLose)
+			{
+				if (TimeManager.instance != null)
+				{
+					TimeManager.instance.ResetTimer();
+				}
+			}
+
+			if (UIManager.instance != null)
+			{
+				// Hiện bảng Income Result khi hết thời gian, confirm xong mới qua NewSemesterWindow
+				if (isLose)
+				{
+					if (TimeManager.instance != null)
+					{
+						TimeManager.instance.SetPaused(true);
+					}
+					if (UIManager.instance != null)
+					{
+						UIManager.instance.ShowLoseWindow();
+					}
+				}
+				else
+				{
+					UIManager.instance.ShowIncomeResultWindow(bd, finishedSemester, this.numberOfHappyInStorage, this.numberOfEducationInStorage);
+				}
+			}
 		}
 
 		this._isCompletingSemester = false;
@@ -1132,6 +1223,15 @@ public class SceneManager : MonoBehaviour
 
 		this.SaveResources();
 		this.RefreshResourceUIs(resourceType);
+	}
+
+	/// <summary>
+	/// Tăng vàng cho người chơi.
+	/// </summary>
+	/// <param name="amount">Số vàng muốn tăng.</param>
+	public void AddGold(int amount)
+	{
+		CollectResource("gold", amount);
 	}
 
 	//RESOURCE COLLECTION

@@ -41,7 +41,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 400
       hitPoints: 0
-      productionRate: 250
+      productionRate: 30
       product: education
       productPrice: 1
       price: 300
@@ -84,9 +84,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 100
       hitPoints: 0
-      productionRate: 100
+      productionRate: 80
       product: education
-      productPrice: 3
+      productPrice: 1
       price: 50
       resourceType: gold
       studentCapacityIncrease: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 100
       hitPoints: 0
-      productionRate: 180
+      productionRate: 50
       product: education
       productPrice: 1
       price: 100
@@ -173,9 +173,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 600
       hitPoints: 0
-      productionRate: 100
-      product: education
-      productPrice: 1
+      productionRate: 0
+      product: 0
+      productPrice: 0
       price: 0
       resourceType: gold
       studentCapacityIncrease: 0
@@ -221,7 +221,7 @@ MonoBehaviour:
       hitPoints: 0
       productionRate: 100
       product: education
-      productPrice: 5
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
@@ -265,9 +265,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 150
-      product: education
-      productPrice: 2
+      productionRate: 0
+      product: 0
+      productPrice: 0
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
@@ -307,7 +307,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 200
+      productionRate: 60
       product: education
       productPrice: 1
       price: 80
@@ -351,7 +351,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 80
+      productionRate: 100
       product: gold
       productPrice: 25
       price: 150
@@ -394,7 +394,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 180
+      productionRate: 70
       product: education
       productPrice: 1
       price: 150
@@ -436,7 +436,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 160
+      productionRate: 50
       product: education
       productPrice: 1
       price: 100
@@ -474,9 +474,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 220
+      productionRate: 40
       product: education
-      productPrice: 4
+      productPrice: 1
       price: 350
       resourceType: gold
       studentCapacityIncrease: 0
@@ -516,7 +516,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 150
+      productionRate: 40
       product: education
       productPrice: 1
       price: 200
@@ -536,19 +536,11 @@ MonoBehaviour:
       tr\u1EE5c ph\xEDa \u0111\u01B0\u1EDDng Tr\u1EA7n \u0110\u1EA1i Ngh\u0129a,
       t\u1EA1o th\xE0nh m\u1ED9t khu v\u1EF1c gi\u1EA3ng \u0111\u01B0\u1EDDng v\xE0
       th\u1EF1c h\xE0nh t\u1EADp trung c\u1EE7a \u0110\u1EA1i h\u1ECDc B\xE1ch khoa
-      H\xE0 N\u1ED9i. \u0110\xE2y l\xE0 n\u01A1i \u0111\u1EB7t c\xE1c ph\xF2ng th\xED
-      nghi\u1EC7m v\xE0 x\u01B0\u1EDFng th\u1EF1c h\xE0nh, \u0111\u1ED3ng th\u1EDDi
-      c\u0169ng l\xE0 c\xE1c gi\u1EA3ng \u0111\u01B0\u1EDDng ph\u1EE5c v\u1EE5 l\u1EDBp
-      h\u1ECDc l\xFD thuy\u1EBFt quy m\xF4 l\u1EDBn v\u1EDBi h\u1EC7 th\u1ED1ng ph\xF2ng
-      h\u1ECDc \u0111\u01B0\u1EE3c trang b\u1ECB \u0111\u1EA7y \u0111\u1EE7 m\xE1y
-      chi\u1EBFu, \xE2m thanh v\xE0 \u0111i\u1EC1u h\xF2a. Trong \u0111\xF3, nh\xE0
-      D3 c\xF3 c\xE1c ph\xF2ng h\u1ECDc l\u1EDBn v\u1EDBi s\u1EE9c ch\u1EE9a l\xEAn
-      \u0111\u1EBFn 234 ch\u1ED7 ng\u1ED3i m\u1ED7i ph\xF2ng. Ngo\xE0i ch\u1EE9c
-      n\u0103ng gi\u1EA3ng d\u1EA1y, nh\xE0 D3 c\xF2n l\xE0 n\u01A1i \u0111\u1EB7t
-      v\u0103n ph\xF2ng c\u1EE7a Vi\u1EC7n To\xE1n \u1EE9ng d\u1EE5ng v\xE0 Tin h\u1ECDc.
-      C\u1EE5m nh\xE0 n\xE0y \u0111\xE3 nhi\u1EC1u l\u1EA7n \u0111\u01B0\u1EE3c tu
-      s\u1EEDa, n\xE2ng c\u1EA5p b\xE0n gh\u1EBF v\xE0 trang thi\u1EBFt b\u1ECB nh\u1EB1m
-      c\u1EA3i thi\u1EC7n \u0111i\u1EC1u ki\u1EC7n h\u1ECDc t\u1EADp cho sinh vi\xEAn."
+      H\xE0 N\u1ED9i. Trong \u0111\xF3, nh\xE0 D3 c\xF3 c\xE1c ph\xF2ng h\u1ECDc
+      l\u1EDBn v\u1EDBi s\u1EE9c ch\u1EE9a l\xEAn \u0111\u1EBFn 234 ch\u1ED7 ng\u1ED3i
+      m\u1ED7i ph\xF2ng. Ngo\xE0i ch\u1EE9c n\u0103ng gi\u1EA3ng d\u1EA1y, nh\xE0
+      D3 c\xF2n l\xE0 n\u01A1i \u0111\u1EB7t v\u0103n ph\xF2ng c\u1EE7a Vi\u1EC7n
+      To\xE1n \u1EE9ng d\u1EE5ng v\xE0 Tin h\u1ECDc."
     thumb: {fileID: 2800000, guid: 3919e080dd1104a419fd6a3e74cd941c, type: 3}
     gridWidth: 9
     gridHeight: 7
@@ -569,9 +561,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 200
+      productionRate: 50
       product: education
-      productPrice: 6
+      productPrice: 1
       price: 500
       resourceType: gold
       studentCapacityIncrease: 280
@@ -872,7 +864,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 120
+      productionRate: 40
       product: education
       productPrice: 1
       price: 200
@@ -958,9 +950,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 160
+      productionRate: 80
       product: education
-      productPrice: 2
+      productPrice: 1
       price: 250
       resourceType: gold
       studentCapacityIncrease: 120
@@ -1139,7 +1131,7 @@ MonoBehaviour:
       hitPoints: 0
       productionRate: 250
       product: education
-      productPrice: 2
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
@@ -1176,7 +1168,7 @@ MonoBehaviour:
       hitPoints: 0
       productionRate: 150
       product: happy
-      productPrice: 2
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
@@ -1219,9 +1211,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 220
+      productionRate: 80
       product: education
-      productPrice: 3
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 160
@@ -1265,7 +1257,7 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 100
+      price: 800
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
@@ -1309,7 +1301,7 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 100
+      price: 600
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
@@ -1353,7 +1345,7 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 100
+      price: 500
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1
@@ -1397,7 +1389,7 @@ MonoBehaviour:
       productionRate: 0
       product: 
       productPrice: 100
-      price: 100
+      price: 500
       resourceType: gold
       studentCapacityIncrease: 0
       levelMax: 1

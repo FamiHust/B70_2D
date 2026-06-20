@@ -63,7 +63,7 @@ public class BaseItemScript : MonoBehaviour
 
 	private void OnDestroy()
 	{
-		if (connectedItems != null)
+		if (connectedItems != null && SceneManager.instance != null)
 		{
 			for (int index = 0; index < connectedItems.Count; index++)
 			{
@@ -186,7 +186,7 @@ public class BaseItemScript : MonoBehaviour
 	{
 		this.Renderer.Refresh();
 
-		if (SceneManager.instance.gameMode == Common.GameMode.NORMAL && this.itemData.configuration.productionRate > 0)
+		if (SceneManager.instance != null && SceneManager.instance.gameMode == Common.GameMode.NORMAL && this.itemData.configuration.productionRate > 0)
 			this.Production.UpdateProduction();
 	}
 

@@ -258,6 +258,10 @@ public class ItemOptionsWindowScript : WindowScript
 
 	public void OnClickRemoveButton()
 	{
+		if (AudioManager.Instance != null)
+		{
+			AudioManager.Instance.PlaySFX(SoundData.SFX_Remove_Building);
+		}
 		UIManager.instance.HideItemOptions();
 		if (SceneManager.instance.selectedItem != null)
 		{
@@ -278,6 +282,10 @@ public class ItemOptionsWindowScript : WindowScript
 			
 			if (canBuild)
 			{
+				if (AudioManager.Instance != null)
+				{
+					AudioManager.Instance.PlaySFX(SoundData.SFX_Yes_Button);
+				}
 				selectedItem.SetState(Common.State.IDLE);
 				// Show progress UI and start construction
 				selectedItem.StartConstruction(null);

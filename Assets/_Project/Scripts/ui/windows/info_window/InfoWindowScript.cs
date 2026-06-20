@@ -335,7 +335,7 @@ public class InfoWindowScript : WindowScript
 		if (item != null)
 		{
 			DataBaseManager.instance.UpdateItemData(item);
-			SceneManager.instance.OnItemTap(new CameraManager.CameraEvent { baseItem = item });
+			SceneManager.instance.OnItemTap(new CameraManager.CameraEvent { baseItem = item, isProgrammatic = true });
 			if (CameraManager.instance != null)
 			{
 				CameraManager.instance.FocusOnItem(item, 10f);

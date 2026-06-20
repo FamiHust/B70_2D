@@ -17,14 +17,15 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (instance == this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
+            SaveTimer();
+            instance = null;
         }
     }
 
@@ -90,7 +91,7 @@ public class TimeManager : MonoBehaviour
     public void ResetTimer()
     {
         timeRemaining = semesterDuration;
-        isPaused = !hasFinishedFinalTutorial;
+        isPaused = true;
         SaveTimer();
     }
 
