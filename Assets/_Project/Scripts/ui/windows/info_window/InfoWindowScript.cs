@@ -20,6 +20,7 @@ public class InfoWindowScript : WindowScript
 	public GameObject BuildButton;
 	public GameObject UpgradeButton;
 	public Text UnlockText;
+	public Text PriceText;
 	public GameObject LockPanel;
 
 	[Header("Icons")]
@@ -122,6 +123,11 @@ public class InfoWindowScript : WindowScript
 		}
 
 		this.Title.text = this._itemData.name;
+
+		if (this.PriceText != null)
+		{
+			this.PriceText.text = "Xây: " + this._itemData.configuration.price.ToString();
+		}
 
 		int currentLevel = this._baseItem != null ? this._baseItem.level : 1;
 		if (this.LevelText != null)

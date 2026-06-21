@@ -166,7 +166,7 @@ MonoBehaviour:
     defaultPosZ: 6
     missionReward: 80
     configuration:
-      buildTime: 30
+      buildTime: 6
       isCharacter: 0
       speed: 0
       attackRange: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 300
       hitPoints: 0
-      productionRate: 100
+      productionRate: 60
       product: education
       productPrice: 1
       price: 100
@@ -265,9 +265,9 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 0
-      product: 0
-      productPrice: 0
+      productionRate: 80
+      product: happy
+      productPrice: 1
       price: 100
       resourceType: gold
       studentCapacityIncrease: 0
@@ -436,8 +436,8 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 50
-      product: education
+      productionRate: 40
+      product: happy
       productPrice: 1
       price: 100
       resourceType: gold
@@ -1129,8 +1129,8 @@ MonoBehaviour:
       defenceRange: 0
       healthPoints: 0
       hitPoints: 0
-      productionRate: 250
-      product: education
+      productionRate: 0
+      product: 
       productPrice: 1
       price: 100
       resourceType: gold

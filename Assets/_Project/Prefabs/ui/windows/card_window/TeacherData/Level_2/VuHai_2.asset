@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d56bebce2f5b85745888beaf6cd8f2d1, type: 3}
-  m_Name: VuHai
+  m_Name: VuHai_2
   m_EditorClassIdentifier: 
-  id: 3
+  id: 13
   teacherName: "PGS. V\u0169 H\u1EA3i"
-  level: 1
-  hirePrice: 100
+  level: 2
+  hirePrice: 200
   influenceGold: 50
   influenceEducation: 2
-  influenceHappy: 5
+  influenceHappy: 8
   avatar: {fileID: -939429846, guid: 0775b00fbab32224aa5ff512aa74e34b, type: 3}
   sexIcon: {fileID: 21300000, guid: 33ab055220cdb0e4ab338d8ca6bb65bb, type: 2}
   skillDescription: "Th\u1EA7y V\u0169 H\u1EA3i nh\u1EADn h\u1ECDc v\u1ECB Ti\u1EBFn

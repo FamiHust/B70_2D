@@ -6,7 +6,9 @@ public class TeacherData : ScriptableObject
     public int id;
     public string teacherName = "New Teacher";
     public int level = 1;
-    public float seniority = 1.0f;
+    
+    [Header("Price")]
+    public int hirePrice = 100;
     
     [Header("Buffs")]
     [Tooltip("Hệ số nhân cho sản lượng Gold")]

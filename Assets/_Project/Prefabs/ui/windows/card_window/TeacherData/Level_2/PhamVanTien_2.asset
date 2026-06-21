@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d56bebce2f5b85745888beaf6cd8f2d1, type: 3}
-  m_Name: PhamVanTien
+  m_Name: PhamVanTien_2
   m_EditorClassIdentifier: 
-  id: 2
+  id: 10
   teacherName: "TS. Ph\u1EA1m V\u0103n Ti\u1EBFn"
-  level: 1
-  hirePrice: 180
+  level: 2
+  hirePrice: 200
   influenceGold: 120
-  influenceEducation: 6
-  influenceHappy: 1
+  influenceEducation: 10
+  influenceHappy: -3
   avatar: {fileID: 1870897855, guid: 1eb9d89f7ce767e408891aa5589c539d, type: 3}
   sexIcon: {fileID: 21300000, guid: 33ab055220cdb0e4ab338d8ca6bb65bb, type: 2}
   skillDescription: "TS. Ph\u1EA1m V\u0103n Ti\u1EBFn t\u1ED1t nghi\u1EC7p k\u1EF9

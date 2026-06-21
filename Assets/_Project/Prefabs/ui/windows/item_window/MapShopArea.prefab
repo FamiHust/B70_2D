@@ -399,3 +399,4 @@ MonoBehaviour:
   itemIds: 
   Arrow: {fileID: 7562693450296178865}
   LockIcon: {fileID: 8554374953964485664}
+  Icon: {fileID: 7428967280352536913}

@@ -2227,7 +2227,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Thu t\u1EEB tr\u1EA1m x\xE1"
+  m_Text: "Ti\u1EC1n thu\xEA gi\u1EA3ng vi\xEAn"
 --- !u!1 &3976850717967903356
 GameObject:
   m_ObjectHideFlags: 0
@@ -3033,7 +3033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "0 v\xE0ng"
+  m_Text: "+0 v\xE0ng"
 --- !u!114 &1307274799013942734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4633,6 +4633,7 @@ MonoBehaviour:
   TuitionIncomeText: {fileID: 595904935491533324}
   DiningIncomeText: {fileID: 7045708625748781714}
   TotalGoldIncomeText: {fileID: 1366852561767152920}
+  TeacherRentCostText: {fileID: 4747888781638579051}
   ConfirmButton: {fileID: 8095266131460914691}
   anim: {fileID: 6588967887602449691}
 --- !u!1 &7317091430148054398
@@ -4980,7 +4981,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "0 v\xE0ng"
+  m_Text: "+0 v\xE0ng"
 --- !u!114 &7295254754052969264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5354,7 +5355,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "0 v\xE0ng"
+  m_Text: "+0 v\xE0ng"
 --- !u!114 &3699522417327022687
 MonoBehaviour:
   m_ObjectHideFlags: 0

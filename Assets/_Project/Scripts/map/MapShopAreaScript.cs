@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Script để attach vào GameObject trên map
-/// Định nghĩa shop area với danh sách item có sẵn
-/// Khi click, hiển thị ItemWindowScript với các item này
-/// </summary>
 public class MapShopAreaScript : MonoBehaviour
 {
 	public string areaName = "Map Shop";
 	public List<int> itemIds = new List<int>();
 	public GameObject Arrow;
 	public GameObject LockIcon;
+	public SpriteRenderer Icon;
 
 	private ItemsCollection.ItemData _cachedItemData = null;
 	private bool _hasCached = false;
@@ -41,7 +37,8 @@ public class MapShopAreaScript : MonoBehaviour
 
 	public void UpdateLockStatus()
 	{
-		if (LockIcon == null) return;
+		bool isUnlocked = true;
+		bool statusDetermined = false;
 
 		if (itemIds.Count > 0)
 		{
@@ -54,13 +51,27 @@ public class MapShopAreaScript : MonoBehaviour
 
 			if (_cachedItemData != null && SceneManager.instance != null)
 			{
-				bool isUnlocked = SceneManager.instance.currentLevel >= _cachedItemData.configuration.unlockItemAtSemester;
-				LockIcon.SetActive(!isUnlocked);
+				isUnlocked = SceneManager.instance.currentLevel >= _cachedItemData.configuration.unlockItemAtSemester;
+				statusDetermined = true;
 			}
 		}
 		else
 		{
-			LockIcon.SetActive(false);
+			isUnlocked = true;
+			statusDetermined = true;
+		}
+
+		if (statusDetermined)
+		{
+			if (LockIcon != null)
+			{
+				LockIcon.SetActive(!isUnlocked);
+			}
+
+			if (Icon != null)
+			{
+				Icon.color = isUnlocked ? Color.white : Color.gray;
+			}
 		}
 	}
 

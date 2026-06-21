@@ -10,13 +10,14 @@ public class TeacherCardCtrl : MonoBehaviour
     public Image sexIconImage;
     public Text nameText;
     public Text levelText;
-    public Text seniorityText;
+    public Text statusText;
     public Text buffGoldText;
     public Text buffEducationText;
     public Text buffHappyText;
     public Text descGoldText;
     public Text descEducationText;
     public Text descHappyText;
+    public Text priceText;
     public Button cardButton;
 
     public TeacherData currentData { get; private set; }
@@ -43,13 +44,14 @@ public class TeacherCardCtrl : MonoBehaviour
             if (sexIconImage != null) sexIconImage.gameObject.SetActive(false);
             if (nameText != null) nameText.text = "";
             if (levelText != null) levelText.text = "";
-            if (seniorityText != null) seniorityText.text = "";
+            if (statusText != null) statusText.text = "";
             if (buffGoldText != null) buffGoldText.text = "";
             if (buffEducationText != null) buffEducationText.text = "";
             if (buffHappyText != null) buffHappyText.text = "";
             if (descGoldText != null) descGoldText.text = "";
             if (descEducationText != null) descEducationText.text = "";
             if (descHappyText != null) descHappyText.text = "";
+            if (priceText != null) priceText.text = "";
             if (cardButton != null) cardButton.interactable = false;
             return;
         }
@@ -78,7 +80,7 @@ public class TeacherCardCtrl : MonoBehaviour
         if (cardButton != null) cardButton.interactable = true;
         if (nameText != null) nameText.text = data.teacherName;
         if (levelText != null) levelText.text = "Lv." + data.level.ToString();
-        if (seniorityText != null) seniorityText.text = data.seniority.ToString() + " năm";
+        if (statusText != null) statusText.text = "";
         
         if (buffGoldText != null) buffGoldText.text = "Vàng +" + data.influenceGold.ToString();
         if (buffEducationText != null) buffEducationText.text = "Học vấn +" + (data.influenceEducation * 100f).ToString() + "%";
@@ -87,6 +89,7 @@ public class TeacherCardCtrl : MonoBehaviour
         if (descGoldText != null) descGoldText.text = data.descGold;
         if (descEducationText != null) descEducationText.text = data.descEducation;
         if (descHappyText != null) descHappyText.text = data.descHappy;
+        if (priceText != null) priceText.text = data.hirePrice.ToString();
     }
 
     private void OnClickCard()

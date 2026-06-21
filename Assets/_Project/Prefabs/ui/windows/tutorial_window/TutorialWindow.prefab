@@ -355,8 +355,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.4065552, y: 4.2526245}
-  m_SizeDelta: {x: -77.3619, y: -96.4213}
+  m_AnchoredPosition: {x: 4, y: 4.2526245}
+  m_SizeDelta: {x: -44.2596, y: -96.4213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &600916373615737495
 CanvasRenderer:
@@ -399,8 +399,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "B\xE2y gi\u1EDD, h\xE3y m\u1EDF B\u1EA3ng Ti\u1EBFn Tr\xECnh \u0111\u1EC3
-    thu th\u1EADp ph\u1EA7n th\u01B0\u1EDFng."
+  m_Text: "B\xE2y gi\u1EDD, h\xE3y m\u1EDF <color=green>\"B\u1EA2NG TI\u1EBEN TR\xCCNH\"</color>
+    \u0111\u1EC3 thu th\u1EADp ph\u1EA7n th\u01B0\u1EDFng."
 --- !u!1 &1461142707018689333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,8 +2760,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi \u0110\u1EA1i h\u1ECDc
-    B\xE1ch Khoa H\xE0 N\u1ED9i !"
+  m_Text: "Ch\xE0o m\u1EEBng b\u1EA1n \u0111\u1EBFn v\u1EDBi <color=red>\u0110\u1EA1i
+    h\u1ECDc B\xE1ch Khoa H\xE0 N\u1ED9i</color> !"
 --- !u!1 &7477836292485376152
 GameObject:
   m_ObjectHideFlags: 0

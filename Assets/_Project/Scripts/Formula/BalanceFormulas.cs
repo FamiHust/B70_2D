@@ -59,6 +59,7 @@ namespace B70.Balance
         public float semesterGoldIncome;  // Gold thu được từ học phí cuối kỳ.
         public float diningIncome;        // Gold thu được từ nhà ăn.
         public float graduationRate;      // Tỉ lệ tốt nghiệp thực tế [0,1].
+        public float teacherRentCost;     // Tiền thuê giáo viên kỳ này.
     }
 
     /// <summary>
@@ -350,7 +351,8 @@ namespace B70.Balance
                 deltaStudents      = deltaS,
                 semesterGoldIncome = semesterGold,
                 diningIncome       = 0f, // TODO: calculate dining income
-                graduationRate     = gradRate
+                graduationRate     = gradRate,
+                teacherRentCost    = 0f
             };
         }
 

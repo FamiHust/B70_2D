@@ -41,8 +41,8 @@ public class GameOverlayWindowScript : WindowScript
 	public Text EduHintText;
 
 	private float _nextHintCheckTime;
-
-
+	private Dictionary<GameObject, bool> _cachedActiveStates = new Dictionary<GameObject, bool>();
+	private bool _previousTimePausedState = false;
 
 	private void Awake()
 	{
@@ -334,6 +334,58 @@ public class GameOverlayWindowScript : WindowScript
 		CameraManager.instance.ZoomOutAndLock();
 		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(true);
 		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(false);
+
+		// Hide all other UI references
+		_cachedActiveStates.Clear();
+		List<GameObject> objsToHide = new List<GameObject>();
+		if (GoldInfo != null) objsToHide.Add(GoldInfo.gameObject);
+		if (DiamondInfo != null) objsToHide.Add(DiamondInfo.gameObject);
+		if (HappyInfo != null) objsToHide.Add(HappyInfo.gameObject);
+		if (StudentInfo != null) objsToHide.Add(StudentInfo.gameObject);
+		if (EducationInfo != null) objsToHide.Add(EducationInfo.gameObject);
+		if (LevelInfo != null) objsToHide.Add(LevelInfo.gameObject);
+		if (LevelLabel != null) objsToHide.Add(LevelLabel.gameObject);
+		if (SemesterText != null) 
+		{
+			objsToHide.Add(SemesterText.gameObject);
+			if (SemesterText.transform.parent != null && SemesterText.transform.parent != this.transform)
+			{
+				objsToHide.Add(SemesterText.transform.parent.gameObject);
+			}
+		}
+		if (TimeInfo != null) objsToHide.Add(TimeInfo.gameObject);
+		if (ShopButton != null) objsToHide.Add(ShopButton);
+		if (MissionButton != null) objsToHide.Add(MissionButton);
+		if (CollectionButton != null) objsToHide.Add(CollectionButton);
+		if (HandTutorial != null) objsToHide.Add(HandTutorial);
+		if (HandTutMission != null) objsToHide.Add(HandTutMission);
+		if (TutorialSemester != null) objsToHide.Add(TutorialSemester);
+		if (ContinueButton != null) objsToHide.Add(ContinueButton);
+		if (Hint != null) objsToHide.Add(Hint);
+		if (CollectionHint != null) objsToHide.Add(CollectionHint);
+		if (TutorialTime != null) objsToHide.Add(TutorialTime);
+		if (TutorialCollection != null) objsToHide.Add(TutorialCollection);
+		if (HappyWarning != null) objsToHide.Add(HappyWarning);
+		if (EduWarning != null) objsToHide.Add(EduWarning);
+		if (WarningTime != null) objsToHide.Add(WarningTime);
+		if (HappyHintText != null) objsToHide.Add(HappyHintText.gameObject);
+		if (EduHintText != null) objsToHide.Add(EduHintText.gameObject);
+
+		foreach (var obj in objsToHide)
+		{
+			if (obj != null && !_cachedActiveStates.ContainsKey(obj))
+			{
+				_cachedActiveStates[obj] = obj.activeSelf;
+				obj.SetActive(false);
+			}
+		}
+
+		// Pause the running timer
+		if (TimeManager.instance != null)
+		{
+			_previousTimePausedState = TimeManager.instance.isPaused;
+			TimeManager.instance.SetPaused(true);
+		}
 	}
 
 	public void OnClickZoomIn()
@@ -341,6 +393,22 @@ public class GameOverlayWindowScript : WindowScript
 		CameraManager.instance.ResetZoom(10f); // Default zoom 10
 		if (this.ZoomInButton != null) this.ZoomInButton.SetActive(false);
 		if (this.ZoomOutButton != null) this.ZoomOutButton.SetActive(true);
+
+		// Restore previous UI states
+		foreach (var kvp in _cachedActiveStates)
+		{
+			if (kvp.Key != null)
+			{
+				kvp.Key.SetActive(kvp.Value);
+			}
+		}
+		_cachedActiveStates.Clear();
+
+		// Resume the timer if it was running previously
+		if (TimeManager.instance != null)
+		{
+			TimeManager.instance.SetPaused(_previousTimePausedState);
+		}
 	}
 
 	public void HideOverlay()

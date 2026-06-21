@@ -1114,6 +1114,17 @@ public class SceneManager : MonoBehaviour
 		BalanceState state = UniversityBalanceFormulas.StateFromSceneManager();
 		SemesterBreakdown bd = UniversityBalanceFormulas.ApplySemesterTick(ref state, _balanceParams);
 
+		int totalTeacherRentCost = 0;
+		foreach (BaseItemScript item in GetAllItems())
+		{
+			if (item != null && item.assignedTeacher != null)
+			{
+				totalTeacherRentCost += item.assignedTeacher.hirePrice;
+			}
+		}
+		bd.teacherRentCost = totalTeacherRentCost;
+		state.gold = Mathf.Max(0f, state.gold - totalTeacherRentCost);
+
 		// ── 3. Ghi kết quả ngược lại vào SceneManager + lưu + refresh UI ─────────
 		UniversityBalanceFormulas.ApplyStateToSceneManager(state);
 

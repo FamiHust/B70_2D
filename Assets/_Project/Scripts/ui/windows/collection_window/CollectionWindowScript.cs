@@ -8,11 +8,13 @@ public class CollectionWindowScript : WindowScript
     public Transform cardZone;
     public GameObject teacherCardPrefab;
     public ScrollRect scrollView;
+    public Text teacherPriceText;
 
     [Header("Preview Settings")]
     public TeacherCardCtrl previewCard;
     public Button confirmButton;
     public Button switchButton;
+    public Button hiringButton;
     public Animator anim;
 
     private List<TeacherCardCtrl> _instantiatedCards = new List<TeacherCardCtrl>();
@@ -25,11 +27,15 @@ public class CollectionWindowScript : WindowScript
     {
         if (confirmButton != null)
         {
-            confirmButton.onClick.AddListener(OnConfirmSelection);
+            confirmButton.onClick.AddListener(OnHiringSelection);
         }
         if (switchButton != null)
         {
             switchButton.onClick.AddListener(OnConfirmSwitch);
+        }
+        if (hiringButton != null)
+        {
+            hiringButton.onClick.AddListener(OnConfirmSelection);
         }
     }
 
@@ -68,6 +74,103 @@ public class CollectionWindowScript : WindowScript
         return false;
     }
 
+    private bool IsTeacherHired(TeacherData teacher)
+    {
+        if (teacher == null) return false;
+        if (IsTeacherAssignedToAnyBuilding(teacher)) return true;
+        return PlayerPrefs.GetInt("TeacherHired_" + teacher.id, 0) == 1;
+    }
+
+    private void OnCardClickedForData(TeacherData data)
+    {
+        if (data == null) return;
+        TeacherCardCtrl[] existingCards = cardZone.GetComponentsInChildren<TeacherCardCtrl>(true);
+        foreach (var card in existingCards)
+        {
+            if (card != null && card.currentData != null && card.currentData.id == data.id)
+            {
+                OnCardClicked(card);
+                break;
+            }
+        }
+    }
+
+    private void UpdateButtonStates()
+    {
+        if (_selectedData == null)
+        {
+            if (confirmButton != null) confirmButton.gameObject.SetActive(false);
+            if (switchButton != null) switchButton.gameObject.SetActive(false);
+            if (hiringButton != null) hiringButton.gameObject.SetActive(false);
+            return;
+        }
+
+        bool isHired = IsTeacherHired(_selectedData);
+        bool isAssigned = IsTeacherAssignedToAnyBuilding(_selectedData);
+
+        if (!isHired)
+        {
+            if (confirmButton != null)
+            {
+                confirmButton.gameObject.SetActive(true);
+                confirmButton.interactable = true;
+            }
+            if (hiringButton != null)
+            {
+                hiringButton.gameObject.SetActive(false);
+            }
+            if (switchButton != null)
+            {
+                switchButton.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            if (confirmButton != null)
+            {
+                confirmButton.gameObject.SetActive(false);
+            }
+
+            if (_targetBuilding != null && !isAssigned)
+            {
+                if (_isSwitchMode)
+                {
+                    if (switchButton != null)
+                    {
+                        switchButton.gameObject.SetActive(true);
+                        switchButton.interactable = true;
+                    }
+                    if (hiringButton != null)
+                    {
+                        hiringButton.gameObject.SetActive(false);
+                    }
+                }
+                else if (_isAssignMode)
+                {
+                    if (hiringButton != null)
+                    {
+                        hiringButton.gameObject.SetActive(true);
+                        hiringButton.interactable = true;
+                    }
+                    if (switchButton != null)
+                    {
+                        switchButton.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    if (switchButton != null) switchButton.gameObject.SetActive(false);
+                    if (hiringButton != null) hiringButton.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                if (switchButton != null) switchButton.gameObject.SetActive(false);
+                if (hiringButton != null) hiringButton.gameObject.SetActive(false);
+            }
+        }
+    }
+
     public void Setup(List<TeacherData> playerInventory, bool isAssignMode = false, BaseItemScript targetBuilding = null, bool isSwitchMode = false)
     {
         FindPreviewCardIfNull();
@@ -75,6 +178,11 @@ public class CollectionWindowScript : WindowScript
         this._isSwitchMode = isSwitchMode;
         this._targetBuilding = targetBuilding;
         this._selectedData = null;
+
+        if (teacherPriceText != null)
+        {
+            teacherPriceText.text = "";
+        }
 
         if (previewCard != null)
         {
@@ -85,14 +193,12 @@ public class CollectionWindowScript : WindowScript
 
         if (confirmButton != null)
         {
-            confirmButton.gameObject.SetActive(isAssignMode && !isSwitchMode);
-            confirmButton.interactable = false;
+            confirmButton.gameObject.SetActive(false);
         }
 
         if (switchButton != null)
         {
-            switchButton.gameObject.SetActive(isSwitchMode);
-            switchButton.interactable = false;
+            switchButton.gameObject.SetActive(false);
         }
 
         TeacherCardCtrl[] existingCards = cardZone.GetComponentsInChildren<TeacherCardCtrl>(true);
@@ -113,9 +219,16 @@ public class CollectionWindowScript : WindowScript
 
                 if (IsTeacherAssignedToAnyBuilding(teacher))
                 {
-                    if (existingCards[i].nameText != null)
+                    if (existingCards[i].statusText != null)
                     {
-                        existingCards[i].nameText.text = teacher.teacherName + " (Đã thuê)";
+                        existingCards[i].statusText.text = "Đang dạy";
+                    }
+                }
+                else if (IsTeacherHired(teacher))
+                {
+                    if (existingCards[i].statusText != null)
+                    {
+                        existingCards[i].statusText.text = "Đã thuê";
                     }
                 }
             }
@@ -140,49 +253,91 @@ public class CollectionWindowScript : WindowScript
 
             if (IsTeacherAssignedToAnyBuilding(_selectedData))
             {
-                if (previewCard.nameText != null)
+                if (previewCard.statusText != null)
                 {
-                    previewCard.nameText.text = _selectedData.teacherName + " (Đã thuê)";
+                    previewCard.statusText.text = "Đang dạy";
+                }
+            }
+            else if (IsTeacherHired(_selectedData))
+            {
+                if (previewCard.statusText != null)
+                {
+                    previewCard.statusText.text = "Đã thuê";
                 }
             }
         }
 
-        // Enable confirm button if in assign mode and teacher is not assigned to any building
-        if (_isAssignMode && !_isSwitchMode && confirmButton != null)
+        UpdateButtonStates();
+
+        if (teacherPriceText != null)
         {
-            if (IsTeacherAssignedToAnyBuilding(_selectedData))
+            if (_selectedData != null)
             {
-                confirmButton.gameObject.SetActive(false);
+                if (IsTeacherHired(_selectedData))
+                {
+                    teacherPriceText.text = "Công tác";
+                }
+                else
+                {
+                    teacherPriceText.text = "Thuê GV: " + _selectedData.hirePrice.ToString();
+                }
             }
             else
             {
-                confirmButton.gameObject.SetActive(true);
-                confirmButton.interactable = true;
+                teacherPriceText.text = "";
             }
         }
+    }
 
-        // Enable switch button if in switch mode and teacher is not assigned to any building
-        if (_isSwitchMode && switchButton != null)
+    private void OnHiringSelection()
+    {
+        if (_selectedData == null) return;
+
+        bool isHired = IsTeacherHired(_selectedData);
+        if (!isHired)
         {
-            if (IsTeacherAssignedToAnyBuilding(_selectedData))
+            // Try to hire
+            int cost = _selectedData.hirePrice;
+            if (SceneManager.instance != null && SceneManager.instance.ConsumeResource("gold", cost))
             {
-                switchButton.gameObject.SetActive(false);
+                // Mark teacher as hired
+                PlayerPrefs.SetInt("TeacherHired_" + _selectedData.id, 1);
+                PlayerPrefs.Save();
+
+                // Refresh UI
+                Setup(UIManager.instance.playerTeachers, _isAssignMode, _targetBuilding, _isSwitchMode);
+                OnCardClickedForData(_selectedData);
             }
             else
             {
-                switchButton.gameObject.SetActive(true);
-                switchButton.interactable = true;
+                // Show insufficient gold warning
+                if (SceneManager.instance != null && UIManager.instance != null)
+                {
+                    int currentAmount = SceneManager.instance.numberOfGoldInStorage;
+                    int missingAmount = cost - currentAmount;
+                    WarningWindow warningWindow = UIManager.instance.ShowWarningWindow();
+                    if (warningWindow != null)
+                    {
+                        warningWindow.SetupGoldWarning(missingAmount, currentAmount);
+                    }
+                }
+                Debug.Log("Not enough gold to hire teacher!");
             }
         }
     }
 
     private void OnConfirmSelection()
     {
-        if (_isAssignMode && _targetBuilding != null && _selectedData != null)
+        if (_selectedData == null) return;
+
+        bool isHired = IsTeacherHired(_selectedData);
+        if (!isHired) return;
+
+        if (_isAssignMode && _targetBuilding != null)
         {
-            if (confirmButton != null)
+            if (hiringButton != null)
             {
-                confirmButton.gameObject.SetActive(false);
+                hiringButton.gameObject.SetActive(false);
             }
 
             // Assign the teacher to the building

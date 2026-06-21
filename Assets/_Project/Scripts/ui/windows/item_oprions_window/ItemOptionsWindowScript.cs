@@ -18,6 +18,8 @@ public class ItemOptionsWindowScript : WindowScript
 	public GameObject NoButton;
 	public GameObject TeacherButton;
 	public Text goldPriceText;
+	public GameObject popupConfirm;
+	public Animator confirmAnimator;
 
 	private void Awake()
 	{
@@ -94,6 +96,11 @@ public class ItemOptionsWindowScript : WindowScript
 			haveTeacherButton = true;
 
 			if (selectedItem != null && selectedItem.itemData != null && ShopWindowScript.GetCategoryStringFromItemId(selectedItem.itemData.id) == "Trang trí")
+			{
+				haveTeacherButton = false;
+			}
+
+			if (selectedItem != null && selectedItem.assignedTeacher != null)
 			{
 				haveTeacherButton = false;
 			}
@@ -262,14 +269,42 @@ public class ItemOptionsWindowScript : WindowScript
 		{
 			AudioManager.Instance.PlaySFX(SoundData.SFX_Remove_Building);
 		}
+		if (popupConfirm != null)
+		{
+			popupConfirm.SetActive(true);
+		}
+		if (confirmAnimator != null)
+		{
+			confirmAnimator.SetTrigger("show");
+		}
+	}
+
+	public void OnClickConfirmRemove()
+	{
 		UIManager.instance.HideItemOptions();
 		if (SceneManager.instance.selectedItem != null)
 		{
+			int buyPrice = SceneManager.instance.selectedItem.itemData.configuration.price;
+			int refundAmount = buyPrice / 2;
+			SceneManager.instance.AddGold(refundAmount);
+
 			PlayerPrefs.DeleteKey("BuildingTeacher_" + SceneManager.instance.selectedItem.instanceId);
 			PlayerPrefs.Save();
 		}
 		DataBaseManager.instance.RemoveItem(SceneManager.instance.selectedItem);
 		SceneManager.instance.RemoveItem(SceneManager.instance.selectedItem);
+	}
+
+	public void OnClickCancelRemove()
+	{
+		if (confirmAnimator != null)
+		{
+			confirmAnimator.SetTrigger("hide");
+		}
+		if (popupConfirm != null)
+		{
+			popupConfirm.SetActive(false);
+		}
 	}
 
 	public void OnClickYesButton()

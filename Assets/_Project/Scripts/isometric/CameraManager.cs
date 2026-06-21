@@ -226,6 +226,11 @@ public class CameraManager : MonoBehaviour
 
 	public void UpdateBaseItemTap()
 	{
+		if (this.isZoomLocked)
+		{
+			return;
+		}
+
 		if (!Input.GetMouseButtonUp(0))
 		{
 			return;
@@ -331,6 +336,11 @@ public class CameraManager : MonoBehaviour
 	private bool _baseItemMoved;
 	public void UpdateBaseItemMove()
 	{
+		if (this.isZoomLocked)
+		{
+			return;
+		}
+
 		if (!this.canMoveBuildings)
 		{
 			return;

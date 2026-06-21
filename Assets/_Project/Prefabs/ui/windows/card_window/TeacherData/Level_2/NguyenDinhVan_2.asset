@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d56bebce2f5b85745888beaf6cd8f2d1, type: 3}
-  m_Name: NguyenDinhVan
+  m_Name: NguyenDinhVan_2
   m_EditorClassIdentifier: 
-  id: 1
+  id: 9
   teacherName: "TS. Nguy\u1EC5n \u0110\xECnh V\u0103n"
-  level: 1
-  hirePrice: 150
-  influenceGold: 100
-  influenceEducation: 6
-  influenceHappy: 3
+  level: 2
+  hirePrice: 200
+  influenceGold: 80
+  influenceEducation: 8
+  influenceHappy: 1
   avatar: {fileID: -1018216636, guid: 780fd5e623b07af4b9708046be10ac78, type: 3}
   sexIcon: {fileID: 21300000, guid: 33ab055220cdb0e4ab338d8ca6bb65bb, type: 2}
   skillDescription: "Th\u1EA7y Nguy\u1EC5n \u0110\xECnh V\u0103n nh\u1EADn h\u1ECDc

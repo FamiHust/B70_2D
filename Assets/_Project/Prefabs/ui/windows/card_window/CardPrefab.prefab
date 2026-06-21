@@ -1413,7 +1413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.58872986, y: 7.5260925}
+  m_AnchoredPosition: {x: -0.58872986, y: 7.526123}
   m_SizeDelta: {x: -42.112, y: -60.9478}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4264101928733336835
@@ -1995,8 +1995,9 @@ GameObject:
   - component: {fileID: 7025394865062050145}
   - component: {fileID: 5864959842312978109}
   - component: {fileID: 1054492664668357817}
+  - component: {fileID: 3327219697647842258}
   m_Layer: 5
-  m_Name: Senior_txt
+  m_Name: Status_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2018,7 +2019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3.399994}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &6398041268248345818
@@ -2052,7 +2053,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0151d81c02e6bfe44bbab372f8e31074, type: 3}
     m_FontSize: 20
-    m_FontStyle: 2
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 30
@@ -2062,7 +2063,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "3 n\u0103m"
+  m_Text: "\u0110ang d\u1EA1y"
 --- !u!114 &5864959842312978109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2093,6 +2094,22 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &3327219697647842258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7264886500564103755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337ac58de77fe934aa315c2402bf45a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curveMode: 0
+  radius: 550
+  scaleFactor: 1
+  centerOnRectTransform: 1
 --- !u!1 &7271073209172209527
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,13 +2274,14 @@ MonoBehaviour:
   sexIconImage: {fileID: 1778272743382160390}
   nameText: {fileID: 5622582422483497815}
   levelText: {fileID: 310026159121980289}
-  seniorityText: {fileID: 7025394865062050145}
+  statusText: {fileID: 7025394865062050145}
   buffGoldText: {fileID: 14610328581708425}
   buffEducationText: {fileID: 1328951120500370005}
   buffHappyText: {fileID: 653143461968603562}
   descGoldText: {fileID: 8059106507891569629}
   descEducationText: {fileID: 7872759951247453838}
   descHappyText: {fileID: 1475645868154116532}
+  priceText: {fileID: 0}
   cardButton: {fileID: 7734892757798728562}
 --- !u!1 &7421680104337923133
 GameObject:

@@ -10,6 +10,7 @@ public class IncomeResultWindowScript : WindowScript
     public Text TuitionIncomeText;
     public Text DiningIncomeText;
     public Text TotalGoldIncomeText;
+    public Text TeacherRentCostText;
     public Button ConfirmButton;
 
     [Header("Animations")]
@@ -42,9 +43,22 @@ public class IncomeResultWindowScript : WindowScript
         if (DiningIncomeText != null)
             DiningIncomeText.text = $"+{bd.diningIncome:F0}" + " vàng";
 
-        float totalGold = bd.semesterGoldIncome + bd.diningIncome;
+        if (TeacherRentCostText != null)
+        {
+            if (bd.teacherRentCost > 0f)
+                TeacherRentCostText.text = $"-{bd.teacherRentCost:F0}" + " vàng";
+            else
+                TeacherRentCostText.text = "+0 vàng";
+        }
+
+        float totalGold = bd.semesterGoldIncome + bd.diningIncome - bd.teacherRentCost;
         if (TotalGoldIncomeText != null)
-            TotalGoldIncomeText.text = $"+{totalGold:F0}" + " vàng";
+        {
+            if (totalGold >= 0f)
+                TotalGoldIncomeText.text = $"+{totalGold:F0}" + " vàng";
+            else
+                TotalGoldIncomeText.text = $"-{Mathf.Abs(totalGold):F0}" + " vàng";
+        }
 
         // ShowWindow();
     }
