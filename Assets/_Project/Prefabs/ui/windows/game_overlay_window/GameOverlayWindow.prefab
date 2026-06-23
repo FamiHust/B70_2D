@@ -1507,7 +1507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -40, y: 0}
+  m_AnchoredPosition: {x: -39.99951, y: 0}
   m_SizeDelta: {x: 175, y: 150}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &222104315655703416
@@ -4093,7 +4093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -140, y: -9.000488}
+  m_AnchoredPosition: {x: -140, y: -9.000244}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &3820600541742907322
@@ -5130,7 +5130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -105, y: -9.000488}
+  m_AnchoredPosition: {x: -105, y: -9.000244}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &2077520387209735098
@@ -6653,7 +6653,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0110\xE2y l\xE0 <color=yellow>Thanh c\u1EA5p \u0111\u1ED9</color> c\u1EE7a
+  m_Text: "\u0110\xE2y l\xE0 <color=blue>Thanh c\u1EA5p \u0111\u1ED9</color> c\u1EE7a
     b\u1EA1n. H\xE3y ho\xE0n th\xE0nh nhi\u1EC7m v\u1EE5 \u0111\u1EC3 l\xEAn c\u1EA5p
     nh\xE9 ^^"
 --- !u!1 &4861780404226287834

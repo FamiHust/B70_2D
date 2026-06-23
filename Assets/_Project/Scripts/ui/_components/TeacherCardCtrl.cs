@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 public class TeacherCardCtrl : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class TeacherCardCtrl : MonoBehaviour
     public GameObject lockImage;
     public Image avatarImage;
     public Image sexIconImage;
-    public Text nameText;
+    public List<Text> nameText;
     public Text levelText;
     public Text statusText;
     public Text buffGoldText;
@@ -20,6 +21,11 @@ public class TeacherCardCtrl : MonoBehaviour
     public Text priceText;
     public Button cardButton;
 
+    [Header("Mode Toggle References")]
+    public GameObject AvatarMode;
+    public GameObject InfoMode;
+    public Button InfoButton;
+
     public TeacherData currentData { get; private set; }
 
     private Action<TeacherCardCtrl> _onClickCallback;
@@ -29,6 +35,10 @@ public class TeacherCardCtrl : MonoBehaviour
         if (cardButton != null)
         {
             cardButton.onClick.AddListener(OnClickCard);
+        }
+        if (InfoButton != null)
+        {
+            InfoButton.onClick.AddListener(OnClickInfoButton);
         }
     }
 
@@ -40,9 +50,17 @@ public class TeacherCardCtrl : MonoBehaviour
         if (data == null)
         {
             if (lockImage != null) lockImage.SetActive(true);
+            if (AvatarMode != null) AvatarMode.SetActive(true);
+            if (InfoMode != null) InfoMode.SetActive(false);
             if (avatarImage != null) avatarImage.gameObject.SetActive(false);
             if (sexIconImage != null) sexIconImage.gameObject.SetActive(false);
-            if (nameText != null) nameText.text = "";
+            if (nameText != null)
+            {
+                foreach (var text in nameText)
+                {
+                    if (text != null) text.text = "";
+                }
+            }
             if (levelText != null) levelText.text = "";
             if (statusText != null) statusText.text = "";
             if (buffGoldText != null) buffGoldText.text = "";
@@ -57,6 +75,8 @@ public class TeacherCardCtrl : MonoBehaviour
         }
 
         if (lockImage != null) lockImage.SetActive(false);
+        if (AvatarMode != null) AvatarMode.SetActive(true);
+        if (InfoMode != null) InfoMode.SetActive(false);
         
         if (avatarImage != null)
         {
@@ -78,13 +98,31 @@ public class TeacherCardCtrl : MonoBehaviour
         }
 
         if (cardButton != null) cardButton.interactable = true;
-        if (nameText != null) nameText.text = data.teacherName;
+        if (nameText != null)
+        {
+            foreach (var text in nameText)
+            {
+                if (text != null) text.text = data.teacherName;
+            }
+        }
         if (levelText != null) levelText.text = "Lv." + data.level.ToString();
         if (statusText != null) statusText.text = "";
         
-        if (buffGoldText != null) buffGoldText.text = "Vàng +" + data.influenceGold.ToString();
-        if (buffEducationText != null) buffEducationText.text = "Học vấn +" + (data.influenceEducation * 100f).ToString() + "%";
-        if (buffHappyText != null) buffHappyText.text = "Hạnh phúc +" + (data.influenceHappy * 100f).ToString() + "%";
+        if (buffGoldText != null)
+        {
+            string sign = data.influenceGold >= 0 ? "+ " : "- ";
+            buffGoldText.text = "Vàng " + sign + Mathf.Abs(data.influenceGold).ToString() + "/h";
+        }
+        if (buffEducationText != null)
+        {
+            string sign = data.influenceEducation >= 0 ? "+ " : "- ";
+            buffEducationText.text = "Học vấn " + sign + Mathf.Abs(data.influenceEducation).ToString() + "/h";
+        }
+        if (buffHappyText != null)
+        {
+            string sign = data.influenceHappy >= 0 ? "+ " : "- ";
+            buffHappyText.text = "Hạnh phúc " + sign + Mathf.Abs(data.influenceHappy).ToString() + "/h";
+        }
         
         if (descGoldText != null) descGoldText.text = data.descGold;
         if (descEducationText != null) descEducationText.text = data.descEducation;
@@ -97,6 +135,21 @@ public class TeacherCardCtrl : MonoBehaviour
         if (_onClickCallback != null)
         {
             _onClickCallback.Invoke(this);
+        }
+    }
+
+    private void OnClickInfoButton()
+    {
+        if (AvatarMode != null && InfoMode != null)
+        {
+            bool isAvatarActive = AvatarMode.activeSelf;
+            AvatarMode.SetActive(!isAvatarActive);
+            InfoMode.SetActive(isAvatarActive);
+        }
+        else
+        {
+            if (AvatarMode != null) AvatarMode.SetActive(!AvatarMode.activeSelf);
+            if (InfoMode != null) InfoMode.SetActive(!InfoMode.activeSelf);
         }
     }
 }

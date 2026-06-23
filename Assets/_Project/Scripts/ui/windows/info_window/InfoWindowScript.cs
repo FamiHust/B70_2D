@@ -41,6 +41,9 @@ public class InfoWindowScript : WindowScript
 	public Image TeacherImage;
 	public GameObject RentButton;
 	public GameObject SwitchTeacherButton;
+	public Text TeacherGoldBuff;
+	public Text TeacherEducationBuff;
+	public Text TeacherHappyBuff;
 
 	/* private vars */
 	private BaseItemScript _baseItem;
@@ -249,13 +252,31 @@ public class InfoWindowScript : WindowScript
 	{
 		if (this._baseItem != null && this._baseItem.assignedTeacher != null)
 		{
-			if (this.TeacherName != null) this.TeacherName.text = this._baseItem.assignedTeacher.teacherName;
-			if (this.TeacherDescription != null) this.TeacherDescription.text = this._baseItem.assignedTeacher.skillDescription;
+			TeacherData teacher = this._baseItem.assignedTeacher;
+			if (this.TeacherName != null) this.TeacherName.text = teacher.teacherName;
+			if (this.TeacherDescription != null) this.TeacherDescription.text = teacher.skillDescription;
 			if (this.TeacherImage != null)
 			{
 				this.TeacherImage.gameObject.SetActive(true);
-				this.TeacherImage.sprite = this._baseItem.assignedTeacher.avatar;
+				this.TeacherImage.sprite = teacher.avatar;
 			}
+
+			if (this.TeacherGoldBuff != null)
+			{
+				string sign = teacher.influenceGold >= 0 ? "+ " : "- ";
+				this.TeacherGoldBuff.text = sign + Mathf.Abs(teacher.influenceGold).ToString() + " vàng/h";
+			}
+			if (this.TeacherEducationBuff != null)
+			{
+				string sign = teacher.influenceEducation >= 0 ? "+ " : "- ";
+				this.TeacherEducationBuff.text = sign + Mathf.Abs(teacher.influenceEducation).ToString() + " học vấn/h";
+			}
+			if (this.TeacherHappyBuff != null)
+			{
+				string sign = teacher.influenceHappy >= 0 ? "+ " : "- ";
+				this.TeacherHappyBuff.text = sign + Mathf.Abs(teacher.influenceHappy).ToString() + " hạnh phúc/h";
+			}
+
 			if (this.RentButton != null) this.RentButton.SetActive(false);
 			if (this.SwitchTeacherButton != null) this.SwitchTeacherButton.SetActive(true);
 		}
@@ -267,6 +288,11 @@ public class InfoWindowScript : WindowScript
 			{
 				this.TeacherImage.gameObject.SetActive(false);
 			}
+
+			if (this.TeacherGoldBuff != null) this.TeacherGoldBuff.text = "+ ??? vàng/h";
+			if (this.TeacherEducationBuff != null) this.TeacherEducationBuff.text = "+ ??? học vấn/h";
+			if (this.TeacherHappyBuff != null) this.TeacherHappyBuff.text = "+ ??? hạnh phúc/h";
+
 			if (this.RentButton != null)
 			{
 				this.RentButton.SetActive(this._baseItem != null);
