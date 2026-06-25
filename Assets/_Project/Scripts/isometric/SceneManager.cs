@@ -151,8 +151,15 @@ public class SceneManager : MonoBehaviour
 		this.totalSpawnedNPCs           = PlayerPrefs.GetInt("totalSpawnedNPCs",           0);
 	}
 
+	private void SaveQuitTime()
+	{
+		PlayerPrefs.SetString("LastQuitTime", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString());
+		PlayerPrefs.Save();
+	}
+
 	private void OnApplicationQuit()
 	{
+		this.SaveQuitTime();
 		if (DataBaseManager.instance != null)
 		{
 			DataBaseManager.instance.SaveScene();
@@ -161,17 +168,102 @@ public class SceneManager : MonoBehaviour
 
 	private void OnApplicationPause(bool pauseStatus)
 	{
-		if (pauseStatus && DataBaseManager.instance != null)
+		if (pauseStatus)
 		{
-			DataBaseManager.instance.SaveScene();
+			this.SaveQuitTime();
+			if (DataBaseManager.instance != null)
+			{
+				DataBaseManager.instance.SaveScene();
+			}
+		}
+		else
+		{
+			this.AdjustOfflineTimeOnResume();
 		}
 	}
 
 	private void OnApplicationFocus(bool hasFocus)
 	{
-		if (!hasFocus && DataBaseManager.instance != null)
+		if (!hasFocus)
 		{
-			DataBaseManager.instance.SaveScene();
+			this.SaveQuitTime();
+			if (DataBaseManager.instance != null)
+			{
+				DataBaseManager.instance.SaveScene();
+			}
+		}
+		else
+		{
+			this.AdjustOfflineTimeOnResume();
+		}
+	}
+
+	public void AdjustOfflineTimeOnResume()
+	{
+		string quitTimeStr = PlayerPrefs.GetString("LastQuitTime", "0");
+		if (quitTimeStr == "0") return;
+
+		double lastQuitTime = double.Parse(quitTimeStr);
+		double currentTime = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+		double offlineTime = currentTime - lastQuitTime;
+
+		if (offlineTime > 0)
+		{
+			foreach (KeyValuePair<int, BaseItemScript> entry in this._itemInstances)
+			{
+				BaseItemScript item = entry.Value;
+				if (item != null && item.Production != null)
+				{
+					double lastTime = item.Production.GetLastCollectedTime();
+					if (lastTime > 0)
+					{
+						item.Production.SetLastCollectedTime(lastTime + offlineTime);
+					}
+				}
+			}
+		}
+
+		// Clear LastQuitTime so we don't apply it again
+		PlayerPrefs.SetString("LastQuitTime", "0");
+		PlayerPrefs.Save();
+	}
+
+	public void AssignBuildersToUnderConstructionBuildings()
+	{
+		List<BaseItemScript> builderHuts = new List<BaseItemScript>();
+		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
+		{
+			if (entry.Value.itemData.name == "BuilderHut")
+			{
+				builderHuts.Add(entry.Value);
+			}
+		}
+
+		foreach (KeyValuePair<int, BaseItemScript> entry in _itemInstances)
+		{
+			BaseItemScript building = entry.Value;
+			if (building != null && building.isUnderConstruction && !building.itemData.configuration.isCharacter)
+			{
+				// Check if any builder is already working on this building
+				bool hasBuilder = false;
+				foreach (BaseItemScript hut in builderHuts)
+				{
+					if (hut.connectedItems.Count > 0 && hut.connectedItems[0] != null && hut.connectedItems[0].buildingItem == building)
+					{
+						hasBuilder = true;
+						break;
+					}
+				}
+				
+				if (!hasBuilder)
+				{
+					BaseItemScript builder = GetFreeBuilder();
+					if (builder != null)
+					{
+						builder.BuilderAction(building);
+					}
+				}
+			}
 		}
 	}
 
@@ -202,7 +294,7 @@ public class SceneManager : MonoBehaviour
 	/// </summary>
 	/// <returns>The item.</returns>
 	/// <param name="itemId">Item identifier.</param>
-	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0, bool isPreview = false, List<Vector2Int> extraFootprint = null)
+	public BaseItemScript AddItem(int itemId, int instanceId, int posX, int posZ, bool immediate, bool ownedItem, int level = 1, double lastCollectedTime = 0, bool isPreview = false, List<Vector2Int> extraFootprint = null, bool isUnderConstruction = false, float constructionTimeRemaining = 0)
 	{
 		BaseItemScript builder = null;
 
@@ -227,7 +319,7 @@ public class SceneManager : MonoBehaviour
 		instance.instanceId = instanceId;
 		this._itemInstances.Add(instanceId, instance);
 
-		instance.SetItemData(itemId, posX, posZ, level, lastCollectedTime);
+		instance.SetItemData(itemId, posX, posZ, level, lastCollectedTime, isUnderConstruction, constructionTimeRemaining);
 		if (extraFootprint != null) instance.extraFootprint = new List<Vector2Int>(extraFootprint);
 		
 		if (isPreview)
@@ -686,7 +778,7 @@ public class SceneManager : MonoBehaviour
 				double lastTime = 0;
 				double.TryParse(itemData.lastCollectedTime, out lastTime);
 				ShopLayoutItem layoutItem = this._shopLayout.items.Find(i => i.itemId == itemData.itemId);
-				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, true, true, itemData.level, lastTime, false, layoutItem?.extraFootprint);
+				this.AddItem(itemData.itemId, itemData.instanceId, itemData.posX, itemData.posZ, !itemData.isUnderConstruction, true, itemData.level, lastTime, false, layoutItem?.extraFootprint, itemData.isUnderConstruction, itemData.constructionTimeRemaining);
 			}
 		}
 
@@ -771,6 +863,8 @@ public class SceneManager : MonoBehaviour
 		}
 
 		UIManager.instance.ShowGameOverlayWindow();
+		this.AdjustOfflineTimeOnResume();
+		this.AssignBuildersToUnderConstructionBuildings();
 	}
 
 	public BaseItemScript[] GetArmyCamps()

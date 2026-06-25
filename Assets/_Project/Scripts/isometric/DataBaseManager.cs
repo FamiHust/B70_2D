@@ -12,6 +12,8 @@ public class ItemData
 	public int posZ;
 	public int level = 1;
 	public string lastCollectedTime;
+	public bool isUnderConstruction;
+	public float constructionTimeRemaining;
 }
 
 [System.Serializable]
@@ -38,7 +40,7 @@ public class SceneData
 		items = new List<ItemData>();
 	}
 
-	public void AddOrUpdateItem(int instanceId, int itemId, int posX, int posZ, int level, double lastCollectedTime)
+	public void AddOrUpdateItem(int instanceId, int itemId, int posX, int posZ, int level, double lastCollectedTime, bool isUnderConstruction, float constructionTimeRemaining)
 	{
 		ItemData itemData = null;
 		foreach (ItemData item in this.items)
@@ -61,6 +63,8 @@ public class SceneData
 		itemData.posZ = posZ;
 		itemData.level = level;
 		itemData.lastCollectedTime = lastCollectedTime.ToString();
+		itemData.isUnderConstruction = isUnderConstruction;
+		itemData.constructionTimeRemaining = constructionTimeRemaining;
 	}
 
 	public void RemoveItem(int instanceId)
@@ -378,7 +382,9 @@ public class DataBaseManager : MonoBehaviour
 		foreach (BaseItemScript item in SceneManager.instance.GetAllItems())
 		{
 			double lastCollectedTime = (item.Production != null) ? item.Production.GetLastCollectedTime() : 0;
-			this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level, lastCollectedTime);
+			bool isUnderConstruction = item.IsUnderConstruction();
+			float constructionTimeRemaining = item.GetConstructionTimeRemaining();
+			this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level, lastCollectedTime, isUnderConstruction, constructionTimeRemaining);
 		}
 		this.SaveDataBase();
 	}
@@ -388,7 +394,9 @@ public class DataBaseManager : MonoBehaviour
 		if (item == null) return;
 		this.EnsureInMemoryData();
 		double lastCollectedTime = (item.Production != null) ? item.Production.GetLastCollectedTime() : 0;
-		this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level, lastCollectedTime);
+		bool isUnderConstruction = item.IsUnderConstruction();
+		float constructionTimeRemaining = item.GetConstructionTimeRemaining();
+		this._gameData.sceneData.AddOrUpdateItem(item.instanceId, item.itemData.id, item.GetPositionX(), item.GetPositionZ(), item.level, lastCollectedTime, isUnderConstruction, constructionTimeRemaining);
 		this.SaveDataBase();
 	}
 

@@ -72,7 +72,7 @@ public class BaseItemScript : MonoBehaviour
 		}
 	}
 
-	public void SetItemData(int itemId, int posX, int posZ, int level = 1, double lastCollectedTime = 0)
+	public void SetItemData(int itemId, int posX, int posZ, int level = 1, double lastCollectedTime = 0, bool isUnderConstruction = false, float constructionTimeRemaining = 0)
 	{
 		this.itemData = Items.GetItem(itemId);
 		this.level = level;
@@ -94,8 +94,16 @@ public class BaseItemScript : MonoBehaviour
 		this.UI.SetData(this);
 		this.Particles.SetData(this);
 
+		this.isUnderConstruction = isUnderConstruction;
 		if (this.Production != null)
+		{
 			this.Production.SetData(this, lastCollectedTime);
+			this.Production.isUnderConstruction = isUnderConstruction;
+			if (isUnderConstruction)
+			{
+				this.Production.constructionTimeRemaining = constructionTimeRemaining;
+			}
+		}
 
 		this.LoadAssignedTeacher();
 
@@ -116,6 +124,29 @@ public class BaseItemScript : MonoBehaviour
 		//{
 		//	this.ShowCollectNotificationUI(true, this.itemData.configuration.product);
 		//}
+	}
+
+	public bool IsUnderConstruction()
+	{
+		return this.isUnderConstruction;
+	}
+
+	public float GetConstructionTimeRemaining()
+	{
+		if (!this.isUnderConstruction) return 0f;
+		
+		if (this.Production != null)
+		{
+			return this.Production.constructionTimeRemaining;
+		}
+		
+		if (this.UI != null && this.UI.progressUIInstance != null)
+		{
+			float progress = this.UI.progressUIInstance.GetProgress();
+			return (1f - progress) * this.itemData.configuration.buildTime;
+		}
+		
+		return 0f;
 	}
 
 	public void LoadAssignedTeacher()

@@ -39,7 +39,15 @@ public class BaseItemProgressUIScript : MonoBehaviour
 	public void Init()
 	{
 		this._buildTime = this._baseItem.itemData.configuration.buildTime;
-		this._buildStartTime = Time.time;
+		if (this._baseItem != null && this._baseItem.Production != null && this._baseItem.Production.isUnderConstruction)
+		{
+			float remaining = this._baseItem.Production.constructionTimeRemaining;
+			this._buildStartTime = Time.time - (this._buildTime - remaining);
+		}
+		else
+		{
+			this._buildStartTime = Time.time;
+		}
 	}
 
 	private Vector2 _tempSize;
