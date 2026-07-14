@@ -6,7 +6,6 @@ using B70.Balance;
 
 public class SceneManager : MonoBehaviour
 {
-
 	public static SceneManager instance;
 
 	/* prefabs */
@@ -58,6 +57,7 @@ public class SceneManager : MonoBehaviour
 	{
 		instance = this;
 		this.Design.SetActive(false);
+		Application.targetFrameRate = 60;
 
 		this._itemInstances = new Dictionary<int, BaseItemScript>();
 
