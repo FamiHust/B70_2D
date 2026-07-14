@@ -600,6 +600,90 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 151632705}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &190423479
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 190423481}
+  - component: {fileID: 190423480}
+  m_Layer: 0
+  m_Name: "S\xE2n C9"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &190423480
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190423479}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: 1a0194bc342ddd34dbfd0f65b27a996a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 12.739143, y: 7.8499994}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &190423481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190423479}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.6532815, y: 0.27059805, z: -0.27059805, w: 0.6532815}
+  m_LocalPosition: {x: 27.11, y: 0, z: 8}
+  m_LocalScale: {x: 0.52, y: 0.89267, z: 0.89267}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &192624843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2675,7 +2759,7 @@ PrefabInstance:
     - target: {fileID: 2786675337526467358, guid: 7929f7fd0aadd463cae4bf2e59674a93,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -23.999725
+      value: -23.999634
       objectReference: {fileID: 0}
     - target: {fileID: 4760286789346080949, guid: 7929f7fd0aadd463cae4bf2e59674a93,
         type: 3}
@@ -5946,7 +6030,7 @@ PrefabInstance:
     - target: {fileID: 2786675337526467358, guid: 7929f7fd0aadd463cae4bf2e59674a93,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -23.999725
+      value: -23.999634
       objectReference: {fileID: 0}
     - target: {fileID: 4760286789346080949, guid: 7929f7fd0aadd463cae4bf2e59674a93,
         type: 3}
@@ -8472,7 +8556,7 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
-  m_Color: {r: 0.6509804, g: 0.56078434, b: 0.53333336, a: 1}
+  m_Color: {r: 0.86274517, g: 0.95294124, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -11746,7 +11830,7 @@ PrefabInstance:
     - target: {fileID: 224140840339866670, guid: 76b598aae383a7d4c8015d8495d015d3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -24.000458
+      value: -24.000366
       objectReference: {fileID: 0}
     - target: {fileID: 224841466707361398, guid: 76b598aae383a7d4c8015d8495d015d3,
         type: 3}
@@ -12219,7 +12303,7 @@ PrefabInstance:
     - target: {fileID: 1241445125991999892, guid: 5a1c81eb361b2411dbf7194926caf3d1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -29.999725
+      value: -29.999634
       objectReference: {fileID: 0}
     - target: {fileID: 1461342434885662092, guid: 5a1c81eb361b2411dbf7194926caf3d1,
         type: 3}
@@ -13917,3 +14001,4 @@ SceneRoots:
   - {fileID: 1872831892}
   - {fileID: 920092034}
   - {fileID: 504749568}
+  - {fileID: 190423481}
