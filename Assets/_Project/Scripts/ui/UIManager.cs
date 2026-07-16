@@ -457,6 +457,10 @@ public class UIManager : MonoBehaviour
 			if (TimeManager.instance != null)
 			{
 				bool shouldPause = this.HasPauseRequiringWindowOpen();
+				if (B70.Balance.UniversityEventManager.instance != null && B70.Balance.UniversityEventManager.instance.isEventFocused)
+				{
+					shouldPause = true;
+				}
 				if (!TimeManager.instance.hasFinishedFinalTutorial && !TimeManager.instance.isTutorialTimeRunning)
 				{
 					shouldPause = true;

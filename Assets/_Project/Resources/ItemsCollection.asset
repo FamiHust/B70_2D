@@ -162,7 +162,7 @@ MonoBehaviour:
     gridOffsetZ: 0
     uiOffsetX: 0
     uiOffsetZ: 0
-    defaultPosX: 0
+    defaultPosX: -1
     defaultPosZ: 6
     missionReward: 80
     configuration:

@@ -200,30 +200,7 @@ public class SceneManager : MonoBehaviour
 
 	public void AdjustOfflineTimeOnResume()
 	{
-		string quitTimeStr = PlayerPrefs.GetString("LastQuitTime", "0");
-		if (quitTimeStr == "0") return;
-
-		double lastQuitTime = double.Parse(quitTimeStr);
-		double currentTime = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-		double offlineTime = currentTime - lastQuitTime;
-
-		if (offlineTime > 0)
-		{
-			foreach (KeyValuePair<int, BaseItemScript> entry in this._itemInstances)
-			{
-				BaseItemScript item = entry.Value;
-				if (item != null && item.Production != null)
-				{
-					double lastTime = item.Production.GetLastCollectedTime();
-					if (lastTime > 0)
-					{
-						item.Production.SetLastCollectedTime(lastTime + offlineTime);
-					}
-				}
-			}
-		}
-
-		// Clear LastQuitTime so we don't apply it again
+		// Tắt tích lũy offline: không điều chỉnh thời gian tích lũy dựa trên thời gian offline nữa
 		PlayerPrefs.SetString("LastQuitTime", "0");
 		PlayerPrefs.Save();
 	}

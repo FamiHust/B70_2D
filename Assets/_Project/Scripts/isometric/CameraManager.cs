@@ -111,6 +111,12 @@ public class CameraManager : MonoBehaviour
 			return;
 		}
 
+		if (B70.Balance.UniversityEventManager.instance != null && B70.Balance.UniversityEventManager.instance.isEventFocused)
+		{
+			this.UpdateBaseItemTap();
+			return;
+		}
+
 		this.UpdateBaseItemTap();
 		this.UpdateBaseItemMove();
 		this.UpdateGroundTap();
@@ -182,7 +188,7 @@ public class CameraManager : MonoBehaviour
 		RaycastHit hit;
 		if (_TryGetRaycastHit(touch, out hit, RaycastTarget.BASE_ITEM))
 		{
-			return hit.collider.gameObject.GetComponent<BaseItemScript>();
+			return hit.collider.gameObject.GetComponentInParent<BaseItemScript>();
 		}
 
 		return null;
@@ -226,6 +232,33 @@ public class CameraManager : MonoBehaviour
 
 	public void UpdateBaseItemTap()
 	{
+		if (B70.Balance.UniversityEventManager.instance != null && B70.Balance.UniversityEventManager.instance.isEventFocused)
+		{
+			if (!Input.GetMouseButtonUp(0))
+			{
+				return;
+			}
+			if (this.IsUsingUI())
+			{
+				return;
+			}
+			BaseItemScript focusedItem = this._TryGetRaycastHitBaseItem(Input.mousePosition);
+			if (focusedItem == B70.Balance.UniversityEventManager.instance.eventFocusBuilding)
+			{
+				this._isTappedBaseItem = true;
+				this._selectedBaseItem = focusedItem;
+				CameraEvent evt = new CameraEvent()
+				{
+					baseItem = focusedItem
+				};
+				if (this.OnItemTap != null)
+				{
+					this.OnItemTap.Invoke(evt);
+				}
+			}
+			return;
+		}
+
 		if (this.isZoomLocked)
 		{
 			return;

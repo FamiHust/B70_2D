@@ -293,5 +293,59 @@ namespace B70.Balance
                 SpawnEventPrefab(evt);
             }
         }
+
+        [Header("Event Focus Mode")]
+        public bool isEventFocused = false;
+        public BaseItemScript eventFocusBuilding = null;
+
+        public void StartEventFocus(BaseItemScript building)
+        {
+            if (isEventFocused) return;
+            if (PlayerPrefs.GetInt("hasResolvedFirstEvent", 0) == 1) return; // Chỉ thực hiện với event đầu tiên của game
+
+            isEventFocused = true;
+            eventFocusBuilding = building;
+
+            if (UIManager.instance != null)
+            {
+                UIManager.instance.CloseAllWindowsExceptOverlay();
+                if (GameOverlayWindowScript.instance != null)
+                {
+                    GameOverlayWindowScript.instance.HideOverlay();
+                }
+            }
+
+            if (TimeManager.instance != null)
+            {
+                TimeManager.instance.SetPaused(true);
+            }
+
+            if (CameraManager.instance != null)
+            {
+                CameraManager.instance.FocusOnItem(building, 8f);
+            }
+        }
+
+        public void StopEventFocus()
+        {
+            isEventFocused = false;
+            eventFocusBuilding = null;
+
+            PlayerPrefs.SetInt("hasResolvedFirstEvent", 1);
+            PlayerPrefs.Save();
+
+            if (UIManager.instance != null)
+            {
+                if (GameOverlayWindowScript.instance != null)
+                {
+                    GameOverlayWindowScript.instance.ShowOverlay();
+                }
+            }
+
+            if (TimeManager.instance != null)
+            {
+                TimeManager.instance.SetPaused(false);
+            }
+        }
     }
 }

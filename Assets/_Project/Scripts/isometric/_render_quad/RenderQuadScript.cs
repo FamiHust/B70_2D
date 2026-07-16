@@ -10,6 +10,7 @@ public class RenderQuadScript : MonoBehaviour
 	public MeshRenderer MeshRenderer;
 
 	/* private vars */
+	private bool _wasModified = false;
 
 	public void SetData(SpriteCollection.TextureData textureData, int layer)
 	{
@@ -30,17 +31,50 @@ public class RenderQuadScript : MonoBehaviour
 	private void Update()
 	{
 		BaseItemScript baseItem = GetComponentInParent<BaseItemScript>();
-		if (baseItem != null && baseItem.state == Common.State.PREVIEW)
+		if (baseItem != null)
 		{
-			if (this.MeshRenderer != null && this.MeshRenderer.material != null && this.MeshRenderer.material.HasProperty("_Color"))
+			if (baseItem.state == Common.State.PREVIEW)
 			{
-				float lerp = Mathf.PingPong(Time.time * 4f, 1f);
-				Color baseColor = Color.white;
-				Color targetColor = Color.red;
-				
-				Color c = Color.Lerp(baseColor, targetColor, lerp);
-				c.a = 0.5f;
-				this.MeshRenderer.material.color = c;
+				if (this.MeshRenderer != null && this.MeshRenderer.material != null && this.MeshRenderer.material.HasProperty("_Color"))
+				{
+					// Giữ nguyên alpha mờ cố định khi preview
+					Color c = Color.white;
+					c.a = 0.4f;
+					this.MeshRenderer.material.color = c;
+					_wasModified = true;
+				}
+			}
+			else if (baseItem.isUnderConstruction)
+			{
+				if (this.MeshRenderer != null && this.MeshRenderer.material != null && this.MeshRenderer.material.HasProperty("_Color"))
+				{
+					float buildTime = baseItem.itemData != null && baseItem.itemData.configuration != null ? baseItem.itemData.configuration.buildTime : 0f;
+					float progress = 0f;
+					if (buildTime > 0f)
+					{
+						float remaining = baseItem.GetConstructionTimeRemaining();
+						progress = Mathf.Clamp01(1f - (remaining / buildTime));
+					}
+					else
+					{
+						progress = 1f;
+					}
+
+					// Rõ dần tỉ lệ với tiến trình xây dựng (alpha từ 0.2f đến 1.0f)
+					float alpha = Mathf.Lerp(0.2f, 1.0f, progress);
+					Color c = Color.white;
+					c.a = alpha;
+					this.MeshRenderer.material.color = c;
+					_wasModified = true;
+				}
+			}
+			else if (_wasModified)
+			{
+				if (this.MeshRenderer != null && this.MeshRenderer.material != null && this.MeshRenderer.material.HasProperty("_Color"))
+				{
+					this.MeshRenderer.material.color = Color.white;
+				}
+				_wasModified = false;
 			}
 		}
 	}

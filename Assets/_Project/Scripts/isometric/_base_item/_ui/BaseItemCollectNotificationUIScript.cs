@@ -12,6 +12,7 @@ public class BaseItemCollectNotificationUIScript : MonoBehaviour
 	public GameObject ElixirIcon;
 	public GameObject HappyIcon;
 	public GameObject EduIcon;
+	public Collider NotificationCollider;
 
 	/* private vars */
 	private BaseItemScript _baseItem;

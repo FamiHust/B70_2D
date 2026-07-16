@@ -26,8 +26,8 @@ public class ProductionScript : MonoBehaviour
     public float constructionTimeTotal;
     public float constructionTimeRemaining;
 
-    // ⚠️ Dùng Unix Time để lưu lâu dài (không bị reset khi restart game)
-    private double _lastCollectedTime = 0;
+    // ⚠️ Lưu thời gian đã tích lũy (giây) để tiếp tục chạy khi restart game
+    private double _accumulatedTime = 0;
 
     public void SetData(BaseItemScript baseItem, double lastCollectedTime = 0)
     {
@@ -39,16 +39,18 @@ public class ProductionScript : MonoBehaviour
         this.constructionTimeTotal = baseItem.itemData.configuration.buildTime;
         this.constructionTimeRemaining = this.constructionTimeTotal;
 
-        this._lastCollectedTime = lastCollectedTime;
-        // Nếu chưa có dữ liệu (spawn mới) hoặc không có dữ liệu cũ được truyền vào
-        if (_lastCollectedTime == 0)
-            _lastCollectedTime = GetCurrentTime();
+        // Nếu giá trị truyền vào là Unix timestamp cũ (lớn hơn mốc thời gian thực), reset về 0
+        if (lastCollectedTime > 1000000000)
+        {
+            lastCollectedTime = 0;
+        }
+        this._accumulatedTime = lastCollectedTime;
     }
 
     public void OnConstructionFinished()
     {
         this.isUnderConstruction = false;
-        this._lastCollectedTime = GetCurrentTime();
+        this._accumulatedTime = 0;
         if (this._baseItem != null)
             DataBaseManager.instance.UpdateItemData(this._baseItem);
 
@@ -110,6 +112,10 @@ public class ProductionScript : MonoBehaviour
         }
         else
         {
+            if (TimeManager.instance == null || !TimeManager.instance.isPaused)
+            {
+                this._accumulatedTime += Time.deltaTime;
+            }
             this.UpdateProduction();
             this.UpdateEventTiming();
         }
@@ -162,7 +168,7 @@ public class ProductionScript : MonoBehaviour
         if (this.isUnderConstruction || (TimeManager.instance != null && TimeManager.instance.isPaused))
             return;
 
-        double time = GetCurrentTime() - this._lastCollectedTime;
+        double time = this._accumulatedTime;
         bool anyReady = false;
         string firstReadyType = "";
 
@@ -197,7 +203,7 @@ public class ProductionScript : MonoBehaviour
 
     public void Collect()
     {
-        double time = GetCurrentTime() - this._lastCollectedTime;
+        double time = this._accumulatedTime;
         if (string.IsNullOrEmpty(this._productType)) return;
 
         string[] products = this._productType.Split(',');
@@ -227,7 +233,7 @@ public class ProductionScript : MonoBehaviour
             this._baseItem.Particles.ShowCollectionParticle(firstProduct);
             this._baseItem.UI.ShowCollectNotificationUI(false, firstProduct);
 
-            this._lastCollectedTime = GetCurrentTime();
+            this._accumulatedTime = 0;
             this.readyForCollection = false;
             _currentResourceType = "";
 
@@ -313,6 +319,11 @@ public class ProductionScript : MonoBehaviour
             Debug.Log($"[EventTiming] {_baseItem.itemData.name}: HIỆN EventIcon! event='{_pendingEvent?.eventName}'");
             // Hiển EventIcon, ghi đè lên icon resource nếu đang có
             _baseItem.UI.ShowCollectNotificationUI(true, "event");
+
+            if (B70.Balance.UniversityEventManager.instance != null)
+            {
+                B70.Balance.UniversityEventManager.instance.StartEventFocus(_baseItem);
+            }
         }
     }
 
@@ -323,8 +334,8 @@ public class ProductionScript : MonoBehaviour
     public void TriggerEvent()
     {
         if (_pendingEvent == null) return;
-        if (UniversityEventManager.instance == null) return;
-        UniversityEventManager.instance.ShowEventForBuilding(_pendingEvent, _baseItem);
+        if (B70.Balance.UniversityEventManager.instance == null) return;
+        B70.Balance.UniversityEventManager.instance.ShowEventForBuilding(_pendingEvent, _baseItem);
     }
 
     /// <summary>
@@ -336,6 +347,11 @@ public class ProductionScript : MonoBehaviour
         readyForEvent = false;
         _pendingEvent = null;
         _nextEventTime = -1f;
+
+        if (B70.Balance.UniversityEventManager.instance != null && B70.Balance.UniversityEventManager.instance.eventFocusBuilding == _baseItem)
+        {
+            B70.Balance.UniversityEventManager.instance.StopEventFocus();
+        }
 
         if (readyForCollection && !string.IsNullOrEmpty(_currentResourceType))
         {
@@ -355,12 +371,16 @@ public class ProductionScript : MonoBehaviour
 
     public double GetLastCollectedTime()
     {
-        return _lastCollectedTime;
+        return _accumulatedTime;
     }
 
     public void SetLastCollectedTime(double time)
     {
-        _lastCollectedTime = time;
+        if (time > 1000000000)
+        {
+            time = 0;
+        }
+        _accumulatedTime = time;
     }
 
     private double GetCurrentTime()
