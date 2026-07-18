@@ -172,7 +172,7 @@ MonoBehaviour:
   emojiRenderer: {fileID: 6076887232179774084}
   textMeshPro: {fileID: 0}
   textHolder: {fileID: 16765422831666921}
-  holderOriginalScale: {x: 0.3, y: 0.3, z: 0.3}
+  holderOriginalScale: {x: 0.4, y: 0.4, z: 0.4}
   bubbleType: 0
 --- !u!1 &8015808790915652665
 GameObject:
